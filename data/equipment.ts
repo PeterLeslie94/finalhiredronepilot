@@ -197,14 +197,15 @@ export const sensors: Sensor[] = [
   {
     id: 'vetted-pilots',
     type: 'lidar',
-    name: 'Vetted Drone Pilots',
+    name: 'Independent Drone Pilots',
     models: [],
     icon: 'shield',
-    description: 'Every quote comes from pilots screened for compliance, insurance, and commercial readiness.',
+    description:
+      'Compare quotes from independent drone pilots matched to your project scope, location, and timeline.',
     applications: [
-      'CAA-certified commercial drone pilots',
-      'Compliance and insurance checks',
-      'Experienced across inspections, surveys, and mapping',
+      'Independent drone pilots set their own pricing',
+      'Basic document checks only',
+      'Clients can set certification and insurance requirements',
     ],
   },
   {
@@ -226,11 +227,12 @@ export const sensors: Sensor[] = [
     name: 'Save Time on Manual Outreach',
     models: [],
     icon: 'timer',
-    description: 'Compare pricing, availability, and fit in one place instead of contacting pilots one by one.',
+    description:
+      'Share one brief and review pricing, availability, and fit in one place instead of contacting operators one by one.',
     applications: [
-      'Post one project brief once',
+      'Post one project brief',
       'Compare pricing, availability, and fit side by side',
-      'Avoid manual outreach to individual pilots',
+      'Shortlist faster with one consistent workflow',
     ],
   },
 ];

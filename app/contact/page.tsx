@@ -47,7 +47,7 @@ export default function ContactPage() {
               <QuoteButton className="btn btn-primary btn-shimmer">
                 Compare Quotes
               </QuoteButton>
-              <a href="tel:+442046340456" className="btn btn-outline-white flex items-center justify-center gap-2">
+              <a href="tel:+441334804554" className="btn btn-outline-white flex items-center justify-center gap-2">
                 <Phone className="w-4 h-4" />
                 Call Now
               </a>
@@ -57,8 +57,8 @@ export default function ContactPage() {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
               </svg>
               Avg Response within 5 Mins • Or call{' '}
-              <a href="tel:+442046340456" className="text-gold hover:underline font-medium">
-                020 4634 0456
+              <a href="tel:+441334804554" className="text-gold hover:underline font-medium">
+                +44 1334 804554
               </a>
             </p>
           </div>
@@ -97,8 +97,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-teal font-bold text-lg mb-1">Phone</h3>
-                    <a href="tel:+442046340456" className="text-xl font-semibold text-teal hover:text-gold transition-colors">
-                      020 4634 0456
+                    <a href="tel:+441334804554" className="text-xl font-semibold text-teal hover:text-gold transition-colors">
+                      +44 1334 804554
                     </a>
                     <p className="text-text-secondary text-sm mt-1">Speak directly to James</p>
                   </div>
@@ -290,9 +290,9 @@ export default function ContactPage() {
               <QuoteButton className="btn btn-primary btn-shimmer">
                 Compare Quotes
               </QuoteButton>
-              <a href="tel:+442046340456" className="btn btn-outline flex items-center justify-center gap-2">
+              <a href="tel:+441334804554" className="btn btn-outline flex items-center justify-center gap-2">
                 <Phone className="w-4 h-4" />
-                020 4634 0456
+                +44 1334 804554
               </a>
             </div>
           </div>

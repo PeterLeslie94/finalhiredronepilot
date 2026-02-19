@@ -77,7 +77,7 @@ const processSteps = [
     number: '03',
     category: 'On Site',
     title: 'Data Capture',
-    description: 'Our CAA-approved drone pilots capture high-quality aerial data across Bristol using professional drone equipment. Survey-grade accuracy is achieved through RTK GPS and ground control points.',
+    description: 'Our CAA-authorised independent drone pilots capture high-quality aerial data across Bristol using professional drone equipment. Survey-grade accuracy is achieved through RTK GPS and ground control points.',
     image: '/images/process/process-data-capture.avif',
   },
   {
@@ -600,11 +600,11 @@ export default function BristolPage() {
                 Compare Bristol Quotes
               </button>
               <span className="text-white/50">or</span>
-              <a href="tel:+442046340456" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
+              <a href="tel:+441334804554" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                Call 020 4634 0456
+                Call +44 1334 804554
               </a>
             </div>
           </div>
@@ -949,7 +949,7 @@ export default function BristolPage() {
               addressRegion: 'South West England',
               addressCountry: 'GB',
             },
-            telephone: '+442046340456',
+            telephone: '+441334804554',
             email: 'jamie@skykam.co.uk',
             url: 'https://skykam.co.uk/areas/bristol',
             areaServed: [

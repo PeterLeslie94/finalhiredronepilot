@@ -82,7 +82,7 @@ const placeholderBlogPosts = [
     id: 'compare-drone-pilot-quotes',
     category: 'Hiring Tips',
     title: 'How to Compare Drone Pilot Quotes Like a Pro',
-    excerpt: 'A practical checklist for comparing price, capability, insurance, and turnaround before you choose a pilot.',
+    excerpt: 'A practical checklist for comparing price, capability, insurance, and turnaround before you choose a drone pilot.',
     date: 'Placeholder',
     readTime: '6 min read',
     href: '/resources',
@@ -173,15 +173,16 @@ const certificationLogos = [
 const faqs = [
   {
     question: 'How does HireDronePilot work?',
-    answer: 'You post your project once, then receive multiple quotes from vetted drone pilots. Compare pricing, capability, and availability before selecting the best fit for your brief.',
+    answer: 'You post your project once, then receive multiple quotes from independent drone pilots. Compare pricing, capability, and availability before selecting the best fit for your brief.',
   },
   {
     question: 'How quickly will I get quotes?',
     answer: 'Most projects receive initial responses within hours, and many receive multiple qualified quotes within 24 hours depending on location, scope, and timeline.',
   },
   {
-    question: 'Are drone pilots vetted and insured?',
-    answer: 'Yes. We prioritize vetted drone operators with the right certifications, insurance, and compliance profile for commercial work in the UK.',
+    question: 'Are drone pilots independent and insured?',
+    answer:
+      'Drone pilots on HireDronePilot are independent providers. We may run basic document checks, but clients should perform their own due diligence before appointing a provider.',
   },
   {
     question: 'What deliverables do you provide from a drone survey?',
@@ -193,7 +194,8 @@ const faqs = [
   },
   {
     question: 'Do you provide drone survey services across the UK?',
-    answer: 'Yes, we provide drone survey services nationwide across the UK. Our team is based centrally and we regularly work on projects from Scotland to the South Coast, including both urban and rural locations.',
+    answer:
+      'HireDronePilot operates as an intro marketplace across the UK, connecting clients with independent drone pilots by location, availability, and service fit.',
   },
   {
     question: 'What types of drones do you use for surveys?',
@@ -201,7 +203,8 @@ const faqs = [
   },
   {
     question: 'Can you fly drones in restricted airspace?',
-    answer: 'Yes, our experienced team can obtain special permissions from the CAA and NATS for flights in controlled airspace, near airports, or in other restricted areas. We handle all necessary authorisations as part of our service.',
+    answer:
+      'Some independent drone pilots can operate in controlled or restricted airspace where permissions are required. Confirm permissions and operational responsibility directly with your selected provider.',
   },
   {
     question: 'What is the difference between photogrammetry and LiDAR?',
@@ -227,8 +230,8 @@ export default function HomePage() {
       {/* Hero Section */}
       <Hero
         subtitle="Nationwide UK"
-        title={<>Compare Quotes. <span className="text-gold">Hire Trusted Drone Pilots.</span></>}
-        description="Post your project once and receive competitive quotes from vetted, GVC-certified drone pilots across the United Kingdom."
+        title={<>Compare Quotes. <span className="text-gold">Hire Independent Drone Pilots.</span></>}
+        description="Post your project once and receive competitive quotes from independent drone pilots across the United Kingdom."
         primaryCta={{ text: 'Compare Quotes', href: '#quote' }}
         secondaryCta={{ text: 'Explore Services', href: '/services' }}
         backgroundImage="/images/hero-desktop.avif"
@@ -245,14 +248,15 @@ export default function HomePage() {
                 Built For Serious Projects
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-teal mb-6 leading-tight">
-                Post Once. <span className="text-wipe-red">Compare Vetted Quotes.</span> <span className="underline-sweep">Hire With Confidence.</span>
+                Post Once. <span className="text-wipe-red">Compare Multiple Quotes.</span>{' '}
+                <span className="underline-sweep">Hire With Clarity.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
                 HireDronePilot removes the chaos of finding reliable drone operators.
                 Instead of contacting drone pilots one by one, you receive multiple qualified responses in one streamlined workflow.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                Every quote comes from <span className="text-teal">vetted, insured, CAA-compliant drone pilots</span> and is backed by a platform designed for
+                Every quote comes from <span className="text-teal">independent drone pilots</span> and is backed by a platform designed for
                 <span className="text-teal"> speed, transparency, and dependable delivery</span>.
               </p>
 
@@ -265,7 +269,7 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-teal">Vetted Drone Pilot Network</p>
+                    <p className="font-semibold text-teal">Independent Drone Pilot Network</p>
                     <p className="text-text-secondary text-sm">Only qualified, insured drone operators can quote</p>
                   </div>
                 </div>
@@ -358,7 +362,8 @@ export default function HomePage() {
               </h2>
               <div className="space-y-4 text-text-secondary text-lg mb-8">
                 <p>
-                  HireDronePilot is a UK-based platform that connects clients needing drone services with CAA-certified, vetted drone pilots.
+                  HireDronePilot is a UK-based platform that connects clients needing drone services
+                  with independent drone pilots.
                 </p>
                 <p>
                   The service works by having clients submit project details through a single form, which is then sent to relevant operators for them to provide quotes.
@@ -427,7 +432,7 @@ export default function HomePage() {
               A Full Range of Drone Services
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Our vetted drone pilot network supplies a wide range of services, from inspections and mapping to surveying and aerial media.
+              Our independent drone pilot network supplies a wide range of services, from inspections and mapping to surveying and aerial media.
             </p>
           </div>
 
@@ -506,233 +511,142 @@ export default function HomePage() {
       {/* Testimonials Section */}
       <Testimonials />
 
-      {/* How It Works Section */}
+      {/* Workflow Section */}
       <section className="section bg-teal relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        </div>
         <div className="container relative z-10">
-          <div className="text-center mb-14">
+          <div className="text-center mb-12">
             <h2 className="text-gold font-semibold uppercase tracking-wider mb-3">
-              How It Works
+              How The Marketplace Works
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Need To Hire A Drone Pilot Fast?
+              One Brief. Targeted Invites. Direct Appointment.
             </h3>
-            <p className="text-white/70 text-lg max-w-3xl mx-auto">
-              Experience our streamlined process - see exactly how it works with these interactive demos.
+            <p className="text-white/75 text-lg max-w-3xl mx-auto">
+              HireDronePilot is an intro marketplace connecting clients with independent drone pilots.
+              We are a facilitator and record keeper only.
             </p>
           </div>
 
-          <div className="max-w-6xl mx-auto space-y-8">
-            {/* Step 1 */}
-            <article className="rounded-3xl border border-gold/20 bg-teal-dark/95 p-6 md:p-8">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-10 items-start">
-                <div>
-                  <p className="text-gold font-semibold uppercase tracking-wider mb-2">Step 1</p>
-                  <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">Post Your Project</h4>
-                  <p className="text-white/80 leading-relaxed mb-4">
-                    Share the mission brief, locations, and deadlines in minutes. We shape the details so only vetted GVC-certified drone pilots raise their hands, and you stay in control from the very first click.
-                  </p>
-                  <p className="text-white/70 leading-relaxed mb-6">
-                    Our concierge prompts make sure you capture every operational detail-airspace, on-site contacts, deliverables-so drone pilots can respond with confidence and you avoid endless clarification emails.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <button
-                      onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                      className="btn btn-primary btn-shimmer"
-                    >
-                      Start Your Project Brief
-                    </button>
-                    <span className="inline-flex items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
-                      Guided Submission
-                    </span>
-                  </div>
+          <div className="max-w-6xl mx-auto mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { step: '01', title: 'Submit Brief', subtitle: 'Multi-step enquiry + legal consent' },
+              { step: '02', title: 'Compare Quotes', subtitle: 'Selected independent drone pilots respond' },
+              { step: '03', title: 'Appoint Directly', subtitle: 'Client and drone pilot contract directly' },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="rounded-2xl border border-white/20 bg-white/5 px-4 py-4 backdrop-blur-sm"
+              >
+                <p className="text-gold text-xs font-bold tracking-[0.2em] mb-1">STEP {item.step}</p>
+                <h4 className="text-white font-semibold text-lg">{item.title}</h4>
+                <p className="text-white/65 text-sm mt-1">{item.subtitle}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <div className="xl:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+              <article className="rounded-3xl border border-gold/25 bg-teal-dark/95 p-5">
+                <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center mb-4">
+                  <MessageSquareText className="w-5 h-5 text-gold" />
                 </div>
+                <p className="text-gold font-semibold uppercase tracking-wider text-xs mb-2">Step 1</p>
+                <h4 className="text-white text-xl font-bold mb-3">Submit Project Brief</h4>
+                <p className="text-white/80 text-sm leading-relaxed mb-3">
+                  Use the guided form to submit contact details, service type, timeline preference,
+                  location (optional), and job details.
+                </p>
+                <ul className="space-y-2 text-sm text-white/75">
+                  <li>Admin reviews each enquiry before any invite is sent.</li>
+                  <li>Client identifiers can be removed from the brief where needed.</li>
+                  <li>Invite scope can include or exclude specific drone pilots.</li>
+                </ul>
+              </article>
 
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gold/15 border border-gold/40 flex items-center justify-center">
-                        <MessageSquareText className="w-5 h-5 text-gold" />
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold">Project Brief Snapshot</p>
-                        <p className="text-white/60 text-sm">2-minute walkthrough tailored to your mission.</p>
-                      </div>
-                    </div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gold bg-gold/10 border border-gold/30 rounded-full px-2.5 py-1">
-                      Auto-save on
-                    </span>
-                  </div>
+              <article className="rounded-3xl border border-gold/25 bg-teal-dark/95 p-5">
+                <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center mb-4">
+                  <MapPinned className="w-5 h-5 text-gold" />
+                </div>
+                <p className="text-gold font-semibold uppercase tracking-wider text-xs mb-2">Step 2</p>
+                <h4 className="text-white text-xl font-bold mb-3">Compare Direct Quotes</h4>
+                <p className="text-white/80 text-sm leading-relaxed mb-3">
+                  Selected independent drone pilots send direct quotes with pricing, timing, and
+                  scope notes for side-by-side comparison.
+                </p>
+                <ul className="space-y-2 text-sm text-white/75">
+                  <li>Review responses in one place instead of manual outreach.</li>
+                  <li>Ask clarifying questions and shortlist your preferred options.</li>
+                  <li>No platform cut is added to drone pilot pricing.</li>
+                </ul>
+              </article>
 
-                  <div className="space-y-3 text-sm">
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3">
-                      <p className="text-white/60 text-xs uppercase tracking-wider">Location</p>
-                      <p className="text-white font-medium">Manchester city centre</p>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3">
-                      <p className="text-white/60 text-xs uppercase tracking-wider">Flight window</p>
-                      <p className="text-white font-medium">12 Sep 2024, morning</p>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3">
-                      <p className="text-white/60 text-xs uppercase tracking-wider">Deliverables</p>
-                      <p className="text-white font-medium">Thermal imagery + roof damage stills</p>
-                    </div>
-                  </div>
+              <article className="rounded-3xl border border-gold/25 bg-teal-dark/95 p-5">
+                <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center mb-4">
+                  <FileCheck2 className="w-5 h-5 text-gold" />
+                </div>
+                <p className="text-gold font-semibold uppercase tracking-wider text-xs mb-2">Step 3</p>
+                <h4 className="text-white text-xl font-bold mb-3">Appoint and Deliver</h4>
+                <p className="text-white/80 text-sm leading-relaxed mb-3">
+                  Once appointed, the client and independent drone pilot agree service terms directly.
+                </p>
+                <ul className="space-y-2 text-sm text-white/75">
+                  <li>HireDronePilot is not party to the service contract.</li>
+                  <li>Payment and delivery are handled directly between both parties.</li>
+                  <li>We keep enquiry and quote records for traceability.</li>
+                </ul>
+              </article>
+            </div>
 
-                  <p className="mt-4 text-white/70 text-sm">
-                    We pre-fill compliance questions so every quote fits your risk profile.
+            <aside className="xl:col-span-4 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+              <h4 className="text-white text-xl font-bold mb-4">Data Sharing + Role Boundaries</h4>
+              <div className="space-y-4 text-sm">
+                <div className="rounded-2xl border border-white/15 bg-teal/45 px-4 py-3">
+                  <p className="text-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                    When Data Is Shared
+                  </p>
+                  <p className="text-white/80">
+                    After admin review and approval, your brief is sent to selected independent drone
+                    pilots invited to quote.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-teal/45 px-4 py-3">
+                  <p className="text-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                    What Is Shared
+                  </p>
+                  <p className="text-white/80">
+                    Project scope, timeline, location context, and delivery requirements needed for
+                    quoting. Not all personal contact details are required in every brief.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-teal/45 px-4 py-3">
+                  <p className="text-gold text-xs uppercase tracking-wider font-semibold mb-1">
+                    Platform Position
+                  </p>
+                  <p className="text-white/80">
+                    Facilitator and record keeper only. We do not guarantee performance, workmanship,
+                    or payment outcomes.
                   </p>
                 </div>
               </div>
-            </article>
-
-            {/* Step 2 */}
-            <article className="rounded-3xl border border-gold/20 bg-teal-dark/95 p-6 md:p-8">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-10 items-start">
-                <div>
-                  <p className="text-gold font-semibold uppercase tracking-wider mb-2">Step 2</p>
-                  <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">Compare Quotes</h4>
-                  <p className="text-white/80 leading-relaxed mb-4">
-                    Multiple drone pilots respond fast with pricing, insurance, and fleet details. Review credentials side-by-side, ask questions in-platform, and shortlist the perfect drone pilot without the back-and-forth.
-                  </p>
-                  <p className="text-white/70 leading-relaxed mb-6">
-                    Every proposal is standardised, so you can filter by certifications, turnaround time, and value add-ons in seconds. Save favourites, loop in teammates, and make decisions backed by richer data.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <button
-                      onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                      className="btn btn-primary btn-shimmer"
-                    >
-                      Compare Multiple Quotes
-                    </button>
-                    <span className="inline-flex items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
-                      Live Quotes
-                    </span>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gold/15 border border-gold/40 flex items-center justify-center">
-                        <MapPinned className="w-5 h-5 text-gold" />
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold">Top Pilot Responses</p>
-                        <p className="text-white/60 text-sm">See pricing, insurance, and availability at a glance.</p>
-                      </div>
-                    </div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gold bg-gold/10 border border-gold/30 rounded-full px-2.5 py-1">
-                      3 new bids
-                    </span>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-white font-semibold">SkyVista Aerial</p>
-                          <p className="text-white/70 text-xs">Manchester • Dual Ops</p>
-                        </div>
-                        <p className="text-gold font-bold">£540</p>
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-2 text-xs text-white/80">
-                        <span className="rounded-full border border-white/20 px-2 py-1">Proposal in 55 min</span>
-                        <span className="rounded-full border border-white/20 px-2 py-1">4.9 rating</span>
-                        <span className="rounded-full border border-white/20 px-2 py-1">£10M cover</span>
-                      </div>
-                    </div>
-
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3">
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-white font-semibold">NorthPeak UAV</p>
-                          <p className="text-white/70 text-xs">Leeds • Construction</p>
-                        </div>
-                        <p className="text-gold font-bold">£480</p>
-                      </div>
-                      <div className="mt-2 flex flex-wrap gap-2 text-xs text-white/80">
-                        <span className="rounded-full border border-white/20 px-2 py-1">Proposal in 1 hr 12</span>
-                        <span className="rounded-full border border-white/20 px-2 py-1">Team of 3</span>
-                        <span className="rounded-full border border-white/20 px-2 py-1">48h delivery</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <p className="mt-4 text-white/70 text-sm">
-                    Shortlist, message, and book inside the dashboard-no email ping-pong.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            {/* Step 3 */}
-            <article className="rounded-3xl border border-gold/20 bg-teal-dark/95 p-6 md:p-8">
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-10 items-start">
-                <div>
-                  <p className="text-gold font-semibold uppercase tracking-wider mb-2">Step 3</p>
-                  <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">Project Management</h4>
-                  <p className="text-white/80 leading-relaxed mb-4">
-                    Lock in your pilot and we handle the paperwork, risk assessments, and delivery milestones. Track progress live, receive proofs, and download final assets the moment they are approved.
-                  </p>
-                  <p className="text-white/70 leading-relaxed mb-6">
-                    Automated reminders, compliance checklists, and delivery receipts keep the mission moving without you juggling inboxes. We document every milestone so stakeholders and procurement stay aligned.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <button
-                      onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                      className="btn btn-primary btn-shimmer"
-                    >
-                      Explore Project Dashboard
-                    </button>
-                    <span className="inline-flex items-center rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
-                      Delivery Hub
-                    </span>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gold/15 border border-gold/40 flex items-center justify-center">
-                        <FileCheck2 className="w-5 h-5 text-gold" />
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold">Mission Timeline</p>
-                        <p className="text-white/60 text-sm">We coordinate milestones, paperwork, and asset delivery.</p>
-                      </div>
-                    </div>
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gold bg-gold/10 border border-gold/30 rounded-full px-2.5 py-1">
-                      Live tracking
-                    </span>
-                  </div>
-
-                  <div className="space-y-2.5 text-sm">
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Kickoff call recorded</div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Risk assessment filed 08:30</div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Flight window confirmed</div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Pilot onsite Thu 13 Sep • 09:00</div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Deliverables uploading</div>
-                    <div className="rounded-xl border border-white/10 bg-teal/40 px-4 py-3 text-white/90">Thermal report + 4K stills</div>
-                  </div>
-
-                  <p className="mt-4 text-white/70 text-sm">
-                    Clients sign off, drone pilots get paid, and the audit trail stays in one place.
-                  </p>
-                </div>
-              </div>
-            </article>
+            </aside>
           </div>
 
           <div className="mt-14 text-center">
             <h4 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              Hire Drone Pilot for Your Project
+              Start Your Project Brief
             </h4>
-            <p className="text-white/70 mb-6">(No Account Required)</p>
+            <p className="text-white/70 mb-6">
+              Submit once and compare direct quotes from independent drone pilots.
+            </p>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
               className="btn btn-primary btn-shimmer btn-pop-on-scroll"
             >
-              Compare Quotes
+              Receive Multiple Quotes
             </button>
           </div>
         </div>
@@ -787,11 +701,11 @@ export default function HomePage() {
                 Compare Quotes
               </button>
               <span className="text-white/50">or</span>
-              <a href="tel:+442046340456" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
+              <a href="tel:+441334804554" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                Call 020 4634 0456
+                Call +44 1334 804554
               </a>
             </div>
           </div>
@@ -1092,7 +1006,7 @@ export default function HomePage() {
                   Request a Free Drone Survey Quote
                 </h3>
                 <p className="text-text-secondary text-lg mb-8 leading-relaxed">
-                  Ready to discuss your drone survey requirements? Complete the form and compare vetted drone pilot quotes for your project from one submission.
+                  Ready to discuss your drone survey requirements? Complete the form and compare independent drone pilot quotes for your project from one submission.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
@@ -1129,13 +1043,13 @@ export default function HomePage() {
                       <p className="text-white/70 text-sm">Call and talk through your scope before submitting.</p>
                     </div>
                     <a
-                      href="tel:+442046340456"
+                      href="tel:+441334804554"
                       className="inline-flex items-center justify-center gap-2 rounded-xl bg-gold text-teal-dark font-semibold px-4 py-2.5 hover:bg-gold/90 transition-colors"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      020 4634 0456
+                      +44 1334 804554
                     </a>
                   </div>
                 </div>

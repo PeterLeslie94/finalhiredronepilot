@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { Document, Block, Text, BLOCKS } from '@contentful/rich-text-types';
 import { RichTextBlock } from '@/data/blog';
 import { generateSlug } from '@/lib/utils/slug';
@@ -15,7 +16,6 @@ interface TableOfContentsProps {
   contentfulContent?: Document;
 }
 
-// Extract text from a Contentful block node
 function getTextFromContentfulNode(node: Block): string {
   let text = '';
   if (node.content) {
@@ -28,7 +28,6 @@ function getTextFromContentfulNode(node: Block): string {
   return text;
 }
 
-// Extract headings from Contentful Document
 function extractContentfulHeadings(doc: Document): TOCItem[] {
   const headings: TOCItem[] = [];
 
@@ -57,7 +56,6 @@ function extractContentfulHeadings(doc: Document): TOCItem[] {
   return headings;
 }
 
-// Extract headings from local RichTextBlock content
 function extractLocalHeadings(content: RichTextBlock[]): TOCItem[] {
   return content
     .filter((block) => block.type === 'heading2' || block.type === 'heading3')
@@ -69,14 +67,41 @@ function extractLocalHeadings(content: RichTextBlock[]): TOCItem[] {
 }
 
 export default function TableOfContents({ content, contentfulContent }: TableOfContentsProps) {
-  // Extract headings based on content type
-  const headings = contentfulContent
-    ? extractContentfulHeadings(contentfulContent)
-    : content
-    ? extractLocalHeadings(content)
-    : [];
+  const [activeId, setActiveId] = useState<string>('');
 
-  // Don't render if no headings found
+  const headings = useMemo(
+    () =>
+      contentfulContent
+        ? extractContentfulHeadings(contentfulContent)
+        : content
+        ? extractLocalHeadings(content)
+        : [],
+    [content, contentfulContent]
+  );
+
+  // Scroll-spy: track which heading is in view
+  useEffect(() => {
+    if (headings.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    );
+
+    for (const heading of headings) {
+      const el = document.getElementById(heading.id);
+      if (el) observer.observe(el);
+    }
+
+    return () => observer.disconnect();
+  }, [headings]);
+
   if (headings.length === 0) {
     return null;
   }
@@ -86,36 +111,32 @@ export default function TableOfContents({ content, contentfulContent }: TableOfC
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Update URL hash without jumping
       window.history.pushState(null, '', `#${id}`);
     }
   };
 
   return (
-    <div className="bg-gradient-to-br from-teal to-teal-dark rounded-2xl p-6">
-      {/* Header */}
-      <p className="text-gold text-xs font-semibold uppercase tracking-wide mb-4">
-        Jump to Section
-      </p>
-
-      {/* Links */}
-      <nav>
-        <ul className="space-y-2">
-          {headings.map((heading, index) => (
-            <li key={`${heading.id}-${index}`}>
-              <a
-                href={`#${heading.id}`}
-                onClick={(e) => handleClick(e, heading.id)}
-                className={`block text-white/80 hover:text-gold transition-colors ${
-                  heading.level === 3 ? 'pl-4 text-sm' : 'font-medium'
-                }`}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <p className="mb-3 text-xs font-bold text-gray-900 uppercase tracking-wider">Contents</p>
+      <ul className="space-y-1">
+        {headings.filter((h) => h.level === 2).map((heading, index) => (
+          <li key={`${heading.id}-${index}`}>
+            <a
+              href={`#${heading.id}`}
+              onClick={(e) => handleClick(e, heading.id)}
+              className={`block border-l-2 py-1 pr-2 text-[13px] leading-snug transition-colors ${
+                heading.level === 3 ? 'pl-5 text-[12px]' : 'pl-3'
+              } ${
+                activeId === heading.id
+                  ? 'border-gold text-gold font-semibold'
+                  : 'border-transparent text-gray-500 hover:text-gold'
+              }`}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

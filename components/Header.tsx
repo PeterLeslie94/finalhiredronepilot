@@ -105,9 +105,9 @@ export default function Header() {
       <div className="bg-gold relative z-40">
         <div className="container flex justify-between items-center py-1.5">
           <div className="hidden sm:flex items-center gap-1 text-xs text-teal-dark font-medium">
-            <a href="tel:+442046340456" className="flex items-center gap-1.5 hover:text-teal transition-colors px-3 py-1">
+            <a href="tel:+441334804554" className="flex items-center gap-1.5 hover:text-teal transition-colors px-3 py-1">
               <Phone className="w-3 h-3" />
-              <span>020 4634 0456</span>
+              <span>+44 1334 804554</span>
             </a>
             <span className="text-teal-dark/30">|</span>
             <a href="mailto:quotes@hiredronepilot.uk" className="flex items-center gap-1.5 hover:text-teal transition-colors px-3 py-1">
@@ -115,8 +115,14 @@ export default function Header() {
               <span>quotes@hiredronepilot.uk</span>
             </a>
           </div>
-          <div className="text-xs text-teal-dark font-semibold px-3 py-1">
-            Drone Pilot Login
+          <div className="text-xs text-teal-dark font-semibold px-3 py-1 flex items-center gap-2">
+            <Link href="/pilots/apply" className="hover:text-teal transition-colors">
+              Join As Drone Pilot
+            </Link>
+            <span className="text-teal-dark/40">|</span>
+            <Link href="/login" className="hover:text-teal transition-colors">
+              Drone Pilot Login
+            </Link>
           </div>
         </div>
       </div>
@@ -230,6 +236,24 @@ export default function Header() {
                 }`}
               >
                 Resources
+              </Link>
+
+              <Link
+                href="/pilots"
+                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
+                  isActivePath('/pilots') ? 'active text-gold' : 'hover:text-gold'
+                }`}
+              >
+                Pilots
+              </Link>
+
+              <Link
+                href="/pricing"
+                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
+                  isActivePath('/pricing') ? 'active text-gold' : 'hover:text-gold'
+                }`}
+              >
+                Pricing
               </Link>
 
               <Link
@@ -383,6 +407,28 @@ export default function Header() {
               Resources
             </Link>
 
+            <Link
+              href="/pilots"
+              className={`mobile-menu-item block text-xl font-semibold py-3 border-b border-white/10 transition-all duration-300 ${
+                mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+              } ${isActivePath('/pilots') ? 'text-gold' : 'text-white hover:text-gold'}`}
+              style={{ transitionDelay: '412ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pilots
+            </Link>
+
+            <Link
+              href="/pricing"
+              className={`mobile-menu-item block text-xl font-semibold py-3 border-b border-white/10 transition-all duration-300 ${
+                mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+              } ${isActivePath('/pricing') ? 'text-gold' : 'text-white hover:text-gold'}`}
+              style={{ transitionDelay: '425ms' }}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Pricing
+            </Link>
+
             {/* Contact Link */}
             <Link
               href="/contact"
@@ -413,9 +459,9 @@ export default function Header() {
               Compare Quotes
             </button>
             <div className="mt-6 flex flex-col gap-3 text-white/70">
-              <a href="tel:+442046340456" className="flex items-center gap-3 hover:text-gold transition-colors">
+              <a href="tel:+441334804554" className="flex items-center gap-3 hover:text-gold transition-colors">
                 <Phone className="w-5 h-5" />
-                <span>020 4634 0456</span>
+                <span>+44 1334 804554</span>
               </a>
               <a href="mailto:quotes@hiredronepilot.uk" className="flex items-center gap-3 hover:text-gold transition-colors">
                 <Mail className="w-5 h-5" />

@@ -14,13 +14,13 @@ export default function EquipmentSection() {
           {/* Header */}
           <div className="text-center mb-8">
             <p className="text-gold font-semibold uppercase tracking-wider mb-3 text-sm">
-              Pilot Network Capabilities
+              Drone Pilot Network Capabilities
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-teal mb-4">
-              Nationwide Pilot Network. Enterprise-Grade Fleet Access.
+              Nationwide Drone Pilot Network. Enterprise-Grade Fleet Access.
             </h2>
             <p className="text-text-secondary text-lg max-w-3xl mx-auto mb-8">
-              From one form, access vetted drone pilots equipped with high-performance platforms and specialist payloads for complex UK projects.
+              From one form, access independent drone pilots equipped with high-performance platforms and specialist payloads for complex UK projects.
             </p>
 
             {/* Differentiator Badges */}
@@ -69,10 +69,10 @@ export default function EquipmentSection() {
               Why Use HireDronePilot
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Vetted Drone Pilots. Better Quotes. Less Hassle.
+              Independent Drone Pilots. Better Quotes. Less Hassle.
             </h2>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              Post one brief and compare quotes from CAA-certified drone pilots for your project.
+              Post one brief and compare quotes from independent drone pilots for your project.
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export default function EquipmentSection() {
 
           {/* Bottom CTA */}
           <div className="mt-12 text-center">
-            <p className="text-white/60 mb-4">Ready to compare vetted drone pilot quotes?</p>
+            <p className="text-white/60 mb-4">Ready to compare independent drone pilot quotes?</p>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
               className="inline-flex items-center gap-2 bg-gold text-teal-dark font-semibold px-6 py-3 rounded-full hover:bg-gold/90 transition-colors btn-shimmer btn-pop-on-scroll"

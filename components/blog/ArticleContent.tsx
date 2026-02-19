@@ -100,11 +100,6 @@ export default function ArticleContent({ content, contentfulContent, keyTakeaway
                     sizes="(max-width: 768px) 100vw, 800px"
                   />
                 </div>
-                {block.caption && (
-                  <figcaption className="text-center text-sm text-text-secondary mt-3 italic">
-                    {block.caption}
-                  </figcaption>
-                )}
               </figure>
             );
 

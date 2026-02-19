@@ -99,7 +99,7 @@ export default function AreasPage() {
                 <Phone className="w-7 h-7 text-gold" />
               </div>
               <div>
-                <h3 className="font-bold text-teal text-lg">020 4634 0456</h3>
+                <h3 className="font-bold text-teal text-lg">+44 1334 804554</h3>
                 <p className="text-text-secondary text-sm">Call for immediate assistance</p>
               </div>
             </div>
@@ -257,8 +257,8 @@ export default function AreasPage() {
               >
                 Compare Quotes
               </button>
-              <a href="tel:+442046340456" className="btn bg-transparent text-teal border-teal hover:bg-teal hover:text-white">
-                Call 020 4634 0456
+              <a href="tel:+441334804554" className="btn bg-transparent text-teal border-teal hover:bg-teal hover:text-white">
+                Call +44 1334 804554
               </a>
             </div>
             <p className="mt-6 text-text-secondary text-sm">
@@ -285,7 +285,7 @@ export default function AreasPage() {
               postalCode: 'DD4 8XD',
               addressCountry: 'GB',
             },
-            telephone: '+442046340456',
+            telephone: '+441334804554',
             email: 'jamie@skykam.co.uk',
             url: 'https://skykam.co.uk',
             areaServed: [

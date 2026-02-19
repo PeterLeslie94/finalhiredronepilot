@@ -10,7 +10,7 @@ const DEFAULT_AUTHOR: Author = {
   name: 'Peter Leslie',
   role: 'Owner & Drone Pilot',
   image: '/images/peter_leslie.webp',
-  bio: 'Founder of HireDronePilot, helping UK clients compare quotes from vetted, CAA-certified drone pilots through a single streamlined platform.',
+  bio: 'Founder of HireDronePilot, helping UK clients compare quotes from independent drone pilots through a single streamlined platform.',
 };
 
 // Default category for posts without one

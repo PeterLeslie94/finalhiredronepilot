@@ -38,7 +38,7 @@ export default function ArticleCard({
   if (variant === 'featured') {
     return (
       <article className="group relative bg-white border-3 border-gold rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <Link href={`/resources/blog/${slug}`} className="flex flex-col md:flex-row">
+        <Link href={`/blog/${slug}`} className="flex flex-col md:flex-row">
           {/* Image */}
           <div className="relative h-64 md:h-auto md:w-1/2">
             <Image
@@ -96,7 +96,7 @@ export default function ArticleCard({
   if (variant === 'compact') {
     return (
       <article className="group">
-        <Link href={`/resources/blog/${slug}`} className="flex gap-4">
+        <Link href={`/blog/${slug}`} className="flex gap-4">
           {/* Thumbnail */}
           <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
             <Image
@@ -130,7 +130,7 @@ export default function ArticleCard({
   // Default variant
   return (
     <article className="group relative bg-white border-3 border-border rounded-xl overflow-hidden transition-all duration-300 hover:border-gold hover:-translate-y-1 hover:shadow-xl">
-      <Link href={`/resources/blog/${slug}`}>
+      <Link href={`/blog/${slug}`}>
         {/* Image */}
         <div className="relative h-48">
           <Image

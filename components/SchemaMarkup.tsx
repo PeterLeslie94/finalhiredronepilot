@@ -10,7 +10,7 @@ export function LocalBusinessSchema() {
     image: 'https://hiredronepilot.uk/images/logo.png',
     description: 'Professional drone survey services across the UK. CAA approved aerial surveys for construction, infrastructure, and land management.',
     url: 'https://hiredronepilot.uk',
-    telephone: '+44-20-4634-0456',
+    telephone: '+44-1334-804554',
     email: 'quotes@hiredronepilot.uk',
     address: {
       '@type': 'PostalAddress',
@@ -96,7 +96,8 @@ export function PersonSchema() {
     '@type': 'Person',
     name: 'Peter Leslie',
     jobTitle: 'Founder',
-    description: 'CAA-authorised drone professional and founder of HireDronePilot, connecting UK clients with vetted drone operators.',
+    description:
+      'CAA-authorised drone professional and founder of HireDronePilot, connecting UK clients with independent drone pilots.',
     worksFor: {
       '@id': 'https://hiredronepilot.uk/#organization',
     },
@@ -203,7 +204,7 @@ export function BlogListingSchema({
     '@context': 'https://schema.org',
     '@type': 'Blog',
     name: 'HireDronePilot Blog',
-    url: 'https://hiredronepilot.uk/resources/blog',
+    url: 'https://hiredronepilot.uk/blog',
     publisher: {
       '@type': 'Organization',
       name: 'HireDronePilot',
@@ -269,7 +270,7 @@ export function BlogPostingSchema({
       '@type': 'Organization',
       name: 'HireDronePilot',
     },
-    mainEntityOfPage: `https://hiredronepilot.uk/resources/blog/${article.slug}`,
+    mainEntityOfPage: `https://hiredronepilot.uk/blog/${article.slug}`,
     keywords: article.tags.join(', '),
     articleSection: article.category.name,
   };

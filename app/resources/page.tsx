@@ -133,7 +133,7 @@ export default async function ResourcesPage() {
             </div>
             {latestArticles.length > 0 && (
               <Link
-                href="/resources/blog"
+                href="/blog"
                 className="mt-4 md:mt-0 inline-flex items-center text-gold font-semibold hover:text-gold-light transition-colors"
               >
                 View All Articles

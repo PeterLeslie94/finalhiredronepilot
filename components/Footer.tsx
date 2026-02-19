@@ -37,7 +37,8 @@ export default function Footer() {
             Ready to Hire the Right Drone Pilot?
           </h2>
           <p className="text-teal-dark/80 text-lg mb-6 max-w-2xl mx-auto">
-            Post your project once and compare competitive quotes from vetted, certified drone pilots across the UK.
+            Post your project once and compare competitive quotes from independent drone pilots
+            across the UK.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -75,7 +76,8 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-white/70 mb-6">
-                HireDronePilot is the UK&apos;s premier managed marketplace connecting businesses with verified professional drone pilots for hire. We streamline drone services through competitive bidding, ensuring quality, compliance, and value for every aerial project across the United Kingdom.
+                HireDronePilot is an intro marketplace connecting clients with independent drone pilots.
+                We act as a facilitator and record keeper only.
               </p>
             </div>
 
@@ -128,6 +130,16 @@ export default function Footer() {
                       Areas Covered
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/pricing" className="text-white/70 hover:text-gold transition-colors">
+                      Pricing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/drone-statistics" className="text-white/70 hover:text-gold transition-colors">
+                      Drone Statistics
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -151,8 +163,8 @@ export default function Footer() {
                   <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <a href="tel:+442046340456" className="text-white/70 hover:text-gold transition-colors">
-                    020 4634 0456
+                  <a href="tel:+441334804554" className="text-white/70 hover:text-gold transition-colors">
+                    +44 1334 804554
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
@@ -193,7 +205,16 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <Link href="/terms" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Terms of Service
+              Website Terms
+            </Link>
+            <Link href="/marketplace-terms" className="text-white/50 text-sm hover:text-gold transition-colors">
+              Marketplace Terms
+            </Link>
+            <Link href="/pilot-terms" className="text-white/50 text-sm hover:text-gold transition-colors">
+              Drone Pilot Terms
+            </Link>
+            <Link href="/marketplace-policy" className="text-white/50 text-sm hover:text-gold transition-colors">
+              Issue Policy
             </Link>
             <Link href="/cookies" className="text-white/50 text-sm hover:text-gold transition-colors">
               Cookie Policy

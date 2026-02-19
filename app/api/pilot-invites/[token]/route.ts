@@ -14,7 +14,6 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
     const result = await query<{
       invitation_id: string;
       enquiry_id: string;
-      token_expires_at: string;
       invite_status: string;
       pilot_id: string;
       pilot_name: string;
@@ -25,18 +24,14 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       site_location_text: string;
       postcode: string;
       job_details: string;
-      brief_text: string | null;
-      bid_id: string | null;
-      bid_status: string | null;
-      bid_price_amount: string | null;
-      bid_eta_days: number | null;
-      bid_submitted_at: string | null;
+      client_name: string;
+      client_email: string;
+      client_phone: string;
     }>(
       `
       SELECT
         pi.id AS invitation_id,
         pi.enquiry_id,
-        pi.token_expires_at::text,
         pi.status::text AS invite_status,
         p.id AS pilot_id,
         p.name AS pilot_name,
@@ -47,17 +42,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
         e.site_location_text,
         e.postcode,
         e.job_details,
-        ebv.content_text AS brief_text,
-        b.id AS bid_id,
-        b.status::text AS bid_status,
-        b.price_amount::text AS bid_price_amount,
-        b.eta_days AS bid_eta_days,
-        b.submitted_at::text AS bid_submitted_at
+        e.name AS client_name,
+        e.email AS client_email,
+        e.phone AS client_phone
       FROM pilot_invitations pi
       JOIN pilots p ON p.id = pi.pilot_id
       JOIN enquiries e ON e.id = pi.enquiry_id
-      LEFT JOIN enquiry_brief_versions ebv ON ebv.id = e.approved_brief_version_id
-      LEFT JOIN bids b ON b.invitation_id = pi.id
       WHERE pi.token_hash = $1
       LIMIT 1
       `,
@@ -69,33 +59,24 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       return jsonError('Invite not found', 404);
     }
 
-    const now = Date.now();
-    const expiresAt = new Date(row.token_expires_at).getTime();
-    if (Number.isFinite(expiresAt) && now > expiresAt) {
-      await query(`UPDATE pilot_invitations SET status = 'EXPIRED' WHERE id = $1 AND status <> 'SUBMITTED'`, [row.invitation_id]);
-      return jsonError('Invite link has expired', 410);
-    }
-
-    if (row.invite_status !== 'SUBMITTED') {
-      await query(
-        `UPDATE pilot_invitations
-         SET status = 'OPENED', opened_at = COALESCE(opened_at, now())
-         WHERE id = $1 AND status = 'SENT'`,
-        [row.invitation_id],
-      );
-    }
+    // Mark as opened (best-effort)
+    await query(
+      `UPDATE pilot_invitations
+       SET status = 'OPENED', opened_at = COALESCE(opened_at, now())
+       WHERE id = $1 AND status = 'SENT'`,
+      [row.invitation_id],
+    );
 
     return NextResponse.json({
       invitation_id: row.invitation_id,
       enquiry_id: row.enquiry_id,
       invite_status: row.invite_status,
-      expires_at: row.token_expires_at,
       pilot: {
         id: row.pilot_id,
         name: row.pilot_name,
         email: row.pilot_email,
       },
-      brief: row.brief_text || row.job_details,
+      brief: row.job_details,
       enquiry: {
         service_slug: row.service_slug,
         date_needed: row.date_needed,
@@ -103,15 +84,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
         site_location_text: row.site_location_text,
         postcode: row.postcode,
       },
-      bid: row.bid_id
-        ? {
-            id: row.bid_id,
-            status: row.bid_status,
-            price_amount: row.bid_price_amount,
-            eta_days: row.bid_eta_days,
-            submitted_at: row.bid_submitted_at,
-          }
-        : null,
+      client: {
+        name: row.client_name,
+        email: row.client_email,
+        phone: row.client_phone,
+      },
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to load invite';

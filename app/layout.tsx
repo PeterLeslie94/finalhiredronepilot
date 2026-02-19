@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LegacyFormBridge from "@/components/LegacyFormBridge";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/SchemaMarkup";
 
 const inter = Inter({
@@ -23,7 +24,8 @@ export const metadata: Metadata = {
     default: 'Hire Drone Pilot UK | Get Multiple Competitive Quotes Fast',
     template: '%s | HireDronePilot',
   },
-  description: 'Hire drone pilots with confidence. Get multiple competitive quotes from vetted, GVC-certified drone pilots for inspections, surveys, mapping, and aerial media across the UK.',
+  description:
+    'HireDronePilot is an intro marketplace connecting clients with independent drone pilots. Compare multiple quotes across the UK.',
   keywords: ['hire drone pilot', 'drone pilot uk', 'drone survey', 'aerial inspection', 'drone mapping', 'gvc certified drone pilot', 'commercial drone services'],
   authors: [{ name: 'HireDronePilot' }],
   creator: 'HireDronePilot',
@@ -39,7 +41,8 @@ export const metadata: Metadata = {
     url: 'https://hiredronepilot.uk',
     siteName: 'HireDronePilot',
     title: 'Hire Drone Pilot UK | Get Multiple Competitive Quotes Fast',
-    description: 'Post your project once and receive competitive quotes from vetted drone pilots across the UK.',
+    description:
+      'Intro marketplace connecting clients with independent drone pilots across the UK.',
     images: [
       {
         url: '/images/og-image.jpg',
@@ -51,8 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hire Drone Pilot UK | Compare Trusted Quotes',
-    description: 'Get fast, competitive quotes from vetted UK drone pilots.',
+    title: 'Hire Drone Pilot UK | Compare Quotes',
+    description:
+      'Intro marketplace connecting clients with independent drone pilots.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -90,6 +94,7 @@ export default function RootLayout({
         <LocalBusinessSchema />
         <WebSiteSchema />
         <Header />
+        <LegacyFormBridge />
         <main className="pt-[104px]">
           {children}
         </main>

@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: 'About HireDronePilot | Peter Leslie, Founder',
   description:
-    'Learn how Peter Leslie built HireDronePilot to help UK clients compare vetted drone pilot quotes faster, with stronger compliance and no platform cut on pilot pricing.',
+    'Learn how Peter Leslie built HireDronePilot to help UK clients compare independent drone pilot quotes faster, with stronger compliance and no platform cut on drone pilot pricing.',
   keywords: [
     'About HireDronePilot',
     'Peter Leslie drone pilot',
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
 
 const stats = [
   { value: 'UK Wide', label: 'Drone Pilot Coverage' },
-  { value: 'CAA Vetted', label: 'Pilot Standards' },
+  { value: 'CAA Vetted', label: 'Drone Pilot Standards' },
   { value: 'Avg 5 Mins', label: 'Response Speed' },
-  { value: 'No Platform Cut', label: 'Direct Pilot Pricing' },
+  { value: 'No Platform Cut', label: 'Direct Drone Pilot Pricing' },
 ];
 
 const problemPoints = [
@@ -51,7 +51,7 @@ const problemPoints = [
   },
   {
     icon: Cpu,
-    title: 'Inconsistent Pilot Quality',
+    title: 'Inconsistent Drone Pilot Quality',
     description:
       'Many listings hide credential gaps and capability gaps, making it risky to choose purely on price.',
   },
@@ -67,12 +67,12 @@ const solutionPoints = [
   {
     title: 'One Brief, Multiple Quotes',
     description:
-      'Submit your project once and compare direct quotes from vetted drone pilots.',
+      'Submit your project once and compare direct quotes from independent drone pilots.',
   },
   {
-    title: 'Compliance-First Vetting',
+    title: 'Basic Document Checks',
     description:
-      'Pilot onboarding checks focus on certification, insurance, and commercial readiness.',
+      'Onboarding includes basic document checks on submitted certification and insurance fields.',
   },
   {
     title: 'Transparent Quote Comparison',
@@ -82,7 +82,7 @@ const solutionPoints = [
   {
     title: 'No Platform Cut Added',
     description:
-      'You compare direct pilot pricing so more of your budget goes to delivery.',
+      'You compare direct drone pilot pricing so more of your budget goes to delivery.',
   },
 ];
 
@@ -95,7 +95,7 @@ const credentialCards = [
     bullets: [
       'Formal assessment for commercial drone operations in UK airspace.',
       'Supports structured risk assessment and mission planning standards.',
-      'Sets the benchmark used to assess pilots on HireDronePilot.',
+      'Sets the benchmark used to assess drone pilots on HireDronePilot.',
     ],
     bgClass: 'bg-orange-50/70 border-orange-200',
     iconClass: 'text-orange-500',
@@ -108,7 +108,7 @@ const credentialCards = [
     bullets: [
       'Supports closer-proximity work with clear operational boundaries.',
       'Important for urban and built-environment drone project delivery.',
-      'Reinforces practical compliance standards across the pilot network.',
+      'Reinforces practical compliance standards across the drone pilot network.',
     ],
     bgClass: 'bg-blue-50/70 border-blue-200',
     iconClass: 'text-blue-500',
@@ -168,7 +168,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-white/80 text-lg md:text-xl mb-8 leading-relaxed">
               Peter Leslie created HireDronePilot so UK clients can stop chasing operators manually
-              and start comparing vetted drone pilot quotes in one place. Faster outreach, stronger
+              and start comparing independent drone pilot quotes in one place. Faster outreach, stronger
               compliance, and direct pricing with no platform cut added.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -193,8 +193,8 @@ export default function AboutPage() {
                 />
               </svg>
               Avg Response within 5 Mins • Or call{' '}
-              <a href="tel:+442046340456" className="text-gold hover:underline font-medium">
-                020 4634 0456
+              <a href="tel:+441334804554" className="text-gold hover:underline font-medium">
+                +44 1334 804554
               </a>
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Instead of running another generic directory, Peter built a quote-first platform
-                  that helps clients post once and compare vetted drone pilot responses quickly.
+                  that helps clients post once and compare independent drone pilot responses quickly.
                   This improves speed, clarity, and quality control from the start.
                 </p>
                 <p>
@@ -320,7 +320,7 @@ export default function AboutPage() {
                 Our Solution
               </p>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                One Form. Vetted Pilots. Better Quote Decisions.
+                One Form. Independent Drone Pilots. Better Quote Decisions.
               </h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -373,7 +373,8 @@ export default function AboutPage() {
                 <p className="text-text-secondary">
                   HireDronePilot is built around CAA compliance and operational accountability.
                   Credentials are not treated as marketing badges, they are part of how projects
-                  are evaluated and how pilots are vetted before they appear to clients.
+                  are evaluated and how basic onboarding documents are reviewed before profiles
+                  appear to clients.
                 </p>
               </div>
             </div>
@@ -516,7 +517,7 @@ export default function AboutPage() {
             Get Started
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-teal mb-4">
-            Compare Vetted Drone Pilot Quotes For Your Project
+            Compare independent drone pilot Quotes For Your Project
           </h2>
           <p className="text-text-secondary text-lg mb-8">
             Post your project brief once and receive direct quotes from professional drone pilots
@@ -541,7 +542,7 @@ export default function AboutPage() {
             </span>
             <span className="inline-flex items-center gap-1">
               <Users className="w-4 h-4 text-gold" />
-              Vetted drone pilot network
+              independent drone pilot network
             </span>
             <span className="inline-flex items-center gap-1">
               <Rocket className="w-4 h-4 text-gold" />

@@ -68,9 +68,9 @@ export default function CookiePolicyPage() {
                     <td className="border border-border p-3">1 year</td>
                   </tr>
                   <tr>
-                    <td className="border border-border p-3">session_id</td>
-                    <td className="border border-border p-3">Maintains session state</td>
-                    <td className="border border-border p-3">Session</td>
+                    <td className="border border-border p-3">hdp_session</td>
+                    <td className="border border-border p-3">Maintains login session state for admins and drone pilots</td>
+                    <td className="border border-border p-3">7 days</td>
                   </tr>
                 </tbody>
               </table>
@@ -193,7 +193,7 @@ export default function CookiePolicyPage() {
               </p>
               <p className="text-text-secondary mb-2">
                 <strong className="text-teal">Phone:</strong>{' '}
-                <a href="tel:+442046340456" className="text-gold hover:underline">020 4634 0456</a>
+                <a href="tel:+441334804554" className="text-gold hover:underline">+44 1334 804554</a>
               </p>
               <p className="text-text-secondary">
                 <strong className="text-teal">Address:</strong> Castlecroft Business Centre, Tom Johnston Road, Dundee DD4 8XD

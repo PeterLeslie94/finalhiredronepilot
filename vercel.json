@@ -1,0 +1,135 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/check-deadlines",
+      "schedule": "*/5 * * * *"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/cities",
+      "destination": "/areas",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/belfast",
+      "destination": "/areas",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/birmingham",
+      "destination": "/areas/birmingham",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/bristol",
+      "destination": "/areas/bristol",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/cardiff",
+      "destination": "/areas",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/edinburgh",
+      "destination": "/areas/edinburgh",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/glasgow",
+      "destination": "/areas/glasgow",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/leeds",
+      "destination": "/areas/leeds",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/liverpool",
+      "destination": "/areas/liverpool",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/london",
+      "destination": "/areas/london",
+      "statusCode": 301
+    },
+    {
+      "source": "/cities/manchester",
+      "destination": "/areas/manchester",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/blog",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/resources/blog/:slug",
+      "destination": "/blog/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-confined-space-inspection",
+      "destination": "/services/drone-industrial-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-ground-penetrating-radar",
+      "destination": "/services/lidar-mapping",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-lidar-mapping",
+      "destination": "/services/lidar-mapping",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-photography",
+      "destination": "/services/aerial-photography",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-quarry-survey",
+      "destination": "/services/drone-mining-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-real-estate-photography",
+      "destination": "/services/aerial-photography",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-roof-inspection",
+      "destination": "/services/drone-roof-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-solar-survey",
+      "destination": "/services/drone-solar-farm-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-surveys",
+      "destination": "/services/drone-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-thermal-imaging",
+      "destination": "/services/thermal-imaging",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-topographical-survey",
+      "destination": "/services/drone-topographic-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-wedding-photography",
+      "destination": "/services/aerial-photography",
+      "statusCode": 301
+    }
+  ]
+}
