@@ -127,6 +127,26 @@ export default function MarketplacePolicyPage() {
                 </p>
               </article>
             ))}
+
+            <div className="bg-background-alt p-6 rounded-2xl border border-border">
+              <h2 className="text-2xl font-bold text-teal mb-4">Contact</h2>
+              <p className="text-text-secondary mb-2">
+                <strong className="text-teal">Email:</strong>{' '}
+                <a href="mailto:quotes@hiredronepilot.uk" className="text-gold hover:underline">
+                  quotes@hiredronepilot.uk
+                </a>
+              </p>
+              <p className="text-text-secondary mb-2">
+                <strong className="text-teal">Phone:</strong>{' '}
+                <a href="tel:+441334804554" className="text-gold hover:underline">
+                  +44 1334 804554
+                </a>
+              </p>
+              <p className="text-text-secondary">
+                <strong className="text-teal">Address:</strong> Castlecroft Business Centre, Tom
+                Johnston Road, Dundee DD4 8XD
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import QuoteButton from '@/components/QuoteButton';
 import DiagonalDivider from '@/components/DiagonalDivider';
 import ClientLogoMarquee from '@/components/ClientLogoMarquee';
+import TrustBadge from '@/components/TrustBadge';
 import { BreadcrumbSchema, PersonSchema } from '@/components/SchemaMarkup';
 import {
   CheckCircle2,
@@ -172,17 +174,12 @@ export default function AboutPage() {
               compliance, and direct pricing with no platform cut added.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contact" className="btn btn-primary btn-shimmer">
+              <QuoteButton className="btn btn-primary btn-shimmer">
                 Compare Quotes
+              </QuoteButton>
+              <Link href="/join-as-pilot" className="btn btn-outline-white">
+                Join As a Drone Pilot
               </Link>
-              <a
-                href="https://www.linkedin.com/in/peter-leslie-drones"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-white"
-              >
-                Meet Peter
-              </a>
             </div>
             <p className="mt-4 text-white/70 text-sm flex items-center gap-2">
               <svg className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
@@ -266,19 +263,16 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <span className="inline-flex items-center gap-2 bg-teal/10 text-teal px-4 py-2 rounded-full text-sm font-medium">
-                  <Shield className="w-4 h-4" />
-                  Owner & Drone Pilot
-                </span>
-                <span className="inline-flex items-center gap-2 bg-teal/10 text-teal px-4 py-2 rounded-full text-sm font-medium">
-                  <Shield className="w-4 h-4" />
-                  CAA GVC Certified
-                </span>
-                <span className="inline-flex items-center gap-2 bg-teal/10 text-teal px-4 py-2 rounded-full text-sm font-medium">
-                  <Shield className="w-4 h-4" />
-                  UK Marketplace Builder
-                </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                <a
+                  href="https://www.linkedin.com/in/peter-leslie-drones"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-shimmer text-center"
+                >
+                  Connect on LinkedIn
+                </a>
+                <TrustBadge />
               </div>
             </div>
           </div>
@@ -524,10 +518,10 @@ export default function AboutPage() {
             across the UK.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn btn-primary">
+            <QuoteButton className="btn btn-primary">
               Compare Quotes
-            </Link>
-            <a href="mailto:peter@certifieddronepilot.com" className="btn btn-outline">
+            </QuoteButton>
+            <a href="mailto:quotes@hiredronepilot.uk" className="btn btn-outline">
               Email Peter Directly
             </a>
           </div>

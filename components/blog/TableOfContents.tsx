@@ -102,6 +102,18 @@ export default function TableOfContents({ content, contentfulContent }: TableOfC
     return () => observer.disconnect();
   }, [headings]);
 
+  // When an H3 is in view, highlight its parent H2
+  const activeH2Id = useMemo(() => {
+    if (!activeId) return '';
+    const idx = headings.findIndex((h) => h.id === activeId);
+    if (idx === -1) return '';
+    if (headings[idx].level === 2) return activeId;
+    for (let i = idx - 1; i >= 0; i--) {
+      if (headings[i].level === 2) return headings[i].id;
+    }
+    return '';
+  }, [activeId, headings]);
+
   if (headings.length === 0) {
     return null;
   }
@@ -127,7 +139,7 @@ export default function TableOfContents({ content, contentfulContent }: TableOfC
               className={`block border-l-2 py-1 pr-2 text-[13px] leading-snug transition-colors ${
                 heading.level === 3 ? 'pl-5 text-[12px]' : 'pl-3'
               } ${
-                activeId === heading.id
+                activeH2Id === heading.id
                   ? 'border-gold text-gold font-semibold'
                   : 'border-transparent text-gray-500 hover:text-gold'
               }`}

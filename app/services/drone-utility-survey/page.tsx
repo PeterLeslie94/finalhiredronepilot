@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Zap, TreePine, Radio, HardHat, Gauge, Network, ClipboardCheck, Camera } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Drone Utility Survey Solutions | Power Line & Infrastructure Surveys UK | Skykam Drone Inspections',
+  title: 'Drone Utility Survey Solutions | Power Line & Infrastructure Surveys UK | Hire Drone Pilot',
   description: 'Expert UAV utility survey services throughout the UK. Power line inspections, vegetation encroachment analysis, and corridor mapping. CAA certified drone operators.',
   keywords: 'drone utility survey, drone power line survey, drone utility corridor mapping, drone vegetation encroachment, drone transmission line inspection, drone power line inspection uk',
 };
@@ -21,12 +21,12 @@ export default function DroneUtilitySurveyPage() {
       <ServiceSchema
         name="Drone Utility Survey Solutions"
         description="Expert UAV utility survey services throughout the UK. Power line inspections, vegetation encroachment analysis, and corridor mapping. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-utility-survey"
+        url="https://hiredronepilot.uk/services/drone-utility-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Utility Survey Solutions", url: "https://skykam.co.uk/services/drone-utility-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Utility Survey Solutions", url: "https://hiredronepilot.uk/services/drone-utility-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneUtilitySurveyPage() {
                   A UAV utility survey employs cutting-edge drone technology to inspect, map, and evaluate utility infrastructure including power lines, transmission towers, pipelines, substations, and telecommunications equipment. Our drones capture high-resolution imagery and LiDAR data that reveals asset condition, clearance distances, and vegetation encroachment risks.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we deploy specialist sensors optimised for utility corridor surveys. Our systems can identify conductor sag, insulator damage, corrosion, and vegetation proximity issues that might go unnoticed during conventional ground inspections—all without the need for costly outages or workers at height.
+                  At Hire Drone Pilot, we deploy specialist sensors optimised for utility corridor surveys. Our systems can identify conductor sag, insulator damage, corrosion, and vegetation proximity issues that might go unnoticed during conventional ground inspections—all without the need for costly outages or workers at height.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneUtilitySurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -777,7 +777,7 @@ export default function DroneUtilitySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we tick every box. We're CAA certified, fully insured, and have considerable expertise working with utility companies and infrastructure operators throughout the UK.
+                  At Hire Drone Pilot, we tick every box. We're CAA certified, fully insured, and have considerable expertise working with utility companies and infrastructure operators throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -785,7 +785,7 @@ export default function DroneUtilitySurveyPage() {
                   <p className="text-white font-semibold mb-3">Prepared to work with a reliable UAV utility survey provider?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak to James
+                      Speak to Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -821,7 +821,7 @@ export default function DroneUtilitySurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -836,7 +836,7 @@ export default function DroneUtilitySurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -849,7 +849,7 @@ export default function DroneUtilitySurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With considerable expertise in surveying and UAV operations, James personally oversees every utility survey project to ensure professional delivery and precise results.
+                  With considerable expertise in surveying and UAV operations, Peter personally oversees every utility survey project to ensure professional delivery and precise results.
                 </p>
               </div>
 
@@ -914,7 +914,7 @@ export default function DroneUtilitySurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive expert guidance and tailored pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -971,7 +971,7 @@ export default function DroneUtilitySurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Mapping</h3>
@@ -980,7 +980,7 @@ export default function DroneUtilitySurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Topographic Survey</h3>

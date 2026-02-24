@@ -44,6 +44,16 @@ export type EmailTemplateData =
       businessName: string;
       websiteUrl: string | null;
       applicationId: string;
+    }
+  | {
+      templateKey: 'pilot_application_rejected';
+      applicantName: string;
+      reason: string | null;
+    }
+  | {
+      templateKey: 'pilot_application_info_requested';
+      applicantName: string;
+      message: string;
     };
 
 // ---------------------------------------------------------------------------
@@ -83,7 +93,7 @@ function wrapInLayout(bodyHtml: string): string {
         <tr><td style="background-color:#111827;padding:16px 32px;text-align:center;border-radius:0 0 8px 8px;">
           <span style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.6;">
             &copy; 2026 HireDronePilot<br>
-            Skykam LTD (SC662275) &middot; Castlecroft Business Centre, Tom Johnston Road, Dundee DD4 8XD
+            HireDronePilot (SC662275) &middot; Castlecroft Business Centre, Tom Johnston Road, Dundee DD4 8XD
           </span>
         </td></tr>
       </table>
@@ -336,6 +346,52 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
         `),
       };
     }
+
+    case 'pilot_application_rejected':
+      return {
+        subject: 'Update on your HireDronePilot application',
+        html: wrapInLayout(`
+          <h2 style="margin:0 0 16px;color:#1f2937;font-family:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:20px;">Hi ${escapeHtml(data.applicantName)},</h2>
+          <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
+            Thank you for your interest in joining HireDronePilot. After reviewing your application, we're unable to approve it at this time.
+          </p>
+          ${data.reason ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
+            <tr><td style="background-color:#fef2f2;padding:12px 16px;color:#991b1b;font-size:14px;line-height:1.6;">
+              <strong>Reason:</strong> ${escapeHtml(data.reason)}
+            </td></tr>
+          </table>` : ''}
+          <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
+            If you believe this was in error or your circumstances have changed, you're welcome to re-apply at any time.
+          </p>
+          ${ctaButton(`${BASE_URL}/join-as-pilot`, 'Re-apply')}
+          <p style="margin:0;color:#718096;font-size:13px;">
+            If you have any questions, just reply to this email.
+          </p>
+        `),
+      };
+
+    case 'pilot_application_info_requested':
+      return {
+        subject: 'We need more information — HireDronePilot',
+        html: wrapInLayout(`
+          <h2 style="margin:0 0 16px;color:#1f2937;font-family:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:20px;">Hi ${escapeHtml(data.applicantName)},</h2>
+          <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
+            We've started reviewing your pilot application and need a bit more information before we can proceed.
+          </p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
+            <tr><td style="background-color:#fffbeb;padding:12px 16px;color:#92400e;font-size:14px;line-height:1.6;">
+              ${escapeHtml(data.message)}
+            </td></tr>
+          </table>
+          <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
+            Please reply to this email with the requested information, or re-submit your application with the updated details.
+          </p>
+          ${ctaButton(`${BASE_URL}/join-as-pilot`, 'Update Application')}
+          <p style="margin:0;color:#718096;font-size:13px;">
+            If you have any questions, just reply to this email.
+          </p>
+        `),
+      };
   }
 }
 

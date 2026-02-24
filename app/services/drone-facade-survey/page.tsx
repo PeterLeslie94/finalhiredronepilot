@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Building2, Shield, Clock, AlertTriangle, Thermometer, Droplets, Wrench, Eye } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'UAV Building Exterior Inspection | Facade Assessment UK | Skykam Drone Inspections',
+  title: 'UAV Building Exterior Inspection | Facade Assessment UK | Hire Drone Pilot',
   description: 'Expert UAV facade assessment services throughout the UK. Secure, budget-friendly building exterior inspections without scaffolding or abseil teams. CAA certified drone pilots.',
   keywords: 'drone facade survey, drone building facade inspection, drone building survey, drone facade inspection uk, drone building inspection, cladding inspection drone',
 };
@@ -21,12 +21,12 @@ export default function DroneFacadeSurveyPage() {
       <ServiceSchema
         name="UAV Building Exterior Inspection Services"
         description="Expert UAV facade assessment services throughout the UK. Secure, budget-friendly building exterior inspections without scaffolding or abseil teams. CAA certified drone pilots."
-        url="https://skykam.co.uk/services/drone-facade-survey"
+        url="https://hiredronepilot.uk/services/drone-facade-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Facade Survey Services", url: "https://skykam.co.uk/services/drone-facade-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Facade Survey Services", url: "https://hiredronepilot.uk/services/drone-facade-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneFacadeSurveyPage() {
                   A drone facade assessment employs high-resolution cameras and thermal detection sensors fitted to our UAVs to gather comprehensive imagery of building exteriors. This enables us to spot defects, damage, and degradation across the complete facade without requiring scaffolding, boom lifts, or abseil crews.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we operate cutting-edge drone technology capable of capturing sub-millimetre precision from secure operating distances. Our assessments uncover cracks, water penetration, deteriorated sealants, unstable cladding, and structural concerns that would otherwise demand costly access equipment to examine.
+                  At Hire Drone Pilot, we operate cutting-edge drone technology capable of capturing sub-millimetre precision from secure operating distances. Our assessments uncover cracks, water penetration, deteriorated sealants, unstable cladding, and structural concerns that would otherwise demand costly access equipment to examine.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneFacadeSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -774,7 +774,7 @@ export default function DroneFacadeSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Speak to James
+                    Speak to Peter
                   </a>
                 </div>
               </div>
@@ -828,7 +828,7 @@ export default function DroneFacadeSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we meet every criterion. We're CAA certified, comprehensively insured, and have completed facade assessments for residential blocks, commercial offices, heritage structures, and industrial premises throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, comprehensively insured, and have completed facade assessments for residential blocks, commercial offices, heritage structures, and industrial premises throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -891,7 +891,7 @@ export default function DroneFacadeSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -906,7 +906,7 @@ export default function DroneFacadeSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -919,7 +919,7 @@ export default function DroneFacadeSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With substantial expertise in building assessments and UAV operations, James personally supervises every facade inspection to guarantee thorough coverage and professional delivery.
+                  With substantial expertise in building assessments and UAV operations, Peter personally supervises every facade inspection to guarantee thorough coverage and professional delivery.
                 </p>
               </div>
 
@@ -984,7 +984,7 @@ export default function DroneFacadeSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive specialist guidance and bespoke pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"

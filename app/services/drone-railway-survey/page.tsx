@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Train, Shield, Clock, Map, Ruler, FileCheck, AlertTriangle, Building2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Drone Railway Survey Solutions | Rail Corridor Mapping UK | Skykam Drone Inspections',
+  title: 'Drone Railway Survey Solutions | Rail Corridor Mapping UK | Hire Drone Pilot',
   description: 'Expert UAV railway survey services throughout the UK. Rail corridor mapping, clearance analysis, and structure gauging without track access. CAA certified drone operators.',
   keywords: 'drone railway survey, drone rail corridor survey, drone railway mapping, structure gauging, drone clearance analysis, drone rail infrastructure survey, drone rail survey uk',
 };
@@ -21,12 +21,12 @@ export default function DroneRailwaySurveyPage() {
       <ServiceSchema
         name="Drone Railway Survey Solutions"
         description="Expert UAV railway survey services throughout the UK. Rail corridor mapping, clearance analysis, and structure gauging without track access. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-railway-survey"
+        url="https://hiredronepilot.uk/services/drone-railway-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Railway Survey Solutions", url: "https://skykam.co.uk/services/drone-railway-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Railway Survey Solutions", url: "https://hiredronepilot.uk/services/drone-railway-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneRailwaySurveyPage() {
                   A UAV railway survey employs unmanned aircraft to gather detailed data along rail corridors without requiring track access or possessions. Our drones fly parallel to the track, capturing high-resolution imagery and precise measurements of the permanent way, structures, vegetation, and lineside assets.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we specialise in rail infrastructure surveys for Network Rail projects, heritage railways, and private freight operators. Our drone-based approach delivers survey-grade precision while eliminating the safety risks and operational disruption of conventional track-based methods.
+                  At Hire Drone Pilot, we specialise in rail infrastructure surveys for Network Rail projects, heritage railways, and private freight operators. Our drone-based approach delivers survey-grade precision while eliminating the safety risks and operational disruption of conventional track-based methods.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneRailwaySurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -786,7 +786,7 @@ export default function DroneRailwaySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we bring engineering expertise combined with advanced UAV technology to deliver rail surveys that meet the highest professional standards. We're CAA certified, fully insured, and experienced in working with Network Rail, TOCs, and rail engineering consultancies.
+                  At Hire Drone Pilot, we bring engineering expertise combined with advanced UAV technology to deliver rail surveys that meet the highest professional standards. We're CAA certified, fully insured, and experienced in working with Network Rail, TOCs, and rail engineering consultancies.
                 </p>
 
                 {/* CTA after provider section */}
@@ -830,7 +830,7 @@ export default function DroneRailwaySurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -845,7 +845,7 @@ export default function DroneRailwaySurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -858,7 +858,7 @@ export default function DroneRailwaySurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With considerable engineering expertise and specialist UAV knowledge, James personally oversees every rail survey project to ensure professional standards and precise deliverables.
+                  With considerable engineering expertise and specialist UAV knowledge, Peter personally oversees every rail survey project to ensure professional standards and precise deliverables.
                 </p>
               </div>
 
@@ -923,7 +923,7 @@ export default function DroneRailwaySurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive expert guidance and tailored pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -980,7 +980,7 @@ export default function DroneRailwaySurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV LiDAR Survey</h3>
@@ -989,7 +989,7 @@ export default function DroneRailwaySurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Survey</h3>

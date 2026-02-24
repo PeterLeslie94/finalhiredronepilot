@@ -55,8 +55,9 @@ export async function GET(
     business_name: string;
     website_url: string | null;
     backlink_confirmed_at: string | null;
+    created_pilot_id: string | null;
   }>(
-    `SELECT id, pilot_name, business_name, website_url, backlink_confirmed_at
+    `SELECT id, pilot_name, business_name, website_url, backlink_confirmed_at, created_pilot_id
      FROM pilot_applications
      WHERE id = $1 AND backlink_token_hash = $2`,
     [id, tokenHash],
@@ -77,6 +78,16 @@ export async function GET(
     `UPDATE pilot_applications SET backlink_confirmed_at = now() WHERE id = $1`,
     [id],
   );
+
+  // Upgrade pilot tier to INTEGRATED_OPERATOR if linked
+  if (application.created_pilot_id) {
+    await query(
+      `UPDATE pilots SET tier = 'INTEGRATED_OPERATOR'::pilot_tier_v2,
+        integrated_confirmed_at = now(), updated_at = now()
+       WHERE id = $1`,
+      [application.created_pilot_id],
+    );
+  }
 
   // Log event
   await logPilotApplicationEvent(id, 'BACKLINK_CONFIRMED', {

@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
@@ -9,8 +7,10 @@ import EquipmentSection from '@/components/EquipmentSection';
 import FAQ from '@/components/FAQ';
 import QuoteForm from '@/components/QuoteForm';
 import FloatingCTA from '@/components/FloatingCTA';
+import TrustBadge from '@/components/TrustBadge';
 import { FAQSchema } from '@/components/SchemaMarkup';
 import ClientLogoMarquee from '@/components/ClientLogoMarquee';
+import QuoteButton from '@/components/QuoteButton';
 import {
   HardHat,
   Wheat,
@@ -19,7 +19,7 @@ import {
   Home as HomeIcon,
   TreePine,
   MessageSquareText,
-  MapPinned,
+  Send,
   FileCheck2
 } from 'lucide-react';
 
@@ -28,7 +28,7 @@ const services = [
     title: 'LiDAR Mapping',
     description: 'Precision LiDAR scanning for detailed terrain models and vegetation analysis.',
     image: '/images/services/service-lidar-mapping.avif',
-    href: '/services/lidar-mapping',
+    href: '/services/drone-lidar-mapping',
     ctaText: 'Explore LiDAR Mapping Services',
   },
   {
@@ -139,6 +139,12 @@ const certificationLogos = [
     shape: 'wide',
   },
   {
+    src: '/images/licences/arpas-uk-drone-association-logo.avif',
+    alt: 'ARPAS-UK Drone Association Member',
+    label: 'ARPAS-UK Drone Association Member',
+    shape: 'small',
+  },
+  {
     src: '/images/licences/gvc-licence.avif',
     alt: 'GVC Operational Authorisation',
     label: 'GVC Operational Authorisation',
@@ -160,12 +166,6 @@ const certificationLogos = [
     src: '/images/licences/dundee-chamber-commerce-logo.avif',
     alt: 'Dundee & Angus Chamber of Commerce Member',
     label: 'Dundee & Angus Chamber of Commerce Member',
-    shape: 'wide',
-  },
-  {
-    src: '/images/licences/arpas-uk-drone-association-logo.avif',
-    alt: 'ARPAS-UK Drone Association Member',
-    label: 'ARPAS-UK Drone Association Member',
     shape: 'wide',
   },
 ];
@@ -374,10 +374,10 @@ export default function HomePage() {
               </div>
 
               <div className="mb-8">
-                <p className="text-gold font-semibold uppercase tracking-wider mb-4 text-sm">
-                  Trusted & Certified
-                </p>
                 <div className="flex flex-wrap items-center gap-x-8 gap-y-6 md:gap-x-10 md:gap-y-8">
+                  <div className="flex items-center">
+                    <TrustBadge />
+                  </div>
                   {certificationLogos.map((logo) => (
                     <div key={logo.label} className="flex items-center">
                       {logo.shape === 'square' ? (
@@ -387,6 +387,14 @@ export default function HomePage() {
                           width={160}
                           height={160}
                           className="h-20 md:h-24 w-auto object-contain"
+                        />
+                      ) : logo.shape === 'small' ? (
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          width={160}
+                          height={60}
+                          className="h-10 md:h-14 w-auto object-contain"
                         />
                       ) : (
                         <Image
@@ -403,12 +411,9 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                  className="btn btn-primary"
-                >
+                <QuoteButton className="btn btn-primary">
                   Compare Quotes
-                </button>
+                </QuoteButton>
                 <a
                   href="/about"
                   className="inline-flex items-center justify-center gap-2 btn bg-transparent text-teal border-teal hover:bg-teal hover:text-white"
@@ -534,7 +539,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { step: '01', title: 'Submit Brief', subtitle: 'Multi-step enquiry + legal consent' },
-              { step: '02', title: 'Compare Quotes', subtitle: 'Selected independent drone pilots respond' },
+              { step: '02', title: 'Get Introduced', subtitle: 'Hand-picked drone pilots reach out to you directly' },
               { step: '03', title: 'Appoint Directly', subtitle: 'Client and drone pilot contract directly' },
             ].map((item) => (
               <div
@@ -569,18 +574,19 @@ export default function HomePage() {
 
               <article className="rounded-3xl border border-gold/25 bg-teal-dark/95 p-5">
                 <div className="w-11 h-11 rounded-xl bg-gold/15 border border-gold/40 flex items-center justify-center mb-4">
-                  <MapPinned className="w-5 h-5 text-gold" />
+                  <Send className="w-5 h-5 text-gold" />
                 </div>
                 <p className="text-gold font-semibold uppercase tracking-wider text-xs mb-2">Step 2</p>
-                <h4 className="text-white text-xl font-bold mb-3">Compare Direct Quotes</h4>
+                <h4 className="text-white text-xl font-bold mb-3">Get Matched & Introduced</h4>
                 <p className="text-white/80 text-sm leading-relaxed mb-3">
-                  Selected independent drone pilots send direct quotes with pricing, timing, and
-                  scope notes for side-by-side comparison.
+                  We hand-pick the best-fit drone pilots for your project and introduce
+                  them to you. They reach out directly to discuss your requirements and
+                  provide a tailored quote — no middleman, no delay.
                 </p>
                 <ul className="space-y-2 text-sm text-white/75">
-                  <li>Review responses in one place instead of manual outreach.</li>
-                  <li>Ask clarifying questions and shortlist your preferred options.</li>
-                  <li>No platform cut is added to drone pilot pricing.</li>
+                  <li>Every introduction is hand-selected — no spam, no irrelevant responses.</li>
+                  <li>Talk scope, pricing, and timing one-to-one with each pilot.</li>
+                  <li>No platform fees or commissions added to any quote.</li>
                 </ul>
               </article>
 
@@ -640,14 +646,11 @@ export default function HomePage() {
               Start Your Project Brief
             </h4>
             <p className="text-white/70 mb-6">
-              Submit once and compare direct quotes from independent drone pilots.
+              Submit once and get introduced to trusted independent drone pilots.
             </p>
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-              className="btn btn-primary btn-shimmer btn-pop-on-scroll"
-            >
+            <QuoteButton className="btn btn-primary btn-shimmer btn-pop-on-scroll">
               Receive Multiple Quotes
-            </button>
+            </QuoteButton>
           </div>
         </div>
       </section>
@@ -694,12 +697,9 @@ export default function HomePage() {
               Our team responds within 5 mins on average.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                className="btn btn-primary btn-shimmer btn-pop-on-scroll"
-              >
+              <QuoteButton className="btn btn-primary btn-shimmer btn-pop-on-scroll">
                 Compare Quotes
-              </button>
+              </QuoteButton>
               <span className="text-white/50">or</span>
               <a href="tel:+441334804554" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

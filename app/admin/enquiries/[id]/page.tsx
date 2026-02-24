@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Mail, RefreshCw, Send } from 'lucide-react';
+import { ArrowLeft, Mail, RefreshCw, Send, XCircle } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
 import CollapsibleSection from '@/components/admin/CollapsibleSection';
@@ -101,6 +101,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
   const [loading, setLoading] = useState(false);
 
   const [inviteResult, setInviteResult] = useState('');
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     params.then((p) => setEnquiryId(p.id));
@@ -144,6 +145,24 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
       await load();
     } catch (runError) {
       setError(runError instanceof Error ? runError.message : 'Invite failed');
+    }
+  };
+
+  const closeEnquiry = async () => {
+    try {
+      setClosing(true);
+      const response = await fetch(`/api/admin/enquiries/${enquiryId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'close' }),
+      });
+      const body = (await response.json()) as { ok?: boolean; error?: string };
+      if (!response.ok) throw new Error(body.error || 'Failed to close enquiry');
+      await load();
+    } catch (closeError) {
+      setError(closeError instanceof Error ? closeError.message : 'Failed to close enquiry');
+    } finally {
+      setClosing(false);
     }
   };
 
@@ -204,6 +223,16 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             {loading ? 'Loading...' : 'Refresh'}
           </button>
+          {enquiry && enquiry.status !== 'CLOSED' && (
+            <button
+              onClick={closeEnquiry}
+              disabled={closing || !enquiryId}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg font-medium text-sm hover:bg-gray-200 transition-colors disabled:opacity-50"
+            >
+              <XCircle className="w-4 h-4" />
+              {closing ? 'Closing...' : 'Close Enquiry'}
+            </button>
+          )}
           <button
             onClick={sendInvites}
             disabled={!enquiryId}

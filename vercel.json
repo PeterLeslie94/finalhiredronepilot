@@ -7,58 +7,108 @@
   ],
   "redirects": [
     {
-      "source": "/cities",
-      "destination": "/areas",
+      "source": "/areas",
+      "destination": "/cities",
       "statusCode": 301
     },
     {
-      "source": "/cities/belfast",
-      "destination": "/areas",
+      "source": "/areas/:city",
+      "destination": "/cities/:city",
       "statusCode": 301
     },
     {
-      "source": "/cities/birmingham",
-      "destination": "/areas/birmingham",
+      "source": "/privacy-policy",
+      "destination": "/privacy",
       "statusCode": 301
     },
     {
-      "source": "/cities/bristol",
-      "destination": "/areas/bristol",
+      "source": "/pilots/apply",
+      "destination": "/join-as-pilot",
       "statusCode": 301
     },
     {
-      "source": "/cities/cardiff",
-      "destination": "/areas",
+      "source": "/services/drone-roof-survey",
+      "destination": "/services/drone-roof-inspection",
       "statusCode": 301
     },
     {
-      "source": "/cities/edinburgh",
-      "destination": "/areas/edinburgh",
+      "source": "/services/lidar-mapping",
+      "destination": "/services/drone-lidar-mapping",
       "statusCode": 301
     },
     {
-      "source": "/cities/glasgow",
-      "destination": "/areas/glasgow",
+      "source": "/services/drone-topographic-survey",
+      "destination": "/services/drone-topographical-survey",
       "statusCode": 301
     },
     {
-      "source": "/cities/leeds",
-      "destination": "/areas/leeds",
+      "source": "/services/drone-solar-farm-survey",
+      "destination": "/services/drone-solar-survey",
       "statusCode": 301
     },
     {
-      "source": "/cities/liverpool",
-      "destination": "/areas/liverpool",
+      "source": "/how-it-works-clients",
+      "destination": "/",
       "statusCode": 301
     },
     {
-      "source": "/cities/london",
-      "destination": "/areas/london",
+      "source": "/how-it-works-pilots",
+      "destination": "/join-as-pilot",
       "statusCode": 301
     },
     {
-      "source": "/cities/manchester",
-      "destination": "/areas/manchester",
+      "source": "/quotes",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/submit-job",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/register",
+      "destination": "/join-as-pilot",
+      "statusCode": 301
+    },
+    {
+      "source": "/team/james-leslie",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0001jn08h2d1g1k2",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0002jn08h2d1g1k3",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0003jn08h2d1g1k4",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0004jn08h2d1g1k5",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0005jn08h2d1g1k6",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0006jn08h2d1g1k7",
+      "destination": "/pilots",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilots/clwk7n8hj0007jn08h2d1g1k8",
+      "destination": "/pilots",
       "statusCode": 301
     },
     {
@@ -69,66 +119,6 @@
     {
       "source": "/resources/blog/:slug",
       "destination": "/blog/:slug",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-confined-space-inspection",
-      "destination": "/services/drone-industrial-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-ground-penetrating-radar",
-      "destination": "/services/lidar-mapping",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-lidar-mapping",
-      "destination": "/services/lidar-mapping",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-photography",
-      "destination": "/services/aerial-photography",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-quarry-survey",
-      "destination": "/services/drone-mining-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-real-estate-photography",
-      "destination": "/services/aerial-photography",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-roof-inspection",
-      "destination": "/services/drone-roof-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-solar-survey",
-      "destination": "/services/drone-solar-farm-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-surveys",
-      "destination": "/services/drone-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-thermal-imaging",
-      "destination": "/services/thermal-imaging",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-topographical-survey",
-      "destination": "/services/drone-topographic-survey",
-      "statusCode": 301
-    },
-    {
-      "source": "/services/drone-wedding-photography",
-      "destination": "/services/aerial-photography",
       "statusCode": 301
     }
   ]

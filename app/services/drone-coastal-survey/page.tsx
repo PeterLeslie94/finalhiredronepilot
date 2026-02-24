@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Shoreline Surveys & Erosion Analysis | Cliff Monitoring UK | Skykam',
+  title: 'Drone Shoreline Surveys & Erosion Analysis | Cliff Monitoring UK | HireDronePilot',
   description: 'Expert UAV coastal assessments throughout Britain. Erosion tracking, cliff face inspection, and beach profile mapping. Fully CAA certified drone operators.',
   keywords: 'drone coastal survey, drone coastal erosion monitoring, drone cliff survey, drone shoreline mapping, drone coastal survey uk, beach survey drone, drone sea defence survey',
 };
@@ -21,12 +21,12 @@ export default function DroneCoastalSurveyPage() {
       <ServiceSchema
         name="Drone Shoreline Surveys & Erosion Analysis"
         description="Expert UAV coastal assessments throughout Britain. Erosion tracking, cliff face inspection, and beach profile mapping. Fully CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-coastal-survey"
+        url="https://hiredronepilot.uk/services/drone-coastal-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Coastal Survey Services", url: "https://skykam.co.uk/services/drone-coastal-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Coastal Survey Services", url: "https://hiredronepilot.uk/services/drone-coastal-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneCoastalSurveyPage() {
                   A drone shoreline assessment employs UAV-mounted cameras and sensors to gather high-resolution data from coastlines, cliffs, beaches, and coastal defence structures. This technology enables us to produce detailed mapping, 3D reconstructions, and change analysis that uncovers erosion patterns, structural integrity, and environmental shifts along Britain's shores.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we utilise specialist coastal assessment equipment capable of recording centimetre-precise data across demanding shoreline environments. Our assessments furnish coastal authorities, engineers, and environmental specialists with the accurate information required to track erosion, design interventions, and safeguard critical coastal infrastructure.
+                  At Hire Drone Pilot, we utilise specialist coastal assessment equipment capable of recording centimetre-precise data across demanding shoreline environments. Our assessments furnish coastal authorities, engineers, and environmental specialists with the accurate information required to track erosion, design interventions, and safeguard critical coastal infrastructure.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneCoastalSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -725,7 +725,7 @@ export default function DroneCoastalSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Ring James
+                    Ring Peter
                   </a>
                 </div>
               </div>
@@ -779,7 +779,7 @@ export default function DroneCoastalSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we satisfy every criterion. We hold CAA approval, maintain comprehensive insurance, and have conducted shoreline assessment projects for councils, engineering practices, and environmental bodies throughout Britain.
+                  At Hire Drone Pilot, we satisfy every criterion. We hold CAA approval, maintain comprehensive insurance, and have conducted shoreline assessment projects for councils, engineering practices, and environmental bodies throughout Britain.
                 </p>
 
                 {/* CTA after provider section */}
@@ -823,7 +823,7 @@ export default function DroneCoastalSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -838,7 +838,7 @@ export default function DroneCoastalSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -851,7 +851,7 @@ export default function DroneCoastalSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in surveying and UAV operations, James personally oversees every coastal project to ensure survey-grade accuracy and professional delivery.
+                  With extensive experience in surveying and UAV operations, Peter personally oversees every coastal project to ensure survey-grade accuracy and professional delivery.
                 </p>
               </div>
 
@@ -916,7 +916,7 @@ export default function DroneCoastalSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Obtain specialist guidance and customised pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -973,7 +973,7 @@ export default function DroneCoastalSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Mapping</h3>
@@ -982,7 +982,7 @@ export default function DroneCoastalSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV LiDAR Scanning</h3>

@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Home, TreePine, Fence, Map, Building2, Landmark, FileText, Camera } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Drone Estate Survey Services | Country Estate Mapping UK | Skykam',
+  title: 'Drone Estate Survey Services | Country Estate Mapping UK | HireDronePilot',
   description: 'Expert drone estate survey services throughout the UK. Thorough estate mapping, boundary assessments, and building documentation. CAA certified drone operators.',
   keywords: 'drone estate survey, drone estate mapping, drone estate survey uk, drone boundary survey, drone property survey, drone land survey, drone estate management',
 };
@@ -21,12 +21,12 @@ export default function DroneEstateSurveyPage() {
       <ServiceSchema
         name="Drone Estate Survey Services"
         description="Expert drone estate survey services throughout the UK. Thorough estate mapping, boundary assessments, and building documentation. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-estate-survey"
+        url="https://hiredronepilot.uk/services/drone-estate-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Estate Survey Services", url: "https://skykam.co.uk/services/drone-estate-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Estate Survey Services", url: "https://hiredronepilot.uk/services/drone-estate-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneEstateSurveyPage() {
                   A drone estate assessment furnishes thorough documentation of country estates, manor houses, and substantial landed properties from above. Employing professional-grade UAVs fitted with high-resolution cameras, we gather detailed imagery of every facet of your estate - from the principal residence and outbuildings to parkland, woodland, and boundary features.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam, we recognise that estates are complex properties demanding careful, methodical documentation. Our assessments yield accurate boundary mapping, comprehensive building surveys, woodland evaluations, and complete orthomosaic imagery providing a full picture of your landholding. Whether you are planning enhancements, managing succession, or simply require current records of your estate, our drone surveys furnish the data you need.
+                  At HireDronePilot, we recognise that estates are complex properties demanding careful, methodical documentation. Our assessments yield accurate boundary mapping, comprehensive building surveys, woodland evaluations, and complete orthomosaic imagery providing a full picture of your landholding. Whether you are planning enhancements, managing succession, or simply require current records of your estate, our drone surveys furnish the data you need.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneEstateSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -761,7 +761,7 @@ export default function DroneEstateSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Ring James
+                    Ring Peter
                   </a>
                 </div>
               </div>
@@ -815,7 +815,7 @@ export default function DroneEstateSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed surveys for estates spanning from modest manor houses to substantial landed properties throughout the UK.
+                  At HireDronePilot, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed surveys for estates spanning from modest manor houses to substantial landed properties throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -823,7 +823,7 @@ export default function DroneEstateSurveyPage() {
                   <p className="text-white font-semibold mb-3">Prepared to collaborate with a dependable estate survey provider?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak with James
+                      Speak with Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -859,7 +859,7 @@ export default function DroneEstateSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -874,7 +874,7 @@ export default function DroneEstateSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -887,7 +887,7 @@ export default function DroneEstateSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience surveying estates across the UK, James personally oversees every project to ensure comprehensive documentation and professional delivery.
+                  With extensive experience surveying estates across the UK, Peter personally oversees every project to ensure comprehensive documentation and professional delivery.
                 </p>
               </div>
 
@@ -952,7 +952,7 @@ export default function DroneEstateSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive specialist guidance and bespoke pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -1009,7 +1009,7 @@ export default function DroneEstateSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Survey</h3>
@@ -1018,7 +1018,7 @@ export default function DroneEstateSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Mapping</h3>

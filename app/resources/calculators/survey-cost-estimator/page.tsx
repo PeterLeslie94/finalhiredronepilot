@@ -81,10 +81,10 @@ export default function SurveyCostEstimatorPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://skykam.co.uk' },
-    { name: 'Resources', url: 'https://skykam.co.uk/resources' },
-    { name: 'Calculators', url: 'https://skykam.co.uk/resources/calculators' },
-    { name: 'Survey Cost Estimator', url: 'https://skykam.co.uk/resources/calculators/survey-cost-estimator' },
+    { name: 'Home', url: 'https://hiredronepilot.uk' },
+    { name: 'Resources', url: 'https://hiredronepilot.uk/resources' },
+    { name: 'Calculators', url: 'https://hiredronepilot.uk/resources/calculators' },
+    { name: 'Survey Cost Estimator', url: 'https://hiredronepilot.uk/resources/calculators/survey-cost-estimator' },
   ];
 
   const softwareApplicationSchema = {
@@ -101,8 +101,8 @@ export default function SurveyCostEstimatorPage() {
     description: 'Free online calculator to estimate drone survey costs in the UK based on site size, terrain complexity, and deliverable requirements.',
     provider: {
       '@type': 'Organization',
-      name: 'Skykam Drone Inspections',
-      url: 'https://skykam.co.uk',
+      name: 'Hire Drone Pilot',
+      url: 'https://hiredronepilot.uk',
     },
   };
 

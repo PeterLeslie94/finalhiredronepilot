@@ -8,23 +8,23 @@ import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { MapPin, Phone, Mail, Clock, CheckCircle, MessageSquare } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Skykam Drone Inspections UK',
-  description: 'Get in touch with Skykam Drone Inspections for a free quote on your aerial survey requirements. We provide professional drone surveys across the UK.',
+  title: 'Contact Us | Hire Drone Pilot UK',
+  description: 'Get in touch with Hire Drone Pilot for a free quote on your aerial survey requirements. We provide professional drone surveys across the UK.',
 };
 
 export default function ContactPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Contact", url: "https://skykam.co.uk/contact" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Contact", url: "https://hiredronepilot.uk/contact" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/services/service-drone-survey.avif"
-            alt="Contact Skykam Drone Inspections UK"
+            alt="Contact Hire Drone Pilot UK"
             fill
             className="object-cover"
             priority
@@ -100,7 +100,7 @@ export default function ContactPage() {
                     <a href="tel:+441334804554" className="text-xl font-semibold text-teal hover:text-gold transition-colors">
                       +44 1334 804554
                     </a>
-                    <p className="text-text-secondary text-sm mt-1">Speak directly to James</p>
+                    <p className="text-text-secondary text-sm mt-1">Speak directly to Peter</p>
                   </div>
                 </div>
 
@@ -111,8 +111,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-teal font-bold text-lg mb-1">Email</h3>
-                    <a href="mailto:jamie@skykam.co.uk" className="text-text-secondary hover:text-gold transition-colors">
-                      jamie@skykam.co.uk
+                    <a href="mailto:quotes@hiredronepilot.uk" className="text-text-secondary hover:text-gold transition-colors">
+                      quotes@hiredronepilot.uk
                     </a>
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
             <div className="relative">
               <Image
                 src="/images/uk-coverage-map.avif"
-                alt="UK coverage map - Skykam Drone Inspections operates nationwide"
+                alt="UK coverage map - Hire Drone Pilot operates nationwide"
                 width={600}
                 height={600}
                 className="rounded-2xl"

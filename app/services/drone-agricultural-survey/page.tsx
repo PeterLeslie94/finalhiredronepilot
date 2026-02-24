@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Farm Surveying & Crop Analysis | Agricultural Drone Mapping UK | Skykam',
+  title: 'Drone Farm Surveying & Crop Analysis | Agricultural Drone Mapping UK | HireDronePilot',
   description: 'Advanced drone agricultural surveys throughout the UK. NDVI vegetation analysis, field drainage mapping, and precision farming insights. Fully CAA certified drone pilots.',
   keywords: 'drone agricultural survey, drone farm mapping, drone crop health mapping, NDVI drone survey, agricultural drone uk, precision agriculture, farm survey drone',
 };
@@ -21,12 +21,12 @@ export default function DroneAgriculturalSurveyPage() {
       <ServiceSchema
         name="Drone Farm Surveying & Crop Analysis"
         description="Advanced drone agricultural surveys throughout the UK. NDVI vegetation analysis, field drainage mapping, and precision farming insights. Fully CAA certified drone pilots."
-        url="https://skykam.co.uk/services/drone-agricultural-survey"
+        url="https://hiredronepilot.uk/services/drone-agricultural-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Agricultural Survey Services", url: "https://skykam.co.uk/services/drone-agricultural-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Agricultural Survey Services", url: "https://hiredronepilot.uk/services/drone-agricultural-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneAgriculturalSurveyPage() {
                   A drone farm survey deploys unmanned aircraft fitted with specialised imaging equipment to gather comprehensive data about your land, crops, and agricultural infrastructure. While conventional ground walks and satellite pictures have limitations, our UAVs operate at low altitudes to achieve centimetre-accurate measurements across your complete property.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Skykam Drone Inspections utilises cutting-edge multispectral and standard RGB cameras to produce detailed farm imagery, spot crop issues before they become visible, examine water flow patterns, and create precise perimeter measurements. These insights enable you to take action based on solid evidence, ultimately increasing harvest quality while lowering operational spending.
+                  Hire Drone Pilot utilises cutting-edge multispectral and standard RGB cameras to produce detailed farm imagery, spot crop issues before they become visible, examine water flow patterns, and create precise perimeter measurements. These insights enable you to take action based on solid evidence, ultimately increasing harvest quality while lowering operational spending.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneAgriculturalSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -745,7 +745,7 @@ export default function DroneAgriculturalSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Chat With James
+                    Chat With Peter
                   </a>
                 </div>
               </div>
@@ -799,7 +799,7 @@ export default function DroneAgriculturalSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Skykam Drone Inspections satisfies all requirements. We hold CAA approval, maintain comprehensive insurance, and have completed agricultural surveys for arable producers, dairy enterprises, mixed farms, and estate managers across Britain.
+                  Hire Drone Pilot satisfies all requirements. We hold CAA approval, maintain comprehensive insurance, and have completed agricultural surveys for arable producers, dairy enterprises, mixed farms, and estate managers across Britain.
                 </p>
 
                 {/* CTA after provider section */}
@@ -843,7 +843,7 @@ export default function DroneAgriculturalSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Today
+                      Ring Peter Today
                     </a>
                   </div>
                 </div>
@@ -858,7 +858,7 @@ export default function DroneAgriculturalSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -871,7 +871,7 @@ export default function DroneAgriculturalSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  Bringing deep expertise in surveying and unmanned aircraft operations, James directs every farming assignment personally to guarantee precise, practical information for your property.
+                  Bringing deep expertise in surveying and unmanned aircraft operations, Peter directs every farming assignment personally to guarantee precise, practical information for your property.
                 </p>
               </div>
 
@@ -936,7 +936,7 @@ export default function DroneAgriculturalSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive specialist guidance and customised rates.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -993,7 +993,7 @@ export default function DroneAgriculturalSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Terrain Surveying</h3>
@@ -1002,7 +1002,7 @@ export default function DroneAgriculturalSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Laser Scanning Services</h3>

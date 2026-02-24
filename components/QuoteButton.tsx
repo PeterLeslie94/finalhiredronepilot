@@ -5,13 +5,13 @@ interface QuoteButtonProps {
   className?: string;
 }
 
-export default function QuoteButton({ className = 'btn btn-primary' }: QuoteButtonProps) {
+export default function QuoteButton({ children, className = 'btn btn-primary' }: QuoteButtonProps) {
   return (
     <button
       onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
       className={className}
     >
-      Compare Quotes
+      {children ?? 'Compare Quotes'}
     </button>
   );
 }

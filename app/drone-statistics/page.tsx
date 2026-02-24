@@ -2625,7 +2625,7 @@ export default function DroneStatisticsPage() {
                 <p className="text-5xl font-bold text-orange-900 mb-2">95%</p>
                 <p className="text-gray-700 font-semibold mb-4">Faster Than Traditional Methods</p>
                 <p className="text-gray-700 text-sm">
-                  Drone roof inspections eliminate scaffolding needs and complete property surveys in hours instead of days. Our <a href="https://hiredronepilot.uk/services/drone-roof-survey" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">drone roof inspection services</a> provide thermal imaging and 4K documentation at 40-60% lower cost while maintaining full compliance with <a href="https://hiredronepilot.uk/blog" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">UK drone laws</a>.
+                  Drone roof inspections eliminate scaffolding needs and complete property surveys in hours instead of days. Our <a href="https://hiredronepilot.uk/services/drone-roof-inspection" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">drone roof inspection services</a> provide thermal imaging and 4K documentation at 40-60% lower cost while maintaining full compliance with <a href="https://hiredronepilot.uk/blog" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">UK drone laws</a>.
                 </p>
               </div>
 
@@ -2642,7 +2642,7 @@ export default function DroneStatisticsPage() {
                 <p className="text-5xl font-bold text-orange-900 mb-2">1-5cm</p>
                 <p className="text-gray-700 font-semibold mb-4">Survey-Grade Accuracy</p>
                 <p className="text-gray-700 text-sm">
-                  Advanced LiDAR technology delivers survey-grade precision for topographic mapping, construction planning, and infrastructure monitoring. <a href="https://hiredronepilot.uk/services/lidar-mapping" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">Drone LiDAR mapping</a> and <a href="https://hiredronepilot.uk/services" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">drone surveys</a> reduce project timelines by 70% while providing detailed 3D terrain models and volumetric analysis.
+                  Advanced LiDAR technology delivers survey-grade precision for topographic mapping, construction planning, and infrastructure monitoring. <a href="https://hiredronepilot.uk/services/drone-lidar-mapping" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">Drone LiDAR mapping</a> and <a href="https://hiredronepilot.uk/services" className="text-orange-600 hover:text-orange-700 underline" rel="dofollow">drone surveys</a> reduce project timelines by 70% while providing detailed 3D terrain models and volumetric analysis.
                 </p>
               </div>
 
@@ -2659,7 +2659,7 @@ export default function DroneStatisticsPage() {
                 <p className="text-5xl font-bold text-green-900 mb-2">99%</p>
                 <p className="text-gray-700 font-semibold mb-4">Panel Coverage Per Flight</p>
                 <p className="text-gray-700 text-sm">
-                  Thermal imaging technology detects faulty panels, hotspots, and connection issues across entire solar farms in single flights. <a href="https://hiredronepilot.uk/services/drone-solar-farm-survey" className="text-green-600 hover:text-green-700 underline" rel="dofollow">Drone solar surveys</a> identify performance problems invisible to ground inspections, preventing energy losses and optimizing maintenance schedules for maximum ROI.
+                  Thermal imaging technology detects faulty panels, hotspots, and connection issues across entire solar farms in single flights. <a href="https://hiredronepilot.uk/services/drone-solar-survey" className="text-green-600 hover:text-green-700 underline" rel="dofollow">Drone solar surveys</a> identify performance problems invisible to ground inspections, preventing energy losses and optimizing maintenance schedules for maximum ROI.
                 </p>
               </div>
             </div>

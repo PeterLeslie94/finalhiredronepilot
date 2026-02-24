@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { HardHat, Building2, BarChart3, MapPin, Ruler, Mountain } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Drone Photogrammetry Survey Solutions | UK 3D Mapping Specialists | Skykam Drone Inspections',
+  title: 'Drone Photogrammetry Survey Solutions | UK 3D Mapping Specialists | Hire Drone Pilot',
   description: 'Expert UAV photogrammetry survey solutions throughout the UK. Precision orthomosaic imagery, 3D modelling, and reliable terrain datasets. CAA approved drone operators.',
   keywords: 'drone photogrammetry survey, drone photogrammetry mapping, drone photogrammetry uk, drone photogrammetry, drone orthomosaic survey, drone 3d model survey, drone mapping',
 };
@@ -21,12 +21,12 @@ export default function DronePhotogrammetrySurveyPage() {
       <ServiceSchema
         name="Drone Photogrammetry Survey Solutions"
         description="Expert UAV photogrammetry survey solutions throughout the UK. Precision orthomosaic imagery, 3D modelling, and reliable terrain datasets. CAA approved drone operators."
-        url="https://skykam.co.uk/services/drone-photogrammetry-survey"
+        url="https://hiredronepilot.uk/services/drone-photogrammetry-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Photogrammetry Survey Services", url: "https://skykam.co.uk/services/drone-photogrammetry-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Photogrammetry Survey Services", url: "https://hiredronepilot.uk/services/drone-photogrammetry-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   UAV photogrammetry surveys employ overlapping drone photographs captured by our aircraft to produce highly precise 2D and 3D digital representations of terrain, structures, and infrastructure. Advanced software processes hundreds or thousands of images, recognising common features to reconstruct accurate geometry and surface characteristics.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Skykam Drone Inspections utilises high-resolution camera systems mounted on professional aircraft capable of recording centimetre-level detail. The outcome is survey-grade orthomosaic imagery, digital elevation products, and textured 3D meshes serving architects, engineers, planners, and construction professionals throughout the UK.
+                  Hire Drone Pilot utilises high-resolution camera systems mounted on professional aircraft capable of recording centimetre-level detail. The outcome is survey-grade orthomosaic imagery, digital elevation products, and textured 3D meshes serving architects, engineers, planners, and construction professionals throughout the UK.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DronePhotogrammetrySurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -732,7 +732,7 @@ export default function DronePhotogrammetrySurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Chat with James
+                    Chat with Peter
                   </a>
                 </div>
               </div>
@@ -786,7 +786,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Skykam Drone Inspections meets every criterion. We hold CAA approval, carry comprehensive insurance, and have completed photogrammetry projects across construction, planning, infrastructure, and property sectors throughout the UK.
+                  Hire Drone Pilot meets every criterion. We hold CAA approval, carry comprehensive insurance, and have completed photogrammetry projects across construction, planning, infrastructure, and property sectors throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -794,7 +794,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   <p className="text-white font-semibold mb-3">Prepared to engage a dependable survey partner?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Connect with James
+                      Connect with Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -830,7 +830,7 @@ export default function DronePhotogrammetrySurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Phone James Now
+                      Phone Peter Now
                     </a>
                   </div>
                 </div>
@@ -845,7 +845,7 @@ export default function DronePhotogrammetrySurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -858,7 +858,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With substantial expertise in surveying and drone operations, James personally manages every photogrammetry assignment to guarantee survey-grade precision and professional results.
+                  With substantial expertise in surveying and drone operations, Peter personally manages every photogrammetry assignment to guarantee survey-grade precision and professional results.
                 </p>
               </div>
 
@@ -923,7 +923,7 @@ export default function DronePhotogrammetrySurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive professional guidance and bespoke pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -989,7 +989,7 @@ export default function DronePhotogrammetrySurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Mapping</h3>

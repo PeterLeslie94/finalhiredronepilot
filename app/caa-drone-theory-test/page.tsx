@@ -464,7 +464,7 @@ export default function CAADroneTheoryTestPage() {
 
               <div className="text-center my-12">
                 <Image
-                  src="/images/james-leslie-drone-pilot-21 (2).webp"
+                  src="/images/peter-leslie-drone-pilot-21.webp"
                   alt="Professional drone pilot"
                   width={600}
                   height={400}
@@ -637,7 +637,7 @@ export default function CAADroneTheoryTestPage() {
 
               <div className="text-center my-12">
                 <Image
-                  src="/images/james-leslie-drone-pilot-24 (1).webp"
+                  src="/images/peter-leslie-drone-pilot-24.webp"
                   alt="Professional drone pilot with equipment"
                   width={800}
                   height={533}

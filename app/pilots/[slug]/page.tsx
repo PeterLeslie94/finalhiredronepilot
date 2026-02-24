@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { query } from '@/lib/server/database';
-import { CheckCircle2, ShieldCheck, Award, MapPin } from 'lucide-react';
+import { Award, MapPin } from 'lucide-react';
+import TrustBadge from '@/components/TrustBadge';
+
+export const revalidate = 3600;
 
 type PilotProfile = {
   id: string;
@@ -26,6 +29,15 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
     [slug],
   );
   return result.rows[0] ?? null;
+}
+
+export async function generateStaticParams() {
+  try {
+    const result = await query<{ slug: string }>('SELECT slug FROM pilots WHERE active = true');
+    return result.rows.map((p) => ({ slug: p.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -74,12 +86,10 @@ export default async function PilotProfilePage({
   const pilot = await getPilot(slug);
   if (!pilot) notFound();
 
-  const isIntegrated = pilot.tier === 'INTEGRATED_OPERATOR';
-
   return (
     <main className="bg-white">
       {/* Hero */}
-      <section className="bg-teal py-16 md:py-24">
+      <section className="bg-teal -mt-[120px] pt-[120px] py-16 md:py-24">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto">
             {/* Photo */}
@@ -110,18 +120,8 @@ export default async function PilotProfilePage({
               {pilot.business_name && (
                 <p className="text-lg text-white/70 mb-4">{pilot.business_name}</p>
               )}
-              <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start">
-                {isIntegrated ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-purple-600 text-white">
-                    <ShieldCheck className="w-4 h-4" />
-                    Integrated Operator — Website Verified
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-blue-600 text-white">
-                    <CheckCircle2 className="w-4 h-4" />
-                    Verified Operator
-                  </span>
-                )}
+              <div className="mt-4">
+                <TrustBadge />
               </div>
             </div>
           </div>
@@ -166,6 +166,21 @@ export default async function PilotProfilePage({
 
             {/* Sidebar */}
             <div className="space-y-6">
+              {/* Website */}
+              {pilot.website_url && (
+                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Website</h3>
+                  <a
+                    href={pilot.website_url}
+                    target="_blank"
+                    rel="noopener nofollow noreferrer"
+                    className="btn btn-outline-teal w-full text-center block"
+                  >
+                    View Website
+                  </a>
+                </div>
+              )}
+
               {/* CTA Card */}
               <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Get a Quote</h3>
@@ -179,21 +194,6 @@ export default async function PilotProfilePage({
                   Request a Quote
                 </Link>
               </div>
-
-              {/* Website */}
-              {pilot.website_url && isIntegrated && (
-                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2">Website</h3>
-                  <a
-                    href={pilot.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-orange-600 hover:text-orange-700 text-sm break-all"
-                  >
-                    {pilot.website_url.replace(/^https?:\/\//, '')}
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         </div>

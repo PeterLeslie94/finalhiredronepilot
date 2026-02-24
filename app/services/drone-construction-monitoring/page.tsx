@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Building2, Home, Factory, Train, HardHat, Warehouse, Camera, CalendarCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'UAV Construction Monitoring Services | Site Progress Surveys UK | Skykam Drone Inspections',
+  title: 'UAV Construction Monitoring Services | Site Progress Surveys UK | Hire Drone Pilot',
   description: 'Expert UAV construction monitoring services throughout the UK. Regular progress documentation, time-lapse imagery, and BIM verification. CAA certified drone operators.',
   keywords: 'drone construction monitoring, drone construction progress monitoring, drone site surveys, drone site photography, drone construction time lapse, drone BIM verification, drone progress reports',
 };
@@ -21,12 +21,12 @@ export default function DroneConstructionMonitoringPage() {
       <ServiceSchema
         name="UAV Construction Monitoring Services"
         description="Expert UAV construction monitoring services throughout the UK. Regular progress documentation, time-lapse imagery, and BIM verification. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-construction-monitoring"
+        url="https://hiredronepilot.uk/services/drone-construction-monitoring"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "UAV Construction Monitoring Services", url: "https://skykam.co.uk/services/drone-construction-monitoring" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "UAV Construction Monitoring Services", url: "https://hiredronepilot.uk/services/drone-construction-monitoring" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneConstructionMonitoringPage() {
                   Drone construction monitoring provides regular UAV documentation of your building project from start to finish. Using professional-grade aircraft, we capture high-resolution imagery, video, and mapping data at scheduled intervals—weekly, fortnightly, or monthly—to produce a comprehensive visual record of your construction progress.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we deliver more than just photographs. Our monitoring packages encompass orthomosaic maps, 3D models, progress comparison imagery, and time-lapse videos that assist project managers in tracking milestones, identifying delays, and communicating effectively with clients, investors, and stakeholders.
+                  At Hire Drone Pilot, we deliver more than just photographs. Our monitoring packages encompass orthomosaic maps, 3D models, progress comparison imagery, and time-lapse videos that assist project managers in tracking milestones, identifying delays, and communicating effectively with clients, investors, and stakeholders.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneConstructionMonitoringPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -841,7 +841,7 @@ export default function DroneConstructionMonitoringPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we meet every criterion. We're CAA certified, fully insured, CSCS certified, and have delivered monitoring projects for residential developers, commercial contractors, and infrastructure clients throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, fully insured, CSCS certified, and have delivered monitoring projects for residential developers, commercial contractors, and infrastructure clients throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -885,7 +885,7 @@ export default function DroneConstructionMonitoringPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -900,7 +900,7 @@ export default function DroneConstructionMonitoringPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -913,7 +913,7 @@ export default function DroneConstructionMonitoringPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in construction monitoring, James personally supervises every project to guarantee consistent, expert documentation throughout your build.
+                  With extensive experience in construction monitoring, Peter personally supervises every project to guarantee consistent, expert documentation throughout your build.
                 </p>
               </div>
 
@@ -978,7 +978,7 @@ export default function DroneConstructionMonitoringPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Obtain specialist guidance and customised pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -1044,7 +1044,7 @@ export default function DroneConstructionMonitoringPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Survey</h3>

@@ -51,9 +51,11 @@ export default function ArticleCard({
             <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/60 to-transparent md:bg-gradient-to-r" />
 
             {/* Category Badge */}
-            <span className="absolute top-4 left-4 bg-gold text-teal-dark text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full">
-              {category.name}
-            </span>
+            {category.slug !== 'uncategorized' && (
+              <span className="absolute top-4 left-4 bg-gold text-teal-dark text-xs font-semibold uppercase tracking-wide px-3 py-1 rounded-full">
+                {category.name}
+              </span>
+            )}
           </div>
 
           {/* Content */}
@@ -110,9 +112,11 @@ export default function ArticleCard({
 
           {/* Content */}
           <div className="flex-1 min-w-0">
-            <span className="text-gold text-xs font-semibold uppercase tracking-wide">
-              {category.name}
-            </span>
+            {category.slug !== 'uncategorized' && (
+              <span className="text-gold text-xs font-semibold uppercase tracking-wide">
+                {category.name}
+              </span>
+            )}
             <h4 className="text-sm font-bold text-teal mt-1 line-clamp-2 group-hover:text-teal-dark transition-colors">
               {title}
             </h4>
@@ -143,9 +147,11 @@ export default function ArticleCard({
           <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/60 to-transparent" />
 
           {/* Category Badge */}
-          <span className="absolute top-3 left-3 bg-gold text-teal-dark text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded-full">
-            {category.name}
-          </span>
+          {category.slug !== 'uncategorized' && (
+            <span className="absolute top-3 left-3 bg-gold text-teal-dark text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded-full">
+              {category.name}
+            </span>
+          )}
         </div>
 
         {/* Content */}

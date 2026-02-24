@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Fence, MapPin, Building2, Trees, Warehouse, FileText, Clock, Shield, Ruler, Calculator } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'UAV Land Survey Solutions | Drone Land Mapping UK | Skykam Drone Inspections',
+  title: 'UAV Land Survey Solutions | Drone Land Mapping UK | Hire Drone Pilot',
   description: 'Expert UAV land survey solutions throughout the UK. Rapid, precise boundary mapping, area calculations, and orthomosaic imagery. CAA authorised drone operators.',
   keywords: 'drone land survey, drone land survey uk, drone boundary mapping, land surveying drone, drone orthomosaic survey, drone area calculation survey',
 };
@@ -21,12 +21,12 @@ export default function DroneLandSurveyPage() {
       <ServiceSchema
         name="UAV Land Survey Solutions"
         description="Expert UAV land survey solutions throughout the UK. Rapid, precise boundary mapping, area calculations, and orthomosaic imagery. CAA authorised drone operators."
-        url="https://skykam.co.uk/services/drone-land-survey"
+        url="https://hiredronepilot.uk/services/drone-land-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "UAV Land Survey Solutions", url: "https://skykam.co.uk/services/drone-land-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "UAV Land Survey Solutions", url: "https://hiredronepilot.uk/services/drone-land-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneLandSurveyPage() {
                   A UAV land survey employs drone photography and photogrammetry to generate precise maps and measurements of land parcels, boundaries, and terrain features. Our aircraft capture thousands of overlapping images which are processed to produce survey-grade orthomosaics, digital elevation models, and precise area calculations.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we utilise the latest RTK-enabled aircraft to achieve centimetre-level accuracy across sites of any scale. Whether you require mapping for a single field or surveying an entire estate, our UAV land surveys deliver the detailed, georeferenced data you need for planning, management, and legal purposes.
+                  At Hire Drone Pilot, we utilise the latest RTK-enabled aircraft to achieve centimetre-level accuracy across sites of any scale. Whether you require mapping for a single field or surveying an entire estate, our UAV land surveys deliver the detailed, georeferenced data you need for planning, management, and legal purposes.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneLandSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -792,7 +792,7 @@ export default function DroneLandSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we tick every box. We are CAA authorised, fully insured, and have delivered land surveys for farmers, estates, solicitors, and land agents throughout the UK.
+                  At Hire Drone Pilot, we tick every box. We are CAA authorised, fully insured, and have delivered land surveys for farmers, estates, solicitors, and land agents throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -836,7 +836,7 @@ export default function DroneLandSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Phone James Now
+                      Phone Peter Now
                     </a>
                   </div>
                 </div>
@@ -851,7 +851,7 @@ export default function DroneLandSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -864,7 +864,7 @@ export default function DroneLandSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in surveying and UAV operations, James personally oversees every land survey project to ensure accuracy and professional delivery.
+                  With extensive experience in surveying and UAV operations, Peter personally oversees every land survey project to ensure accuracy and professional delivery.
                 </p>
               </div>
 
@@ -929,7 +929,7 @@ export default function DroneLandSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive specialist advice and tailored pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -986,7 +986,7 @@ export default function DroneLandSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Topographic Survey</h3>
@@ -995,7 +995,7 @@ export default function DroneLandSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Mapping</h3>

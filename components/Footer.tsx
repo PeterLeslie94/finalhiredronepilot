@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import TrustBadge from '@/components/TrustBadge';
 
 const services = [
-  { name: 'Drone Topographic Survey', href: '/services/drone-topographic-survey' },
-  { name: 'LiDAR Mapping', href: '/services/lidar-mapping' },
+  { name: 'Drone Topographical Survey', href: '/services/drone-topographical-survey' },
+  { name: 'Drone LiDAR Mapping', href: '/services/drone-lidar-mapping' },
   { name: 'Drone Photogrammetry Survey', href: '/services/drone-photogrammetry-survey' },
-  { name: 'Drone Roof Survey', href: '/services/drone-roof-survey' },
+  { name: 'Drone Roof Inspection', href: '/services/drone-roof-inspection' },
   { name: 'Drone Construction Monitoring', href: '/services/drone-construction-monitoring' },
   { name: 'Drone Volumetric Survey', href: '/services/drone-volumetric-survey' },
   { name: 'Drone Site Survey', href: '/services/drone-site-survey' },
@@ -20,6 +21,8 @@ const moreServices = [
   { name: 'Drone Mining Survey', href: '/services/drone-mining-survey' },
   { name: 'Drone Agricultural Survey', href: '/services/drone-agricultural-survey' },
   { name: 'Drone Environmental Survey', href: '/services/drone-environmental-survey' },
+  { name: 'Drone Gas Detection', href: '/services/drone-gas-detection' },
+  { name: 'Drone Crop Spraying', href: '/services/drone-crop-spraying' },
 ];
 
 export default function Footer() {
@@ -57,7 +60,7 @@ export default function Footer() {
       {/* Main Footer */}
       <div className="bg-teal py-16">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
             {/* Company Info */}
             <div>
               <Link href="/" className="flex items-center gap-2 mb-6 group">
@@ -79,6 +82,7 @@ export default function Footer() {
                 HireDronePilot is an intro marketplace connecting clients with independent drone pilots.
                 We act as a facilitator and record keeper only.
               </p>
+              <TrustBadge animated={false} width={200} />
             </div>
 
             {/* Services Column 1 */}
@@ -112,36 +116,48 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6">
-                <h4 className="text-gold font-semibold text-sm mb-3 uppercase tracking-wide">Quick Links</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <Link href="/about" className="text-white/70 hover:text-gold transition-colors">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/contact" className="text-white/70 hover:text-gold transition-colors">
-                      Contact Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/areas" className="text-white/70 hover:text-gold transition-colors">
-                      Areas Covered
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/pricing" className="text-white/70 hover:text-gold transition-colors">
-                      Pricing
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/drone-statistics" className="text-white/70 hover:text-gold transition-colors">
-                      Drone Statistics
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-gold font-bold text-lg mb-6 uppercase tracking-wide">Quick Links</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/about" className="text-white/70 hover:text-gold transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-white/70 hover:text-gold transition-colors">
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/cities" className="text-white/70 hover:text-gold transition-colors">
+                    Areas Covered
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pricing" className="text-white/70 hover:text-gold transition-colors">
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/drone-statistics" className="text-white/70 hover:text-gold transition-colors">
+                    Drone Statistics
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-white/70 hover:text-gold transition-colors">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/caa-drone-theory-test" className="text-white/70 hover:text-gold transition-colors">
+                    CAA Drone Theory Test
+                  </Link>
+                </li>
+              </ul>
             </div>
 
             {/* Contact Info */}
@@ -201,7 +217,7 @@ export default function Footer() {
             &copy; 2026 HireDronePilot. All rights reserved. | Company No: SC662275 Operating Under HireDronePilot Trading Name
           </p>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <Link href="/privacy-policy" className="text-white/50 text-sm hover:text-gold transition-colors">
+            <Link href="/privacy" className="text-white/50 text-sm hover:text-gold transition-colors">
               Privacy Policy
             </Link>
             <Link href="/terms" className="text-white/50 text-sm hover:text-gold transition-colors">

@@ -2,8 +2,6 @@
 
 import { useMemo, useState } from 'react';
 
-import { services } from '@/data/services';
-
 type QuoteMultiStepFormProps = {
   sourceForm: string;
   sourcePage?: string;
@@ -18,14 +16,54 @@ const CONSENT_POLICY_VERSION = 'marketplace-consent-v2';
 const MARKETPLACE_TERMS_VERSION = 'marketplace-terms-v1';
 
 const serviceOptions = [
-  ...services.map((service) => ({
-    value: service.slug,
-    label: service.title,
-  })),
-  {
-    value: 'other',
-    label: 'Other',
-  },
+  { value: 'drone-survey', label: 'Drone Survey' },
+  { value: 'drone-surveys', label: 'Drone Surveys' },
+  { value: 'drone-topographical-survey', label: 'Drone Topographical Survey' },
+  { value: 'drone-lidar-mapping', label: 'Drone LiDAR Mapping' },
+  { value: 'drone-photogrammetry-survey', label: 'Drone Photogrammetry Survey' },
+  { value: 'drone-point-cloud-mapping', label: 'Drone Point Cloud Mapping' },
+  { value: 'drone-site-survey', label: 'Drone Site Survey' },
+  { value: 'drone-land-survey', label: 'Drone Land Survey' },
+  { value: 'drone-boundary-survey', label: 'Drone Boundary Survey' },
+  { value: 'drone-corridor-mapping', label: 'Drone Corridor Mapping' },
+  { value: 'drone-elevation-survey', label: 'Drone Elevation Survey' },
+  { value: 'drone-as-built-survey', label: 'Drone As-Built Survey' },
+  { value: 'drone-setting-out-survey', label: 'Drone Setting Out Survey' },
+  { value: 'drone-bathymetric-survey', label: 'Drone Bathymetric Survey' },
+  { value: 'drone-roof-inspection', label: 'Drone Roof Inspection' },
+  { value: 'drone-facade-survey', label: 'Drone Facade Survey' },
+  { value: 'drone-bridge-inspection', label: 'Drone Bridge Inspection' },
+  { value: 'drone-measured-building-survey', label: 'Drone Measured Building Survey' },
+  { value: 'drone-thermal-imaging', label: 'Drone Thermal Imaging' },
+  { value: 'drone-confined-space-inspection', label: 'Drone Confined Space Inspection' },
+  { value: 'drone-construction-monitoring', label: 'Drone Construction Monitoring' },
+  { value: 'drone-road-survey', label: 'Drone Road Survey' },
+  { value: 'drone-railway-survey', label: 'Drone Railway Survey' },
+  { value: 'drone-utility-survey', label: 'Drone Utility Survey' },
+  { value: 'drone-industrial-survey', label: 'Drone Industrial Survey' },
+  { value: 'drone-volumetric-survey', label: 'Drone Volumetric Survey' },
+  { value: 'drone-mining-survey', label: 'Drone Mining Survey' },
+  { value: 'drone-quarry-survey', label: 'Drone Quarry Survey' },
+  { value: 'drone-landfill-survey', label: 'Drone Landfill Survey' },
+  { value: 'drone-solar-survey', label: 'Drone Solar Survey' },
+  { value: 'drone-wind-farm-survey', label: 'Drone Wind Farm Survey' },
+  { value: 'drone-agricultural-survey', label: 'Drone Agricultural Survey' },
+  { value: 'drone-environmental-survey', label: 'Drone Environmental Survey' },
+  { value: 'drone-forestry-survey', label: 'Drone Forestry Survey' },
+  { value: 'drone-coastal-survey', label: 'Drone Coastal Survey' },
+  { value: 'drone-flood-risk-survey', label: 'Drone Flood Risk Survey' },
+  { value: 'drone-archaeological-survey', label: 'Drone Archaeological Survey' },
+  { value: 'drone-estate-survey', label: 'Drone Estate Survey' },
+  { value: 'drone-gas-detection', label: 'Drone Gas Detection' },
+  { value: 'drone-crop-spraying', label: 'Drone Crop Spraying' },
+  { value: 'drone-ground-penetrating-radar', label: 'Drone Ground Penetrating Radar' },
+  { value: 'drone-sonar-survey', label: 'Drone Sonar Survey' },
+  { value: 'drone-water-quality-assessment', label: 'Drone Water Quality Assessment' },
+  { value: 'drone-photography', label: 'Drone Photography' },
+  { value: 'drone-real-estate-photography', label: 'Drone Real Estate Photography' },
+  { value: 'drone-wedding-photography', label: 'Drone Wedding Photography' },
+  { value: 'drone-videographer', label: 'Drone Videographer' },
+  { value: 'other', label: 'Other' },
 ];
 
 const dateFlexibilityOptions: Array<{ value: DateFlexibility; label: string }> = [
@@ -294,7 +332,7 @@ export default function QuoteMultiStepForm({
               understand HireDronePilot is an intro marketplace only, acts as a facilitator and
               record keeper only, is not party to the service contract, and is not responsible for
               drone pilot-delivered work outcomes. I agree to the{' '}
-              <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
                 Privacy Policy
               </a>{' '}
               and{' '}

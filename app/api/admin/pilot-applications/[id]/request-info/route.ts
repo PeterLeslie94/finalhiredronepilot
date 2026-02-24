@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { logPilotApplicationEvent } from '@/lib/server/audit';
+import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
+import { fireEmail } from '@/lib/server/email';
 import { jsonError, parseBody } from '@/lib/server/http';
 
 export const runtime = 'nodejs';
@@ -18,8 +19,11 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       return jsonError('message is required', 400);
     }
 
-    await withTransaction(async (client) => {
-      const found = await client.query<{ id: string }>(`SELECT id FROM pilot_applications WHERE id = $1 FOR UPDATE`, [id]);
+    const { email, pilotName } = await withTransaction(async (client) => {
+      const found = await client.query<{ id: string; email: string; pilot_name: string }>(
+        `SELECT id, email, pilot_name FROM pilot_applications WHERE id = $1 FOR UPDATE`,
+        [id],
+      );
       if (!found.rows[0]) {
         throw new Error('Pilot application not found');
       }
@@ -39,6 +43,22 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         adminId,
         client,
       );
+
+      return { email: found.rows[0].email, pilotName: found.rows[0].pilot_name };
+    });
+
+    // Send info-request email
+    const emailLogId = await logEmail(
+      'pilot_application_info_requested',
+      email,
+      'QUEUED',
+      'PILOT_APPLICATION',
+      id,
+    );
+    fireEmail(emailLogId, email, {
+      templateKey: 'pilot_application_info_requested',
+      applicantName: pilotName,
+      message,
     });
 
     return NextResponse.json({ application_id: id, status: 'NEEDS_INFO' });

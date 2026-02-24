@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { MapPin, Scale, FileText, Landmark, Home, Trees, Fence, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'UAV Boundary Survey Solutions | Land Boundary Mapping UK | Skykam Drone Inspections',
+  title: 'UAV Boundary Survey Solutions | Land Boundary Mapping UK | Hire Drone Pilot',
   description: 'Expert UAV boundary survey solutions throughout the UK. Precise property boundary mapping, area calculations, and legal plans. CAA authorised drone operators.',
   keywords: 'drone boundary survey, drone land boundary survey, drone property boundary mapping, drone boundary dispute survey, drone land area calculation, drone boundary mapping uk',
 };
@@ -21,12 +21,12 @@ export default function DroneBoundarySurveyPage() {
       <ServiceSchema
         name="UAV Boundary Survey Solutions"
         description="Expert UAV boundary survey solutions throughout the UK. Precise property boundary mapping, area calculations, and legal plans. CAA authorised drone operators."
-        url="https://skykam.co.uk/services/drone-boundary-survey"
+        url="https://hiredronepilot.uk/services/drone-boundary-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "UAV Boundary Survey Solutions", url: "https://skykam.co.uk/services/drone-boundary-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "UAV Boundary Survey Solutions", url: "https://hiredronepilot.uk/services/drone-boundary-survey" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneBoundarySurveyPage() {
                   A UAV boundary survey employs drone photography and GPS technology to precisely map the boundaries of land parcels, properties, and estates. Unlike conventional methods that require surveyors to physically walk every boundary line, our aircraft capture high-resolution imagery from above, generating precise orthomosaic maps that show exactly where your boundaries lie.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we combine RTK-GPS positioning with professional photogrammetry to deliver boundary surveys that are accurate to within centimetres. Whether you need to verify your property extent, resolve a boundary dispute, or calculate land areas for legal or planning purposes, our UAV surveys provide the evidence you need.
+                  At Hire Drone Pilot, we combine RTK-GPS positioning with professional photogrammetry to deliver boundary surveys that are accurate to within centimetres. Whether you need to verify your property extent, resolve a boundary dispute, or calculate land areas for legal or planning purposes, our UAV surveys provide the evidence you need.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneBoundarySurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -775,7 +775,7 @@ export default function DroneBoundarySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we satisfy every criterion. We are CAA authorised, comprehensively insured, and have delivered boundary surveys for landowners, solicitors, and estate agents throughout the UK.
+                  At Hire Drone Pilot, we satisfy every criterion. We are CAA authorised, comprehensively insured, and have delivered boundary surveys for landowners, solicitors, and estate agents throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -783,7 +783,7 @@ export default function DroneBoundarySurveyPage() {
                   <p className="text-white font-semibold mb-3">Prepared to collaborate with a reliable boundary survey provider?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak with James
+                      Speak with Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -819,7 +819,7 @@ export default function DroneBoundarySurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -834,7 +834,7 @@ export default function DroneBoundarySurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -847,7 +847,7 @@ export default function DroneBoundarySurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in surveying and UAV operations, James personally supervises every boundary project to ensure precise data and professional delivery.
+                  With extensive experience in surveying and UAV operations, Peter personally supervises every boundary project to ensure precise data and professional delivery.
                 </p>
               </div>
 
@@ -912,7 +912,7 @@ export default function DroneBoundarySurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive expert guidance and tailored pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -969,7 +969,7 @@ export default function DroneBoundarySurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Topographic Survey</h3>
@@ -978,7 +978,7 @@ export default function DroneBoundarySurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV LiDAR Survey</h3>

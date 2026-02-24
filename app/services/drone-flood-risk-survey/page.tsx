@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Flood Risk Assessment Services | FRA Survey Data UK | Skykam',
+  title: 'Drone Flood Risk Assessment Services | FRA Survey Data UK | HireDronePilot',
   description: 'Expert UAV flood risk surveys throughout Britain. Precise elevation data for FRAs, catchment analysis, and Environment Agency submissions. Fully CAA certified drone operators.',
   keywords: 'drone flood risk survey, drone flood risk assessment, drone FRA survey data, drone flood modelling survey, drone catchment mapping, Environment Agency drone flood survey, drone elevation survey',
 };
@@ -21,12 +21,12 @@ export default function DroneFloodRiskSurveyPage() {
       <ServiceSchema
         name="Drone Flood Risk Assessment Services"
         description="Expert UAV flood risk surveys throughout Britain. Precise elevation data for FRAs, catchment analysis, and Environment Agency submissions. Fully CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-flood-risk-survey"
+        url="https://hiredronepilot.uk/services/drone-flood-risk-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Flood Risk Survey Services", url: "https://skykam.co.uk/services/drone-flood-risk-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Flood Risk Survey Services", url: "https://hiredronepilot.uk/services/drone-flood-risk-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneFloodRiskSurveyPage() {
                   A drone flood risk assessment employs UAV technology to gather highly precise elevation data from land, watercourses, and floodplains. This information underpins Flood Risk Assessments (FRAs) necessary for planning applications, insurance evaluations, and environmental impact studies throughout Britain.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we operate survey-grade UAVs with RTK positioning to capture centimetre-accurate terrain models. Our data integrates with flood modelling software, enabling engineers and planners to comprehend how water will behave during storm events and pinpoint areas vulnerable to flooding.
+                  At Hire Drone Pilot, we operate survey-grade UAVs with RTK positioning to capture centimetre-accurate terrain models. Our data integrates with flood modelling software, enabling engineers and planners to comprehend how water will behave during storm events and pinpoint areas vulnerable to flooding.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneFloodRiskSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -731,7 +731,7 @@ export default function DroneFloodRiskSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Ring James
+                    Ring Peter
                   </a>
                 </div>
               </div>
@@ -785,7 +785,7 @@ export default function DroneFloodRiskSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we satisfy every criterion. We hold CAA approval, maintain comprehensive insurance, and have supplied flood risk survey data for planning applications, major developments, and environmental projects throughout Britain.
+                  At Hire Drone Pilot, we satisfy every criterion. We hold CAA approval, maintain comprehensive insurance, and have supplied flood risk survey data for planning applications, major developments, and environmental projects throughout Britain.
                 </p>
 
                 {/* CTA after provider section */}
@@ -829,7 +829,7 @@ export default function DroneFloodRiskSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -844,7 +844,7 @@ export default function DroneFloodRiskSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -857,7 +857,7 @@ export default function DroneFloodRiskSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in surveying and UAV operations, James personally oversees every flood risk project to ensure survey-grade accuracy and professional delivery.
+                  With extensive experience in surveying and UAV operations, Peter personally oversees every flood risk project to ensure survey-grade accuracy and professional delivery.
                 </p>
               </div>
 
@@ -922,7 +922,7 @@ export default function DroneFloodRiskSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Obtain specialist guidance and customised pricing for your flood risk assessment.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -979,7 +979,7 @@ export default function DroneFloodRiskSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Mapping</h3>
@@ -988,7 +988,7 @@ export default function DroneFloodRiskSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV LiDAR Scanning</h3>

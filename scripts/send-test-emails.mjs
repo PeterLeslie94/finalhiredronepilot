@@ -60,7 +60,7 @@ function wrapInLayout(bodyHtml) {
         <tr><td style="background-color:#111827;padding:16px 32px;text-align:center;border-radius:0 0 8px 8px;">
           <span style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.6;">
             &copy; 2026 HireDronePilot<br>
-            Skykam LTD (SC662275) &middot; Castlecroft Business Centre, Tom Johnston Road, Dundee DD4 8XD
+            HireDronePilot (SC662275) &middot; Castlecroft Business Centre, Tom Johnston Road, Dundee DD4 8XD
           </span>
         </td></tr>
       </table>

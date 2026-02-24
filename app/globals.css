@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ===== Skykam Color Palette ===== */
+/* ===== HireDronePilot Color Palette ===== */
 @theme inline {
   /* Dark Gray Colors (Primary) */
   --color-teal: #1f2937;
@@ -710,6 +710,99 @@ span.underline-sweep::after {
   .leaflet-container {
     height: 500px;
   }
+}
+
+/* ===== Trust Badge Animations ===== */
+@keyframes badgeDrawStroke { to { stroke-dashoffset: 0; } }
+@keyframes badgePopIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes badgeFadeSlideRight {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes badgeFillOpacity { to { fill-opacity: 0.25; } }
+@keyframes badgePing {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes badgeSlideUpFade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.badge-container {
+  animation: badgeSlideUpFade 0.6s ease-out forwards;
+}
+.badge-bg { transition: all 0.3s ease; }
+.badge-container:hover .badge-bg {
+  transform: translateY(-2px);
+}
+.badge-container:hover .shadow-rect {
+  filter: drop-shadow(0 8px 12px rgba(243, 109, 33, 0.2));
+}
+.badge-container:hover .badge-icon-group {
+  transform: scale(1.05);
+}
+.badge-icon-group {
+  transform-origin: 50px 50px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.badge-draw-border {
+  stroke-dasharray: 780; stroke-dashoffset: 780;
+  animation: badgeDrawStroke 1.2s ease-in-out 0.2s forwards;
+}
+.badge-pop-circle {
+  opacity: 0; transform-origin: 50px 50px;
+  animation: badgePopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
+}
+.badge-draw-shield {
+  stroke-dasharray: 120; stroke-dashoffset: 120;
+  animation: badgeDrawStroke 0.6s ease-out 0.8s forwards;
+}
+.badge-fill-shield {
+  fill-opacity: 0;
+  animation: badgeFillOpacity 0.4s ease-out 1.2s forwards;
+}
+.badge-draw-check {
+  stroke-dasharray: 40; stroke-dashoffset: 40;
+  animation: badgeDrawStroke 0.5s ease-out 1.4s forwards;
+}
+.badge-text-anim { opacity: 0; animation: badgeFadeSlideRight 0.5s ease-out forwards; }
+.badge-text-1 { animation-delay: 1.0s; }
+.badge-text-2 { animation-delay: 1.2s; }
+.badge-text-3 { animation-delay: 1.4s; }
+.badge-pop-pill {
+  opacity: 0; transform-origin: 260px 50px;
+  animation: badgePopIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.8s forwards;
+}
+.badge-pulse-ring {
+  transform-origin: 242px 51px;
+  animation: badgePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  animation-delay: 2.3s;
+  opacity: 0;
+}
+
+/* Static badge (no entrance animations) */
+.no-badge-anim .badge-container,
+.no-badge-anim .badge-draw-border,
+.no-badge-anim .badge-pop-circle,
+.no-badge-anim .badge-draw-shield,
+.no-badge-anim .badge-fill-shield,
+.no-badge-anim .badge-draw-check,
+.no-badge-anim .badge-text-anim,
+.no-badge-anim .badge-pop-pill {
+  animation: none !important;
+  opacity: 1 !important;
+  stroke-dashoffset: 0 !important;
+  fill-opacity: 1 !important;
+}
+.no-badge-anim .badge-pulse-ring {
+  animation: badgePing 2s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+  opacity: 1 !important;
 }
 
 /* Admin sidebar responsive */

@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Archaeological Survey Services | Heritage Site Mapping UK | Skykam',
+  title: 'Drone Archaeological Survey Services | Heritage Site Mapping UK | HireDronePilot',
   description: 'Expert drone archaeological survey services throughout the UK. Uncover concealed features through crop mark detection, thermal analysis and precision mapping. CAA certified drone operators.',
   keywords: 'drone archaeological survey, drone archaeology, archaeological drone survey uk, drone crop mark survey, drone heritage survey, drone archaeological mapping, thermal archaeology',
 };
@@ -21,12 +21,12 @@ export default function DroneArchaeologicalSurveyPage() {
       <ServiceSchema
         name="Drone Archaeological Survey Services"
         description="Expert drone archaeological survey services throughout the UK. Uncover concealed features through crop mark detection, thermal analysis and precision mapping. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-archaeological-survey"
+        url="https://hiredronepilot.uk/services/drone-archaeological-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Archaeological Survey Services", url: "https://skykam.co.uk/services/drone-archaeological-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Archaeological Survey Services", url: "https://hiredronepilot.uk/services/drone-archaeological-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneArchaeologicalSurveyPage() {
                   A drone archaeological assessment employs sophisticated UAV technology to identify, document, and chart archaeological features that remain hidden or challenging to observe from ground level. Our unmanned aircraft gather high-resolution imagery and data that expose crop marks, earthworks, and subsurface structures throughout the terrain.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam, we integrate photogrammetry, multispectral sensing, and thermal detection to produce thorough archaeological documentation. This non-destructive methodology safeguards site integrity whilst furnishing archaeologists with precise survey information for research, planning submissions, and heritage stewardship.
+                  At HireDronePilot, we integrate photogrammetry, multispectral sensing, and thermal detection to produce thorough archaeological documentation. This non-destructive methodology safeguards site integrity whilst furnishing archaeologists with precise survey information for research, planning submissions, and heritage stewardship.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneArchaeologicalSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -768,7 +768,7 @@ export default function DroneArchaeologicalSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Ring James
+                    Ring Peter
                   </a>
                 </div>
               </div>
@@ -822,7 +822,7 @@ export default function DroneArchaeologicalSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed archaeological survey projects for commercial archaeology units, heritage bodies, and research initiatives throughout the UK.
+                  At HireDronePilot, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed archaeological survey projects for commercial archaeology units, heritage bodies, and research initiatives throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -830,7 +830,7 @@ export default function DroneArchaeologicalSurveyPage() {
                   <p className="text-white font-semibold mb-3">Prepared to collaborate with a provider who comprehends archaeology?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak with James
+                      Speak with Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -866,7 +866,7 @@ export default function DroneArchaeologicalSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -881,7 +881,7 @@ export default function DroneArchaeologicalSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -894,7 +894,7 @@ export default function DroneArchaeologicalSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in surveying and UAV operations, James personally oversees every archaeological project to ensure professional delivery and accurate recording.
+                  With extensive experience in surveying and UAV operations, Peter personally oversees every archaeological project to ensure professional delivery and accurate recording.
                 </p>
               </div>
 
@@ -959,7 +959,7 @@ export default function DroneArchaeologicalSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive specialist guidance and bespoke pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -1016,7 +1016,7 @@ export default function DroneArchaeologicalSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Survey</h3>
@@ -1025,7 +1025,7 @@ export default function DroneArchaeologicalSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Terrain Mapping</h3>

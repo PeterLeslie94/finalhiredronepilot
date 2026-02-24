@@ -10,9 +10,11 @@ const navCategories = [
   {
     name: 'Mapping',
     services: [
-      { name: 'Drone Topographic Survey', href: '/services/drone-topographic-survey', desc: 'Detailed terrain elevation mapping' },
-      { name: 'LiDAR Mapping', href: '/services/lidar-mapping', desc: 'Laser scanning through vegetation' },
+      { name: 'Drone Surveys', href: '/services/drone-surveys', desc: 'Comprehensive aerial survey services' },
+      { name: 'Drone Topographical Survey', href: '/services/drone-topographical-survey', desc: 'Detailed terrain elevation mapping' },
+      { name: 'Drone LiDAR Mapping', href: '/services/drone-lidar-mapping', desc: 'Laser scanning through vegetation' },
       { name: 'Drone Photogrammetry Survey', href: '/services/drone-photogrammetry-survey', desc: '3D models from aerial imagery' },
+      { name: 'Drone Point Cloud Mapping', href: '/services/drone-point-cloud-mapping', desc: 'High-density 3D spatial data' },
       { name: 'Drone Site Survey', href: '/services/drone-site-survey', desc: 'Complete site documentation' },
       { name: 'Drone Land Survey', href: '/services/drone-land-survey', desc: 'Boundary and area measurements' },
       { name: 'Drone Boundary Survey', href: '/services/drone-boundary-survey', desc: 'Property line verification' },
@@ -20,15 +22,18 @@ const navCategories = [
       { name: 'Drone Elevation Survey', href: '/services/drone-elevation-survey', desc: 'Height and contour analysis' },
       { name: 'Drone As-Built Survey', href: '/services/drone-as-built-survey', desc: 'Post-construction verification' },
       { name: 'Drone Setting Out Survey', href: '/services/drone-setting-out-survey', desc: 'Construction layout assistance' },
+      { name: 'Drone Bathymetric Survey', href: '/services/drone-bathymetric-survey', desc: 'Underwater terrain mapping' },
     ],
   },
   {
     name: 'Inspections',
     services: [
-      { name: 'Drone Roof Survey', href: '/services/drone-roof-survey', desc: 'Safe rooftop condition assessment' },
+      { name: 'Drone Roof Inspection', href: '/services/drone-roof-inspection', desc: 'Safe rooftop condition assessment' },
       { name: 'Drone Facade Survey', href: '/services/drone-facade-survey', desc: 'Building exterior inspection' },
       { name: 'Drone Bridge Inspection', href: '/services/drone-bridge-inspection', desc: 'Structural integrity checks' },
       { name: 'Drone Measured Building Survey', href: '/services/drone-measured-building-survey', desc: 'Accurate building dimensions' },
+      { name: 'Drone Thermal Imaging', href: '/services/drone-thermal-imaging', desc: 'Heat loss and defect detection' },
+      { name: 'Drone Confined Space Inspection', href: '/services/drone-confined-space-inspection', desc: 'Tank, silo and tunnel surveys' },
     ],
   },
   {
@@ -46,8 +51,9 @@ const navCategories = [
     services: [
       { name: 'Drone Volumetric Survey', href: '/services/drone-volumetric-survey', desc: 'Stockpile volume calculations' },
       { name: 'Drone Mining Survey', href: '/services/drone-mining-survey', desc: 'Quarry and pit mapping' },
+      { name: 'Drone Quarry Survey', href: '/services/drone-quarry-survey', desc: 'Extraction monitoring & compliance' },
       { name: 'Drone Landfill Survey', href: '/services/drone-landfill-survey', desc: 'Waste site monitoring' },
-      { name: 'Drone Solar Farm Survey', href: '/services/drone-solar-farm-survey', desc: 'Panel inspection and mapping' },
+      { name: 'Drone Solar Survey', href: '/services/drone-solar-survey', desc: 'Panel inspection and mapping' },
       { name: 'Drone Wind Farm Survey', href: '/services/drone-wind-farm-survey', desc: 'Turbine and site surveys' },
     ],
   },
@@ -61,6 +67,20 @@ const navCategories = [
       { name: 'Drone Flood Risk Survey', href: '/services/drone-flood-risk-survey', desc: 'Drainage and flood modelling' },
       { name: 'Drone Archaeological Survey', href: '/services/drone-archaeological-survey', desc: 'Heritage site documentation' },
       { name: 'Drone Estate Survey', href: '/services/drone-estate-survey', desc: 'Property and land management' },
+      { name: 'Drone Gas Detection', href: '/services/drone-gas-detection', desc: 'Leak detection and monitoring' },
+      { name: 'Drone Crop Spraying', href: '/services/drone-crop-spraying', desc: 'Precision agricultural spraying' },
+      { name: 'Drone Ground Penetrating Radar', href: '/services/drone-ground-penetrating-radar', desc: 'Subsurface feature detection' },
+      { name: 'Drone Sonar Survey', href: '/services/drone-sonar-survey', desc: 'Underwater acoustic mapping' },
+      { name: 'Drone Water Quality Assessment', href: '/services/drone-water-quality-assessment', desc: 'Aquatic environment monitoring' },
+    ],
+  },
+  {
+    name: 'Photography',
+    services: [
+      { name: 'Drone Photography', href: '/services/drone-photography', desc: 'Professional aerial imagery' },
+      { name: 'Drone Real Estate Photography', href: '/services/drone-real-estate-photography', desc: 'Property marketing from above' },
+      { name: 'Drone Wedding Photography', href: '/services/drone-wedding-photography', desc: 'Stunning aerial wedding shots' },
+      { name: 'Drone Videographer', href: '/services/drone-videographer', desc: 'Cinematic aerial video production' },
     ],
   },
 ];
@@ -116,7 +136,7 @@ export default function Header() {
             </a>
           </div>
           <div className="text-xs text-teal-dark font-semibold px-3 py-1 flex items-center gap-2">
-            <Link href="/pilots/apply" className="hover:text-teal transition-colors">
+            <Link href="/join-as-pilot" className="hover:text-teal transition-colors">
               Join As Drone Pilot
             </Link>
             <span className="text-teal-dark/40">|</span>
@@ -141,7 +161,7 @@ export default function Header() {
             {/* Logo with micro-interactions */}
             <Link
               href="/"
-              className="flex items-center gap-2 group transition-all duration-300 hover:scale-105"
+              className="flex-shrink-0 mr-4 flex items-center gap-2 group transition-all duration-300 hover:scale-105"
             >
               <Image
                 src="/hiredronepilot-logo.png"
@@ -163,7 +183,7 @@ export default function Header() {
             <div className="hidden xl:flex items-center gap-1">
               <Link
                 href="/about"
-                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
                   isActivePath('/about') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -179,7 +199,7 @@ export default function Header() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className={`nav-link text-white font-medium transition-colors flex items-center gap-1 px-3 py-2 ${
+                    className={`nav-link text-white font-medium transition-colors flex items-center gap-1 px-2 py-2 ${
                       isActivePath('/services') && activeDropdown === category.name ? 'text-gold' : 'hover:text-gold'
                     }`}
                   >
@@ -229,18 +249,69 @@ export default function Header() {
                 </div>
               ))}
 
-              <Link
-                href="/resources"
-                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
-                  isActivePath('/resources') ? 'active text-gold' : 'hover:text-gold'
-                }`}
+              {/* Resources Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('resources')}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                Resources
-              </Link>
+                <button
+                  className={`nav-link text-white font-medium transition-colors flex items-center gap-1 px-2 py-2 ${
+                    activeDropdown === 'resources' ? 'text-gold' : 'hover:text-gold'
+                  }`}
+                >
+                  Resources
+                  <svg
+                    className={`w-3 h-3 transition-transform duration-300 ${
+                      activeDropdown === 'resources' ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                <div
+                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 transition-all duration-300 ${
+                    activeDropdown === 'resources'
+                      ? 'opacity-100 visible translate-y-0'
+                      : 'opacity-0 invisible -translate-y-2'
+                  }`}
+                  style={{ width: '280px' }}
+                >
+                  <div className="backdrop-blur-xl bg-white/95 rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+                    <div className="p-4 space-y-1">
+                      {[
+                        { name: 'Resources', href: '/resources', desc: 'Guides, tools and calculators' },
+                        { name: 'Blog', href: '/blog', desc: 'Latest articles and news' },
+                        { name: 'CAA Drone Theory Test', href: '/caa-drone-theory-test', desc: 'Practice test questions' },
+                        { name: 'Join as Pilot', href: '/join-as-pilot', desc: 'Apply to join our network' },
+                        { name: 'Drone Statistics', href: '/drone-statistics', desc: 'UK drone industry data' },
+                        { name: 'Pricing', href: '/pricing', desc: 'Drone service costs guide' },
+                      ].map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="group flex flex-col p-3 rounded-xl hover:bg-teal/5 transition-all duration-300"
+                        >
+                          <span className="font-semibold text-teal text-sm group-hover:text-gold transition-colors">
+                            {item.name}
+                          </span>
+                          <span className="text-xs text-text-secondary mt-0.5">
+                            {item.desc}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <Link
                 href="/pilots"
-                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
                   isActivePath('/pilots') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -248,17 +319,8 @@ export default function Header() {
               </Link>
 
               <Link
-                href="/pricing"
-                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
-                  isActivePath('/pricing') ? 'active text-gold' : 'hover:text-gold'
-                }`}
-              >
-                Pricing
-              </Link>
-
-              <Link
                 href="/contact"
-                className={`nav-link text-white font-medium transition-colors px-3 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
                   isActivePath('/contact') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -268,7 +330,7 @@ export default function Header() {
               {/* CTA Button - Opens Quote Modal */}
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                className="btn btn-primary btn-shimmer ml-2 text-sm px-4 py-2 whitespace-nowrap"
+                className="flex-shrink-0 btn btn-primary btn-shimmer ml-2 text-sm px-4 py-2 whitespace-nowrap"
               >
                 Compare Quotes
               </button>
@@ -395,17 +457,58 @@ export default function Header() {
               </div>
             ))}
 
-            {/* Resources Link */}
-            <Link
-              href="/resources"
-              className={`mobile-menu-item block text-xl font-semibold py-3 border-b border-white/10 transition-all duration-300 ${
+            {/* Resources Accordion */}
+            <div
+              className={`transition-all duration-300 ${
                 mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-              } ${isActivePath('/resources') ? 'text-gold' : 'text-white hover:text-gold'}`}
+              }`}
               style={{ transitionDelay: '400ms' }}
-              onClick={() => setMobileMenuOpen(false)}
             >
-              Resources
-            </Link>
+              <button
+                className={`w-full flex items-center justify-between text-xl font-semibold py-3 border-b border-white/10 ${
+                  activeDropdown === 'mobile-resources' ? 'text-gold' : 'text-white'
+                }`}
+                onClick={() => setActiveDropdown(activeDropdown === 'mobile-resources' ? null : 'mobile-resources')}
+              >
+                Resources
+                <svg
+                  className={`w-5 h-5 transition-transform duration-300 ${
+                    activeDropdown === 'mobile-resources' ? 'rotate-180' : ''
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ${
+                  activeDropdown === 'mobile-resources' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="py-2 space-y-1">
+                  {[
+                    { name: 'Resources', href: '/resources', desc: 'Guides, tools and calculators' },
+                    { name: 'Blog', href: '/blog', desc: 'Latest articles and news' },
+                    { name: 'CAA Drone Theory Test', href: '/caa-drone-theory-test', desc: 'Practice test questions' },
+                    { name: 'Join as Pilot', href: '/join-as-pilot', desc: 'Apply to join our network' },
+                    { name: 'Drone Statistics', href: '/drone-statistics', desc: 'UK drone industry data' },
+                    { name: 'Pricing', href: '/pricing', desc: 'Drone service costs guide' },
+                  ].map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block py-2 px-4 text-white/80 hover:text-gold transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span className="block text-sm font-medium">{item.name}</span>
+                      <span className="block text-xs text-white/50">{item.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             <Link
               href="/pilots"
@@ -416,17 +519,6 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Pilots
-            </Link>
-
-            <Link
-              href="/pricing"
-              className={`mobile-menu-item block text-xl font-semibold py-3 border-b border-white/10 transition-all duration-300 ${
-                mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-              } ${isActivePath('/pricing') ? 'text-gold' : 'text-white hover:text-gold'}`}
-              style={{ transitionDelay: '425ms' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Pricing
             </Link>
 
             {/* Contact Link */}

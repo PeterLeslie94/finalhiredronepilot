@@ -81,6 +81,26 @@ export default function PilotTermsPage() {
               there are credible safety or compliance concerns, repeated complaints, policy breaches,
               or suspected fraud.
             </p>
+
+            <h2 className="text-2xl font-bold text-teal mt-10 mb-4">7. Contact</h2>
+            <div className="bg-background-alt p-6 rounded-lg">
+              <p className="text-text-secondary mb-2">
+                <strong className="text-teal">Email:</strong>{' '}
+                <a href="mailto:quotes@hiredronepilot.uk" className="text-gold hover:underline">
+                  quotes@hiredronepilot.uk
+                </a>
+              </p>
+              <p className="text-text-secondary mb-2">
+                <strong className="text-teal">Phone:</strong>{' '}
+                <a href="tel:+441334804554" className="text-gold hover:underline">
+                  +44 1334 804554
+                </a>
+              </p>
+              <p className="text-text-secondary">
+                <strong className="text-teal">Address:</strong> Castlecroft Business Centre, Tom
+                Johnston Road, Dundee DD4 8XD
+              </p>
+            </div>
           </div>
         </div>
       </section>

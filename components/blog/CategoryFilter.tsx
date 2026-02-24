@@ -28,7 +28,7 @@ export default function CategoryFilter({
       </button>
 
       {/* Category Buttons */}
-      {categories.map((category) => (
+      {categories.filter((c) => c.slug !== 'uncategorized').map((category) => (
         <button
           key={category.slug}
           onClick={() => onCategoryChange(category.slug)}

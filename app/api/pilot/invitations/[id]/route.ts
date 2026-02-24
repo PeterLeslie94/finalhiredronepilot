@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { AuthError, requirePilotAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
-import { jsonError } from '@/lib/server/http';
+import { jsonError, parseBody } from '@/lib/server/http';
 
 export const runtime = 'nodejs';
 
@@ -89,6 +89,38 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to load invitation';
+    if (error instanceof AuthError) {
+      return jsonError(message, 401);
+    }
+    return jsonError(message, 500);
+  }
+}
+
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { pilotId } = await requirePilotAccess(request);
+    const { id } = await params;
+    const payload = await parseBody(request);
+
+    if (payload.action !== 'decline') {
+      return jsonError('Invalid action', 400);
+    }
+
+    const result = await query(
+      `UPDATE pilot_invitations
+       SET status = 'DECLINED'
+       WHERE id = $1 AND pilot_id = $2 AND status IN ('SENT', 'OPENED')
+       RETURNING id`,
+      [id, pilotId],
+    );
+
+    if (result.rows.length === 0) {
+      return jsonError('Invitation not found or cannot be declined', 404);
+    }
+
+    return NextResponse.json({ ok: true, status: 'DECLINED' });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to decline invitation';
     if (error instanceof AuthError) {
       return jsonError(message, 401);
     }

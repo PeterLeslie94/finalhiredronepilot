@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${service.title} | Skykam Drone Inspections UK`,
+    title: `${service.title} | Hire Drone Pilot UK`,
     description: service.shortDescription,
     keywords: `${service.title.toLowerCase()}, drone ${service.title.toLowerCase()}, ${service.category.toLowerCase()}, UK drone services`,
   };
@@ -50,12 +50,12 @@ export default async function ServicePage({ params }: Props) {
       <ServiceSchema
         name={service.title}
         description={service.shortDescription}
-        url={`https://skykam.co.uk/services/${slug}`}
+        url={`https://hiredronepilot.uk/services/${slug}`}
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: service.title, url: `https://skykam.co.uk/services/${slug}` }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: service.title, url: `https://hiredronepilot.uk/services/${slug}` }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[500px] flex items-center bg-teal -mt-[120px] pt-[120px] overflow-hidden">

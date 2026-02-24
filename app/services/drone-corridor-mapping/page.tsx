@@ -10,7 +10,7 @@ import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 import { Route, Zap, Train, Droplets, Factory, TreePine, Ruler, Clock, Shield, PoundSterling } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'UAV Corridor Mapping Solutions | Linear Survey UK | Skykam Drone Inspections',
+  title: 'UAV Corridor Mapping Solutions | Linear Survey UK | Hire Drone Pilot',
   description: 'Expert UAV corridor mapping solutions throughout the UK. Pipeline routes, power lines, railways, and road surveys with precision data capture. CAA authorised drone operators.',
   keywords: 'drone corridor mapping, drone pipeline survey, drone power line survey, drone linear corridor survey, drone railway survey, road survey drone, drone infrastructure corridor mapping uk',
 };
@@ -21,12 +21,12 @@ export default function DroneCorridorMappingPage() {
       <ServiceSchema
         name="UAV Corridor Mapping Solutions"
         description="Expert UAV corridor mapping solutions throughout the UK. Pipeline routes, power lines, railways, and road surveys with precision data capture. CAA authorised drone operators."
-        url="https://skykam.co.uk/services/drone-corridor-mapping"
+        url="https://hiredronepilot.uk/services/drone-corridor-mapping"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "UAV Corridor Mapping Solutions", url: "https://skykam.co.uk/services/drone-corridor-mapping" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "UAV Corridor Mapping Solutions", url: "https://hiredronepilot.uk/services/drone-corridor-mapping" }
       ]} />
 
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function DroneCorridorMappingPage() {
                   UAV corridor mapping is a specialist drone surveying technique designed for linear infrastructure such as pipelines, power lines, railways, roads, and waterways. Employing advanced drone technology, we capture continuous, high-resolution data along extended routes that would require conventional survey teams weeks to cover on foot.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, our corridor mapping missions combine photogrammetry and LiDAR sensors to deliver precise orthomosaics, digital terrain models, and cross-sectional profiles. We can survey corridors of 20km or more in a single day, supplying infrastructure operators with the detailed spatial data they require for planning, maintenance, and compliance.
+                  At Hire Drone Pilot, our corridor mapping missions combine photogrammetry and LiDAR sensors to deliver precise orthomosaics, digital terrain models, and cross-sectional profiles. We can survey corridors of 20km or more in a single day, supplying infrastructure operators with the detailed spatial data they require for planning, maintenance, and compliance.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -111,7 +111,7 @@ export default function DroneCorridorMappingPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -808,7 +808,7 @@ export default function DroneCorridorMappingPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we satisfy every criterion. We are CAA authorised, comprehensively insured, and have delivered corridor mapping projects for utilities, rail, and highway clients throughout the UK.
+                  At Hire Drone Pilot, we satisfy every criterion. We are CAA authorised, comprehensively insured, and have delivered corridor mapping projects for utilities, rail, and highway clients throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -816,7 +816,7 @@ export default function DroneCorridorMappingPage() {
                   <p className="text-white font-semibold mb-3">Prepared to collaborate with a reliable corridor mapping provider?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak with James
+                      Speak with Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -852,7 +852,7 @@ export default function DroneCorridorMappingPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -867,7 +867,7 @@ export default function DroneCorridorMappingPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -880,7 +880,7 @@ export default function DroneCorridorMappingPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With extensive experience in infrastructure surveying and UAV operations, James personally supervises every corridor mapping project to ensure survey-grade accuracy and professional delivery.
+                  With extensive experience in infrastructure surveying and UAV operations, Peter personally supervises every corridor mapping project to ensure survey-grade accuracy and professional delivery.
                 </p>
               </div>
 
@@ -945,7 +945,7 @@ export default function DroneCorridorMappingPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive expert guidance and tailored pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -1002,7 +1002,7 @@ export default function DroneCorridorMappingPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV LiDAR Mapping</h3>
@@ -1011,7 +1011,7 @@ export default function DroneCorridorMappingPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Topographic Survey</h3>

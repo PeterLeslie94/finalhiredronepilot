@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Save, Loader2 } from 'lucide-react';
 import { toLocalDate } from '@/lib/utils/format';
+import PhotoUploader from '@/components/PhotoUploader';
 
 type PilotProfile = {
   id: string;
@@ -246,13 +247,10 @@ export default function PilotProfilePage() {
                 />
               </div>
               <div className="mt-4">
-                <label className="block text-xs text-text-secondary mb-1">Profile Photo URL</label>
-                <input
-                  type="url"
+                <label className="block text-xs text-text-secondary mb-1">Profile Photo</label>
+                <PhotoUploader
                   value={form.profile_photo_url}
-                  onChange={(e) => handleChange('profile_photo_url', e.target.value)}
-                  placeholder="https://..."
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+                  onChange={(url) => handleChange('profile_photo_url', url)}
                 />
               </div>
             </div>

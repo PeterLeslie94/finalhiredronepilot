@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Wind Farm Survey Solutions | Wind Turbine Inspection UK | Skykam Drone Inspections',
+  title: 'Drone Wind Farm Survey Solutions | Wind Turbine Inspection UK | Hire Drone Pilot',
   description: 'Expert UAV wind farm survey services throughout the UK. Wind turbine blade inspection, thermal analysis, and fault identification. CAA certified drone operators.',
   keywords: 'drone wind farm survey, drone wind turbine inspection, drone turbine survey uk, blade inspection drone, drone wind farm inspection, drone turbine blade survey',
 };
@@ -21,12 +21,12 @@ export default function DroneWindFarmSurveyPage() {
       <ServiceSchema
         name="Drone Wind Farm Survey Solutions"
         description="Expert UAV wind farm survey services throughout the UK. Wind turbine blade inspection, thermal analysis, and fault identification. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-wind-farm-survey"
+        url="https://hiredronepilot.uk/services/drone-wind-farm-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Wind Farm Survey Solutions", url: "https://skykam.co.uk/services/drone-wind-farm-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Wind Farm Survey Solutions", url: "https://hiredronepilot.uk/services/drone-wind-farm-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneWindFarmSurveyPage() {
                   A UAV wind farm survey uses specialist drone technology to inspect wind turbine blades, towers, and nacelles without the need for expensive rope access teams or turbine shutdowns. Our high-resolution cameras capture detailed imagery of every blade surface, pinpointing faults, erosion, and damage that could affect performance or safety.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we deploy advanced UAV platforms equipped with high-resolution zoom cameras and thermal sensors. Our drone pilots are trained specifically for wind turbine inspection, understanding the unique challenges of capturing consistent imagery across all blade surfaces while managing wind conditions and turbine geometry.
+                  At Hire Drone Pilot, we deploy advanced UAV platforms equipped with high-resolution zoom cameras and thermal sensors. Our drone pilots are trained specifically for wind turbine inspection, understanding the unique challenges of capturing consistent imagery across all blade surfaces while managing wind conditions and turbine geometry.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneWindFarmSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -800,7 +800,7 @@ export default function DroneWindFarmSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we meet every criterion. We're CAA certified, fully insured, and have delivered wind farm inspection projects across onshore sites throughout the UK. Our systematic inspection methodology ensures consistent, dependable results.
+                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, fully insured, and have delivered wind farm inspection projects across onshore sites throughout the UK. Our systematic inspection methodology ensures consistent, dependable results.
                 </p>
 
                 {/* CTA after provider section */}
@@ -808,7 +808,7 @@ export default function DroneWindFarmSurveyPage() {
                   <p className="text-white font-semibold mb-3">Ready to work with a dependable wind farm inspection provider?</p>
                   <div className="flex flex-wrap gap-3">
                     <QuoteButton className="px-5 py-2.5 rounded-full bg-gold text-teal-dark font-semibold hover:bg-gold/90 transition-colors text-sm btn-shimmer">
-                      Speak to James
+                      Speak to Peter
                     </QuoteButton>
                     <a href="tel:+441334804554" className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/30 text-white hover:bg-white/10 transition-colors text-sm font-medium">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -844,7 +844,7 @@ export default function DroneWindFarmSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -859,7 +859,7 @@ export default function DroneWindFarmSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -872,7 +872,7 @@ export default function DroneWindFarmSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With considerable expertise in UAV operations and wind turbine inspection, James personally manages every wind farm project to ensure thorough coverage and professional delivery.
+                  With considerable expertise in UAV operations and wind turbine inspection, Peter personally manages every wind farm project to ensure thorough coverage and professional delivery.
                 </p>
               </div>
 
@@ -937,7 +937,7 @@ export default function DroneWindFarmSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive professional guidance and bespoke pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"

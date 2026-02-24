@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { query } from '@/lib/server/database';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
+import TrustBadge from '@/components/TrustBadge';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Drone Pilots Directory | HireDronePilot',
@@ -38,7 +41,7 @@ export default async function PilotsDirectoryPage() {
   return (
     <main className="bg-white">
       {/* Hero */}
-      <section className="bg-teal py-16 md:py-24">
+      <section className="bg-teal -mt-[120px] pt-[120px] py-16 md:py-24">
         <div className="container text-center">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
             Drone Pilots Directory
@@ -46,6 +49,15 @@ export default async function PilotsDirectoryPage() {
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
             Browse our network of verified drone operators across the UK. Every pilot is CAA-registered, insured, and ready to quote on your project.
           </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <TrustBadge animated={false} />
+            <Link
+              href="/join-as-pilot"
+              className="btn btn-primary btn-shimmer inline-block"
+            >
+              Join As a Drone Pilot
+            </Link>
+          </div>
         </div>
       </section>
 

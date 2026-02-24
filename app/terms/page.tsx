@@ -80,7 +80,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">5. Related Policies</h2>
             <ul className="list-disc pl-6 text-text-secondary space-y-2 mb-6">
               <li>
-                <Link href="/privacy-policy" className="text-gold hover:underline">
+                <Link href="/privacy" className="text-gold hover:underline">
                   Privacy Policy
                 </Link>
               </li>

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
-import { jsonError } from '@/lib/server/http';
+import { jsonError, parseBody } from '@/lib/server/http';
 
 export const runtime = 'nodejs';
 
@@ -45,6 +45,36 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to load enquiry';
+    const status = error instanceof AuthError ? 401 : 500;
+    return jsonError(message, status);
+  }
+}
+
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    await requireAdminAccess(request);
+    const { id } = await params;
+    const payload = await parseBody(request);
+
+    if (payload.action !== 'close') {
+      return jsonError('Invalid action', 400);
+    }
+
+    const result = await query(
+      `UPDATE enquiries
+       SET status = 'CLOSED', closed_at = now(), updated_at = now()
+       WHERE id = $1 AND status != 'CLOSED'
+       RETURNING id`,
+      [id],
+    );
+
+    if (result.rows.length === 0) {
+      return jsonError('Enquiry not found or already closed', 404);
+    }
+
+    return NextResponse.json({ ok: true, status: 'CLOSED' });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to close enquiry';
     const status = error instanceof AuthError ? 401 : 500;
     return jsonError(message, status);
   }

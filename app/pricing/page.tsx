@@ -17,7 +17,7 @@ import {
 import { BreadcrumbSchema, FAQSchema } from '@/components/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'Drone Service Pricing UK 2025 | Drone Pilot Day Rates & Costs Guide | HireDronePilot',
+  title: 'Drone Service Pricing UK 2026 | Drone Pilot Day Rates & Costs Guide | HireDronePilot',
   description:
     'Complete UK drone service pricing guide. Drone pilot day rates from £1,200, hourly from £150. Compare drone photography prices, filming costs, inspection rates. Real market data.',
   keywords: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     'best drone service pricing',
   ],
   openGraph: {
-    title: 'UK Drone Service Pricing Guide 2025 - HireDronePilot',
+    title: 'UK Drone Service Pricing Guide 2026 - HireDronePilot',
     description:
       'Complete industry pricing overview. Compare quotes from independent drone pilots. Market rates for drone photography, inspections, and filming.',
     type: 'website',
@@ -57,13 +57,13 @@ const serviceData = [
     name: 'Drone Roof Inspection',
     price: '£150-350',
     duration: '1-2 hours',
-    href: '/services/drone-roof-survey',
+    href: '/services/drone-roof-inspection',
   },
   {
     name: 'Drone LiDAR Mapping',
     price: '£500-1000',
     duration: '4-8 hours',
-    href: '/services/lidar-mapping',
+    href: '/services/drone-lidar-mapping',
   },
   {
     name: 'Drone Thermal Imaging',
@@ -81,13 +81,13 @@ const serviceData = [
     name: 'Drone Solar Survey',
     price: '£250-500',
     duration: '2-3 hours',
-    href: '/services/drone-solar-farm-survey',
+    href: '/services/drone-solar-survey',
   },
   {
     name: 'Drone Topographical Survey',
     price: '£600-1200',
     duration: '3-5 hours',
-    href: '/services/drone-topographic-survey',
+    href: '/services/drone-topographical-survey',
   },
   {
     name: 'Drone Confined Space Inspection',
@@ -129,13 +129,13 @@ const serviceData = [
     name: 'Ground Penetrating Radar',
     price: '£1000-2000',
     duration: '6-8 hours',
-    href: '/services/lidar-mapping',
+    href: '/services/drone-lidar-mapping',
   },
   {
     name: 'Drone Storm Damage Assessment',
     price: '£650-1200',
     duration: '4-5 hours',
-    href: '/services/drone-roof-survey',
+    href: '/services/drone-roof-inspection',
   },
   {
     name: 'Drone Wedding Photography',
@@ -238,7 +238,7 @@ export default function PricingPage() {
             <p className="text-sm md:text-base font-semibold tracking-wider uppercase text-white/90 mb-3">
               Pricing Guide
             </p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">UK Drone Service Pricing Guide 2025</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">UK Drone Service Pricing Guide 2026</h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
               Complete industry pricing overview. Compare quotes from independent drone pilots. All drone pilots
               set their own rates.

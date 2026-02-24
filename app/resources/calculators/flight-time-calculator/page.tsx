@@ -130,8 +130,8 @@ export default function FlightTimeCalculatorPage() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'Skykam Drone Inspections',
-      url: 'https://skykam.co.uk',
+      name: 'Hire Drone Pilot',
+      url: 'https://hiredronepilot.uk',
     },
   };
 

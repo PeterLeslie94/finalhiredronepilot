@@ -10,7 +10,7 @@ import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { Crosshair, Zap, ShieldCheck, PoundSterling } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Skykam Drone Inspections | Professional Drone Survey Solutions UK',
+  title: 'Hire Drone Pilot | Professional Drone Survey Solutions UK',
   description: 'Comprehensive drone survey services including drone photography, LiDAR mapping, thermal imaging, topographic surveys and building inspections. CAA-approved drone operators serving the UK.',
   keywords: 'drone survey services, drone survey, drone mapping, drone LiDAR survey, drone thermal imaging, drone building inspection, UK',
 };
@@ -19,8 +19,8 @@ export default function ServicesPage() {
   return (
     <>
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -119,7 +119,7 @@ export default function ServicesPage() {
               Why Choose Us
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              The Skykam Drone Inspections Advantage
+              The Hire Drone Pilot Advantage
             </h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

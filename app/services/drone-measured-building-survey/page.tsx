@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'UAV Measured Building Survey Services | Building Assessments UK | Skykam Drone Inspections',
+  title: 'UAV Measured Building Survey Services | Building Assessments UK | Hire Drone Pilot',
   description: 'Expert UAV measured building survey services throughout the UK. Precise elevation drawings, 3D models, and facade measurements. CAA certified drone operators.',
   keywords: 'drone measured building survey, drone building survey uk, drone facade survey, drone elevation drawings, drone 3d building model, building dimensions',
 };
@@ -21,12 +21,12 @@ export default function DroneMeasuredBuildingSurveyPage() {
       <ServiceSchema
         name="UAV Measured Building Survey Services"
         description="Expert UAV measured building survey services throughout the UK. Precise elevation drawings, 3D models, and facade measurements. CAA certified drone operators."
-        url="https://skykam.co.uk/services/drone-measured-building-survey"
+        url="https://hiredronepilot.uk/services/drone-measured-building-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Measured Building Survey Services", url: "https://skykam.co.uk/services/drone-measured-building-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Measured Building Survey Services", url: "https://hiredronepilot.uk/services/drone-measured-building-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   A drone measured building survey captures accurate external dimensions of buildings utilising photogrammetry. Our UAVs photograph every facade, roof plane, and architectural feature, generating precise 3D models from which we extract thorough measurement data.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we merge high-resolution drone imagery with sophisticated processing to produce elevation drawings, facade measurements, and 3D building models. This methodology is especially beneficial for buildings where conventional access is challenging, hazardous, or would necessitate costly scaffolding.
+                  At Hire Drone Pilot, we merge high-resolution drone imagery with sophisticated processing to produce elevation drawings, facade measurements, and 3D building models. This methodology is especially beneficial for buildings where conventional access is challenging, hazardous, or would necessitate costly scaffolding.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -782,7 +782,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we meet every criterion. We're CAA certified, comprehensively insured, and have delivered measured building surveys for architects, heritage consultants, and property professionals throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, comprehensively insured, and have delivered measured building surveys for architects, heritage consultants, and property professionals throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
@@ -845,7 +845,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -860,7 +860,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -873,7 +873,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  With substantial expertise in surveying and UAV operations, James personally supervises every measured building project to guarantee precise dimensions and professional delivery.
+                  With substantial expertise in surveying and UAV operations, Peter personally supervises every measured building project to guarantee precise dimensions and professional delivery.
                 </p>
               </div>
 
@@ -938,7 +938,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Obtain specialist guidance and customised pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -995,7 +995,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Drone Topographic Survey</h3>
@@ -1004,7 +1004,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/lidar-mapping"
+              href="/services/drone-lidar-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">LiDAR Mapping</h3>

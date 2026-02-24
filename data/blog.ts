@@ -71,16 +71,16 @@ export const blogCategories: BlogCategory[] = [
   {
     slug: 'company-news',
     name: 'Company News',
-    description: 'Updates from Skykam Drone Inspections'
+    description: 'Updates from Hire Drone Pilot'
   },
 ];
 
 // ===== Default Author =====
 export const defaultAuthor: Author = {
-  name: 'James Leslie',
+  name: 'Peter Leslie',
   role: 'Owner, Engineer & Drone Pilot',
   image: '/images/about-surveyor.avif',
-  bio: 'Former RAF engineer with extensive experience in surveying and UAV operations. James founded Skykam Drone Inspections to bring professional aerial surveying to clients across the UK.',
+  bio: 'Former RAF engineer with extensive experience in surveying and UAV operations. Peter founded Hire Drone Pilot to bring professional aerial surveying to clients across the UK.',
 };
 
 // ===== Sample Articles =====
@@ -181,7 +181,7 @@ export const articles: BlogArticle[] = [
       },
       {
         type: 'paragraph',
-        content: 'Understanding the factors that affect survey accuracy helps you specify the right requirements for your project. At Skykam Drone Inspections, we work with clients to determine the appropriate accuracy specification and methodology for each project, ensuring deliverables meet your needs while optimising costs.',
+        content: 'Understanding the factors that affect survey accuracy helps you specify the right requirements for your project. At Hire Drone Pilot, we work with clients to determine the appropriate accuracy specification and methodology for each project, ensuring deliverables meet your needs while optimising costs.',
       },
     ],
     relatedSlugs: ['how-drone-surveys-transforming-construction'],

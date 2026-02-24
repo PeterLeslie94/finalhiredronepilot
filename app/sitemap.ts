@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
+import { query } from '@/lib/server/database';
 
-export const dynamic = 'force-static';
+export const revalidate = 3600;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://hiredronepilot.uk';
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -43,13 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/areas`,
+      url: `${baseUrl}/cities`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/privacy-policy`,
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
@@ -102,13 +103,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/join-as-pilot`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   const services = [
-    'drone-topographic-survey',
-    'lidar-mapping',
+    'drone-topographical-survey',
+    'drone-lidar-mapping',
     'drone-photogrammetry-survey',
-    'drone-roof-survey',
+    'drone-roof-inspection',
     'drone-construction-monitoring',
     'drone-volumetric-survey',
     'drone-site-survey',
@@ -130,7 +137,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'drone-coastal-survey',
     'drone-landfill-survey',
     'drone-railway-survey',
-    'drone-solar-farm-survey',
+    'drone-solar-survey',
     'drone-forestry-survey',
     'drone-utility-survey',
     'drone-road-survey',
@@ -138,6 +145,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'drone-setting-out-survey',
     'drone-as-built-survey',
     'drone-flood-risk-survey',
+    // New service pages
+    'drone-photography',
+    'drone-real-estate-photography',
+    'drone-wedding-photography',
+    'drone-thermal-imaging',
+    'drone-surveys',
+    'drone-bathymetric-survey',
+    'drone-point-cloud-mapping',
+    'drone-sonar-survey',
+    'drone-videographer',
+    'drone-water-quality-assessment',
+    'drone-confined-space-inspection',
+    'drone-ground-penetrating-radar',
+    'drone-quarry-survey',
   ];
 
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
@@ -147,7 +168,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // Location pages - 30 UK cities
+  // Location pages - 29 UK cities
   const locations = [
     'london',
     'edinburgh',
@@ -175,14 +196,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'reading',
     'milton-keynes',
     'york',
+    'cardiff',
+    'swansea',
+    'belfast',
   ];
 
   const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
-    url: `${baseUrl}/areas/${location}`,
+    url: `${baseUrl}/cities/${location}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.85,
   }));
 
-  return [...staticPages, ...servicePages, ...locationPages];
+  // Pilot profile pages
+  let pilotPages: MetadataRoute.Sitemap = [];
+  try {
+    const result = await query<{ slug: string }>('SELECT slug FROM pilots WHERE active = true');
+    pilotPages = result.rows.map((p) => ({
+      url: `${baseUrl}/pilots/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    }));
+  } catch {
+    // Graceful fallback if DB unavailable at build time
+  }
+
+  return [...staticPages, ...servicePages, ...locationPages, ...pilotPages];
 }

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: calculator?.seoTitle || 'Drone Survey Cost Calculator | Instant Price Estimates UK',
     description: calculator?.seoDescription || 'Calculate drone survey costs instantly. Get accurate price estimates based on site size, deliverables, and requirements.',
-    url: 'https://skykam.co.uk/resources/calculators/survey-cost-estimator',
-    siteName: 'Skykam Drone Inspections',
+    url: 'https://hiredronepilot.uk/resources/calculators/survey-cost-estimator',
+    siteName: 'Hire Drone Pilot',
     locale: 'en_GB',
     type: 'website',
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: calculator?.seoDescription || 'Calculate drone survey costs instantly.',
   },
   alternates: {
-    canonical: 'https://skykam.co.uk/resources/calculators/survey-cost-estimator',
+    canonical: 'https://hiredronepilot.uk/resources/calculators/survey-cost-estimator',
   },
 };
 

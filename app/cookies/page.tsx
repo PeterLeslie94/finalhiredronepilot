@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Skykam Drone Inspections',
-  description: 'Cookie Policy for Skykam Drone Inspections (Skykam LTD). Learn about the cookies we use and how to manage your preferences.',
+  title: 'Cookie Policy | HireDronePilot',
+  description: 'Cookie Policy for HireDronePilot. Learn about the cookies we use and how to manage your preferences.',
 };
 
 export default function CookiePolicyPage() {
@@ -27,7 +27,7 @@ export default function CookiePolicyPage() {
         <div className="container">
           <div className="max-w-3xl mx-auto prose prose-lg prose-teal">
             <p className="lead text-text-secondary text-lg">
-              This Cookie Policy explains how Skykam LTD, trading as Skykam Drone Inspections ("we", "us", or "our"), uses cookies and similar technologies when you visit our website at skykam.co.uk.
+              This Cookie Policy explains how HireDronePilot (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) uses cookies and similar technologies when you visit our website at hiredronepilot.uk.
             </p>
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">1. What Are Cookies?</h2>
@@ -189,7 +189,7 @@ export default function CookiePolicyPage() {
             <div className="bg-background-alt p-6 rounded-lg">
               <p className="text-text-secondary mb-2">
                 <strong className="text-teal">Email:</strong>{' '}
-                <a href="mailto:jamie@skykam.co.uk" className="text-gold hover:underline">jamie@skykam.co.uk</a>
+                <a href="mailto:quotes@hiredronepilot.uk" className="text-gold hover:underline">quotes@hiredronepilot.uk</a>
               </p>
               <p className="text-text-secondary mb-2">
                 <strong className="text-teal">Phone:</strong>{' '}
@@ -202,7 +202,7 @@ export default function CookiePolicyPage() {
 
             <p className="text-text-secondary mt-8">
               For information about how we handle your personal data, please see our{' '}
-              <a href="/privacy-policy" className="text-gold hover:underline">Privacy Policy</a>.
+              <a href="/privacy" className="text-gold hover:underline">Privacy Policy</a>.
             </p>
           </div>
         </div>

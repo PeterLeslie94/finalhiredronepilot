@@ -83,6 +83,8 @@ export default function DronePilotInvitePage({ params }: Props) {
   const [invite, setInvite] = useState<InviteDetail | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [declining, setDeclining] = useState(false);
+  const [confirmDecline, setConfirmDecline] = useState(false);
 
   useEffect(() => {
     params.then((p) => setInvitationId(p.id));
@@ -101,6 +103,27 @@ export default function DronePilotInvitePage({ params }: Props) {
       setError(err instanceof Error ? err.message : 'Failed to load');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const declineInvite = async () => {
+    if (!invitationId) return;
+    setDeclining(true);
+    setError('');
+    try {
+      const response = await fetch(`/api/pilot/invitations/${invitationId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'decline' }),
+      });
+      const body = (await response.json()) as { ok?: boolean; error?: string };
+      if (!response.ok) throw new Error(body.error || 'Failed to decline invitation');
+      setConfirmDecline(false);
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to decline');
+    } finally {
+      setDeclining(false);
     }
   };
 
@@ -225,6 +248,38 @@ export default function DronePilotInvitePage({ params }: Props) {
                     <span className="text-text-secondary">Round</span>
                     <span className="text-gray-900">{invite.invite_round}</span>
                   </div>
+                  {(invite.invite_status === 'SENT' || invite.invite_status === 'OPENED') && (
+                    <div className="pt-2 border-t border-gray-100">
+                      {confirmDecline ? (
+                        <div className="space-y-2">
+                          <p className="text-xs text-red-600">Are you sure you want to decline this invite?</p>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={declineInvite}
+                              disabled={declining}
+                              className="flex-1 px-3 py-1.5 bg-red-600 text-white text-xs font-medium rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
+                            >
+                              {declining ? 'Declining...' : 'Yes, Decline'}
+                            </button>
+                            <button
+                              onClick={() => setConfirmDecline(false)}
+                              disabled={declining}
+                              className="flex-1 px-3 py-1.5 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setConfirmDecline(true)}
+                          className="w-full px-3 py-1.5 bg-red-50 text-red-700 text-xs font-medium rounded-lg border border-red-200 hover:bg-red-100 transition-colors"
+                        >
+                          Decline Invite
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               </AdminCard>
 

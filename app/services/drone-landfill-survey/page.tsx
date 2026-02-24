@@ -10,7 +10,7 @@ import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { ClientLogoMarqueeInline } from '@/components/ClientLogoMarquee';
 
 export const metadata: Metadata = {
-  title: 'Drone Landfill Survey Solutions | Waste Site Volume Measurement UK | Skykam Drone Inspections',
+  title: 'Drone Landfill Survey Solutions | Waste Site Volume Measurement UK | Hire Drone Pilot',
   description: 'Expert UAV landfill survey services throughout the UK. Precise volume computations, void space assessment, and regulatory compliance documentation. CAA certified drone operators.',
   keywords: 'drone landfill survey, drone landfill volume measurement, drone waste management survey, drone landfill capacity analysis, drone void space calculation, drone landfill monitoring uk',
 };
@@ -21,12 +21,12 @@ export default function DroneLandfillSurveyPage() {
       <ServiceSchema
         name="Drone Landfill Survey Services"
         description="Professional drone landfill survey services across the UK. Accurate volume calculations, void space analysis, and regulatory compliance reporting. CAA approved drone operators."
-        url="https://skykam.co.uk/services/drone-landfill-survey"
+        url="https://hiredronepilot.uk/services/drone-landfill-survey"
       />
       <BreadcrumbSchema items={[
-        { name: "Home", url: "https://skykam.co.uk" },
-        { name: "Services", url: "https://skykam.co.uk/services" },
-        { name: "Drone Landfill Survey Services", url: "https://skykam.co.uk/services/drone-landfill-survey" }
+        { name: "Home", url: "https://hiredronepilot.uk" },
+        { name: "Services", url: "https://hiredronepilot.uk/services" },
+        { name: "Drone Landfill Survey Services", url: "https://hiredronepilot.uk/services/drone-landfill-survey" }
       ]} />
       {/* Hero Section */}
       <section className="relative min-h-[800px] md:min-h-[600px] flex items-start bg-teal -mt-[120px] pt-[120px] overflow-hidden">
@@ -98,7 +98,7 @@ export default function DroneLandfillSurveyPage() {
                   A UAV landfill survey employs sophisticated drone technology to acquire precise survey data from waste management facilities, enabling accurate volume computations, capacity tracking, and regulatory compliance documentation. Our UAVs gather thousands of data points across your site within minutes, generating detailed 3D models that reveal the actual configuration and volume of your landfill cells.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Skykam Drone Inspections, we focus on landfill surveying for waste management operators, environmental consultants, and local authorities throughout the UK. Our surveys deliver the precise, defensible data you require for environmental permits, void space computations, and operational planning—all captured safely without interrupting active tipping operations.
+                  At Hire Drone Pilot, we focus on landfill surveying for waste management operators, environmental consultants, and local authorities throughout the UK. Our surveys deliver the precise, defensible data you require for environmental permits, void space computations, and operational planning—all captured safely without interrupting active tipping operations.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -110,7 +110,7 @@ export default function DroneLandfillSurveyPage() {
                       {/* Profile Photo */}
                       <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gold/30 flex-shrink-0 overflow-hidden">
                         <Image
-                          src="/images/about-surveyor.avif"
+                          src="/images/peter_leslie.webp"
                           alt="Peter Leslie - Owner & Drone Pilot"
                           width={80}
                           height={80}
@@ -722,7 +722,7 @@ export default function DroneLandfillSurveyPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    Chat With James
+                    Chat With Peter
                   </a>
                 </div>
               </div>
@@ -776,7 +776,7 @@ export default function DroneLandfillSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Skykam Drone Inspections, we satisfy every criterion. We're CAA certified, comprehensively insured, and have completed landfill surveys for waste management operators and environmental consultants across Britain. We comprehend the regulatory demands and can supply data in the formats your permits necessitate.
+                  At Hire Drone Pilot, we satisfy every criterion. We're CAA certified, comprehensively insured, and have completed landfill surveys for waste management operators and environmental consultants across Britain. We comprehend the regulatory demands and can supply data in the formats your permits necessitate.
                 </p>
 
                 {/* CTA after provider section */}
@@ -820,7 +820,7 @@ export default function DroneLandfillSurveyPage() {
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      Ring James Now
+                      Ring Peter Now
                     </a>
                   </div>
                 </div>
@@ -835,7 +835,7 @@ export default function DroneLandfillSurveyPage() {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold/30 flex-shrink-0">
                     <Image
-                      src="/images/about-surveyor.avif"
+                      src="/images/peter_leslie.webp"
                       alt="Peter Leslie - Owner & Drone Pilot"
                       width={64}
                       height={64}
@@ -848,7 +848,7 @@ export default function DroneLandfillSurveyPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  Bringing considerable expertise in surveying and UAV operations, James personally manages every landfill survey project to guarantee precise volume data and professional delivery.
+                  Bringing considerable expertise in surveying and UAV operations, Peter personally manages every landfill survey project to guarantee precise volume data and professional delivery.
                 </p>
               </div>
 
@@ -913,7 +913,7 @@ export default function DroneLandfillSurveyPage() {
                 <p className="text-white/70 text-sm mb-4">
                   Receive professional guidance and customised pricing.
                 </p>
-                <form name="sidebar-quote" method="POST" data-netlify="true" className="space-y-3">
+                <form name="sidebar-quote" method="POST" className="space-y-3">
                   <input type="hidden" name="form-name" value="sidebar-quote" />
                   <input
                     type="text"
@@ -988,7 +988,7 @@ export default function DroneLandfillSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-topographic-survey"
+              href="/services/drone-topographical-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Topographic Survey</h3>
