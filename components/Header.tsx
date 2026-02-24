@@ -180,10 +180,10 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden xl:flex items-center gap-1">
+            <div className="hidden xl:flex items-center gap-0.5">
               <Link
                 href="/about"
-                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-1.5 py-2 text-sm ${
                   isActivePath('/about') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -199,7 +199,7 @@ export default function Header() {
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <button
-                    className={`nav-link text-white font-medium transition-colors flex items-center gap-1 px-2 py-2 ${
+                    className={`nav-link text-white font-medium transition-colors flex items-center gap-0.5 px-1.5 py-2 text-sm ${
                       isActivePath('/services') && activeDropdown === category.name ? 'text-gold' : 'hover:text-gold'
                     }`}
                   >
@@ -256,7 +256,7 @@ export default function Header() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <button
-                  className={`nav-link text-white font-medium transition-colors flex items-center gap-1 px-2 py-2 ${
+                  className={`nav-link text-white font-medium transition-colors flex items-center gap-0.5 px-1.5 py-2 text-sm ${
                     activeDropdown === 'resources' ? 'text-gold' : 'hover:text-gold'
                   }`}
                 >
@@ -311,7 +311,7 @@ export default function Header() {
 
               <Link
                 href="/pilots"
-                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-1.5 py-2 text-sm ${
                   isActivePath('/pilots') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -320,7 +320,7 @@ export default function Header() {
 
               <Link
                 href="/contact"
-                className={`nav-link text-white font-medium transition-colors px-2 py-2 ${
+                className={`nav-link text-white font-medium transition-colors px-1.5 py-2 text-sm ${
                   isActivePath('/contact') ? 'active text-gold' : 'hover:text-gold'
                 }`}
               >
@@ -330,7 +330,7 @@ export default function Header() {
               {/* CTA Button - Opens Quote Modal */}
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                className="flex-shrink-0 btn btn-primary btn-shimmer ml-2 text-sm px-4 py-2 whitespace-nowrap"
+                className="flex-shrink-0 btn btn-primary btn-shimmer ml-1.5 text-sm px-3 py-2 whitespace-nowrap"
               >
                 Compare Quotes
               </button>
