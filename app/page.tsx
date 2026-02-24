@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import Testimonials from '@/components/Testimonials';
@@ -11,6 +12,7 @@ import TrustBadge from '@/components/TrustBadge';
 import { FAQSchema } from '@/components/SchemaMarkup';
 import ClientLogoMarquee from '@/components/ClientLogoMarquee';
 import QuoteButton from '@/components/QuoteButton';
+import { getLatestArticles } from '@/lib/contentful/blog';
 import {
   HardHat,
   Wheat,
@@ -75,45 +77,6 @@ const industries = [
   { name: 'Environmental', Icon: TreePine, description: 'Habitat mapping, flood modelling, conservation' },
   { name: 'Mining & Quarrying', Icon: Mountain, description: 'Stockpile volumes, pit surveys, reclamation' },
   { name: 'Agriculture', Icon: Wheat, description: 'Crop health mapping, irrigation planning, yield analysis' },
-];
-
-const placeholderBlogPosts = [
-  {
-    id: 'compare-drone-pilot-quotes',
-    category: 'Hiring Tips',
-    title: 'How to Compare Drone Pilot Quotes Like a Pro',
-    excerpt: 'A practical checklist for comparing price, capability, insurance, and turnaround before you choose a drone pilot.',
-    date: 'Placeholder',
-    readTime: '6 min read',
-    href: '/resources',
-  },
-  {
-    id: 'drone-survey-brief-template',
-    category: 'Project Planning',
-    title: 'Drone Survey Brief Template: What to Include',
-    excerpt: 'Use this simple structure to get better-quality quotes and avoid missed scope details in your first brief.',
-    date: 'Placeholder',
-    readTime: '5 min read',
-    href: '/resources',
-  },
-  {
-    id: 'inspection-vs-survey-vs-mapping',
-    category: 'Guides',
-    title: 'Inspection vs Survey vs Mapping: Which Service Do You Need?',
-    excerpt: 'Understand the differences between common drone services so you can request the right deliverables.',
-    date: 'Placeholder',
-    readTime: '7 min read',
-    href: '/resources',
-  },
-  {
-    id: 'drone-project-cost-factors',
-    category: 'Pricing',
-    title: 'What Affects Drone Project Pricing in the UK?',
-    excerpt: 'A clear breakdown of the factors that influence quote ranges, from site complexity to required outputs.',
-    date: 'Placeholder',
-    readTime: '6 min read',
-    href: '/resources',
-  },
 ];
 
 const accreditations = [
@@ -224,7 +187,19 @@ const faqs = [
   },
 ];
 
-export default function HomePage() {
+function formatBlogDate(value: string): string {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return value;
+  return parsed.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+export default async function HomePage() {
+  const latestArticles = await getLatestArticles(4);
+
   return (
     <>
       {/* Hero Section */}
@@ -725,49 +700,65 @@ export default function HomePage() {
               Latest from HireDronePilot
             </h3>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              Placeholder blog posts for now. We can replace these with live articles next.
+              Fresh insights, explainers, and practical guidance from our latest drone survey articles.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {placeholderBlogPosts.map((post) => (
-              <article
-                key={post.id}
-                className="group bg-white/10 rounded-2xl border border-white/10 overflow-hidden hover:border-gold/40 transition-all duration-300"
-              >
-                <div className="h-40 bg-gradient-to-br from-teal via-teal-dark to-teal-dark flex items-end p-4">
-                  <span className="text-xs bg-gold/20 text-gold px-2.5 py-1 rounded-full font-semibold">
-                    {post.category}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-3 text-white/60 text-xs mb-3">
-                    <span>{post.date}</span>
-                    <span>•</span>
-                    <span>{post.readTime}</span>
+          {latestArticles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+              {latestArticles.map((article) => (
+                <article
+                  key={article.slug}
+                  className="group bg-white/10 rounded-2xl border border-white/10 overflow-hidden hover:border-gold/40 transition-all duration-300"
+                >
+                  <div className="relative h-40">
+                    <Image
+                      src={article.featuredImage}
+                      alt={article.featuredImageAlt || article.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal-dark/80 via-teal-dark/30 to-transparent" />
+                    {article.category.slug !== 'uncategorized' && (
+                      <span className="absolute bottom-3 left-3 text-xs bg-gold/20 text-gold px-2.5 py-1 rounded-full font-semibold">
+                        {article.category.name}
+                      </span>
+                    )}
                   </div>
-                  <h4 className="text-white font-bold text-lg leading-snug mb-3">
-                    {post.title}
-                  </h4>
-                  <p className="text-white/70 text-sm leading-relaxed mb-4">
-                    {post.excerpt}
-                  </p>
-                  <a
-                    href={post.href}
-                    className="inline-flex items-center gap-2 text-gold font-semibold hover:text-gold-light transition-colors"
-                  >
-                    Read Article
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 text-white/60 text-xs mb-3">
+                      <span>{formatBlogDate(article.publishedDate)}</span>
+                      <span>•</span>
+                      <span>{article.readingTime} min read</span>
+                    </div>
+                    <h4 className="text-white font-bold text-lg leading-snug mb-3">
+                      {article.title}
+                    </h4>
+                    <p className="text-white/70 text-sm leading-relaxed mb-4">
+                      {article.excerpt}
+                    </p>
+                    <Link
+                      href={`/blog/${article.slug}`}
+                      className="inline-flex items-center gap-2 text-gold font-semibold hover:text-gold-light transition-colors"
+                    >
+                      Read Article
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-white/20 bg-white/5 p-8 text-center text-white/80">
+              No articles are available yet. Rebuild the site after content sync to publish the latest posts.
+            </div>
+          )}
 
           <div className="mt-10 text-center">
-            <a href="/resources" className="btn btn-primary btn-shimmer">
+            <a href="/blog" className="btn btn-primary btn-shimmer">
               View All Articles
             </a>
           </div>

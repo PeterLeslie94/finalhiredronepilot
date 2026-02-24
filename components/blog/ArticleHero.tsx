@@ -9,6 +9,10 @@ export default function ArticleHero({ article }: ArticleHeroProps) {
     'en-GB',
     { day: 'numeric', month: 'long', year: 'numeric' }
   );
+  const showCategory =
+    Boolean(article.category?.name) &&
+    article.category?.slug !== 'uncategorized' &&
+    article.category?.name.toLowerCase() !== 'uncategorized';
 
   return (
     <section className="relative -mt-[120px] overflow-hidden bg-gradient-to-b from-gold via-gold to-gold-hover pt-[88px]">
@@ -16,7 +20,7 @@ export default function ArticleHero({ article }: ArticleHeroProps) {
         <div className="max-w-4xl mx-auto text-center pt-2 pb-14 lg:pt-3 lg:pb-20">
           {/* Category */}
           <p className="text-sm uppercase tracking-wider text-white/80 font-semibold mb-4">
-            {article.category?.name || 'HireDronePilot Blog'}
+            {showCategory ? article.category.name : 'HireDronePilot Blog'}
           </p>
 
           {/* Title */}

@@ -272,7 +272,9 @@ export function BlogPostingSchema({
     },
     mainEntityOfPage: `https://hiredronepilot.uk/blog/${article.slug}`,
     keywords: article.tags.join(', '),
-    articleSection: article.category.name,
+    ...(article.category.name.toLowerCase() !== 'uncategorized'
+      ? { articleSection: article.category.name }
+      : {}),
   };
 
   return (
