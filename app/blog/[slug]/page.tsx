@@ -25,41 +25,17 @@ interface Props {
 }
 
 const SITE_URL = 'https://hiredronepilot.uk';
-
-const isContentfulConfigured = Boolean(
-  process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
-);
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  if (!isContentfulConfigured) {
-    return [];
-  }
-
-  try {
-    const slugs = await getArticleSlugs();
-    return slugs.map((slug) => ({ slug }));
-  } catch (error) {
-    console.warn('Contentful fetch failed for blog static params:', error);
-    return [];
-  }
+  const slugs = await getArticleSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  if (!isContentfulConfigured) {
-    return {
-      title: 'Blog Article | HireDronePilot',
-      robots: { index: false, follow: false },
-    };
-  }
-
-  let article: ContentfulBlogArticle | undefined;
-  try {
-    article = await getArticleBySlug(slug);
-  } catch (error) {
-    console.warn('Contentful fetch failed for blog metadata:', error);
-  }
+  const article: ContentfulBlogArticle | undefined = await getArticleBySlug(slug);
 
   if (!article) {
     return {
@@ -98,27 +74,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
 
-  if (!isContentfulConfigured) {
-    notFound();
-  }
-
-  let article: ContentfulBlogArticle | undefined;
-  try {
-    article = await getArticleBySlug(slug);
-  } catch (error) {
-    console.warn('Contentful fetch failed for blog article:', error);
-  }
+  const article: ContentfulBlogArticle | undefined = await getArticleBySlug(slug);
 
   if (!article) {
     notFound();
   }
 
-  let relatedArticles: ContentfulBlogArticle[] = [];
-  try {
-    relatedArticles = await getRelatedArticles(article, 3);
-  } catch (error) {
-    console.warn('Contentful fetch failed for related articles:', error);
-  }
+  const relatedArticles: ContentfulBlogArticle[] = await getRelatedArticles(article, 3);
 
   const breadcrumbItems = [
     { name: 'Home', url: SITE_URL },

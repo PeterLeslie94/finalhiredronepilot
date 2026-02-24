@@ -40,27 +40,51 @@ export default function AdminDashboardPage() {
   const [items, setItems] = useState<EnquiryRow[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState('');
   const [searchText, setSearchText] = useState('');
 
-  const load = async () => {
-    setLoading(true);
-    setError('');
+  const load = async ({
+    cursor = null,
+    append = false,
+  }: {
+    cursor?: string | null;
+    append?: boolean;
+  } = {}) => {
+    if (append) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+      setError('');
+    }
+
     try {
       const url = new URL('/api/admin/enquiries', window.location.origin);
-      url.searchParams.set('limit', '200');
+      url.searchParams.set('limit', '100');
       if (statusFilter) url.searchParams.set('status', statusFilter);
+      if (cursor) url.searchParams.set('cursor', cursor);
 
       const response = await fetch(url.toString());
-      const body = (await response.json()) as { items?: EnquiryRow[]; error?: string };
+      const body = (await response.json()) as {
+        items?: EnquiryRow[];
+        next_cursor?: string | null;
+        error?: string;
+      };
       if (!response.ok) {
         throw new Error(body.error || 'Failed to load enquiries');
       }
-      setItems(body.items || []);
+      const incoming = body.items || [];
+      setItems((current) => (append ? [...current, ...incoming] : incoming));
+      setNextCursor(body.next_cursor ?? null);
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : 'Failed to load enquiries');
     } finally {
-      setLoading(false);
+      if (append) {
+        setLoadingMore(false);
+      } else {
+        setLoading(false);
+      }
     }
   };
 
@@ -151,9 +175,9 @@ export default function AdminDashboardPage() {
           </div>
 
           <button
-            onClick={load}
+            onClick={() => void load()}
             className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
-            disabled={loading}
+            disabled={loading || loadingMore}
           >
             {loading ? 'Loading...' : 'Refresh'}
           </button>
@@ -216,6 +240,19 @@ export default function AdminDashboardPage() {
           </tbody>
         </table>
       </div>
+
+      {nextCursor ? (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => void load({ cursor: nextCursor, append: true })}
+            disabled={loading || loadingMore}
+            className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loadingMore ? 'Loading...' : 'Load More'}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

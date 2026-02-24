@@ -1,4 +1,4 @@
 -- Add backlink confirmation columns to pilot_applications
 ALTER TABLE pilot_applications
-  ADD COLUMN backlink_token_hash text,
-  ADD COLUMN backlink_confirmed_at timestamptz;
+  ADD COLUMN IF NOT EXISTS backlink_token_hash text,
+  ADD COLUMN IF NOT EXISTS backlink_confirmed_at timestamptz;

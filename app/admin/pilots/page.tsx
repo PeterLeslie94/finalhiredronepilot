@@ -70,6 +70,8 @@ function isExpiredOrSoon(dateStr: string | null): 'expired' | 'soon' | 'ok' {
 export default function AdminPilotsPage() {
   const [pilots, setPilots] = useState<PilotRow[]>([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [error, setError] = useState('');
 
   // Filters
@@ -89,22 +91,45 @@ export default function AdminPilotsPage() {
   const [saveMsg, setSaveMsg] = useState('');
 
   /* ---- Load list ---- */
-  const load = useCallback(async () => {
-    setLoading(true);
-    setError('');
+  const load = useCallback(async ({
+    cursor = null,
+    append = false,
+  }: {
+    cursor?: string | null;
+    append?: boolean;
+  } = {}) => {
+    if (append) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+      setError('');
+    }
+
     try {
       const params = new URLSearchParams();
       if (activeFilter) params.set('active', activeFilter);
       if (search.trim()) params.set('search', search.trim());
+      params.set('limit', '100');
+      if (cursor) params.set('cursor', cursor);
 
       const res = await fetch(`/api/admin/pilots?${params.toString()}`);
-      const body = (await res.json()) as { pilots?: PilotRow[]; error?: string };
+      const body = (await res.json()) as {
+        pilots?: PilotRow[];
+        next_cursor?: string | null;
+        error?: string;
+      };
       if (!res.ok) throw new Error(body.error || 'Failed to load pilots');
-      setPilots(body.pilots || []);
+      const incoming = body.pilots || [];
+      setPilots((current) => (append ? [...current, ...incoming] : incoming));
+      setNextCursor(body.next_cursor ?? null);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load');
     } finally {
-      setLoading(false);
+      if (append) {
+        setLoadingMore(false);
+      } else {
+        setLoading(false);
+      }
     }
   }, [activeFilter, search]);
 
@@ -179,8 +204,8 @@ export default function AdminPilotsPage() {
         </div>
         <button
           className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
-          onClick={load}
-          disabled={loading}
+          onClick={() => void load()}
+          disabled={loading || loadingMore}
         >
           {loading ? 'Loading...' : 'Refresh'}
         </button>
@@ -302,6 +327,19 @@ export default function AdminPilotsPage() {
           </tbody>
         </table>
       </div>
+
+      {nextCursor ? (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => void load({ cursor: nextCursor, append: true })}
+            disabled={loading || loadingMore}
+            className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loadingMore ? 'Loading...' : 'Load More'}
+          </button>
+        </div>
+      ) : null}
 
       {/* Slide-out detail panel */}
       {selectedId && (

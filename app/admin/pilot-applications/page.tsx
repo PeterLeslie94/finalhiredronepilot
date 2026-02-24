@@ -49,23 +49,49 @@ export default function AdminPilotApplicationsPage() {
   const [items, setItems] = useState<PilotApplication[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [confirmRejectId, setConfirmRejectId] = useState<string | null>(null);
 
   const selected = items.find((i) => i.id === selectedId) ?? null;
 
-  const load = async () => {
-    setLoading(true);
-    setError('');
+  const load = async ({
+    cursor = null,
+    append = false,
+  }: {
+    cursor?: string | null;
+    append?: boolean;
+  } = {}) => {
+    if (append) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+      setError('');
+    }
+
     try {
-      const response = await fetch('/api/admin/pilot-applications?limit=100');
-      const body = (await response.json()) as { items?: PilotApplication[]; error?: string };
+      const params = new URLSearchParams({ limit: '100' });
+      if (cursor) params.set('cursor', cursor);
+
+      const response = await fetch(`/api/admin/pilot-applications?${params.toString()}`);
+      const body = (await response.json()) as {
+        items?: PilotApplication[];
+        next_cursor?: string | null;
+        error?: string;
+      };
       if (!response.ok) throw new Error(body.error || 'Failed to load applications');
-      setItems(body.items || []);
+      const incoming = body.items || [];
+      setItems((current) => (append ? [...current, ...incoming] : incoming));
+      setNextCursor(body.next_cursor ?? null);
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : 'Failed to load');
     } finally {
-      setLoading(false);
+      if (append) {
+        setLoadingMore(false);
+      } else {
+        setLoading(false);
+      }
     }
   };
 
@@ -110,8 +136,8 @@ export default function AdminPilotApplicationsPage() {
         </div>
         <button
           className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
-          onClick={load}
-          disabled={loading}
+          onClick={() => void load()}
+          disabled={loading || loadingMore}
         >
           {loading ? 'Loading...' : 'Refresh'}
         </button>
@@ -188,6 +214,19 @@ export default function AdminPilotApplicationsPage() {
           </tbody>
         </table>
       </div>
+
+      {nextCursor ? (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => void load({ cursor: nextCursor, append: true })}
+            disabled={loading || loadingMore}
+            className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loadingMore ? 'Loading...' : 'Load More'}
+          </button>
+        </div>
+      ) : null}
 
       {/* Detail slide-out panel */}
       {selected && (

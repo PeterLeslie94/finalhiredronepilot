@@ -8,20 +8,8 @@ import QuoteForm from '@/components/QuoteForm';
 import { BookOpen, Calculator } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 
-const isContentfulConfigured = Boolean(
-  process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
-);
-
 export default async function ResourcesPage() {
-  // Fetch blog articles from Contentful
-  let latestArticles: Awaited<ReturnType<typeof getLatestArticles>> = [];
-  if (isContentfulConfigured) {
-    try {
-      latestArticles = await getLatestArticles(3);
-    } catch (error) {
-      console.warn('Failed to fetch blog articles from Contentful:', error);
-    }
-  }
+  const latestArticles: Awaited<ReturnType<typeof getLatestArticles>> = await getLatestArticles(3);
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://hiredronepilot.uk' },

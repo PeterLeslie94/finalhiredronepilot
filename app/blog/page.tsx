@@ -9,9 +9,6 @@ import BlogListingClient from '@/components/blog/BlogListingClient';
 import { BlogListingSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 
 const SITE_URL = 'https://hiredronepilot.uk';
-const isContentfulConfigured = Boolean(
-  process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN
-);
 
 export const metadata: Metadata = {
   title: 'Drone Pilot Blog | HireDronePilot',
@@ -29,16 +26,10 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  let articles: ContentfulBlogArticle[] = [];
-  let categories: BlogCategory[] = [];
-
-  if (isContentfulConfigured) {
-    try {
-      [articles, categories] = await Promise.all([getAllArticles(), getBlogCategories()]);
-    } catch (error) {
-      console.warn('Contentful fetch failed for blog listing:', error);
-    }
-  }
+  const [articles, categories]: [ContentfulBlogArticle[], BlogCategory[]] = await Promise.all([
+    getAllArticles(),
+    getBlogCategories(),
+  ]);
 
   const breadcrumbItems = [
     { name: 'Home', url: SITE_URL },

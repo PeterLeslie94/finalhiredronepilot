@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run content:sync",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "content:sync": "node scripts/sync-contentful-blog.mjs",
     "migrate": "node scripts/run-migrations.mjs",
     "seed:demo": "node scripts/seed-demo.mjs --confirm",
     "seed:demo:reset": "node scripts/seed-demo.mjs --confirm --reset"
