@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { query } from '@/lib/server/database';
 import { CheckCircle2, ShieldCheck } from 'lucide-react';
 import TrustBadge from '@/components/TrustBadge';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 export const revalidate = 3600;
 
@@ -11,6 +12,9 @@ export const metadata: Metadata = {
   title: 'Drone Pilots Directory | HireDronePilot',
   description:
     'Browse our directory of verified drone pilots across the UK. Every operator is CAA-registered, insured, and ready to quote on your project.',
+  alternates: {
+    canonical: canonicalUrl('/pilots'),
+  },
   openGraph: {
     title: 'Drone Pilots Directory | HireDronePilot',
     description:

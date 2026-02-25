@@ -9,6 +9,7 @@ import QuoteForm from '@/components/QuoteForm';
 import QuoteButton from '@/components/QuoteButton';
 import Testimonials from '@/components/Testimonials';
 import { ServiceSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) {
     return {
       title: 'Service Not Found',
+      robots: { index: false, follow: false },
     };
   }
 
@@ -34,6 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${service.title} | Hire Drone Pilot UK`,
     description: service.shortDescription,
     keywords: `${service.title.toLowerCase()}, drone ${service.title.toLowerCase()}, ${service.category.toLowerCase()}, UK drone services`,
+    alternates: {
+      canonical: canonicalUrl(`/services/${slug}`),
+    },
   };
 }
 

@@ -1,9 +1,11 @@
+import type { Metadata } from 'next';
 import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import QuoteButton from '@/components/QuoteButton';
 import Link from 'next/link';
 import { MapPin, Phone, Clock, CheckCircle } from 'lucide-react';
 import DiagonalDivider from '@/components/DiagonalDivider';
 import Hero from '@/components/Hero';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 const regions = [
   {
@@ -59,6 +61,15 @@ const serviceAreas = [
   'Residential Estates',
 ];
 
+export const metadata: Metadata = {
+  title: 'Drone Survey Coverage Across UK Cities | HireDronePilot',
+  description:
+    'Explore the UK cities and regions covered by HireDronePilot. Compare quotes from independent drone pilots for inspections, mapping, and survey work nationwide.',
+  alternates: {
+    canonical: canonicalUrl('/cities'),
+  },
+};
+
 export default function AreasPage() {
   return (
     <>
@@ -66,7 +77,7 @@ export default function AreasPage() {
         subtitle="UK-Wide Coverage"
         title={<>Hire Drone Pilot <span className="text-gold">Across the UK</span></>}
         description="From the Scottish Highlands to the South Coast, we deliver professional drone survey services nationwide. Based in Dundee with UK-wide reach."
-        primaryCta={{ text: 'Compare Quotes', href: '/quote' }}
+        primaryCta={{ text: 'Compare Quotes', href: '/contact' }}
         secondaryCta={{ text: 'Contact Us', href: '/contact' }}
         backgroundImage="/images/hero-desktop.avif"
         mobileBackgroundImage="/images/hero-mobile.avif"

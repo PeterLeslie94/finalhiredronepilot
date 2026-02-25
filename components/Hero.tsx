@@ -23,7 +23,7 @@ export default function Hero({
   title,
   subtitle,
   description,
-  primaryCta = { text: 'Compare Quotes', href: '/quote' },
+  primaryCta = { text: 'Compare Quotes', href: '/contact' },
   secondaryCta = { text: 'Our Services', href: '/services' },
   backgroundImage = '/images/hero-bg.jpg',
   mobileBackgroundImage,

@@ -30,7 +30,7 @@ const services = [
     title: 'Volumetric Survey',
     description: 'Accurate stockpile measurements and volumetric calculations for Edinburgh construction sites.',
     image: '/images/services/service-volumetric-survey.avif',
-    href: '/services/volumetric-survey',
+    href: '/services/drone-volumetric-survey',
   },
   {
     title: 'LiDAR Mapping',

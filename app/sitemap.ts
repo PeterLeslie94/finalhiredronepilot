@@ -1,231 +1,110 @@
 import { MetadataRoute } from 'next';
+
+import { citySlugs } from '@/data/cities';
+import { services } from '@/data/services';
+import { getAllArticles } from '@/lib/contentful/blog';
 import { query } from '@/lib/server/database';
 
 export const revalidate = 3600;
 
+const BASE_URL = 'https://hiredronepilot.uk';
+
+function asDate(value: string | Date | undefined | null, fallback: Date): Date {
+  if (!value) return fallback;
+  const parsed = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed;
+}
+
+function toAbsoluteUrl(path: string): string {
+  if (path === '/') return BASE_URL;
+  return `${BASE_URL}${path.replace(/\/+$/, '')}`;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://hiredronepilot.uk';
   const stableLastModified = process.env.VERCEL_GIT_COMMIT_DATE
     ? new Date(process.env.VERCEL_GIT_COMMIT_DATE)
     : new Date('2026-01-01T00:00:00.000Z');
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: stableLastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified: stableLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: stableLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/cities`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/marketplace-terms`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/pilot-terms`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/marketplace-policy`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/cookies`,
-      lastModified: stableLastModified,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/drone-statistics`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/caa-drone-theory-test`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/pilots`,
-      lastModified: stableLastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/join-as-pilot`,
-      lastModified: stableLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+  const staticPaths: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; priority: number }> = [
+    { path: '/', changeFrequency: 'weekly', priority: 1 },
+    { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/services', changeFrequency: 'weekly', priority: 0.9 },
+    { path: '/blog', changeFrequency: 'weekly', priority: 0.85 },
+    { path: '/pricing', changeFrequency: 'monthly', priority: 0.85 },
+    { path: '/cities', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/resources', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/resources/calculators/area-measurement-tool', changeFrequency: 'monthly', priority: 0.75 },
+    { path: '/resources/calculators/flight-time-calculator', changeFrequency: 'monthly', priority: 0.75 },
+    { path: '/resources/calculators/roi-calculator', changeFrequency: 'monthly', priority: 0.75 },
+    { path: '/resources/calculators/survey-cost-estimator', changeFrequency: 'monthly', priority: 0.75 },
+    { path: '/privacy', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/terms', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/marketplace-terms', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/pilot-terms', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/marketplace-policy', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/cookies', changeFrequency: 'yearly', priority: 0.3 },
+    { path: '/drone-statistics', changeFrequency: 'monthly', priority: 0.85 },
+    { path: '/caa-drone-theory-test', changeFrequency: 'monthly', priority: 0.8 },
+    { path: '/pilots', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/join-as-pilot', changeFrequency: 'monthly', priority: 0.7 },
   ];
 
-  const services = [
-    'drone-topographical-survey',
-    'drone-lidar-mapping',
-    'drone-photogrammetry-survey',
-    'drone-roof-inspection',
-    'drone-construction-monitoring',
-    'drone-volumetric-survey',
-    'drone-site-survey',
-    'drone-land-survey',
-    'drone-facade-survey',
-    'drone-bridge-inspection',
-    'drone-mining-survey',
-    'drone-agricultural-survey',
-    'drone-crop-spraying',
-    'drone-gas-detection',
-    'drone-environmental-survey',
-    'drone-estate-survey',
-    'drone-measured-building-survey',
-    'drone-elevation-survey',
-    'drone-wind-farm-survey',
-    'drone-archaeological-survey',
-    'drone-boundary-survey',
-    'drone-industrial-survey',
-    'drone-coastal-survey',
-    'drone-landfill-survey',
-    'drone-railway-survey',
-    'drone-solar-survey',
-    'drone-forestry-survey',
-    'drone-utility-survey',
-    'drone-road-survey',
-    'drone-corridor-mapping',
-    'drone-setting-out-survey',
-    'drone-as-built-survey',
-    'drone-flood-risk-survey',
-    // New service pages
-    'drone-photography',
-    'drone-real-estate-photography',
-    'drone-wedding-photography',
-    'drone-thermal-imaging',
-    'drone-surveys',
-    'drone-bathymetric-survey',
-    'drone-point-cloud-mapping',
-    'drone-sonar-survey',
-    'drone-videographer',
-    'drone-water-quality-assessment',
-    'drone-confined-space-inspection',
-    'drone-ground-penetrating-radar',
-    'drone-quarry-survey',
-  ];
+  const staticPages: MetadataRoute.Sitemap = staticPaths.map((entry) => ({
+    url: toAbsoluteUrl(entry.path),
+    lastModified: stableLastModified,
+    changeFrequency: entry.changeFrequency,
+    priority: entry.priority,
+  }));
 
-  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
-    url: `${baseUrl}/services/${service}`,
+  const serviceSlugs = Array.from(new Set(services.map((service) => service.slug)));
+
+  const servicePages: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
+    url: toAbsoluteUrl(`/services/${slug}`),
     lastModified: stableLastModified,
     changeFrequency: 'monthly',
     priority: 0.9,
   }));
 
-  // Location pages - 29 UK cities
-  const locations = [
-    'london',
-    'edinburgh',
-    'glasgow',
-    'aberdeen',
-    'dundee',
-    'manchester',
-    'liverpool',
-    'leeds',
-    'sheffield',
-    'newcastle',
-    'birmingham',
-    'nottingham',
-    'leicester',
-    'coventry',
-    'derby',
-    'bristol',
-    'southampton',
-    'brighton',
-    'portsmouth',
-    'plymouth',
-    'cambridge',
-    'oxford',
-    'norwich',
-    'reading',
-    'milton-keynes',
-    'york',
-    'cardiff',
-    'swansea',
-    'belfast',
-  ];
-
-  const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
-    url: `${baseUrl}/cities/${location}`,
+  const locationPages: MetadataRoute.Sitemap = citySlugs.map((city) => ({
+    url: toAbsoluteUrl(`/cities/${city}`),
     lastModified: stableLastModified,
     changeFrequency: 'monthly',
     priority: 0.85,
   }));
 
-  // Pilot profile pages
+  let blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const articles = await getAllArticles();
+    blogPages = articles.map((article) => ({
+      url: toAbsoluteUrl(`/blog/${article.slug}`),
+      lastModified: asDate(article.updatedDate || article.publishedDate, stableLastModified),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    }));
+  } catch {
+    // Graceful fallback if content snapshot is unavailable.
+  }
+
   let pilotPages: MetadataRoute.Sitemap = [];
   try {
     const result = await query<{ slug: string; updated_at: string | Date }>(
       'SELECT slug, updated_at FROM pilots WHERE active = true',
     );
-    pilotPages = result.rows.map((p) => ({
-      url: `${baseUrl}/pilots/${p.slug}`,
-      lastModified: p.updated_at ? new Date(p.updated_at) : stableLastModified,
+    pilotPages = result.rows.map((pilot) => ({
+      url: toAbsoluteUrl(`/pilots/${pilot.slug}`),
+      lastModified: asDate(pilot.updated_at, stableLastModified),
       changeFrequency: 'monthly',
       priority: 0.7,
     }));
   } catch {
-    // Graceful fallback if DB unavailable at build time
+    // Graceful fallback if DB is unavailable.
   }
 
-  return [...staticPages, ...servicePages, ...locationPages, ...pilotPages];
+  const deduped = new Map<string, MetadataRoute.Sitemap[number]>();
+  for (const entry of [...staticPages, ...servicePages, ...locationPages, ...blogPages, ...pilotPages]) {
+    deduped.set(entry.url, entry);
+  }
+
+  return Array.from(deduped.values());
 }

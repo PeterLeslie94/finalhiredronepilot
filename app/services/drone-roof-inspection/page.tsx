@@ -1060,7 +1060,7 @@ export default function DroneRoofSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-building-inspection"
+              href="/services/drone-roof-inspection"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Structure Inspection</h3>

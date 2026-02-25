@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { calculators } from '@/data/resources';
 import { getLatestArticles } from '@/lib/contentful/blog';
@@ -7,6 +8,16 @@ import DiagonalDivider from '@/components/DiagonalDivider';
 import QuoteForm from '@/components/QuoteForm';
 import { BookOpen, Calculator } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/SchemaMarkup';
+import { canonicalUrl } from '@/lib/seo/metadata';
+
+export const metadata: Metadata = {
+  title: 'Drone Resources, Guides & Calculators | HireDronePilot',
+  description:
+    'Access practical drone survey resources, UK-focused guides, and free calculators to estimate survey costs, flight times, and project ROI.',
+  alternates: {
+    canonical: canonicalUrl('/resources'),
+  },
+};
 
 export default async function ResourcesPage() {
   const latestArticles: Awaited<ReturnType<typeof getLatestArticles>> = await getLatestArticles(3);

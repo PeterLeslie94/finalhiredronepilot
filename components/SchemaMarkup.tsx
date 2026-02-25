@@ -8,7 +8,7 @@ export function LocalBusinessSchema() {
     '@id': 'https://hiredronepilot.uk/#organization',
     name: 'HireDronePilot',
     alternateName: 'HireDronePilot',
-    image: 'https://hiredronepilot.uk/images/logo.png',
+    image: 'https://hiredronepilot.uk/hiredronepilot-logo.png',
     description: 'Professional drone survey services across the UK. CAA approved aerial surveys for construction, infrastructure, and land management.',
     url: 'https://hiredronepilot.uk',
     telephone: '+44-1334-804554',

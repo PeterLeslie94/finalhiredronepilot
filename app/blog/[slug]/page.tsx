@@ -18,6 +18,7 @@ import ScrollProgressBar from '@/components/blog/ScrollProgressBar';
 import DiagonalDivider from '@/components/DiagonalDivider';
 import QuoteForm from '@/components/QuoteForm';
 import { BlogPostingSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -47,6 +48,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: article.metaTitle || `${article.title} | HireDronePilot Blog`,
     description: article.metaDescription || article.excerpt,
     keywords: article.tags?.join(', '),
+    alternates: {
+      canonical: canonicalUrl(`/blog/${article.slug}`),
+    },
     openGraph: {
       type: 'article',
       title: article.metaTitle || article.title,

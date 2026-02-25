@@ -29,7 +29,7 @@ const services = [
     title: 'Volumetric Survey',
     description: 'Accurate stockpile measurements and volumetric calculations for Cardiff construction sites.',
     image: '/images/services/service-volumetric-survey.avif',
-    href: '/services/volumetric-survey',
+    href: '/services/drone-volumetric-survey',
   },
   {
     title: 'LiDAR Mapping',
@@ -120,7 +120,7 @@ export default function CardiffPage() {
         subtitle="Cardiff Drone Services"
         title={<>Professional Drone Surveys in <span className="text-gold">Cardiff</span></>}
         description="CAA-approved drone survey services across Cardiff and South Wales. From topographic surveys to building inspections, our certified operators deliver precision aerial data for your projects."
-        primaryCta={{ text: 'Compare Quotes', href: '/quote' }}
+        primaryCta={{ text: 'Compare Quotes', href: '/contact' }}
         secondaryCta={{ text: 'Call Us', href: 'tel:+441334804554' }}
         backgroundImage="/images/hero-desktop.avif"
         mobileBackgroundImage="/images/hero-mobile.avif"

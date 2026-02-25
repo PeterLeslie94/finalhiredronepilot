@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Hero from '@/components/Hero';
@@ -13,6 +14,7 @@ import { FAQSchema } from '@/components/SchemaMarkup';
 import ClientLogoMarquee from '@/components/ClientLogoMarquee';
 import QuoteButton from '@/components/QuoteButton';
 import { getLatestArticles } from '@/lib/contentful/blog';
+import { canonicalUrl } from '@/lib/seo/metadata';
 import {
   HardHat,
   Wheat,
@@ -24,6 +26,12 @@ import {
   Send,
   FileCheck2
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: canonicalUrl('/'),
+  },
+};
 
 const services = [
   {
@@ -65,7 +73,7 @@ const services = [
     title: 'Volumetric Survey',
     description: 'Accurate stockpile measurements and volumetric calculations for quarries and construction sites.',
     image: '/images/services/service-volumetric-survey.avif',
-    href: '/services/volumetric-survey',
+    href: '/services/drone-volumetric-survey',
     ctaText: 'Explore Volumetric Survey Services',
   },
 ];

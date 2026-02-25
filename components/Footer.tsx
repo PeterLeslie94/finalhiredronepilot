@@ -184,7 +184,8 @@ export default function Footer() {
             <Link href="/pilot-terms" className="text-white/50 text-sm hover:text-gold transition-colors">Drone Pilot Terms</Link>
             <Link href="/marketplace-policy" className="text-white/50 text-sm hover:text-gold transition-colors">Issue Policy</Link>
             <Link href="/cookies" className="text-white/50 text-sm hover:text-gold transition-colors">Cookie Policy</Link>
-            <Link href="/sitemap.xml" className="text-white/50 text-sm hover:text-gold transition-colors">Sitemap</Link>
+            <Link href="/html-sitemap" className="text-white/50 text-sm hover:text-gold transition-colors">Sitemap</Link>
+            <Link href="/sitemap.xml" className="text-white/50 text-sm hover:text-gold transition-colors">XML Sitemap</Link>
           </div>
         </div>
       </div>

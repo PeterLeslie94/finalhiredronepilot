@@ -1016,7 +1016,7 @@ export default function DroneAsBuiltSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-progress-monitoring"
+              href="/services/drone-construction-monitoring"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Progress Monitoring</h3>
@@ -1025,7 +1025,7 @@ export default function DroneAsBuiltSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/drone-3d-modelling"
+              href="/services/drone-point-cloud-mapping"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV 3D Modelling</h3>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { query } from '@/lib/server/database';
 import { Award, MapPin } from 'lucide-react';
 import TrustBadge from '@/components/TrustBadge';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 export const revalidate = 3600;
 
@@ -57,6 +58,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl(`/pilots/${pilot.slug}`),
+    },
     openGraph: {
       title,
       description,

@@ -8,11 +8,15 @@ import QuoteForm from '@/components/QuoteForm';
 import QuoteButton from '@/components/QuoteButton';
 import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { Crosshair, Zap, ShieldCheck, PoundSterling } from 'lucide-react';
+import { canonicalUrl } from '@/lib/seo/metadata';
 
 export const metadata: Metadata = {
   title: 'Hire Drone Pilot | Professional Drone Survey Solutions UK',
   description: 'Comprehensive drone survey services including drone photography, LiDAR mapping, thermal imaging, topographic surveys and building inspections. CAA-approved drone operators serving the UK.',
   keywords: 'drone survey services, drone survey, drone mapping, drone LiDAR survey, drone thermal imaging, drone building inspection, UK',
+  alternates: {
+    canonical: canonicalUrl('/services'),
+  },
 };
 
 export default function ServicesPage() {

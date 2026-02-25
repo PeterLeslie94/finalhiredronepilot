@@ -47,6 +47,31 @@
       "statusCode": 301
     },
     {
+      "source": "/services/volumetric-survey",
+      "destination": "/services/drone-volumetric-survey",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-building-inspection",
+      "destination": "/services/drone-roof-inspection",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-progress-monitoring",
+      "destination": "/services/drone-construction-monitoring",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/drone-3d-modelling",
+      "destination": "/services/drone-point-cloud-mapping",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/3d-modelling",
+      "destination": "/services/drone-point-cloud-mapping",
+      "statusCode": 301
+    },
+    {
       "source": "/how-it-works-clients",
       "destination": "/",
       "statusCode": 301
@@ -58,6 +83,11 @@
     },
     {
       "source": "/quotes",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/quote",
       "destination": "/contact",
       "statusCode": 301
     },
