@@ -8,6 +8,7 @@ import { createInvitationToken } from '@/lib/server/security';
 import { validatePilotApplicationPayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
+const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
 
 export async function POST(request: Request) {
   try {
@@ -17,7 +18,8 @@ export async function POST(request: Request) {
     }
     const input = validatePilotApplicationPayload(payload);
 
-    const { rawToken: backlinkToken, tokenHash: backlinkTokenHash } = createInvitationToken();
+    const { tokenHash: backlinkTokenHash } = createInvitationToken();
+    const backlinkTokenExpiresAt = new Date(Date.now() + BACKLINK_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
 
     const created = await withTransaction(async (client) => {
       const result = await client.query<{ id: string; status: string }>(
@@ -40,9 +42,10 @@ export async function POST(request: Request) {
             consent_timestamp,
             consent_source_page,
             backlink_token_hash,
+            backlink_token_expires_at,
             status
           )
-          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,now(),$15,$16,'SUBMITTED')
+          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,now(),$15,$16,$17,'SUBMITTED')
           RETURNING id, status`,
         [
           input.pilot_name,
@@ -61,6 +64,7 @@ export async function POST(request: Request) {
           input.pilot_terms_version,
           input.consent_source_page,
           backlinkTokenHash,
+          backlinkTokenExpiresAt.toISOString(),
         ],
       );
 

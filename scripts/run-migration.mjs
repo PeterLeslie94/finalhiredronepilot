@@ -1,7 +1,7 @@
 import pg from 'pg';
 import fs from 'fs';
-import path from 'path';
 import process from 'node:process';
+import { getDatabaseSslConfig } from './lib/db-ssl.mjs';
 
 const envFile = fs.readFileSync('.env.local', 'utf8');
 for (const line of envFile.split('\n')) {
@@ -15,7 +15,7 @@ for (const line of envFile.split('\n')) {
 }
 
 const { Pool } = pg;
-const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DB_SSL === 'false' ? false : { rejectUnauthorized: false } });
+const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: getDatabaseSslConfig() });
 
 const sqlFile = process.argv[2];
 if (!sqlFile) { console.error('Usage: node scripts/run-migration.mjs <file.sql>'); process.exit(1); }

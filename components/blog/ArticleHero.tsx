@@ -15,7 +15,7 @@ export default function ArticleHero({ article }: ArticleHeroProps) {
     article.category?.name.toLowerCase() !== 'uncategorized';
 
   return (
-    <section className="relative -mt-[120px] overflow-hidden bg-gradient-to-b from-gold via-gold to-gold-hover pt-[88px]">
+    <section className="relative -mt-[120px] overflow-hidden bg-gradient-to-b from-teal via-teal-dark to-teal-darker pt-[88px]">
       <div className="container relative">
         <div className="max-w-4xl mx-auto text-center pt-2 pb-14 lg:pt-3 lg:pb-20">
           {/* Category */}
@@ -38,6 +38,7 @@ export default function ArticleHero({ article }: ArticleHeroProps) {
           </div>
         </div>
       </div>
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-24 -translate-x-1/2 bg-gold/70" />
     </section>
   );
 }

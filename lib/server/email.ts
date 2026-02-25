@@ -174,7 +174,7 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
             We've received your enquiry for <strong>${escapeHtml(formatServiceSlug(data.serviceSlug))}</strong>.
           </p>
           <p style="margin:0 0 8px;color:#2d3748;font-size:15px;line-height:1.6;">
-            We've shared your enquiry with experienced drone pilots in your area. They'll contact you directly to discuss your requirements and provide a quote.
+            Our team will now review your enquiry and share it with suitable experienced drone pilots in your area. Once invited, they'll contact you directly to discuss your requirements and provide a quote.
           </p>
           <p style="margin:16px 0 0;color:#718096;font-size:13px;">
             If you have any questions in the meantime, just reply to this email.

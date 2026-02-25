@@ -3,13 +3,30 @@ import { NextResponse } from 'next/server';
 import { logEmail, logEnquiryEvent } from '@/lib/server/audit';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
+import { consumeRateLimit } from '@/lib/server/rate-limit';
+import { getClientIp, jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
 import { validateEnquiryPayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {
+    const rateLimitWindowMs = Math.max(30_000, Number(process.env.ENQUIRY_RATE_LIMIT_WINDOW_MS || 10 * 60 * 1000));
+    const rateLimitMax = Math.max(1, Number(process.env.ENQUIRY_RATE_LIMIT_MAX || 20));
+    const requester = getClientIp(request) || 'unknown';
+    const rateLimit = consumeRateLimit({
+      scope: 'enquiry-intake',
+      identifier: requester,
+      windowMs: rateLimitWindowMs,
+      max: rateLimitMax,
+    });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many enquiry submissions. Please try again shortly.' },
+        { status: 429, headers: { 'Retry-After': String(rateLimit.retryAfterSec) } },
+      );
+    }
+
     const payload = await parseBody(request);
 
     // Preserve compatibility with legacy forms by inferring source data.

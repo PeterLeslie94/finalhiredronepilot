@@ -4,7 +4,7 @@ import { logEmail, logEnquiryEvent } from '@/lib/server/audit';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError, parseBody } from '@/lib/server/http';
+import { assertTrustedOrigin, jsonError, parseBody, RequestOriginError } from '@/lib/server/http';
 import { createInvitationToken } from '@/lib/server/security';
 import { validateInviteSelectionPayload } from '@/lib/server/validation';
 
@@ -16,8 +16,11 @@ type PilotRow = {
   name: string;
 };
 
+class ConflictError extends Error {}
+
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    assertTrustedOrigin(request);
     const { adminId } = await requireAdminAccess(request);
     const { id } = await params;
     const payload = await parseBody(request);
@@ -26,6 +29,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const result = await withTransaction(async (client) => {
       const enquiryResult = await client.query<{
         id: string;
+        status: string;
         service_slug: string;
         postcode: string;
         site_location_text: string;
@@ -36,12 +40,15 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         client_email: string;
         client_phone: string | null;
       }>(
-        `SELECT id, service_slug, postcode, site_location_text, date_needed, date_flexibility, job_details, name AS client_name, email AS client_email, phone AS client_phone FROM enquiries WHERE id = $1 FOR UPDATE`,
+        `SELECT id, status::text, service_slug, postcode, site_location_text, date_needed, date_flexibility, job_details, name AS client_name, email AS client_email, phone AS client_phone FROM enquiries WHERE id = $1 FOR UPDATE`,
         [id],
       );
       const enquiry = enquiryResult.rows[0];
       if (!enquiry) {
         throw new Error('Enquiry not found');
+      }
+      if (enquiry.status === 'CLOSED') {
+        throw new ConflictError('Cannot send invites for a closed enquiry');
       }
 
       const pilotResult = await client.query<PilotRow>(
@@ -50,10 +57,14 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
          WHERE active = true
            AND (
              cardinality($1::uuid[]) = 0
-             OR NOT (id = ANY($1::uuid[]))
+             OR id = ANY($1::uuid[])
+           )
+           AND (
+             cardinality($2::uuid[]) = 0
+             OR NOT (id = ANY($2::uuid[]))
            )
          ORDER BY created_at DESC`,
-        [selection.exclude_pilot_ids],
+        [selection.include_pilot_ids, selection.exclude_pilot_ids],
       );
       const selected = pilotResult.rows;
 
@@ -162,16 +173,21 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       enquiry_id: result.enquiry_id,
       invite_round: result.invite_round,
       invites_created: result.invites_created,
-        invite_tokens: result.invite_tokens.map((t) => ({
-          pilot_id: t.pilot_id,
-          pilot_email: t.pilot_email,
-        token: t.token,
+      invite_tokens: result.invite_tokens.map((t) => ({
+        pilot_id: t.pilot_id,
+        pilot_email: t.pilot_email,
       })),
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to send invites';
     if (error instanceof AuthError) {
       return jsonError(message, 401);
+    }
+    if (error instanceof RequestOriginError) {
+      return jsonError(message, 403);
+    }
+    if (error instanceof ConflictError) {
+      return jsonError(message, 409);
     }
     const status = message.includes('not found') ? 404 : 400;
     return jsonError(message, status);

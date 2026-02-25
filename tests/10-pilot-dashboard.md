@@ -1,96 +1,46 @@
-# 10 — Pilot Dashboard
+# 10 — Pilot Dashboard (Retired)
 
-**Covers:** `/drone-pilot`, `GET /api/pilot/me/invites`
+**Covers:** removal of `/drone-pilot` portal and pilot-auth invite APIs.
 
 ## Preconditions
 
 - Dev server running
-- Seed data loaded
-- Logged in as a seeded pilot (e.g. `seed.skyvista@example.com`)
 
 ---
 
-### P-DASH01 — Dashboard loads with invitations and stats bar
+### P-DASH01 — `/drone-pilot` route is unavailable
 
 **Steps:**
 1. Navigate to `/drone-pilot`
 
 **Expected:**
-- Page title: "Drone Pilot Dashboard"
-- Stats bar shows 3 cards:
-  - **Total Invites**: total invitation count
-  - **Active**: invites with SENT or OPENED status
-  - **Declined**: invites with DECLINED status
-- Invitation cards displayed in a grid below
+- Route returns not found (or configured replacement page if added later).
+- No pilot dashboard UI is rendered.
 
 **Pass:** `[ ]`
 
 ---
 
-### P-DASH02 — Invite cards show correct info
+### P-DASH02 — Legacy pilot invite API is unavailable
 
 **Steps:**
-1. Examine the invite cards on the dashboard
+1. Call `GET /api/pilot/me/invites`
+2. Call `GET /api/pilot/invitations/{id}` with any UUID
 
 **Expected:**
-- Each card shows:
-  - Service name (formatted from slug, e.g. "Drone Roof Survey")
-  - Location and postcode (e.g. "Newcastle, NE1 4ST")
-  - Date needed (or "No fixed date")
-  - CTA text: "View details" (for actionable invites)
-- Cards link to `/drone-pilot/invites/{invitation_id}`
+- Endpoints are not available after retirement.
 
 **Pass:** `[ ]`
 
 ---
 
-### P-DASH03 — Expired/declined cards show reduced opacity
+### P-DASH03 — Token invite page remains primary pilot flow
 
 **Steps:**
-1. Observe cards with EXPIRED or DECLINED status
+1. Open a valid `/invite/{token}` link.
 
 **Expected:**
-- Cards show at 60% opacity (`opacity-60`)
-- CTA text: "No action needed"
-
-**Pass:** `[ ]`
-
----
-
-### P-DASH04 — Click invite card navigates to detail
-
-**Steps:**
-1. Click any invite card
-
-**Expected:**
-- Navigates to `/drone-pilot/invites/{invitation_id}`
-- Invite detail page loads with project details and client contact info
-
-**Pass:** `[ ]`
-
----
-
-### P-DASH05 — Refresh button re-fetches data
-
-**Steps:**
-1. Click the **Refresh** button on the dashboard header
-
-**Expected:**
-- Loading spinner appears on the button
-- Data reloads from `GET /api/pilot/me/invites`
-- Cards and stats update
-
-**Pass:** `[ ]`
-
----
-
-### P-DASH06 — My Profile link
-
-**Steps:**
-1. Click the **My Profile** button in the dashboard header
-
-**Expected:**
-- Navigates to `/drone-pilot/profile`
-- Profile page loads
+- Invite details render.
+- Pilot can contact client directly from the token page.
 
 **Pass:** `[ ]`

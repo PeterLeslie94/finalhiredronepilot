@@ -130,6 +130,10 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
   }, [enquiryId]);
 
   const sendInvites = async () => {
+    if (enquiry?.status === 'CLOSED') {
+      setError('Cannot send invites for a closed enquiry.');
+      return;
+    }
     try {
       const response = await fetch(`/api/admin/enquiries/${enquiryId}/invite/`, {
         method: 'POST',
@@ -170,6 +174,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
   const invites = data?.invites ?? [];
   const events = data?.events ?? [];
   const emailLogs = data?.email_logs ?? [];
+  const canSendInvites = Boolean(enquiryId) && enquiry != null && enquiry.status !== 'CLOSED';
 
   const inviteCounts = invites.reduce(
     (acc, inv) => {
@@ -235,7 +240,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
           )}
           <button
             onClick={sendInvites}
-            disabled={!enquiryId}
+            disabled={!canSendInvites}
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors ml-auto"
           >
             <Send className="w-4 h-4" />

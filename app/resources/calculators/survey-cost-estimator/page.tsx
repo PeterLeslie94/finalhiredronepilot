@@ -1,5 +1,6 @@
 'use client';
 
+import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import { useState } from 'react';
 import Link from 'next/link';
 import { Calculator, Clock, TrendingUp, Ruler, ChevronDown, MapPin, FileText, Settings } from 'lucide-react';
@@ -112,7 +113,7 @@ export default function SurveyCostEstimatorPage() {
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(softwareApplicationSchema) }}
       />
 
       {/* Mini Hero */}

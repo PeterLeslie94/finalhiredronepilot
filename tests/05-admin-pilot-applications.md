@@ -58,7 +58,6 @@
 - `POST /api/admin/pilot-applications/{id}/approve` called
 - Status changes to `APPROVED`
 - A new row in `pilots` table created from the application data
-- A new row in `user_identities` created (email, role=`DRONE_PILOT`, pilot_id set)
 - Application `created_pilot_id` is set
 - The pilot now appears in `/admin/pilots` directory
 
@@ -66,7 +65,7 @@
 
 ---
 
-### A-APP04 — Approved pilot can log in
+### A-APP04 — Approved pilot does not get dashboard login
 
 **Preconditions:** Application approved in A-APP03
 
@@ -76,9 +75,9 @@
 3. Request magic link
 
 **Expected:**
-- Dev link appears (in dev mode)
-- Clicking it redirects to `/drone-pilot` (DRONE_PILOT role)
-- Pilot dashboard loads
+- Generic success response is shown.
+- No dev login link appears for this pilot email.
+- Pilot must use invite token links sent by admin invite flow.
 
 **Pass:** `[ ]`
 

@@ -76,7 +76,7 @@ export default function LoginPage() {
           <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
             <h1 className="text-2xl font-bold text-teal mb-1">Sign In</h1>
             <p className="text-text-secondary text-sm mb-5">
-              Magic-link login for admins and independent drone pilots.
+              Magic-link login for admin operators.
             </p>
 
             {queryError ? (

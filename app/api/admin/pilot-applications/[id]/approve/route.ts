@@ -4,11 +4,12 @@ import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError } from '@/lib/server/http';
+import { assertTrustedOrigin, jsonError, RequestOriginError } from '@/lib/server/http';
 import { createInvitationToken } from '@/lib/server/security';
 import { generateUniqueSlug } from '@/lib/server/slugify';
 
 export const runtime = 'nodejs';
+const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
 
 type PilotApplicationRow = {
   id: string;
@@ -30,6 +31,7 @@ type PilotApplicationRow = {
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    assertTrustedOrigin(request);
     const { adminId } = await requireAdminAccess(request);
     const { id } = await params;
 
@@ -59,6 +61,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
 
       const slug = await generateUniqueSlug(app.pilot_name, client);
       const { rawToken, tokenHash } = createInvitationToken();
+      const backlinkTokenExpiresAt = new Date(Date.now() + BACKLINK_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
 
       const pilotInsert = await client.query<{ id: string }>(
         `INSERT INTO pilots
@@ -77,9 +80,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
             flyer_id,
             operator_id,
             slug,
-            backlink_token_hash
+            backlink_token_hash,
+            backlink_token_expires_at
           )
-          VALUES ($1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,$13,$14)
+          VALUES ($1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,$13,$14,$15)
           RETURNING id`,
         [
           app.pilot_name,
@@ -96,12 +100,13 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           app.operator_id,
           slug,
           tokenHash,
+          backlinkTokenExpiresAt.toISOString(),
         ],
       );
 
       const pilotId = pilotInsert.rows[0].id;
 
-      // Ensure the email is only ever associated to a drone pilot identity (never admin).
+      // Pilot dashboard login is retired, but we still prevent reusing admin account emails.
       const identityEmail = String(app.email || '').trim().toLowerCase();
       if (!identityEmail) {
         throw new Error('Pilot email is missing');
@@ -110,14 +115,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         `SELECT id, role::text FROM user_identities WHERE email = $1 LIMIT 1`,
         [identityEmail],
       );
-      if (existingIdentity.rows[0] && existingIdentity.rows[0].role !== 'DRONE_PILOT') {
+      if (existingIdentity.rows[0] && existingIdentity.rows[0].role === 'ADMIN') {
         throw new Error('Email is already registered as an admin account');
-      }
-      if (!existingIdentity.rows[0]) {
-        await client.query(
-          `INSERT INTO user_identities (email, role, pilot_id) VALUES ($1, 'DRONE_PILOT', $2)`,
-          [identityEmail, pilotId],
-        );
       }
 
       await client.query(
@@ -168,6 +167,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const message = error instanceof Error ? error.message : 'Failed to approve pilot application';
     if (error instanceof AuthError) {
       return jsonError(message, 401);
+    }
+    if (error instanceof RequestOriginError) {
+      return jsonError(message, 403);
     }
     const status = message.includes('not found') ? 404 : 400;
     return jsonError(message, status);

@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { logEmail } from '@/lib/server/audit';
 import { query, withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
+import { consumeRateLimit } from '@/lib/server/rate-limit';
+import { getCanonicalAppOrigin, getClientIp, jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
 import { createMagicLinkToken } from '@/lib/server/security';
 
 export const runtime = 'nodejs';
@@ -13,15 +14,10 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 type IdentityRow = {
   id: string;
   email: string;
-  role: 'ADMIN' | 'DRONE_PILOT';
 };
 
 export async function POST(request: NextRequest) {
   try {
-    const payload = await parseBody(request);
-    const emailRaw = typeof payload.email === 'string' ? payload.email : '';
-    const email = emailRaw.trim().toLowerCase().slice(0, 200);
-
     // Always return a generic success response to avoid account enumeration.
     const genericSuccess = () => {
       if (wantsHtmlRedirect(request)) {
@@ -30,13 +26,35 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: true });
     };
 
+    const authRateLimitWindowMs = Math.max(30_000, Number(process.env.AUTH_RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000));
+    const authRateLimitMax = Math.max(1, Number(process.env.AUTH_RATE_LIMIT_MAX || 20));
+    const requester = getClientIp(request) || 'unknown';
+    const authRateLimit = consumeRateLimit({
+      scope: 'auth-request-link',
+      identifier: requester,
+      windowMs: authRateLimitWindowMs,
+      max: authRateLimitMax,
+    });
+
+    if (!authRateLimit.allowed) {
+      return genericSuccess();
+    }
+
+    const payload = await parseBody(request);
+    const emailRaw = typeof payload.email === 'string' ? payload.email : '';
+    const email = emailRaw.trim().toLowerCase().slice(0, 200);
+
     if (!EMAIL_RE.test(email)) {
       // Generic response even for invalid email to avoid subtle enumeration.
       return genericSuccess();
     }
 
     const identityRes = await query<IdentityRow>(
-      `SELECT id, email, role FROM user_identities WHERE email = $1 LIMIT 1`,
+      `SELECT id, email
+       FROM user_identities
+       WHERE email = $1
+         AND role = 'ADMIN'
+       LIMIT 1`,
       [email],
     );
     const identity = identityRes.rows[0];
@@ -44,7 +62,7 @@ export async function POST(request: NextRequest) {
       return genericSuccess();
     }
 
-    const origin = new URL(request.url).origin;
+    const origin = getCanonicalAppOrigin(request);
     const now = Date.now();
     const expiresAt = new Date(now + 15 * 60 * 1000);
 
@@ -92,9 +110,7 @@ export async function POST(request: NextRequest) {
       throttled: output.throttled,
       ...(includeDevLink && output.magicLinkUrl ? { magic_link_url: output.magicLinkUrl } : {}),
     });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Failed to request login link';
-    return jsonError(message, 500);
+  } catch {
+    return jsonError('Failed to request login link', 500);
   }
 }
-

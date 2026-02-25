@@ -1,3 +1,4 @@
+import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import QuoteButton from '@/components/QuoteButton';
 import Link from 'next/link';
 import { MapPin, Phone, Clock, CheckCircle } from 'lucide-react';
@@ -268,7 +269,7 @@ export default function AreasPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
             name: 'Hire Drone Pilot',

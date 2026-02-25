@@ -107,7 +107,9 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
     ),
     [BLOCKS.TABLE]: (node, children) => (
       <div className="overflow-x-auto my-8 rounded-lg border border-gray-200">
-        <table className="min-w-full border-collapse">{children}</table>
+        <table className="min-w-full border-collapse">
+          <tbody>{children}</tbody>
+        </table>
       </div>
     ),
     [BLOCKS.TABLE_ROW]: (node, children) => (
@@ -138,18 +140,18 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
         </figure>
       );
     },
-    [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+    [BLOCKS.EMBEDDED_ENTRY]: () => {
       return null;
     },
     [INLINES.HYPERLINK]: (node, children) => {
       const uri = node.data.uri;
       if (!isValidUrl(uri)) {
-        return <span className="text-gold">{children}</span>;
+        return <span className="text-gray-700">{children}</span>;
       }
       return (
         <a
           href={uri}
-          className="text-gold hover:text-gold-hover underline transition-colors"
+          className="text-blue-600 hover:text-blue-800 underline underline-offset-2 transition-colors"
           target={uri.startsWith('http') ? '_blank' : undefined}
           rel={uri.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
@@ -157,8 +159,8 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
         </a>
       );
     },
-    [INLINES.ENTRY_HYPERLINK]: (node, children) => {
-      return <span className="text-gold">{children}</span>;
+    [INLINES.ENTRY_HYPERLINK]: (_node, children) => {
+      return <span className="text-gray-700">{children}</span>;
     },
     [INLINES.ASSET_HYPERLINK]: (node, children) => {
       const { file } = node.data.target.fields;
@@ -172,7 +174,7 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
       return (
         <a
           href={assetUrl}
-          className="text-gold hover:text-gold-hover underline transition-colors"
+          className="text-blue-600 hover:text-blue-800 underline underline-offset-2 transition-colors"
           target="_blank"
           rel="noopener noreferrer"
         >

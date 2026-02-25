@@ -5,6 +5,9 @@ export interface Author {
   role: string;
   image: string;
   bio?: string;
+  headline?: string;
+  credentials?: string[];
+  trustNote?: string;
 }
 
 export interface BlogCategory {
@@ -78,9 +81,18 @@ export const blogCategories: BlogCategory[] = [
 // ===== Default Author =====
 export const defaultAuthor: Author = {
   name: 'Peter Leslie',
-  role: 'Owner, Engineer & Drone Pilot',
+  role: 'Founder, HireDronePilot',
   image: '/images/about-surveyor.avif',
-  bio: 'Former RAF engineer with extensive experience in surveying and UAV operations. Peter founded Hire Drone Pilot to bring professional aerial surveying to clients across the UK.',
+  headline: 'GVC-Licensed Commercial Drone Pilot',
+  bio: 'Founder of HireDronePilot, helping UK clients compare quotes from independent, vetted drone pilots.',
+  credentials: [
+    'CAA Operational Authorisation',
+    'GVC',
+    'A2 CofC',
+    'CAA Flyer ID (A1/A3)',
+    'ARPAS-UK Member',
+  ],
+  trustNote: 'CAA-compliant for UK commercial drone operations, including complex project environments.',
 };
 
 // ===== Sample Articles =====

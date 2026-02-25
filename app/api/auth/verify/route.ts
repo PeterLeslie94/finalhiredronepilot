@@ -11,9 +11,7 @@ type MagicLinkRow = {
   identity_id: string;
   expires_at: string;
   used_at: string | null;
-  role: 'ADMIN' | 'DRONE_PILOT';
   admin_id: string | null;
-  pilot_id: string | null;
 };
 
 export async function GET(request: NextRequest) {
@@ -35,12 +33,11 @@ export async function GET(request: NextRequest) {
           ml.identity_id,
           ml.expires_at::text,
           ml.used_at::text,
-          i.role,
-          i.admin_id,
-          i.pilot_id
+          i.admin_id
         FROM auth_magic_links ml
         JOIN user_identities i ON i.id = ml.identity_id
         WHERE ml.token_hash = $1
+          AND i.role = 'ADMIN'
         FOR UPDATE
         `,
         [tokenHash],
@@ -56,6 +53,9 @@ export async function GET(request: NextRequest) {
       if (Number.isFinite(expiresAtMs) && now.getTime() > expiresAtMs) {
         throw new Error('Link expired');
       }
+      if (!row.admin_id) {
+        throw new Error('Admin login required');
+      }
 
       await client.query(`UPDATE auth_magic_links SET used_at = now() WHERE id = $1 AND used_at IS NULL`, [row.id]);
 
@@ -66,15 +66,14 @@ export async function GET(request: NextRequest) {
         [row.identity_id, sessionTokenHash, sessionExpiry.toISOString()],
       );
 
-      if (row.role === 'ADMIN' && row.admin_id) {
+      if (row.admin_id) {
         await client.query(`UPDATE admins SET last_login_at = now() WHERE id = $1`, [row.admin_id]);
       }
 
-      return { role: row.role, rawSessionToken };
+      return { rawSessionToken };
     });
 
-    const redirectTo = result.role === 'ADMIN' ? '/admin' : '/drone-pilot';
-    const response = NextResponse.redirect(new URL(redirectTo, request.url), 303);
+    const response = NextResponse.redirect(new URL('/admin', request.url), 303);
     response.cookies.set({
       name: SESSION_COOKIE_NAME,
       value: result.rawSessionToken,

@@ -1,7 +1,6 @@
 import { Pool, PoolClient, QueryResult, QueryResultRow } from 'pg';
 
 declare global {
-  // eslint-disable-next-line no-var
   var __marketplaceDbPool: Pool | undefined;
 }
 
@@ -13,13 +12,23 @@ function getDatabaseUrl(): string {
   return url;
 }
 
+function getDatabaseSslConfig(): boolean | { rejectUnauthorized: boolean } {
+  if (process.env.DB_SSL === 'false') {
+    return false;
+  }
+
+  return {
+    rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false',
+  };
+}
+
 function createPool(): Pool {
   const pool = new Pool({
     connectionString: getDatabaseUrl(),
     max: Number(process.env.DB_POOL_MAX || 10),
     idleTimeoutMillis: Number(process.env.DB_IDLE_TIMEOUT_MS || 10000),
     connectionTimeoutMillis: Number(process.env.DB_CONNECT_TIMEOUT_MS || 5000),
-    ssl: process.env.DB_SSL === 'false' ? false : { rejectUnauthorized: false },
+    ssl: getDatabaseSslConfig(),
   });
 
   return pool;

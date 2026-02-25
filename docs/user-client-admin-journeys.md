@@ -44,14 +44,12 @@ DB touchpoints:
 
 ## 2. Pilot Journey
 
-## Step 0: Drone Pilot Login (Magic Link)
-- Drone pilots sign in via `/login`.
-- If their email is approved and present in `user_identities`, they receive a magic link.
-- After sign-in they can access `/drone-pilot` to view invitations.
+## Step 0: Access Invite Link
+- Drone pilots do not use platform login.
+- Pilots receive secure invite links by email and open `/invite/{token}` directly.
 
 DB touchpoints:
-- `auth_magic_links` insert on link request.
-- `auth_sessions` insert on link verification.
+- None for session auth in pilot flow.
 
 ## Step 1: Pilot Onboarding Application
 - Pilot submits application with:
@@ -76,7 +74,7 @@ DB touchpoints:
 
 ## Step 3: Receive Invite
 - Pilot gets invite email with a secure link.
-- Invite link never expires.
+- Invite link expires after the configured token TTL window.
 - Pilot sees full project details and client contact information.
 
 DB touchpoints:
@@ -84,7 +82,7 @@ DB touchpoints:
 - `email_logs` insert/update for invite message.
 
 ## Step 4: View Details and Contact Client
-- Pilot opens invite link (`/invite/{token}`) or views via dashboard.
+- Pilot opens invite link (`/invite/{token}`).
 - Pilot sees: job details, service type, location, postcode, date needed.
 - Pilot sees: client name, email (mailto link), phone (tel link).
 - Pilot contacts the client directly to discuss and provide a quote.
@@ -137,4 +135,4 @@ DB touchpoints:
 ## Key Guardrails
 - `consent_share_with_pilots` must be true for invite flow to proceed.
 - All critical actions write event logs for auditability.
-- Invite links never expire.
+- Invite links are time-limited and rejected once expired.

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
-import { jsonError, parseBody } from '@/lib/server/http';
+import { assertTrustedOrigin, jsonError, parseBody, RequestOriginError } from '@/lib/server/http';
 
 export const runtime = 'nodejs';
 
@@ -52,6 +52,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    assertTrustedOrigin(request);
     await requireAdminAccess(request);
     const { id } = await params;
     const payload = await parseBody(request);
@@ -75,7 +76,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     return NextResponse.json({ ok: true, status: 'CLOSED' });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to close enquiry';
-    const status = error instanceof AuthError ? 401 : 500;
+    const status = error instanceof AuthError ? 401 : error instanceof RequestOriginError ? 403 : 500;
     return jsonError(message, status);
   }
 }

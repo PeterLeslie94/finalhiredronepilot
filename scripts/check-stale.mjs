@@ -1,6 +1,7 @@
 import pg from 'pg';
 import fs from 'fs';
 import process from 'node:process';
+import { getDatabaseSslConfig } from './lib/db-ssl.mjs';
 
 const envFile = fs.readFileSync('.env.local', 'utf8');
 for (const line of envFile.split('\n')) {
@@ -14,7 +15,7 @@ for (const line of envFile.split('\n')) {
 }
 
 const { Pool } = pg;
-const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.DB_SSL === 'false' ? false : { rejectUnauthorized: false } });
+const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: getDatabaseSslConfig() });
 
 const res = await pool.query(`SELECT id, email, status, review_notes FROM pilot_applications WHERE lower(email) IN ('seed.applicant1@example.com','seed.applicant2@example.com','seed.applicant3@example.com')`);
 console.log('Existing applications:', JSON.stringify(res.rows, null, 2));

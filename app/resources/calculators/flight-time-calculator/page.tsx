@@ -1,5 +1,6 @@
 'use client';
 
+import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import Link from 'next/link';
 import { useState } from 'react';
 import DiagonalDivider from '@/components/DiagonalDivider';
@@ -140,11 +141,11 @@ export default function FlightTimeCalculatorPage() {
       {/* Schema Markup */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(softwareSchema) }}
       />
 
       {/* Mini Hero Section */}

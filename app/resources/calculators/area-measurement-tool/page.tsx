@@ -1,5 +1,6 @@
 'use client';
 
+import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -92,7 +93,7 @@ export default function AreaMeasurementToolPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
             name: calculator?.title || 'Site Area Measurement Tool',
@@ -115,7 +116,7 @@ export default function AreaMeasurementToolPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: faqs.map((faq) => ({

@@ -5,6 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import pg from 'pg';
+import { getDatabaseSslConfig } from './lib/db-ssl.mjs';
 
 const { Pool } = pg;
 
@@ -733,7 +734,7 @@ async function run() {
 
   const pool = new Pool({
     connectionString: databaseUrl,
-    ssl: process.env.DB_SSL === 'false' ? false : { rejectUnauthorized: false },
+    ssl: getDatabaseSslConfig(),
   });
 
   try {

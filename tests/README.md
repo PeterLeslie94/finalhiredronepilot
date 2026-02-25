@@ -63,7 +63,7 @@ The seed script tags its data (`source_form = 'seed-demo'`, `notes = 'seed-demo'
 
 ### Dev Magic-Link Shortcut
 
-In non-production (`NODE_ENV !== 'production'`), the `/login` page returns a clickable **Dev link** after requesting a magic link. This lets you log in without email delivery.
+In non-production (`NODE_ENV !== 'production'`), the `/login` page returns a clickable **Dev link** for eligible admin accounts after requesting a magic link.
 
 ## Test Notation
 
@@ -86,11 +86,8 @@ Each test has:
 | `04-admin-enquiry-lifecycle.md` | Admin | Full enquiry triage workflow |
 | `05-admin-pilot-applications.md` | Admin | Application review actions |
 | `06-admin-pilot-directory.md` | Admin | Pilot search, filter, edit |
-| `07-admin-bid-history.md` | Admin | Bid browsing and filtering |
 | `08-pilot-application.md` | Pilot | Application form submission |
-| `09-pilot-login.md` | Pilot | Magic-link login/logout |
-| `10-pilot-dashboard.md` | Pilot | Dashboard, invites, bid history |
-| `11-pilot-bid-submission.md` | Pilot | Authenticated + token-based bids |
-| `12-pilot-profile.md` | Pilot | View and edit profile |
-| `13-cron-deadline-check.md` | System | Auto-close bidding at deadline |
+| `09-pilot-login.md` | Pilot | Pilot-login retirement + token invite access |
+| `10-pilot-dashboard.md` | Pilot | Dashboard/API retirement checks |
+| `12-pilot-profile.md` | Pilot | Profile self-service retirement checks |
 | `14-cross-cutting.md` | All | Auth edge cases, email, errors |

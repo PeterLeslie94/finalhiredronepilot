@@ -26,46 +26,45 @@
 
 ---
 
-### X02 — Access /drone-pilot without session
+### X02 — Access retired /drone-pilot route
 
 **Steps:**
 1. Clear all cookies
 2. Navigate to `/drone-pilot`
 
 **Expected:**
-- API call `GET /api/pilot/me/invites` returns 401
-- Error banner shown with message
-- "Go to login" link visible (links to `/login`)
+- Route is unavailable (not found or replacement page if configured later)
+- No pilot dashboard data is rendered
 
 **Pass:** `[ ]`
 
 ---
 
-### X03 — Admin session cannot access pilot routes
+### X03 — Retired pilot APIs are unavailable
 
 **Steps:**
-1. Log in as admin
-2. Navigate to `/drone-pilot`
-3. Observe the API response
+1. Call `GET /api/pilot/me/invites`
+2. Call `GET /api/pilot/invitations/{id}`
+3. Call `GET /api/pilot/me/profile`
 
 **Expected:**
-- API returns 401 (wrong role — admin identity does not have `DRONE_PILOT` role)
-- Error banner shown
+- Endpoints are unavailable after pilot-login retirement.
 
 **Pass:** `[ ]`
 
 ---
 
-### X04 — Pilot session cannot access admin routes
+### X04 — Pilot email cannot authenticate to admin login
 
 **Steps:**
-1. Log in as pilot (e.g. `seed.skyvista@example.com`)
-2. Navigate to `/admin`
-3. Observe the API response
+1. Navigate to `/login`
+2. Enter a pilot email (e.g. `seed.skyvista@example.com`)
+3. Request a magic link
 
 **Expected:**
-- API returns 401 (wrong role — pilot identity does not have `ADMIN` role)
-- Error banner shown
+- Generic success state is shown
+- No dev link appears
+- No valid admin session is created
 
 **Pass:** `[ ]`
 

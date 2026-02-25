@@ -7,6 +7,7 @@ import { createClient } from 'contentful';
 
 const CONTENT_TYPE_BLOG_POST = 'blogPost';
 const CONTENT_TYPE_CATEGORY = 'category';
+const CONTENTFUL_PAGE_LIMIT = 100;
 const SNAPSHOT_PATH = path.resolve(process.cwd(), 'data/generated/contentful-blog.json');
 
 const DEFAULT_AUTHOR = {
@@ -136,6 +137,31 @@ function mapContentfulToArticle(entry) {
   };
 }
 
+async function fetchAllBlogPostEntries(client, currentDate) {
+  const items = [];
+  let skip = 0;
+
+  while (true) {
+    const page = await client.getEntries({
+      content_type: CONTENT_TYPE_BLOG_POST,
+      order: ['-fields.publishDate'],
+      include: 2,
+      limit: CONTENTFUL_PAGE_LIMIT,
+      skip,
+      'fields.publishDate[lte]': currentDate,
+    });
+
+    items.push(...page.items);
+    skip += page.items.length;
+
+    if (page.items.length === 0 || skip >= page.total) {
+      break;
+    }
+  }
+
+  return items;
+}
+
 async function fetchSnapshotData() {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
@@ -152,18 +178,14 @@ async function fetchSnapshotData() {
   const currentDate = new Date().toISOString();
 
   const [articleEntries, categoryEntries] = await Promise.all([
-    client.getEntries({
-      content_type: CONTENT_TYPE_BLOG_POST,
-      order: ['-fields.publishDate'],
-      include: 2,
-      'fields.publishDate[lte]': currentDate,
-    }),
+    fetchAllBlogPostEntries(client, currentDate),
     client.getEntries({
       content_type: CONTENT_TYPE_CATEGORY,
+      limit: 1000,
     }),
   ]);
 
-  const articles = articleEntries.items.map(mapContentfulToArticle);
+  const articles = articleEntries.map(mapContentfulToArticle);
 
   const categories = categoryEntries.items
     .map((entry) => {

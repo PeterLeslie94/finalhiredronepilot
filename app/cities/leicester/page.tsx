@@ -1,3 +1,4 @@
+import { safeJsonLd } from '@/lib/utils/safe-json-ld';
 import QuoteButton from '@/components/QuoteButton';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
@@ -930,7 +931,7 @@ export default function LeicesterPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
             name: 'Hire Drone Pilot Leicester',

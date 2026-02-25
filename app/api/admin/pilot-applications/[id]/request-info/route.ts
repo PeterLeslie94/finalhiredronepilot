@@ -4,12 +4,13 @@ import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError, parseBody } from '@/lib/server/http';
+import { assertTrustedOrigin, jsonError, parseBody, RequestOriginError } from '@/lib/server/http';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    assertTrustedOrigin(request);
     const { adminId } = await requireAdminAccess(request);
     const { id } = await params;
     const payload = await parseBody(request);
@@ -66,6 +67,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const message = error instanceof Error ? error.message : 'Failed to mark pilot application as needs-info';
     if (error instanceof AuthError) {
       return jsonError(message, 401);
+    }
+    if (error instanceof RequestOriginError) {
+      return jsonError(message, 403);
     }
     const status = message.includes('not found') ? 404 : 400;
     return jsonError(message, status);

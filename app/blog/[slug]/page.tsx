@@ -13,11 +13,10 @@ import AuthorCard from '@/components/blog/AuthorCard';
 import TableOfContents from '@/components/blog/TableOfContents';
 import RelatedArticles from '@/components/blog/RelatedArticles';
 import SocialShareButtons from '@/components/blog/SocialShareButtons';
-import MobileTableOfContents from '@/components/blog/MobileTableOfContents';
+import MobileAuthorCard from '@/components/blog/MobileAuthorCard';
 import ScrollProgressBar from '@/components/blog/ScrollProgressBar';
 import DiagonalDivider from '@/components/DiagonalDivider';
 import QuoteForm from '@/components/QuoteForm';
-import QuoteButton from '@/components/QuoteButton';
 import { BlogPostingSchema, BreadcrumbSchema } from '@/components/SchemaMarkup';
 
 interface Props {
@@ -96,15 +95,8 @@ export default async function ArticlePage({ params }: Props) {
 
       <ArticleHero article={article} />
 
-      {/* Mobile TOC - visible below lg */}
-      <div className="lg:hidden bg-gray-50 border-b border-gray-200">
-        <div className="container py-3">
-          <MobileTableOfContents
-            content={undefined}
-            contentfulContent={article.contentfulContent}
-          />
-        </div>
-      </div>
+      {/* Mobile author - shown below hero and above article body */}
+      <MobileAuthorCard author={article.author} />
 
       <section className="bg-white py-12">
         <div className="relative max-w-[1160px] mx-auto px-4">
@@ -160,38 +152,8 @@ export default async function ArticlePage({ params }: Props) {
           <aside className="hidden lg:block absolute right-0 top-0 bottom-0 w-[216px]">
             <div className="sticky top-24 space-y-6">
               <AuthorCard author={article.author} />
-
-              {/* CTA Widget */}
-              <div className="bg-gray-100 p-4">
-                <h3 className="font-bold text-base text-gray-900 mb-1">
-                  Compare Drone Pilot Quotes
-                </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  Get competitive quotes from independent drone pilots.
-                </p>
-                <QuoteButton className="btn btn-primary w-full text-center text-sm">
-                  Compare Quotes
-                </QuoteButton>
-              </div>
-
             </div>
           </aside>
-        </div>
-
-        {/* Mobile: Author card + CTA below content */}
-        <div className="lg:hidden container mt-12 space-y-6">
-          <AuthorCard author={article.author} />
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <h3 className="font-bold text-base text-gray-900 mb-1">
-              Compare Drone Pilot Quotes
-            </h3>
-            <p className="text-sm text-gray-600 mb-3">
-              Get competitive quotes from independent drone pilots.
-            </p>
-            <QuoteButton className="btn btn-primary w-full text-center">
-              Compare Quotes
-            </QuoteButton>
-          </div>
         </div>
       </section>
 

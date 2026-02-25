@@ -86,17 +86,3 @@ export async function requireAdminAccess(
   }
   return { adminId: identity.admin_id, identityId: identity.identity_id, email: identity.email };
 }
-
-export async function requirePilotAccess(
-  request: NextRequest,
-): Promise<{ pilotId: string; identityId: string; email: string }> {
-  const identity = await getOptionalSessionIdentity(request);
-  if (!identity) {
-    throw new AuthError('Authentication required');
-  }
-  if (identity.role !== 'DRONE_PILOT' || !identity.pilot_id) {
-    throw new AuthError('Drone pilot access required');
-  }
-  return { pilotId: identity.pilot_id, identityId: identity.identity_id, email: identity.email };
-}
-

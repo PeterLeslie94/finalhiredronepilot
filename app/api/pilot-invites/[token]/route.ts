@@ -5,6 +5,14 @@ import { jsonError } from '@/lib/server/http';
 import { hashToken } from '@/lib/server/security';
 
 export const runtime = 'nodejs';
+const INVITE_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.PILOT_INVITE_TOKEN_TTL_DAYS || 30));
+
+function hasInviteExpired(sentAtRaw: string): boolean {
+  const sentAtMs = new Date(sentAtRaw).getTime();
+  if (!Number.isFinite(sentAtMs)) return true;
+  const ttlMs = INVITE_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000;
+  return Date.now() > sentAtMs + ttlMs;
+}
 
 export async function GET(_request: Request, { params }: { params: Promise<{ token: string }> }) {
   try {
@@ -15,6 +23,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       invitation_id: string;
       enquiry_id: string;
       invite_status: string;
+      sent_at: string;
       pilot_id: string;
       pilot_name: string;
       pilot_email: string;
@@ -33,6 +42,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
         pi.id AS invitation_id,
         pi.enquiry_id,
         pi.status::text AS invite_status,
+        pi.sent_at::text AS sent_at,
         p.id AS pilot_id,
         p.name AS pilot_name,
         p.email AS pilot_email,
@@ -59,13 +69,27 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       return jsonError('Invite not found', 404);
     }
 
+    if (row.invite_status !== 'SENT' && row.invite_status !== 'OPENED') {
+      return jsonError('Invite not found', 404);
+    }
+
+    if (hasInviteExpired(row.sent_at)) {
+      await query(
+        `UPDATE pilot_invitations
+         SET status = 'EXPIRED'
+         WHERE id = $1 AND status IN ('SENT', 'OPENED')`,
+        [row.invitation_id],
+      ).catch(() => {});
+      return jsonError('Invite expired', 410);
+    }
+
     // Mark as opened (best-effort)
     await query(
       `UPDATE pilot_invitations
        SET status = 'OPENED', opened_at = COALESCE(opened_at, now())
        WHERE id = $1 AND status = 'SENT'`,
       [row.invitation_id],
-    );
+    ).catch(() => {});
 
     return NextResponse.json({
       invitation_id: row.invitation_id,
@@ -90,8 +114,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
         phone: row.client_phone,
       },
     });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Failed to load invite';
-    return jsonError(message, 400);
+  } catch {
+    return jsonError('Failed to load invite', 500);
   }
 }
