@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import LegacyFormBridge from "@/components/LegacyFormBridge";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/SchemaMarkup";
 
 const inter = Inter({
@@ -94,7 +93,6 @@ export default function RootLayout({
         <LocalBusinessSchema />
         <WebSiteSchema />
         <Header />
-        <LegacyFormBridge />
         <main className="pt-[104px]">
           {children}
         </main>

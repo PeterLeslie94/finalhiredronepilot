@@ -5,107 +5,110 @@ export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://hiredronepilot.uk';
+  const stableLastModified = process.env.VERCEL_GIT_COMMIT_DATE
+    ? new Date(process.env.VERCEL_GIT_COMMIT_DATE)
+    : new Date('2026-01-01T00:00:00.000Z');
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'weekly',
       priority: 0.85,
     },
     {
       url: `${baseUrl}/pricing`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
       url: `${baseUrl}/cities`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/marketplace-terms`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/pilot-terms`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/marketplace-policy`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/cookies`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/drone-statistics`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
       url: `${baseUrl}/caa-drone-theory-test`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/pilots`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/join-as-pilot`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
@@ -163,7 +166,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${baseUrl}/services/${service}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: 'monthly',
     priority: 0.9,
   }));
@@ -203,7 +206,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
     url: `${baseUrl}/cities/${location}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: 'monthly',
     priority: 0.85,
   }));
@@ -211,10 +214,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pilot profile pages
   let pilotPages: MetadataRoute.Sitemap = [];
   try {
-    const result = await query<{ slug: string }>('SELECT slug FROM pilots WHERE active = true');
+    const result = await query<{ slug: string; updated_at: string | Date }>(
+      'SELECT slug, updated_at FROM pilots WHERE active = true',
+    );
     pilotPages = result.rows.map((p) => ({
       url: `${baseUrl}/pilots/${p.slug}`,
-      lastModified: new Date(),
+      lastModified: p.updated_at ? new Date(p.updated_at) : stableLastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
     }));

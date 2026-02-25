@@ -1,5 +1,4 @@
-'use client';
-
+import QuoteButton from '@/components/QuoteButton';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import Testimonials from '@/components/Testimonials';
@@ -559,15 +558,12 @@ export default function DundeePage() {
           {/* Bottom CTA */}
           <div className="mt-16 text-center">
             <p className="text-white/60 mb-4">Ready to start your Dundee project?</p>
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-              className="inline-flex items-center gap-2 bg-gold text-teal-dark font-semibold px-6 py-3 rounded-full hover:bg-gold/90 transition-colors btn-shimmer btn-pop-on-scroll"
-            >
+            <QuoteButton className="inline-flex items-center gap-2 bg-gold text-teal-dark font-semibold px-6 py-3 rounded-full hover:bg-gold/90 transition-colors btn-shimmer btn-pop-on-scroll">
               Compare Dundee Quotes
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+              </QuoteButton>
           </div>
         </div>
       </section>
@@ -614,12 +610,9 @@ export default function DundeePage() {
               As your local team, we can often respond within the hour.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                className="btn btn-primary btn-shimmer btn-pop-on-scroll"
-              >
+              <QuoteButton className="btn btn-primary btn-shimmer btn-pop-on-scroll">
                 Compare Dundee Quotes
-              </button>
+              </QuoteButton>
               <span className="text-white/50">or</span>
               <a href="tel:+441334804554" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,5 +1,4 @@
-'use client';
-
+import QuoteButton from '@/components/QuoteButton';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import Testimonials from '@/components/Testimonials';

@@ -1,5 +1,4 @@
-'use client';
-
+import QuoteButton from '@/components/QuoteButton';
 import Link from 'next/link';
 import { MapPin, Phone, Clock, CheckCircle } from 'lucide-react';
 import DiagonalDivider from '@/components/DiagonalDivider';
@@ -251,12 +250,9 @@ export default function AreasPage() {
               Get in touch today for a free, no-obligation quote. We'll confirm coverage and provide competitive pricing within 5 mins on average.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-                className="btn btn-primary btn-shimmer"
-              >
+              <QuoteButton className="btn btn-primary btn-shimmer">
                 Compare Quotes
-              </button>
+              </QuoteButton>
               <a href="tel:+441334804554" className="btn bg-transparent text-teal border-teal hover:bg-teal hover:text-white">
                 Call +44 1334 804554
               </a>

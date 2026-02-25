@@ -1,7 +1,7 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
+
+import QuoteButton from '@/components/QuoteButton';
 import TrustBadge from '@/components/TrustBadge';
 
 const services = [
@@ -25,15 +25,21 @@ const moreServices = [
   { name: 'Drone Crop Spraying', href: '/services/drone-crop-spraying' },
 ];
 
+const accreditationLogos = [
+  { src: '/images/licences/Civil_Aviation_Authority_logo.avif', alt: 'CAA Approved', width: 80, height: 32 },
+  { src: '/images/licences/arpas-uk-drone-association-logo.avif', alt: 'ARPAS-UK Member', width: 80, height: 32 },
+  { src: '/images/licences/gvc-licence.avif', alt: 'GVC Licence', width: 56, height: 32 },
+  { src: '/images/licences/drone-a2-cofc.avif', alt: 'A2 CofC', width: 56, height: 32 },
+  { src: '/images/licences/flyer-id-a1-a3.avif', alt: 'Flyer ID A1/A3', width: 56, height: 32 },
+  { src: '/images/licences/dundee-chamber-commerce-logo.avif', alt: 'Dundee Chamber of Commerce', width: 96, height: 32 },
+] as const;
+
 export default function Footer() {
   return (
     <footer>
-      {/* CTA Banner */}
       <div className="bg-gold py-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 text-[200px] font-bold text-teal-dark leading-none">
-            HDP
-          </div>
+          <div className="absolute top-0 left-0 text-[200px] font-bold text-teal-dark leading-none">HDP</div>
         </div>
         <div className="container relative z-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-teal-dark mb-4">
@@ -44,12 +50,9 @@ export default function Footer() {
             across the UK.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
-              className="btn bg-teal text-white border-teal hover:bg-teal-dark"
-            >
+            <QuoteButton className="btn bg-teal text-white border-teal hover:bg-teal-dark">
               Compare Quotes
-            </button>
+            </QuoteButton>
             <Link href="/contact" className="btn bg-transparent text-teal-dark border-teal-dark hover:bg-teal-dark hover:text-white">
               Contact Us
             </Link>
@@ -57,20 +60,12 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Main Footer */}
       <div className="bg-teal py-16">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            {/* Company Info */}
             <div>
               <Link href="/" className="flex items-center gap-2 mb-6 group">
-                <Image
-                  src="/hiredronepilot-logo.png"
-                  alt="HireDronePilot"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10"
-                />
+                <Image src="/hiredronepilot-logo.png" alt="HireDronePilot" width={40} height={40} className="w-10 h-10" />
                 <div>
                   <span className="text-lg font-bold text-white block leading-tight group-hover:text-gold transition-colors">
                     HireDronePilot
@@ -85,7 +80,6 @@ export default function Footer() {
               <TrustBadge animated={false} width={200} />
             </div>
 
-            {/* Services Column 1 */}
             <div>
               <h3 className="text-gold font-bold text-lg mb-6 uppercase tracking-wide">Services</h3>
               <ul className="space-y-3">
@@ -104,7 +98,6 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Services Column 2 */}
             <div>
               <h3 className="text-gold font-bold text-lg mb-6 uppercase tracking-wide">More Services</h3>
               <ul className="space-y-3">
@@ -118,49 +111,19 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Quick Links */}
             <div>
               <h3 className="text-gold font-bold text-lg mb-6 uppercase tracking-wide">Quick Links</h3>
               <ul className="space-y-3">
-                <li>
-                  <Link href="/about" className="text-white/70 hover:text-gold transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="text-white/70 hover:text-gold transition-colors">
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cities" className="text-white/70 hover:text-gold transition-colors">
-                    Areas Covered
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pricing" className="text-white/70 hover:text-gold transition-colors">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/drone-statistics" className="text-white/70 hover:text-gold transition-colors">
-                    Drone Statistics
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog" className="text-white/70 hover:text-gold transition-colors">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/caa-drone-theory-test" className="text-white/70 hover:text-gold transition-colors">
-                    CAA Drone Theory Test
-                  </Link>
-                </li>
+                <li><Link href="/about" className="text-white/70 hover:text-gold transition-colors">About Us</Link></li>
+                <li><Link href="/contact" className="text-white/70 hover:text-gold transition-colors">Contact Us</Link></li>
+                <li><Link href="/cities" className="text-white/70 hover:text-gold transition-colors">Areas Covered</Link></li>
+                <li><Link href="/pricing" className="text-white/70 hover:text-gold transition-colors">Pricing</Link></li>
+                <li><Link href="/drone-statistics" className="text-white/70 hover:text-gold transition-colors">Drone Statistics</Link></li>
+                <li><Link href="/blog" className="text-white/70 hover:text-gold transition-colors">Blog</Link></li>
+                <li><Link href="/caa-drone-theory-test" className="text-white/70 hover:text-gold transition-colors">CAA Drone Theory Test</Link></li>
               </ul>
             </div>
 
-            {/* Contact Info */}
             <div>
               <h3 className="text-gold font-bold text-lg mb-6 uppercase tracking-wide">Contact</h3>
               <ul className="space-y-4">
@@ -179,30 +142,29 @@ export default function Footer() {
                   <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <a href="tel:+441334804554" className="text-white/70 hover:text-gold transition-colors">
-                    +44 1334 804554
-                  </a>
+                  <a href="tel:+441334804554" className="text-white/70 hover:text-gold transition-colors">+44 1334 804554</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <a href="mailto:quotes@hiredronepilot.uk" className="text-white/70 hover:text-gold transition-colors">
-                    quotes@hiredronepilot.uk
-                  </a>
+                  <a href="mailto:quotes@hiredronepilot.uk" className="text-white/70 hover:text-gold transition-colors">quotes@hiredronepilot.uk</a>
                 </li>
               </ul>
 
-              {/* Accreditations */}
               <div className="mt-8">
                 <h4 className="text-gold font-semibold text-sm mb-3 uppercase tracking-wide">Accreditations</h4>
                 <div className="flex flex-wrap items-center gap-3">
-                  <img src="/images/licences/Civil_Aviation_Authority_logo.avif" alt="CAA Approved" className="h-8 object-contain" />
-                  <img src="/images/licences/arpas-uk-drone-association-logo.avif" alt="ARPAS-UK Member" className="h-8 object-contain" />
-                  <img src="/images/licences/gvc-licence.avif" alt="GVC Licence" className="h-8 object-contain" />
-                  <img src="/images/licences/drone-a2-cofc.avif" alt="A2 CofC" className="h-8 object-contain" />
-                  <img src="/images/licences/flyer-id-a1-a3.avif" alt="Flyer ID A1/A3" className="h-8 object-contain" />
-                  <img src="/images/licences/dundee-chamber-commerce-logo.avif" alt="Dundee Chamber of Commerce" className="h-8 object-contain" />
+                  {accreditationLogos.map((logo) => (
+                    <Image
+                      key={logo.src}
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={logo.width}
+                      height={logo.height}
+                      className="h-8 w-auto object-contain"
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -210,34 +172,19 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright Bar */}
       <div className="bg-teal-dark py-4">
         <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/50 text-sm">
             &copy; 2026 HireDronePilot. All rights reserved. | Company No: SC662275 Operating Under HireDronePilot Trading Name
           </p>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            <Link href="/privacy" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Website Terms
-            </Link>
-            <Link href="/marketplace-terms" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Marketplace Terms
-            </Link>
-            <Link href="/pilot-terms" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Drone Pilot Terms
-            </Link>
-            <Link href="/marketplace-policy" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Issue Policy
-            </Link>
-            <Link href="/cookies" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Cookie Policy
-            </Link>
-            <Link href="/sitemap.xml" className="text-white/50 text-sm hover:text-gold transition-colors">
-              Sitemap
-            </Link>
+            <Link href="/privacy" className="text-white/50 text-sm hover:text-gold transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-white/50 text-sm hover:text-gold transition-colors">Website Terms</Link>
+            <Link href="/marketplace-terms" className="text-white/50 text-sm hover:text-gold transition-colors">Marketplace Terms</Link>
+            <Link href="/pilot-terms" className="text-white/50 text-sm hover:text-gold transition-colors">Drone Pilot Terms</Link>
+            <Link href="/marketplace-policy" className="text-white/50 text-sm hover:text-gold transition-colors">Issue Policy</Link>
+            <Link href="/cookies" className="text-white/50 text-sm hover:text-gold transition-colors">Cookie Policy</Link>
+            <Link href="/sitemap.xml" className="text-white/50 text-sm hover:text-gold transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>

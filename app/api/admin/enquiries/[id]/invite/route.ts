@@ -45,35 +45,19 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       }
 
       const pilotResult = await client.query<PilotRow>(
-        `SELECT id, email, name FROM pilots WHERE active = true ORDER BY created_at DESC`,
+        `SELECT id, email, name
+         FROM pilots
+         WHERE active = true
+           AND (
+             cardinality($1::uuid[]) = 0
+             OR NOT (id = ANY($1::uuid[]))
+           )
+         ORDER BY created_at DESC`,
+        [selection.exclude_pilot_ids],
       );
+      const selected = pilotResult.rows;
 
-      const includeSet = new Set(selection.include_pilot_ids);
-      const excludeSet = new Set(selection.exclude_pilot_ids);
-      const selected = new Map<string, PilotRow>();
-
-      for (const pilot of pilotResult.rows) {
-        if (!excludeSet.has(pilot.id)) {
-          selected.set(pilot.id, pilot);
-        }
-      }
-
-      if (includeSet.size > 0) {
-        const missingIncludes = [...includeSet].filter((pilotId) => !selected.has(pilotId));
-        if (missingIncludes.length > 0) {
-          const includeQuery = await client.query<PilotRow>(
-            `SELECT id, email, name FROM pilots WHERE id = ANY($1::uuid[]) AND active = true`,
-            [missingIncludes],
-          );
-          for (const pilot of includeQuery.rows) {
-            if (!excludeSet.has(pilot.id)) {
-              selected.set(pilot.id, pilot);
-            }
-          }
-        }
-      }
-
-      if (selected.size === 0) {
+      if (selected.length === 0) {
         throw new Error('No eligible pilots selected');
       }
 
@@ -83,23 +67,41 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       );
       const inviteRound = inviteRoundResult.rows[0].round;
 
-      const created: Array<{ pilot_id: string; pilot_email: string; pilot_name: string; token: string; emailLogId: string }> = [];
-      for (const pilot of selected.values()) {
+      const created: Array<{
+        pilot_id: string;
+        pilot_email: string;
+        pilot_name: string;
+        token: string;
+        token_hash: string;
+        emailLogId: string;
+      }> = selected.map((pilot) => {
         const { rawToken, tokenHash } = createInvitationToken();
-        await client.query(
-          `INSERT INTO pilot_invitations
-            (enquiry_id, pilot_id, invite_round, token_hash, status, sent_at)
-           VALUES ($1, $2, $3, $4, 'SENT', now())`,
-          [id, pilot.id, inviteRound, tokenHash],
-        );
-        const emailLogId = await logEmail('pilot_invite', pilot.email, 'QUEUED', 'ENQUIRY', id, client);
-        created.push({
+        return {
           pilot_id: pilot.id,
           pilot_email: pilot.email,
           pilot_name: pilot.name,
           token: rawToken,
-          emailLogId,
-        });
+          token_hash: tokenHash,
+          emailLogId: '',
+        };
+      });
+
+      await client.query(
+        `INSERT INTO pilot_invitations
+          (enquiry_id, pilot_id, invite_round, token_hash, status, sent_at)
+         SELECT
+           $1::uuid,
+           invite.pilot_id,
+           $2::smallint,
+           invite.token_hash,
+           'SENT'::invite_status,
+           now()
+         FROM UNNEST($3::uuid[], $4::text[]) AS invite(pilot_id, token_hash)`,
+        [id, inviteRound, created.map((invite) => invite.pilot_id), created.map((invite) => invite.token_hash)],
+      );
+
+      for (const invite of created) {
+        invite.emailLogId = await logEmail('pilot_invite', invite.pilot_email, 'QUEUED', 'ENQUIRY', id, client);
       }
 
       await client.query(
@@ -160,9 +162,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       enquiry_id: result.enquiry_id,
       invite_round: result.invite_round,
       invites_created: result.invites_created,
-      invite_tokens: result.invite_tokens.map((t) => ({
-        pilot_id: t.pilot_id,
-        pilot_email: t.pilot_email,
+        invite_tokens: result.invite_tokens.map((t) => ({
+          pilot_id: t.pilot_id,
+          pilot_email: t.pilot_email,
         token: t.token,
       })),
     });
