@@ -150,6 +150,71 @@
       "source": "/resources/blog/:slug",
       "destination": "/blog/:slug",
       "statusCode": 301
+    },
+    {
+      "source": "/how-many-drone-pilots-uk",
+      "destination": "/drone-statistics",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap",
+      "destination": "/html-sitemap",
+      "statusCode": 301
+    },
+    {
+      "source": "/feedback",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/client-terms",
+      "destination": "/marketplace-terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/pilot-framework",
+      "destination": "/pilot-terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/non-circumvention",
+      "destination": "/marketplace-terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/dispute-policy",
+      "destination": "/marketplace-policy",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms-and-conditions-membership",
+      "destination": "/pilot-terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/blogs/posts/neighbour-drone-over-garden-uk",
+      "destination": "/blog/neighbour-drone-over-garden-uk",
+      "statusCode": 301
+    },
+    {
+      "source": "/blogs/posts/can-you-fly-a-drone-in-your-garden-in-the-uk-rules-safety-tips",
+      "destination": "/blog/fly-drone-in-garden-uk",
+      "statusCode": 301
+    },
+    {
+      "source": "/blogs/posts/flying-a-drone-over-private-property-uk-law-privacy-neighbour-disputes",
+      "destination": "/blog/neighbour-drone-over-garden-uk",
+      "statusCode": 301
+    },
+    {
+      "source": "/blogs/drone-pilots/hire-drone-pilot-dji-neo-wind-resistance",
+      "destination": "/blog/dji-neo-wind-resistance",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/hiredronepilot.uk/blog/neighbour-drone-over-garden-uk",
+      "destination": "/blog/neighbour-drone-over-garden-uk",
+      "statusCode": 301
     }
   ]
 }
