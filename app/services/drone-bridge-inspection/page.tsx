@@ -122,7 +122,7 @@ export default function DroneBridgeInspectionPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneBridgeInspectionPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -323,7 +323,7 @@ export default function DroneBridgeInspectionPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach typically delivers savings of <span className="text-gold font-semibold">60-80%</span> compared to conventional inspection methods requiring under-bridge units or scaffolding. Send us your bridge particulars and we'll furnish a customised quotation within 24 hours.
+                  Our UAV-based approach typically delivers savings of <span className="text-gold font-semibold">60-80%</span> compared to conventional inspection methods requiring under-bridge units or scaffolding. Send us your bridge particulars and we&apos;ll furnish a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -676,7 +676,7 @@ export default function DroneBridgeInspectionPage() {
                   />
                 </div>
                 <h2 id="inspection-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Bridge Inspection</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Bridge Inspection</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data gathering is exceptionally swift compared to conventional approaches. Most single-span bridges can be fully inspected in 2-4 hours, encompassing setup and equipment verification. Larger or multi-span structures may necessitate a complete day.
@@ -799,7 +799,7 @@ export default function DroneBridgeInspectionPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, comprehensively insured, and have completed bridge inspections for highways authorities, Network Rail contractors, and local councils throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, comprehensively insured, and have completed bridge inspections for highways authorities, Network Rail contractors, and local councils throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

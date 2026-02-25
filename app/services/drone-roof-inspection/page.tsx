@@ -122,7 +122,7 @@ export default function DroneRoofSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneRoofSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -257,7 +257,7 @@ export default function DroneRoofSurveyPage() {
                   What Does an <span className="text-gold">Drone Roof Inspection</span> Cost?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Drone roof inspection pricing varies based on your property's dimensions and intricacy. Below is a reference to assist with budgeting:
+                  Drone roof inspection pricing varies based on your property&apos;s dimensions and intricacy. Below is a reference to assist with budgeting:
                 </p>
 
                 {/* Pricing Table */}
@@ -329,7 +329,7 @@ export default function DroneRoofSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  When measured against conventional roof inspections needing scaffolding or elevated access platforms, a drone roof assessment typically delivers savings of <span className="text-gold font-semibold">60-80%</span> on access expenses alone. Send us your property particulars and we'll furnish a customised quotation within 24 hours.
+                  When measured against conventional roof inspections needing scaffolding or elevated access platforms, a drone roof assessment typically delivers savings of <span className="text-gold font-semibold">60-80%</span> on access expenses alone. Send us your property particulars and we&apos;ll furnish a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -369,7 +369,7 @@ export default function DroneRoofSurveyPage() {
                   Conventional roof inspections usually demand scaffolding, boom lifts, or surveyors manually ascending to the rooftop. This introduces substantial expenses, safety hazards, and frequently requires days to coordinate. Adverse weather can extend schedules even further.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone roof inspection removes these obstacles. We can arrive on-site within days, finish the assessment in hours, and gather imagery that's frequently more comprehensive than a visual check from roof level. Our aircraft reach zones that would be hazardous or unfeasible to access on foot, and the entire operation carries zero danger of falls or incidents.
+                  A drone roof inspection removes these obstacles. We can arrive on-site within days, finish the assessment in hours, and gather imagery that&apos;s frequently more comprehensive than a visual check from roof level. Our aircraft reach zones that would be hazardous or unfeasible to access on foot, and the entire operation carries zero danger of falls or incidents.
                 </p>
                 {/* Comparison Cards */}
                 <div className="mt-8">
@@ -581,7 +581,7 @@ export default function DroneRoofSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  For optimal outcomes, thermal inspections are performed during early morning or evening hours when temperature contrasts are most distinct. We'll recommend ideal scheduling when you get in touch.
+                  For optimal outcomes, thermal inspections are performed during early morning or evening hours when temperature contrasts are most distinct. We&apos;ll recommend ideal scheduling when you get in touch.
                 </p>
 
                 {/* Thermal callout */}
@@ -688,13 +688,13 @@ export default function DroneRoofSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Roof Inspection</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Roof Inspection</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data gathering is exceptionally swift. A standard domestic roof requires 20-30 minutes to assess. Mid-sized commercial structures take 1-2 hours. Even substantial industrial complexes can typically be finished within half a day.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Report turnaround hinges on your assessment scope. Standard photography reports are generally complete within 3-5 working days. Assessments demanding orthomosaic processing or comprehensive thermal analysis may require 5-7 days. We'll verify achievable timelines when quoting your project.
+                  Report turnaround hinges on your assessment scope. Standard photography reports are generally complete within 3-5 working days. Assessments demanding orthomosaic processing or comprehensive thermal analysis may require 5-7 days. We&apos;ll verify achievable timelines when quoting your project.
                 </p>
 
                 {/* Timeline Table */}
@@ -801,7 +801,7 @@ export default function DroneRoofSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Documentation standard</strong> – Ask for specimen reports to gauge the comprehensiveness you'll receive</span>
+                    <span className="text-text-primary"><strong>Documentation standard</strong> – Ask for specimen reports to gauge the comprehensiveness you&apos;ll receive</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -811,7 +811,7 @@ export default function DroneRoofSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we satisfy every criterion. We're CAA certified, comprehensively insured, and have performed roof assessments for facilities managers, chartered surveyors, and property owners throughout the UK.
+                  At Hire Drone Pilot, we satisfy every criterion. We&apos;re CAA certified, comprehensively insured, and have performed roof assessments for facilities managers, chartered surveyors, and property owners throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

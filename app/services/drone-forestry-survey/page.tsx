@@ -121,7 +121,7 @@ export default function DroneForestryPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneForestryPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function DroneForestryPage() {
                   Woodland Assessment <span className="text-gold">Pricing Guide</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Costs vary based on forest area and the outputs you require. Here's a breakdown to assist your planning:
+                  Costs vary based on forest area and the outputs you require. Here&apos;s a breakdown to assist your planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneForestryPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">50–70%</span> versus conventional ground-based inventory methods. Share your project specifications and we'll deliver a customised quotation within 24 hours.
+                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">50–70%</span> versus conventional ground-based inventory methods. Share your project specifications and we&apos;ll deliver a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -666,7 +666,7 @@ export default function DroneForestryPage() {
                   Field data acquisition is impressively efficient. We can assess 30-80 hectares daily depending on landscape and flying conditions. A standard 20-hectare woodland requires approximately half a day of airtime, plus preparation and control point positioning.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Processing and final delivery varies with analytical complexity. Standard canopy mapping and height data is generally complete within 5-7 working days. Comprehensive timber volume analysis with full reporting requires 7-10 working days. We'll establish achievable timeframes when quoting your project.
+                  Processing and final delivery varies with analytical complexity. Standard canopy mapping and height data is generally complete within 5-7 working days. Comprehensive timber volume analysis with full reporting requires 7-10 working days. We&apos;ll establish achievable timeframes when quoting your project.
                 </p>
 
                 {/* Timeline Table */}
@@ -760,7 +760,7 @@ export default function DroneForestryPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Woodland expertise</strong> – Request examples of forest assessments they've undertaken and testimonials from forestry clients</span>
+                    <span className="text-text-primary"><strong>Woodland expertise</strong> – Request examples of forest assessments they&apos;ve undertaken and testimonials from forestry clients</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">

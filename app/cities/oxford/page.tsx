@@ -219,7 +219,7 @@ export default function OxfordPage() {
                 both historic conservation and modern industrial requirements.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> heritage building expertise</span> and enterprise-grade equipment.
                 Every Oxford project we deliver meets the highest professional standards.
               </p>
@@ -561,7 +561,7 @@ export default function OxfordPage() {
               Drone Surveys for Oxford Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Oxford's key industries.
+              We deliver tailored drone survey solutions across Oxford&apos;s key industries.
             </p>
           </div>
 

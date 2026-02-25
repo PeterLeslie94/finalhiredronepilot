@@ -766,9 +766,9 @@ export default async function HomePage() {
           )}
 
           <div className="mt-10 text-center">
-            <a href="/blog" className="btn btn-primary btn-shimmer">
+            <Link href="/blog" className="btn btn-primary btn-shimmer">
               View All Articles
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -799,9 +799,9 @@ export default async function HomePage() {
                   </li>
                 ))}
               </ul>
-              <a href="/contact" className="btn btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 Find Your Local Team
-              </a>
+              </Link>
             </div>
             <div className="relative">
               <div className="bg-background-alt rounded-2xl p-4 border border-border">

@@ -214,12 +214,12 @@ export default function CoventryPage() {
                 Professional Kit. <span className="text-wipe-red">West Midlands Expertise.</span> <span className="underline-sweep">Automotive Heritage.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Coventry is the UK's automotive capital and a centre of manufacturing excellence.
+                Coventry is the UK&apos;s automotive capital and a centre of manufacturing excellence.
                 From JLR facilities to cutting-edge EV development, you need drone
                 drone survey operators who understand high-value, precision projects.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> automotive sector experience</span> and enterprise-grade equipment.
                 Every Coventry project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function CoventryPage() {
               Drone Surveys for Coventry Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Coventry's key industries.
+              We deliver tailored drone survey solutions across Coventry&apos;s key industries.
             </p>
           </div>
 

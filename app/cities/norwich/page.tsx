@@ -219,7 +219,7 @@ export default function NorwichPage() {
                 both precision farming and conservation requirements.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> agricultural expertise</span> and enterprise-grade equipment.
                 Every Norwich project we deliver meets the highest professional standards.
               </p>
@@ -561,7 +561,7 @@ export default function NorwichPage() {
               Drone Surveys for Norfolk Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Norfolk's key industries.
+              We deliver tailored drone survey solutions across Norfolk&apos;s key industries.
             </p>
           </div>
 

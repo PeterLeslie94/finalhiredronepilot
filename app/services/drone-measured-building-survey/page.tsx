@@ -121,7 +121,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -533,7 +533,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   Can UAVs Capture <span className="text-gold">Building Interiors</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Standard outdoor UAVs are engineered for exterior assessments only. Flying inside buildings presents considerable challenges—GPS doesn't function indoors, there's insufficient space for safe manoeuvring, and collision risk is elevated. Our drone measured building surveys concentrate on external facades, roofs, and building envelopes.
+                  Standard outdoor UAVs are engineered for exterior assessments only. Flying inside buildings presents considerable challenges—GPS doesn&apos;t function indoors, there&apos;s insufficient space for safe manoeuvring, and collision risk is elevated. Our drone measured building surveys concentrate on external facades, roofs, and building envelopes.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   For interior assessments, we provide complementary terrestrial laser scanning and handheld SLAM scanning services. These can be integrated with drone exterior surveys to produce thorough whole-building models. If you require internal floor plans alongside external elevations, we can furnish an integrated package.
@@ -659,7 +659,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Measured Building Survey</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Measured Building Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data gathering is exceptionally swift. A typical residential or small commercial building takes 1-2 hours to survey completely—encompassing all facades and roof zones. Larger or more complex buildings may necessitate half a day.
@@ -778,11 +778,11 @@ export default function DroneMeasuredBuildingSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Pertinent examples</strong> – Request case studies of comparable building surveys they've accomplished</span>
+                    <span className="text-text-primary"><strong>Pertinent examples</strong> – Request case studies of comparable building surveys they&apos;ve accomplished</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, comprehensively insured, and have delivered measured building surveys for architects, heritage consultants, and property professionals throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, comprehensively insured, and have delivered measured building surveys for architects, heritage consultants, and property professionals throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

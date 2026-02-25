@@ -121,7 +121,7 @@ export default function DroneSettingOutSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneSettingOutSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function DroneSettingOutSurveyPage() {
                   What Does an <span className="text-gold">Drone Setting Out Survey</span> Cost?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing depends on site size, number of points to set out, and required outputs. Here's a guide to help you budget:
+                  Pricing depends on site size, number of points to set out, and required outputs. Here&apos;s a guide to help you budget:
                 </p>
 
                 {/* Pricing Table */}
@@ -477,7 +477,7 @@ export default function DroneSettingOutSurveyPage() {
                   Our drone setting out surveys achieve positional accuracy of 10-20mm when using total station methods, meeting or exceeding construction tolerances for building corners, foundation lines, and infrastructure elements. This is the same accuracy as conventional setting out because we use the same survey-grade equipment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  The UAV verification component adds a visual accuracy check using RTK-enabled positioning. We capture each marked position from the air and confirm coordinates against design data. This dual approach catches any errors in real-time, ensuring what's on the ground matches what's in the CAD drawing before expensive construction begins.
+                  The UAV verification component adds a visual accuracy check using RTK-enabled positioning. We capture each marked position from the air and confirm coordinates against design data. This dual approach catches any errors in real-time, ensuring what&apos;s on the ground matches what&apos;s in the CAD drawing before expensive construction begins.
                 </p>
               </div>
 
@@ -544,7 +544,7 @@ export default function DroneSettingOutSurveyPage() {
                   How Does <span className="text-gold">Drone Technology</span> Improve Setting Out Accuracy?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV technology transforms setting out from a trust-based process into a verified one. Conventional methods rely entirely on the surveyor's field work being correct, with errors only discovered during construction. Our drone integration provides immediate visual confirmation that every point is in the right place.
+                  UAV technology transforms setting out from a trust-based process into a verified one. Conventional methods rely entirely on the surveyor&apos;s field work being correct, with errors only discovered during construction. Our drone integration provides immediate visual confirmation that every point is in the right place.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   After completing the ground-based setting out, we fly the site and capture high-resolution imagery with centimetre-accurate positioning. We then overlay your CAD design directly onto this imagery, creating a visual comparison between design intent and actual marker positions. Any discrepancies are immediately visible and can be corrected before work begins.
@@ -650,7 +650,7 @@ export default function DroneSettingOutSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Setting Out Survey</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Setting Out Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site setting out is typically completed in a single day. A straightforward project with 20-30 points takes 3-4 hours including drone verification. Larger sites with 50+ points may require a full day or multiple visits depending on complexity.
@@ -774,11 +774,11 @@ export default function DroneSettingOutSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Construction experience</strong> - Ask about similar projects they've completed in your sector</span>
+                    <span className="text-text-primary"><strong>Construction experience</strong> - Ask about similar projects they&apos;ve completed in your sector</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we tick every box. We're CAA certified, fully insured, and have delivered drone setting out surveys for housing developments, commercial buildings, and infrastructure projects throughout the UK.
+                  At Hire Drone Pilot, we tick every box. We&apos;re CAA certified, fully insured, and have delivered drone setting out surveys for housing developments, commercial buildings, and infrastructure projects throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

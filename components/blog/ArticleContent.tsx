@@ -31,21 +31,14 @@ export default function ArticleContent({ content, contentfulContent, keyTakeaway
 
   // Find the index of the first heading2 to insert Key Takeaways before it
   const firstH2Index = content.findIndex((block) => block.type === 'heading2');
-  let keyTakeawaysRendered = false;
 
   return (
     <div className="article-content">
       {content.map((block, index) => {
         // Render Key Takeaways before the first h2
         const shouldRenderTakeaways =
-          !keyTakeawaysRendered &&
-          keyTakeaways &&
-          keyTakeaways.length > 0 &&
+          Boolean(keyTakeaways && keyTakeaways.length > 0) &&
           index === firstH2Index;
-
-        if (shouldRenderTakeaways) {
-          keyTakeawaysRendered = true;
-        }
 
         const takeawaysElement = shouldRenderTakeaways ? (
           <KeyTakeaways key="takeaways" takeaways={keyTakeaways} />

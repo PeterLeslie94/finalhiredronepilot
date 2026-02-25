@@ -219,7 +219,7 @@ export default function LeicesterPage() {
                 drone survey operators who understand diverse, innovative projects.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> multi-sector experience</span> and enterprise-grade equipment.
                 Every Leicester project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function LeicesterPage() {
               Drone Surveys for Leicester Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Leicester's key industries.
+              We deliver tailored drone survey solutions across Leicester&apos;s key industries.
             </p>
           </div>
 

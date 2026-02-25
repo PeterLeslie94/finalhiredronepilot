@@ -3,6 +3,7 @@
 **Date:** 2026-02-17
 **Environment:** Next.js 16.1.1 (Turbopack), localhost:3000
 **Seed:** 7 pilots, 16 enquiries, 3 pilot applications (updated seed with CAA/insurance fields, SkyVista active invite, token logging)
+**Update:** 2026-02-25 — Pilot dashboard and token bid flows (`/drone-pilot`, `/bid/{token}`) are retired. Pilot invite flow is now `/invite/{token}` with direct client contact.
 
 ---
 
@@ -15,7 +16,7 @@ _Broken functionality_
 | 2 | C01 | Medium | Trailing slash 308 redirect causes duplicate POST requests to `/api/enquiries` | Submit the contact form. The POST to `/api/enquiries` gets a 308 redirect to `/api/enquiries/`, causing the request body to be re-sent. This results in the enquiry being submitted twice in some cases. Affects all POST API routes. | **FIXED** — All client-side fetches now use trailing slashes. |
 | 3 | A-AUTH01 | Medium | Dev magic link not shown on login page UI due to trailing slash redirect consuming the token | On `/login`, enter email and submit. The POST to `/api/auth/request-link` gets 308-redirected to `/api/auth/request-link/`. The first request returns the `magic_link_url` but the redirect fires a second request that doesn't return it, and the UI may display the second response. | **FIXED** — Dev link now shown consistently. |
 | 4 | P-DASH04 | Low | Expired invite cards do not show reduced opacity | On pilot dashboard (`/drone-pilot`), invite cards marked "Expired" render at full opacity instead of the expected 60% opacity. | **FIXED** — Re-tested in Run 2, expired cards render at 60% opacity. |
-| 5 | P-BID06 | Low | Token-based bid route does not check for existing dashboard bid | Navigate to `/bid/{token}` for an invite where the pilot already submitted a bid via the authenticated dashboard (`/drone-pilot/invites/[id]`). The token page still shows the bid form instead of recognising the existing bid. | NEW — Found in Run 2. |
+| 5 | P-BID06 | — | ~~Token-based bid route does not check for existing dashboard bid~~ | Legacy finding from pre-retirement flow (`/bid/{token}` + `/drone-pilot/invites/[id]`). Current flow is `/invite/{token}` direct contact. | **NOT APPLICABLE (2026-02-25)** — Removed from active go-live blockers. |
 
 ## SECURITY
 _Auth issues, data leaks, missing validation_
@@ -64,6 +65,7 @@ _Failed API calls_
 See git history for original results.
 
 ### Run 2 — After Bug Fixes + Seed Updates
+> Update (2026-02-25): Any `P-BID*` results and `/drone-pilot` references below are historical outcomes from pre-retirement flows and are not current release gates.
 
 #### Passed Tests (Run 2 — previously blocked, now tested)
 | Test ID | Description | Session |
@@ -148,8 +150,6 @@ See git history for original results.
 | A-APP04 | Log in as newly approved applicant (AerialWorks UK) — applicants don't have pilot accounts until manually created |
 | A-APP08 | Insurance expiry labels on applications — applicants don't have insurance data, N/A for applications |
 | A-PIL08 | Deactivated pilot excluded from invites — requires multi-step orchestration (deactivate, send invites, verify count) |
-| P-BID04 | Expired invite with no prior bid — all expired invites in seed had bids already submitted; partial test only |
-| P-BID07 | Submit bid via token-based form — skipped to avoid duplicate bid (SkyVista already bid via dashboard) |
 | P-APPLY06 | Non-square image rejection — requires specific non-square test image |
 | P-APPLY08 | Confirmation email — requires Resend API key |
 | X05–X10 | Email delivery, concurrent bids, session expiry — require external services or multi-session orchestration |
@@ -157,7 +157,8 @@ See git history for original results.
 ---
 
 ## Summary
-- **Total bugs found:** 5 (4 original + 1 new; 4 fixed, 1 open)
+- **Total active bugs found:** 4 (all fixed)
+- **Retired/obsolete findings:** 1 (`P-BID06`, legacy `/bid/{token}` flow removed)
 - **Total security issues:** 2 (1 info-only, 1 low)
 - **Total incomplete:** 1 (resolved — seed updated)
 - **Total UX issues:** 2 (1 resolved, 1 open)
@@ -165,10 +166,9 @@ See git history for original results.
 - **Total network errors:** 2 (both resolved)
 - **Tests passed:** 68 (35 Run 1 + 33 Run 2)
 - **Tests failed:** 0 (both Run 1 failures now fixed and passing)
-- **Tests not run:** 8 (environment-dependent)
+- **Tests not run:** 6 (environment-dependent, active scope)
 
 ## Remaining Priority Items
-1. **Low:** Fix token-based bid route (`/bid/{token}`) to check for existing bids submitted via the authenticated dashboard route (Bug #5)
-2. **Medium:** Ensure `CRON_SECRET` is set in production environment
-3. **Low:** Improve "Send Invites" user feedback (loading spinner or success toast)
-4. **Low:** Handle non-JSON API responses in `/admin/bids` when session is expired (Console Error #2)
+1. **Medium:** Ensure `CRON_SECRET` is set in production environment
+2. **Low:** Improve "Send Invites" user feedback (loading spinner or success toast)
+3. **Low:** Handle non-JSON API responses in `/admin/bids` when session is expired (Console Error #2)

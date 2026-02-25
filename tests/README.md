@@ -69,7 +69,7 @@ In non-production (`NODE_ENV !== 'production'`), the `/login` page returns a cli
 
 Each test has:
 
-- **ID**: Unique identifier (e.g. `C01`, `A-DASH03`, `P-BID06`)
+- **ID**: Unique identifier (e.g. `C01`, `A-DASH03`, `P-AUTH03`)
 - **Title**: Short description of the scenario
 - **Preconditions**: State required before the test
 - **Steps**: Numbered actions to perform

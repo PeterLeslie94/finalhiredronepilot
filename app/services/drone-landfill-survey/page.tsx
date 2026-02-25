@@ -121,7 +121,7 @@ export default function DroneLandfillSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneLandfillSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -253,10 +253,10 @@ export default function DroneLandfillSurveyPage() {
                   />
                 </div>
                 <h2 id="landfill-cost" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Investment for <span className="text-gold">Drone Landfill Surveys</span>?
+                  What&apos;s the Investment for <span className="text-gold">Drone Landfill Surveys</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Costs vary based on site dimensions and specifications. Here's a pricing overview to assist your planning:
+                  Costs vary based on site dimensions and specifications. Here&apos;s a pricing overview to assist your planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneLandfillSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach generally achieves <span className="text-gold font-semibold">50-70%</span> cost savings versus conventional ground surveys of landfill sites. Get in touch with your project specifics and we'll supply a customised quotation within 24 hours.
+                  Our UAV-based approach generally achieves <span className="text-gold font-semibold">50-70%</span> cost savings versus conventional ground surveys of landfill sites. Get in touch with your project specifics and we&apos;ll supply a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -648,7 +648,7 @@ export default function DroneLandfillSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of a <span className="text-gold">Drone Landfill Survey</span>?
+                  What&apos;s the Duration of a <span className="text-gold">Drone Landfill Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data acquisition is exceptionally rapid compared to conventional approaches. A standard landfill site containing 5-10 cells can be surveyed within 2-4 hours of flight time, plus setup and ground control point deployment. Larger sites may necessitate a complete day on-site.
@@ -776,7 +776,7 @@ export default function DroneLandfillSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we satisfy every criterion. We're CAA certified, comprehensively insured, and have completed landfill surveys for waste management operators and environmental consultants across Britain. We comprehend the regulatory demands and can supply data in the formats your permits necessitate.
+                  At Hire Drone Pilot, we satisfy every criterion. We&apos;re CAA certified, comprehensively insured, and have completed landfill surveys for waste management operators and environmental consultants across Britain. We comprehend the regulatory demands and can supply data in the formats your permits necessitate.
                 </p>
 
                 {/* CTA after provider section */}

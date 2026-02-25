@@ -121,7 +121,7 @@ export default function DroneAgriculturalSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneAgriculturalSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -677,7 +677,7 @@ export default function DroneAgriculturalSurveyPage() {
                   Field data collection proceeds surprisingly quickly. We can cover 100-200 hectares daily based on resolution needs and atmospheric conditions. A standard 50-hectare mixed property requires merely 2-3 hours of flying, alongside preparation and ground marker positioning.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Data processing and handover timing depends on your chosen outputs. Standard packages typically arrive within 5-7 business days. For urgent growing-season choices, we provide accelerated 48-72 hour completion for an added fee. We'll establish achievable deadlines when preparing your quotation.
+                  Data processing and handover timing depends on your chosen outputs. Standard packages typically arrive within 5-7 business days. For urgent growing-season choices, we provide accelerated 48-72 hour completion for an added fee. We&apos;ll establish achievable deadlines when preparing your quotation.
                 </p>
 
                 {/* Timeline Table */}

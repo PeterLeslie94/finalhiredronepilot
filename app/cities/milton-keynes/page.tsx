@@ -214,12 +214,12 @@ export default function MiltonKeynesPage() {
                 Professional Kit. <span className="text-wipe-red">MK Expertise.</span> <span className="underline-sweep">Logistics & Development Specialists.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Milton Keynes is one of the UK's fastest-growing cities, home to major logistics
+                Milton Keynes is one of the UK&apos;s fastest-growing cities, home to major logistics
                 hubs and continuous new development. You need drone survey operators who understand
-                the scale and pace of MK's growth.
+                the scale and pace of MK&apos;s growth.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> logistics sector experience</span> and enterprise-grade equipment.
                 Every Milton Keynes project we deliver meets the highest professional standards.
               </p>
@@ -561,7 +561,7 @@ export default function MiltonKeynesPage() {
               Drone Surveys for MK Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Milton Keynes' key industries.
+              We deliver tailored drone survey solutions across Milton Keynes&apos; key industries.
             </p>
           </div>
 

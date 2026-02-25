@@ -122,7 +122,7 @@ export default function DroneRailwaySurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneRailwaySurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -254,10 +254,10 @@ export default function DroneRailwaySurveyPage() {
                   />
                 </div>
                 <h2 id="railway-cost" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Investment for an <span className="text-gold">Drone Railway Survey</span>?
+                  What&apos;s the Investment for an <span className="text-gold">Drone Railway Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing depends on corridor length, deliverable requirements, and site complexity. Here's a guide to assist with your budget planning:
+                  Pricing depends on corridor length, deliverable requirements, and site complexity. Here&apos;s a guide to assist with your budget planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -658,7 +658,7 @@ export default function DroneRailwaySurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Railway Survey</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Railway Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data capture is remarkably quick. We typically survey 5-15km of corridor per day depending on complexity, vegetation, and the number of structures requiring detailed capture. A 10km branch line survey usually takes just one day of field work.
@@ -786,7 +786,7 @@ export default function DroneRailwaySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we bring engineering expertise combined with advanced UAV technology to deliver rail surveys that meet the highest professional standards. We're CAA certified, fully insured, and experienced in working with Network Rail, TOCs, and rail engineering consultancies.
+                  At Hire Drone Pilot, we bring engineering expertise combined with advanced UAV technology to deliver rail surveys that meet the highest professional standards. We&apos;re CAA certified, fully insured, and experienced in working with Network Rail, TOCs, and rail engineering consultancies.
                 </p>
 
                 {/* CTA after provider section */}

@@ -121,7 +121,7 @@ export default function DroneConstructionMonitoringPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneConstructionMonitoringPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function DroneConstructionMonitoringPage() {
                   What Does <span className="text-gold">Drone Construction Monitoring</span> Cost?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing varies based on visit frequency and project duration. Here's a guide to assist with budgeting:
+                  Pricing varies based on visit frequency and project duration. Here&apos;s a guide to assist with budgeting:
                 </p>
 
                 {/* Pricing Table */}
@@ -328,7 +328,7 @@ export default function DroneConstructionMonitoringPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Longer-term monitoring packages offer substantial savings—up to <span className="text-gold font-semibold">30% discount</span> on per-visit rates. Get in touch with your project timeline and we'll provide a customised quote within 24 hours.
+                  Longer-term monitoring packages offer substantial savings—up to <span className="text-gold font-semibold">30% discount</span> on per-visit rates. Get in touch with your project timeline and we&apos;ll provide a customised quote within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -368,7 +368,7 @@ export default function DroneConstructionMonitoringPage() {
                   Conventional progress photography captures ground-level images from fixed viewpoints—useful but limited. You see parts of the site, but never the complete picture. Critical progress in areas hidden from view goes undocumented.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone construction monitoring captures your entire site from above, producing georeferenced orthomosaics that show exactly what's happening across every square metre. You can measure areas, compare phases precisely, and create accurate 3D models that integrate with your BIM workflows.
+                  Drone construction monitoring captures your entire site from above, producing georeferenced orthomosaics that show exactly what&apos;s happening across every square metre. You can measure areas, compare phases precisely, and create accurate 3D models that integrate with your BIM workflows.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -555,7 +555,7 @@ export default function DroneConstructionMonitoringPage() {
                   The optimal monitoring frequency depends on your project pace, stakeholder requirements, and budget. We assist clients in finding the right balance between comprehensive documentation and cost-effectiveness.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Here's our guidance based on project characteristics:
+                  Here&apos;s our guidance based on project characteristics:
                 </p>
 
                 {/* Frequency Recommendations */}
@@ -602,7 +602,7 @@ export default function DroneConstructionMonitoringPage() {
                 </div>
 
                 <p className="text-text-secondary leading-relaxed">
-                  Many clients vary their monitoring frequency throughout a project—weekly during groundworks and structural phases, then fortnightly during fit-out. We're flexible and can adjust your schedule as the project evolves.
+                  Many clients vary their monitoring frequency throughout a project—weekly during groundworks and structural phases, then fortnightly during fit-out. We&apos;re flexible and can adjust your schedule as the project evolves.
                 </p>
               </div>
 
@@ -713,7 +713,7 @@ export default function DroneConstructionMonitoringPage() {
                   />
                 </div>
                 <h2 id="monitoring-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of <span className="text-gold">Drone Construction Monitoring</span>?
+                  What&apos;s the Duration of <span className="text-gold">Drone Construction Monitoring</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Each monitoring visit is swift and minimally disruptive. For a typical site of 2-5 hectares, expect 1-2 hours on site for flight operations. Larger sites or more complex requirements take proportionally longer.
@@ -841,7 +841,7 @@ export default function DroneConstructionMonitoringPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, fully insured, CSCS certified, and have delivered monitoring projects for residential developers, commercial contractors, and infrastructure clients throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, fully insured, CSCS certified, and have delivered monitoring projects for residential developers, commercial contractors, and infrastructure clients throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

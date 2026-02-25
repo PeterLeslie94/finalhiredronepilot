@@ -219,7 +219,7 @@ export default function SheffieldPage() {
                 campuses, you need drone operators who understand the region.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> industrial survey expertise</span> and enterprise-grade equipment.
                 Every Sheffield project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function SheffieldPage() {
               Drone Surveys for Sheffield Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Sheffield's key industries.
+              We deliver tailored drone survey solutions across Sheffield&apos;s key industries.
             </p>
           </div>
 

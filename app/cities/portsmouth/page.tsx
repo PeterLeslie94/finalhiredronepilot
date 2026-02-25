@@ -219,7 +219,7 @@ export default function PortsmouthPage() {
                 You need drone operators who understand security protocols and sensitive environments.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> defence sector experience</span> and enterprise-grade equipment.
                 Every Portsmouth project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function PortsmouthPage() {
               Drone Surveys for Portsmouth Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Portsmouth's key industries.
+              We deliver tailored drone survey solutions across Portsmouth&apos;s key industries.
             </p>
           </div>
 

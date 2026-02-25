@@ -214,12 +214,12 @@ export default function AberdeenPage() {
                 Professional Kit. <span className="text-wipe-red">Scottish Expertise.</span> <span className="underline-sweep">Energy Sector Specialists.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Flying drones in Aberdeen requires specialist knowledge. The city's busy helicopter
+                Flying drones in Aberdeen requires specialist knowledge. The city&apos;s busy helicopter
                 traffic, proximity to Aberdeen Airport, and complex energy sector requirements
                 mean you need drone operators who understand the unique challenges.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                Based in nearby <span className="text-teal">Dundee</span>, we're perfectly positioned
+                Based in nearby <span className="text-teal">Dundee</span>, we&apos;re perfectly positioned
                 to serve Aberdeen with <span className="text-teal">rapid response times</span> and
                 deep energy sector knowledge. Every Aberdeen project we deliver is fully compliant and professional.
               </p>
@@ -328,7 +328,7 @@ export default function AberdeenPage() {
                   infrastructure, we have the expertise and equipment to deliver.
                 </p>
                 <p>
-                  Based at our headquarters in Dundee, we're ideally positioned to serve
+                  Based at our headquarters in Dundee, we&apos;re ideally positioned to serve
                   Aberdeen with rapid response times. Our team has completed numerous
                   projects for the oil and gas industry, as well as the growing renewables sector.
                 </p>
@@ -561,7 +561,7 @@ export default function AberdeenPage() {
               Drone Surveys for Aberdeen Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Aberdeen's key industries.
+              We deliver tailored drone survey solutions across Aberdeen&apos;s key industries.
             </p>
           </div>
 
@@ -765,7 +765,7 @@ export default function AberdeenPage() {
                 </h3>
                 <p className="text-gold text-sm font-medium mb-4">CAA Approved</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Fully approved for commercial drone operations in Aberdeen's
+                  Fully approved for commercial drone operations in Aberdeen&apos;s
                   airspace with all necessary permissions.
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold/20">

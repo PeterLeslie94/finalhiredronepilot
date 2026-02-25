@@ -214,12 +214,12 @@ export default function LondonPage() {
                 Professional Kit. <span className="text-wipe-red">London Expertise.</span> <span className="underline-sweep">Complex Airspace Handled.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Flying drones in London isn't straightforward. The capital's controlled airspace,
+                Flying drones in London isn&apos;t straightforward. The capital&apos;s controlled airspace,
                 busy flight paths, and complex permissions requirements mean you need drone operators
-                who know what they're doing.
+                who know what they&apos;re doing.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> NATS coordination expertise</span> and enterprise-grade equipment.
                 Every London project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function LondonPage() {
               Drone Surveys for London Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across London's key industries.
+              We deliver tailored drone survey solutions across London&apos;s key industries.
             </p>
           </div>
 
@@ -765,7 +765,7 @@ export default function LondonPage() {
                 </h3>
                 <p className="text-gold text-sm font-medium mb-4">CAA Approved</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Fully approved for commercial drone operations in London's
+                  Fully approved for commercial drone operations in London&apos;s
                   controlled airspace with NATS coordination.
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold/20">

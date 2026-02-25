@@ -121,7 +121,7 @@ export default function LiDARMappingPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function LiDARMappingPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function LiDARMappingPage() {
                   What Does an <span className="text-gold">Drone LiDAR Survey</span> Cost?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing varies based on your project scope. Here's a guide to assist with budgeting:
+                  Pricing varies based on your project scope. Here&apos;s a guide to assist with budgeting:
                 </p>
 
                 {/* Pricing Table */}
@@ -328,7 +328,7 @@ export default function LiDARMappingPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach typically saves <span className="text-gold font-semibold">40–60%</span> compared to conventional ground surveys. Get in touch with your project details and we'll provide a customised quote within 24 hours.
+                  Our UAV-based approach typically saves <span className="text-gold font-semibold">40–60%</span> compared to conventional ground surveys. Get in touch with your project details and we&apos;ll provide a customised quote within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -365,7 +365,7 @@ export default function LiDARMappingPage() {
                   How Does <span className="text-gold">Drone LiDAR</span> Compare to Photogrammetry?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Both technologies generate 3D models, but they operate in fundamentally different ways. Photogrammetry uses overlapping photographs to calculate surface positions—it's superb for capturing visual detail and performs brilliantly on open sites, construction projects, and buildings.
+                  Both technologies generate 3D models, but they operate in fundamentally different ways. Photogrammetry uses overlapping photographs to calculate surface positions—it&apos;s superb for capturing visual detail and performs brilliantly on open sites, construction projects, and buildings.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   LiDAR, however, emits laser pulses that penetrate gaps in vegetation to reach the ground below. This makes it indispensable for forestry assessments, flood modelling, and archaeological prospection where you need to see through tree canopy. Our LiDAR systems also perform in low-light conditions and on surfaces with poor visual contrast where photogrammetry struggles.
@@ -552,7 +552,7 @@ export default function LiDARMappingPage() {
                   Can <span className="text-gold">Drone LiDAR Surveys</span> Penetrate Tree Canopy?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Yes—this is LiDAR's unique strength. Our systems emit thousands of laser pulses per second, and while some strike leaves and branches, others find gaps in the canopy and continue through to the ground below. We capture multiple returns from each pulse, enabling us to map both the canopy surface and the true terrain beneath.
+                  Yes—this is LiDAR&apos;s unique strength. Our systems emit thousands of laser pulses per second, and while some strike leaves and branches, others find gaps in the canopy and continue through to the ground below. We capture multiple returns from each pulse, enabling us to map both the canopy surface and the true terrain beneath.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   In typical UK woodland, we achieve ground point densities of 5-20 points per square metre even under full leaf cover. During leaf-off conditions in winter, penetration rates improve considerably. This makes UAV LiDAR the only viable technology for producing accurate ground models in vegetated areas—essential for forestry, flood modelling, and archaeological applications.
@@ -655,13 +655,13 @@ export default function LiDARMappingPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone LiDAR Survey</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone LiDAR Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data capture is remarkably swift. We can survey 50-100 hectares per day depending on terrain and flight conditions. A typical 10-hectare woodland site takes just 2-3 hours of flight time, plus setup and ground control establishment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Processing and delivery varies based on project complexity and your required outputs. Standard deliverables are typically ready within 5-7 working days. For urgent projects, we offer expedited processing with 48-72 hour turnaround available at additional cost. We'll confirm realistic timescales when we quote your project.
+                  Processing and delivery varies based on project complexity and your required outputs. Standard deliverables are typically ready within 5-7 working days. For urgent projects, we offer expedited processing with 48-72 hour turnaround available at additional cost. We&apos;ll confirm realistic timescales when we quote your project.
                 </p>
 
                 {/* Timeline Table */}
@@ -779,11 +779,11 @@ export default function LiDARMappingPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Relevant case studies</strong> – Request examples of similar projects they've completed</span>
+                    <span className="text-text-primary"><strong>Relevant case studies</strong> – Request examples of similar projects they&apos;ve completed</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, fully insured, and have delivered LiDAR projects across forestry, archaeology, infrastructure, and environmental sectors throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, fully insured, and have delivered LiDAR projects across forestry, archaeology, infrastructure, and environmental sectors throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

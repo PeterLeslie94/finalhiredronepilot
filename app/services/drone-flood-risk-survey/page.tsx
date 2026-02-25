@@ -121,7 +121,7 @@ export default function DroneFloodRiskSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneFloodRiskSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function DroneFloodRiskSurveyPage() {
                   Flood Risk Assessment <span className="text-gold">Pricing Guide</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Costs vary based on catchment size, site complexity, and specified outputs. Here's a breakdown to assist your planning:
+                  Costs vary based on catchment size, site complexity, and specified outputs. Here&apos;s a breakdown to assist your planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneFloodRiskSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">40–60%</span> versus conventional ground surveys of flood-prone areas. Share your project specifications and we'll deliver a customised quotation within 24 hours.
+                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">40–60%</span> versus conventional ground surveys of flood-prone areas. Share your project specifications and we&apos;ll deliver a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -551,7 +551,7 @@ export default function DroneFloodRiskSurveyPage() {
                   Our outputs integrate directly with Environment Agency flood mapping data and modelling software. We supply data in standard formats (GeoTIFF, ASCII grid, LAS/LAZ) that hydraulic engineers can import straight into their flood models. We also furnish accuracy statements and methodology reports necessary for regulatory submissions.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Whether you're undertaking a strategic flood risk assessment, site-specific FRA, or furnishing evidence for a planning appeal, our data delivers the foundation for defensible conclusions regarding flood risk.
+                  Whether you&apos;re undertaking a strategic flood risk assessment, site-specific FRA, or furnishing evidence for a planning appeal, our data delivers the foundation for defensible conclusions regarding flood risk.
                 </p>
               </div>
 

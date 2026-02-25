@@ -214,12 +214,12 @@ export default function NewcastlePage() {
                 Professional Kit. <span className="text-wipe-red">Newcastle Expertise.</span> <span className="underline-sweep">Offshore Projects Handled.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Newcastle is at the heart of the UK's energy revolution. From offshore wind farms
+                Newcastle is at the heart of the UK&apos;s energy revolution. From offshore wind farms
                 to major urban regeneration, North Sea infrastructure to historic quaysides,
                 you need drone operators who understand the region.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> offshore and energy expertise</span> and enterprise-grade equipment.
                 Every Newcastle project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function NewcastlePage() {
               Drone Surveys for Newcastle Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Newcastle's key industries.
+              We deliver tailored drone survey solutions across Newcastle&apos;s key industries.
             </p>
           </div>
 

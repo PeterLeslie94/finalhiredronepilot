@@ -122,7 +122,7 @@ export default function DroneElevationSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneElevationSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -768,7 +768,7 @@ export default function DroneElevationSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Relevant case studies</strong> – Request examples of similar building surveys they've completed</span>
+                    <span className="text-text-primary"><strong>Relevant case studies</strong> – Request examples of similar building surveys they&apos;ve completed</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
@@ -798,7 +798,7 @@ export default function DroneElevationSurveyPage() {
                   Is <span className="text-gold">Drone Elevation Survey</span> More Affordable Than Conventional Methods?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  In almost every case, significantly more affordable. Conventional elevation surveys require physical access to the building face—typically via scaffolding, cherry picker, or rope access. For a three-storey building, scaffolding alone can cost £2,000-5,000 before any survey work begins. Add the surveyor's time, traffic management, and building occupation disruption, and costs escalate rapidly.
+                  In almost every case, significantly more affordable. Conventional elevation surveys require physical access to the building face—typically via scaffolding, cherry picker, or rope access. For a three-storey building, scaffolding alone can cost £2,000-5,000 before any survey work begins. Add the surveyor&apos;s time, traffic management, and building occupation disruption, and costs escalate rapidly.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   Our UAV elevation surveys eliminate these access costs entirely. We capture the same quality imagery—often better—without touching the building. The total cost typically represents a <span className="text-gold font-semibold">60-80% saving</span> compared to conventional scaffolding-based surveys, while delivering faster turnaround and causing minimal site disruption. For multi-storey or difficult-access buildings, the savings are even more significant.

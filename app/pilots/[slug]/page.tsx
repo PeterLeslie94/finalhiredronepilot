@@ -189,7 +189,7 @@ export default async function PilotProfilePage({
               <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">Get a Quote</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Tell us about your project and we'll connect you with {pilot.name} and other qualified pilots.
+                  Tell us about your project and we&apos;ll connect you with {pilot.name} and other qualified pilots.
                 </p>
                 <Link
                   href="/contact"

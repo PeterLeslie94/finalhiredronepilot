@@ -147,7 +147,7 @@ export default function AreaMeasurementForm() {
       try {
         // Dynamic import of Leaflet
         const L = await import('leaflet');
-        // @ts-ignore - CSS import
+        // @ts-expect-error - CSS import is handled by bundler at runtime
         await import('leaflet/dist/leaflet.css');
 
         // Fix default marker icons

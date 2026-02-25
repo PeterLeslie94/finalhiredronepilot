@@ -219,7 +219,7 @@ export default function ManchesterPage() {
                 you need drone operators who understand the region.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> local expertise</span> and enterprise-grade equipment.
                 Every Manchester project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function ManchesterPage() {
               Drone Surveys for Manchester Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Manchester's key industries.
+              We deliver tailored drone survey solutions across Manchester&apos;s key industries.
             </p>
           </div>
 

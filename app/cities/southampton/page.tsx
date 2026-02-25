@@ -214,12 +214,12 @@ export default function SouthamptonPage() {
                 Professional Kit. <span className="text-wipe-red">Maritime Expertise.</span> <span className="underline-sweep">Port Operations Experience.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Southampton is one of the UK's busiest ports and a major cruise hub, with unique
+                Southampton is one of the UK&apos;s busiest ports and a major cruise hub, with unique
                 survey requirements for maritime facilities and waterfront developments.
                 You need drone operators who understand these demands.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> maritime sector experience</span> and enterprise-grade equipment.
                 Every Southampton project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function SouthamptonPage() {
               Drone Surveys for Southampton Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Southampton's key industries.
+              We deliver tailored drone survey solutions across Southampton&apos;s key industries.
             </p>
           </div>
 

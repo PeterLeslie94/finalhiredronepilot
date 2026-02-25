@@ -214,12 +214,12 @@ export default function LeedsPage() {
                 Professional Kit. <span className="text-wipe-red">Leeds Expertise.</span> <span className="underline-sweep">Commercial Projects Handled.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Leeds is the UK's fastest-growing financial centre outside London. From the
+                Leeds is the UK&apos;s fastest-growing financial centre outside London. From the
                 thriving legal quarter to South Bank regeneration, major property developments
                 to commercial due diligence, you need drone operators who understand the region.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> commercial property expertise</span> and enterprise-grade equipment.
                 Every Leeds project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function LeedsPage() {
               Drone Surveys for Leeds Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Leeds' key industries.
+              We deliver tailored drone survey solutions across Leeds&apos; key industries.
             </p>
           </div>
 

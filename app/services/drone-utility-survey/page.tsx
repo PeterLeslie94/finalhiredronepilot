@@ -122,7 +122,7 @@ export default function DroneUtilitySurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneUtilitySurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -254,10 +254,10 @@ export default function DroneUtilitySurveyPage() {
                   />
                 </div>
                 <h2 id="utility-cost" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Investment for a <span className="text-gold">Drone Utility Survey</span>?
+                  What&apos;s the Investment for a <span className="text-gold">Drone Utility Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing depends on corridor length, asset complexity, and required outputs. Here's a guide to help you budget:
+                  Pricing depends on corridor length, asset complexity, and required outputs. Here&apos;s a guide to help you budget:
                 </p>
 
                 {/* Pricing Table */}
@@ -323,7 +323,7 @@ export default function DroneUtilitySurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach typically saves <span className="text-gold font-semibold">50–70%</span> compared to conventional helicopter surveys or manned inspections. Contact us with your project details and we'll provide a tailored quote within 24 hours.
+                  Our UAV-based approach typically saves <span className="text-gold font-semibold">50–70%</span> compared to conventional helicopter surveys or manned inspections. Contact us with your project details and we&apos;ll provide a tailored quote within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -649,7 +649,7 @@ export default function DroneUtilitySurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of a <span className="text-gold">Drone Utility Survey</span>?
+                  What&apos;s the Duration of a <span className="text-gold">Drone Utility Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Our UAVs can survey 20-40 km of utility corridor per day depending on terrain and asset density. A typical 15 km distribution line survey can be completed in a single day of flying, with minimal disruption to your operations.
@@ -777,7 +777,7 @@ export default function DroneUtilitySurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we tick every box. We're CAA certified, fully insured, and have considerable expertise working with utility companies and infrastructure operators throughout the UK.
+                  At Hire Drone Pilot, we tick every box. We&apos;re CAA certified, fully insured, and have considerable expertise working with utility companies and infrastructure operators throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

@@ -219,7 +219,7 @@ export default function NottinghamPage() {
                 drone survey operators who understand diverse, complex projects.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> multi-sector experience</span> and enterprise-grade equipment.
                 Every Nottingham project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function NottinghamPage() {
               Drone Surveys for Nottingham Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Nottingham's key industries.
+              We deliver tailored drone survey solutions across Nottingham&apos;s key industries.
             </p>
           </div>
 

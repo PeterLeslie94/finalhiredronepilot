@@ -121,7 +121,7 @@ export default function DroneTopographicSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneTopographicSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -328,7 +328,7 @@ export default function DroneTopographicSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV methodology typically delivers savings of <span className="text-gold font-semibold">40–60%</span> versus conventional ground surveys. Share your project specifications and we'll send a bespoke quotation within 24 hours.
+                  Our UAV methodology typically delivers savings of <span className="text-gold font-semibold">40–60%</span> versus conventional ground surveys. Share your project specifications and we&apos;ll send a bespoke quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -695,7 +695,7 @@ export default function DroneTopographicSurveyPage() {
                   Field data collection is exceptionally quick. We can cover 20-50 hectares daily depending on terrain and weather conditions. A standard 5-hectare development plot requires just 1-2 hours of flight time, plus equipment setup and control point establishment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Processing and delivery timelines vary with project complexity and your output requirements. Standard deliverables are typically completed within 5-7 working days. For time-critical schemes, we provide accelerated processing with 48-72 hour delivery available for an additional fee. We'll outline realistic schedules when quoting your project.
+                  Processing and delivery timelines vary with project complexity and your output requirements. Standard deliverables are typically completed within 5-7 working days. For time-critical schemes, we provide accelerated processing with 48-72 hour delivery available for an additional fee. We&apos;ll outline realistic schedules when quoting your project.
                 </p>
 
                 {/* Timeline Table */}

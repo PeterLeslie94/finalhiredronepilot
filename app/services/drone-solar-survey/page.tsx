@@ -121,7 +121,7 @@ export default function DroneSolarFarmSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneSolarFarmSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -253,10 +253,10 @@ export default function DroneSolarFarmSurveyPage() {
                   />
                 </div>
                 <h2 id="solar-cost" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Investment for <span className="text-gold">Drone Solar Farm Surveys</span>?
+                  What&apos;s the Investment for <span className="text-gold">Drone Solar Farm Surveys</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Costs vary based on your site capacity and inspection specifications. Here's a pricing overview to assist your planning:
+                  Costs vary based on your site capacity and inspection specifications. Here&apos;s a pricing overview to assist your planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneSolarFarmSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach generally achieves <span className="text-gold font-semibold">60-80%</span> cost savings versus manual panel-by-panel inspection. Get in touch with your site specifics and we'll supply a customised quotation within 24 hours.
+                  Our UAV-based approach generally achieves <span className="text-gold font-semibold">60-80%</span> cost savings versus manual panel-by-panel inspection. Get in touch with your site specifics and we&apos;ll supply a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -359,7 +359,7 @@ export default function DroneSolarFarmSurveyPage() {
                   How Do <span className="text-gold">Drone Solar Farm Surveys</span> Compare to Manual Inspection?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Conventional manual inspection demands that technicians physically access each panel, examining for visible damage and utilising handheld thermal cameras. This method proves slow, labour-intensive, and can overlook faults that aren't apparent at panel level.
+                  Conventional manual inspection demands that technicians physically access each panel, examining for visible damage and utilising handheld thermal cameras. This method proves slow, labour-intensive, and can overlook faults that aren&apos;t apparent at panel level.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Our UAV solar farm survey captures thermal and visual data from an optimal drone vantage point, examining thousands of panels per hour. The uniform viewing angle and automated flight paths guarantee no panel is missed, whilst our calibrated thermal sensors detect anomalies that handheld devices simply cannot match regarding coverage and consistency.
@@ -692,7 +692,7 @@ export default function DroneSolarFarmSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of a <span className="text-gold">Drone Solar Farm Survey</span>?
+                  What&apos;s the Duration of a <span className="text-gold">Drone Solar Farm Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data acquisition is remarkably efficient. We can survey 50-100MW daily depending on site layout and weather conditions. A typical 20MW solar farm requires just 3-4 hours of flight time, capturing both thermal and RGB imagery of each panel.
@@ -820,7 +820,7 @@ export default function DroneSolarFarmSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we satisfy every criterion. We're CAA certified, comprehensively insured, and have completed solar farm inspections for asset owners, investors, and O&M providers throughout Britain.
+                  At Hire Drone Pilot, we satisfy every criterion. We&apos;re CAA certified, comprehensively insured, and have completed solar farm inspections for asset owners, investors, and O&M providers throughout Britain.
                 </p>
 
                 {/* CTA after provider section */}

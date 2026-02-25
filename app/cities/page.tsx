@@ -259,7 +259,7 @@ export default function AreasPage() {
               Need a Drone Survey in Your Area?
             </h2>
             <p className="text-text-secondary text-lg mb-8">
-              Get in touch today for a free, no-obligation quote. We'll confirm coverage and provide competitive pricing within 5 mins on average.
+              Get in touch today for a free, no-obligation quote. We&apos;ll confirm coverage and provide competitive pricing within 5 mins on average.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <QuoteButton className="btn btn-primary btn-shimmer">

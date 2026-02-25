@@ -214,12 +214,12 @@ export default function BirminghamPage() {
                 Professional Kit. <span className="text-wipe-red">West Midlands Expertise.</span> <span className="underline-sweep">Major Projects Delivered.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Birmingham is at the heart of the UK's biggest infrastructure projects.
+                Birmingham is at the heart of the UK&apos;s biggest infrastructure projects.
                 From HS2 to major regeneration schemes, you need drone survey operators
                 who understand complex, high-profile projects.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> major project experience</span> and enterprise-grade equipment.
                 Every Birmingham project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function BirminghamPage() {
               Drone Surveys for Birmingham Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Birmingham's key industries.
+              We deliver tailored drone survey solutions across Birmingham&apos;s key industries.
             </p>
           </div>
 

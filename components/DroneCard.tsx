@@ -36,6 +36,8 @@ export default function DroneCard({ drone, isActive = false, onExpand }: DroneCa
   // Auto-close when card becomes inactive (carousel moved)
   useEffect(() => {
     if (!isActive && isExpanded) {
+      // Keep local state aligned with the active card state from the carousel.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsExpanded(false);
       onExpand?.(false);
     }

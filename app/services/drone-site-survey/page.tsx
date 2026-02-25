@@ -99,7 +99,7 @@ export default function DroneSiteSurveyPage() {
                   A UAV site survey delivers a thorough drone assessment of your development site, documenting everything from perimeters and access routes to existing features and ground conditions. Unlike conventional ground surveys that can require days to finish, our drone approach captures the entire site in hours—providing the complete picture you need for planning, design, and due diligence.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we combine high-resolution drone photography with precision photogrammetry to produce detailed orthomosaic maps, 3D models, and CAD-ready site plans. Whether you're acquiring a site, preparing a planning application, or briefing your design team, our UAV site surveys provide you with accurate, up-to-date information about precisely what exists on the ground.
+                  At Hire Drone Pilot, we combine high-resolution drone photography with precision photogrammetry to produce detailed orthomosaic maps, 3D models, and CAD-ready site plans. Whether you&apos;re acquiring a site, preparing a planning application, or briefing your design team, our UAV site surveys provide you with accurate, up-to-date information about precisely what exists on the ground.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -122,7 +122,7 @@ export default function DroneSiteSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneSiteSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -257,7 +257,7 @@ export default function DroneSiteSurveyPage() {
                   <span className="text-gold">Drone Site Survey</span> Pricing Guide
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing varies based on your site dimensions and required outputs. Here's a reference to assist your budgeting:
+                  Pricing varies based on your site dimensions and required outputs. Here&apos;s a reference to assist your budgeting:
                 </p>
 
                 {/* Pricing Table */}
@@ -329,7 +329,7 @@ export default function DroneSiteSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV site surveys typically cost <span className="text-gold font-semibold">50-70% less</span> than conventional ground surveys whilst providing more thorough data. Share your site details with us and we'll supply a bespoke quotation within 24 hours.
+                  Our UAV site surveys typically cost <span className="text-gold font-semibold">50-70% less</span> than conventional ground surveys whilst providing more thorough data. Share your site details with us and we&apos;ll supply a bespoke quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -569,7 +569,7 @@ export default function DroneSiteSurveyPage() {
                   What Elements Can a <span className="text-gold">Drone Site Survey</span> Document?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A thorough UAV site survey documents everything visible from above—and that's typically more than you'd anticipate. Our surveys record the complete picture of your site's existing conditions:
+                  A thorough UAV site survey documents everything visible from above—and that&apos;s typically more than you&apos;d anticipate. Our surveys record the complete picture of your site&apos;s existing conditions:
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
@@ -827,11 +827,11 @@ export default function DroneSiteSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Relevant portfolio</strong> – Examples of comparable site survey projects they've completed</span>
+                    <span className="text-text-primary"><strong>Relevant portfolio</strong> – Examples of comparable site survey projects they&apos;ve completed</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA authorised, comprehensively insured, and have delivered site surveys for developers, architects, and planning consultants throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA authorised, comprehensively insured, and have delivered site surveys for developers, architects, and planning consultants throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

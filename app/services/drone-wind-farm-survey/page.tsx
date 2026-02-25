@@ -121,7 +121,7 @@ export default function DroneWindFarmSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneWindFarmSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -253,10 +253,10 @@ export default function DroneWindFarmSurveyPage() {
                   />
                 </div>
                 <h2 id="wind-farm-cost" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Investment for a <span className="text-gold">Drone Wind Farm Survey</span>?
+                  What&apos;s the Investment for a <span className="text-gold">Drone Wind Farm Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Pricing depends on the number of turbines and scope of inspection. Here's a guide to assist your budgeting:
+                  Pricing depends on the number of turbines and scope of inspection. Here&apos;s a guide to assist your budgeting:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneWindFarmSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach typically saves <span className="text-gold font-semibold">60-80%</span> compared to conventional rope access inspection. Contact us with your project details and we'll provide a bespoke quote within 24 hours.
+                  Our UAV-based approach typically saves <span className="text-gold font-semibold">60-80%</span> compared to conventional rope access inspection. Contact us with your project details and we&apos;ll provide a bespoke quote within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -362,7 +362,7 @@ export default function DroneWindFarmSurveyPage() {
                   Conventional rope access inspection requires trained technicians to abseil down turbine blades—a time-consuming, weather-dependent process that typically requires the turbine to be shut down. A single turbine inspection can take an entire day and involves significant health and safety considerations.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV wind farm survey captures equivalent or superior imagery in a fraction of the time. Our drone platforms can inspect a turbine in 20-30 minutes, often without requiring shutdown. This means less production loss, lower costs, and faster turnaround on inspection reports—critical advantages for maximising your wind farm's operational efficiency.
+                  UAV wind farm survey captures equivalent or superior imagery in a fraction of the time. Our drone platforms can inspect a turbine in 20-30 minutes, often without requiring shutdown. This means less production loss, lower costs, and faster turnaround on inspection reports—critical advantages for maximising your wind farm&apos;s operational efficiency.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -474,7 +474,7 @@ export default function DroneWindFarmSurveyPage() {
                   Our UAV wind farm surveys capture imagery at resolutions of 1-2mm per pixel on blade surfaces—sufficient to pinpoint hairline cracks, leading edge erosion, lightning damage, and coating faults. We use high-resolution zoom cameras that can maintain safe standoff distances while still capturing the detail needed for precise condition assessment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Thermal sensors detect subsurface faults, delamination, and moisture ingress that aren't visible to the naked eye. Combined with our systematic inspection methodology covering all blade surfaces (pressure side, suction side, leading edge, and trailing edge), we provide thorough condition data that meets or exceeds industry standards for blade inspection.
+                  Thermal sensors detect subsurface faults, delamination, and moisture ingress that aren&apos;t visible to the naked eye. Combined with our systematic inspection methodology covering all blade surfaces (pressure side, suction side, leading edge, and trailing edge), we provide thorough condition data that meets or exceeds industry standards for blade inspection.
                 </p>
               </div>
 
@@ -484,7 +484,7 @@ export default function DroneWindFarmSurveyPage() {
                   Where Are <span className="text-gold">Drone Wind Farm Surveys</span> Applied?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  UAV wind farm survey has become the industry standard for turbine inspection across numerous applications. Here's where our clients realise the greatest value:
+                  UAV wind farm survey has become the industry standard for turbine inspection across numerous applications. Here&apos;s where our clients realise the greatest value:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
@@ -677,13 +677,13 @@ export default function DroneWindFarmSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of a <span className="text-gold">Drone Wind Farm Survey</span>?
+                  What&apos;s the Duration of a <span className="text-gold">Drone Wind Farm Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site inspection is remarkably efficient. We can typically inspect 8-12 turbines per day depending on blade length and weather conditions. A single turbine inspection takes 20-30 minutes of flight time, plus setup and blade positioning coordination.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Report delivery depends on the number of turbines and analysis requirements. Standard inspection reports are typically ready within 3-5 working days. For urgent post-incident assessments, we offer expedited 24-48 hour turnaround. We'll confirm realistic timescales when we quote your project.
+                  Report delivery depends on the number of turbines and analysis requirements. Standard inspection reports are typically ready within 3-5 working days. For urgent post-incident assessments, we offer expedited 24-48 hour turnaround. We&apos;ll confirm realistic timescales when we quote your project.
                 </p>
 
                 {/* Timeline Table */}
@@ -800,7 +800,7 @@ export default function DroneWindFarmSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, fully insured, and have delivered wind farm inspection projects across onshore sites throughout the UK. Our systematic inspection methodology ensures consistent, dependable results.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, fully insured, and have delivered wind farm inspection projects across onshore sites throughout the UK. Our systematic inspection methodology ensures consistent, dependable results.
                 </p>
 
                 {/* CTA after provider section */}

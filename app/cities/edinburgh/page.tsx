@@ -214,12 +214,12 @@ export default function EdinburghPage() {
                 Professional Kit. <span className="text-wipe-red">Scottish Expertise.</span> <span className="underline-sweep">Heritage Specialists.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Flying drones in Edinburgh requires specialist knowledge. The city's UNESCO World Heritage
+                Flying drones in Edinburgh requires specialist knowledge. The city&apos;s UNESCO World Heritage
                 status, complex urban environment, and proximity to Edinburgh Airport mean you need
                 drone operators who understand the unique challenges.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                Based in nearby <span className="text-teal">Dundee</span>, we're perfectly positioned
+                Based in nearby <span className="text-teal">Dundee</span>, we&apos;re perfectly positioned
                 to serve Edinburgh with <span className="text-teal">rapid response times</span> and
                 deep local knowledge. Every Edinburgh project we deliver is fully compliant and professional.
               </p>
@@ -328,7 +328,7 @@ export default function EdinburghPage() {
                   modern developments at Edinburgh Park, we have the expertise to deliver.
                 </p>
                 <p>
-                  Based at our headquarters in Dundee, we're ideally positioned to serve
+                  Based at our headquarters in Dundee, we&apos;re ideally positioned to serve
                   Edinburgh with rapid response times. Our team has completed hundreds of
                   projects across the capital, from the Royal Mile to Leith Docks.
                 </p>
@@ -561,7 +561,7 @@ export default function EdinburghPage() {
               Drone Surveys for Edinburgh Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Edinburgh's key industries.
+              We deliver tailored drone survey solutions across Edinburgh&apos;s key industries.
             </p>
           </div>
 
@@ -765,7 +765,7 @@ export default function EdinburghPage() {
                 </h3>
                 <p className="text-gold text-sm font-medium mb-4">CAA Approved</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Fully approved for commercial drone operations in Edinburgh's
+                  Fully approved for commercial drone operations in Edinburgh&apos;s
                   airspace with all necessary permissions.
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold/20">

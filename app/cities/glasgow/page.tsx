@@ -214,12 +214,12 @@ export default function GlasgowPage() {
                 Professional Kit. <span className="text-wipe-red">Scottish Expertise.</span> <span className="underline-sweep">Industrial Specialists.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Flying drones in Glasgow requires specialist knowledge. The city's industrial heritage,
+                Flying drones in Glasgow requires specialist knowledge. The city&apos;s industrial heritage,
                 busy waterfront, and proximity to Glasgow Airport mean you need
                 drone operators who understand the unique challenges.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                Based in nearby <span className="text-teal">Dundee</span>, we're well positioned
+                Based in nearby <span className="text-teal">Dundee</span>, we&apos;re well positioned
                 to serve Glasgow with <span className="text-teal">rapid response times</span> and
                 deep local knowledge. Every Glasgow project we deliver is fully compliant and professional.
               </p>
@@ -328,9 +328,9 @@ export default function GlasgowPage() {
                   city centre, we have the expertise and equipment to deliver.
                 </p>
                 <p>
-                  Based at our headquarters in Dundee, we're well positioned to serve
+                  Based at our headquarters in Dundee, we&apos;re well positioned to serve
                   Glasgow with excellent response times. Our team has completed numerous
-                  projects across Scotland's largest city, from industrial sites to new developments.
+                  projects across Scotland&apos;s largest city, from industrial sites to new developments.
                 </p>
               </div>
 
@@ -561,7 +561,7 @@ export default function GlasgowPage() {
               Drone Surveys for Glasgow Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Glasgow's key industries.
+              We deliver tailored drone survey solutions across Glasgow&apos;s key industries.
             </p>
           </div>
 
@@ -765,7 +765,7 @@ export default function GlasgowPage() {
                 </h3>
                 <p className="text-gold text-sm font-medium mb-4">CAA Approved</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Fully approved for commercial drone operations in Glasgow's
+                  Fully approved for commercial drone operations in Glasgow&apos;s
                   airspace with all necessary permissions.
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold/20">

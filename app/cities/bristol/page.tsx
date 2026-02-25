@@ -214,12 +214,12 @@ export default function BristolPage() {
                 Professional Kit. <span className="text-wipe-red">South West Expertise.</span> <span className="underline-sweep">Aerospace Sector Experience.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Bristol is at the heart of the UK's aerospace and technology sectors, with unique
+                Bristol is at the heart of the UK&apos;s aerospace and technology sectors, with unique
                 survey requirements for cutting-edge facilities and heritage sites alike.
                 You need drone operators who understand these demands.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> aerospace sector experience</span> and enterprise-grade equipment.
                 Every Bristol project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function BristolPage() {
               Drone Surveys for Bristol Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Bristol's key industries.
+              We deliver tailored drone survey solutions across Bristol&apos;s key industries.
             </p>
           </div>
 

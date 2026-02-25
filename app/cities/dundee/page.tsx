@@ -214,8 +214,8 @@ export default function DundeePage() {
                 Professional Kit. <span className="text-wipe-red">Local Expertise.</span> <span className="underline-sweep">Based Right Here.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Dundee is more than just another city we cover - it's our home. Our headquarters
-                is based right here in Scotland's sunniest city, giving us unmatched local
+                Dundee is more than just another city we cover - it&apos;s our home. Our headquarters
+                is based right here in Scotland&apos;s sunniest city, giving us unmatched local
                 knowledge and the fastest response times for Tayside projects.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
@@ -343,14 +343,14 @@ export default function DundeePage() {
               </h2>
               <div className="space-y-4 text-text-secondary text-lg mb-8">
                 <p>
-                  Hire Drone Pilot is proudly headquartered in Dundee, Scotland's city
+                  Hire Drone Pilot is proudly headquartered in Dundee, Scotland&apos;s city
                   of discovery and innovation. From our base here, we serve clients across
                   Scotland and the UK with professional aerial survey solutions.
                 </p>
                 <p>
-                  Our Dundee location puts us at the heart of Scotland's tech and biotech
+                  Our Dundee location puts us at the heart of Scotland&apos;s tech and biotech
                   sectors, with easy access to Edinburgh, Glasgow, Aberdeen, and Perth.
-                  We're proud members of the Dundee Chamber of Commerce and active supporters
+                  We&apos;re proud members of the Dundee Chamber of Commerce and active supporters
                   of the local business community.
                 </p>
               </div>
@@ -582,7 +582,7 @@ export default function DundeePage() {
               Drone Surveys for Dundee Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Dundee's innovative industries.
+              We deliver tailored drone survey solutions across Dundee&apos;s innovative industries.
             </p>
           </div>
 
@@ -786,7 +786,7 @@ export default function DundeePage() {
                 </h3>
                 <p className="text-gold text-sm font-medium mb-4">CAA Approved</p>
                 <p className="text-white/70 text-sm leading-relaxed">
-                  Fully approved for commercial drone operations in Dundee's
+                  Fully approved for commercial drone operations in Dundee&apos;s
                   airspace with all necessary permissions.
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold/20">
@@ -908,7 +908,7 @@ export default function DundeePage() {
               </h3>
               <p className="text-text-secondary text-lg mb-6">
                 Ready to discuss your Dundee drone survey requirements? Complete the form
-                and as your local team, we'll get back to you within the hour with a tailored
+                and as your local team, we&apos;ll get back to you within the hour with a tailored
                 quote for your project.
               </p>
               <div className="space-y-4 mb-8">
@@ -934,7 +934,7 @@ export default function DundeePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-text-primary">No travel costs - we're based here!</span>
+                  <span className="text-text-primary">No travel costs - we&apos;re based here!</span>
                 </div>
               </div>
             </div>

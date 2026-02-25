@@ -122,7 +122,7 @@ export default function DroneFacadeSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -158,7 +158,7 @@ export default function DroneFacadeSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -323,7 +323,7 @@ export default function DroneFacadeSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based approach typically delivers savings of <span className="text-gold font-semibold">60-80%</span> compared to scaffolding or abseil inspections. Send us your building particulars and we'll furnish a customised quotation within 24 hours.
+                  Our UAV-based approach typically delivers savings of <span className="text-gold font-semibold">60-80%</span> compared to scaffolding or abseil inspections. Send us your building particulars and we&apos;ll furnish a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -363,7 +363,7 @@ export default function DroneFacadeSurveyPage() {
                   Conventional facade inspections demand either scaffolding, boom lifts, or abseil teams. These approaches are costly, time-intensive, and present considerable health and safety hazards. Elevated work remains among the primary causes of workplace fatalities within the UK construction sector.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone facade assessments remove all elevated work hazards by maintaining personnel securely at ground level. Our drones gather imagery that's frequently more comprehensive than visual inspection, and can reach zones that would be challenging or unfeasible to access via traditional methods—such as balcony undersides or areas adjacent to obstacles.
+                  Drone facade assessments remove all elevated work hazards by maintaining personnel securely at ground level. Our drones gather imagery that&apos;s frequently more comprehensive than visual inspection, and can reach zones that would be challenging or unfeasible to access via traditional methods—such as balcony undersides or areas adjacent to obstacles.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -473,7 +473,7 @@ export default function DroneFacadeSurveyPage() {
                   What Precision Can an <span className="text-gold">Drone Facade Assessment</span> Deliver?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Our drone facade assessments gather imagery at resolutions of 2-5mm per pixel, enabling us to spot hairline cracks, minor degradation, and early-stage defects that might escape notice during conventional visual inspections. This degree of clarity surpasses what's attainable by the human eye from scaffolding or abseil access.
+                  Our drone facade assessments gather imagery at resolutions of 2-5mm per pixel, enabling us to spot hairline cracks, minor degradation, and early-stage defects that might escape notice during conventional visual inspections. This degree of clarity surpasses what&apos;s attainable by the human eye from scaffolding or abseil access.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   For thermal scanning surveys, we employ radiometric cameras detecting temperature differences as minimal as 0.05 degrees Celsius. This enables us to pinpoint moisture penetration, insulation failures, and thermal bridging with exact precision. All imagery is geotagged and can be superimposed onto building elevations for accurate defect position mapping.
@@ -700,7 +700,7 @@ export default function DroneFacadeSurveyPage() {
                   />
                 </div>
                 <h2 id="survey-timeline" className="text-2xl md:text-3xl font-bold text-teal mb-4 scroll-mt-32">
-                  What's the Duration of an <span className="text-gold">Drone Facade Assessment</span>?
+                  What&apos;s the Duration of an <span className="text-gold">Drone Facade Assessment</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   On-site data gathering is exceptionally swift compared to conventional approaches. A standard medium-rise structure (4-8 storeys) can be assessed in 2-4 hours, covering all four elevations. High-rise buildings require additional time but typically complete within a single day.
@@ -828,7 +828,7 @@ export default function DroneFacadeSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We're CAA certified, comprehensively insured, and have completed facade assessments for residential blocks, commercial offices, heritage structures, and industrial premises throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, comprehensively insured, and have completed facade assessments for residential blocks, commercial offices, heritage structures, and industrial premises throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

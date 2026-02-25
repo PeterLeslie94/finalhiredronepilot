@@ -121,7 +121,7 @@ export default function DronePhotogrammetrySurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DronePhotogrammetrySurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -328,7 +328,7 @@ export default function DronePhotogrammetrySurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV methodology typically delivers savings of <span className="text-gold font-semibold">50-70%</span> versus conventional ground surveys. Share your project specifications and we'll send a bespoke quotation within 24 hours.
+                  Our UAV methodology typically delivers savings of <span className="text-gold font-semibold">50-70%</span> versus conventional ground surveys. Share your project specifications and we&apos;ll send a bespoke quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -555,7 +555,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   The power of photogrammetry stems from capturing identical features from multiple viewpoints. Our aircraft follows a pre-programmed grid pattern, typically recording images with 75-85% overlap. This ensures each ground point appears in dozens of photographs shot from varying positions.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Advanced software examines these images, recognising millions of matching points through sophisticated algorithms. By computing each camera's location when capturing each photograph, the software triangulates the exact 3D coordinates of every matched point—producing a dense point cloud that faithfully represents the terrain and structures.
+                  Advanced software examines these images, recognising millions of matching points through sophisticated algorithms. By computing each camera&apos;s location when capturing each photograph, the software triangulates the exact 3D coordinates of every matched point—producing a dense point cloud that faithfully represents the terrain and structures.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   From this point cloud, we derive surface models, contours, and textured 3D meshes. The photographic data also yields geo-referenced orthomosaics—seamless, distortion-free drone maps merging the visual richness of photographs with the geometric precision of conventional survey drawings.

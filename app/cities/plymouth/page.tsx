@@ -214,12 +214,12 @@ export default function PlymouthPage() {
                 Professional Kit. <span className="text-wipe-red">Naval Heritage.</span> <span className="underline-sweep">Marine Sector Experience.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Plymouth is Britain's Ocean City, home to the largest naval base in Western Europe
+                Plymouth is Britain&apos;s Ocean City, home to the largest naval base in Western Europe
                 and leading marine research institutions. You need drone operators who understand
                 naval security protocols and coastal survey requirements.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> marine and naval sector experience</span> and enterprise-grade equipment.
                 Every Plymouth project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function PlymouthPage() {
               Drone Surveys for Plymouth Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across Plymouth's key industries.
+              We deliver tailored drone survey solutions across Plymouth&apos;s key industries.
             </p>
           </div>
 

@@ -214,12 +214,12 @@ export default function YorkPage() {
                 Professional Kit. <span className="text-wipe-red">Heritage Expertise.</span> <span className="underline-sweep">Historic Sites Handled.</span>
               </h2>
               <p className="text-text-secondary text-lg mb-6 leading-relaxed">
-                Flying drones in York requires specialist knowledge. The city's rich heritage,
+                Flying drones in York requires specialist knowledge. The city&apos;s rich heritage,
                 conservation areas, and sensitive historic sites mean you need drone operators
                 who understand the complexities involved.
               </p>
               <p className="text-text-primary text-lg mb-8 leading-relaxed font-medium">
-                We're different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
+                We&apos;re different. Our team combines <span className="text-teal">CAA-certified drone pilots</span> with
                 <span className="text-teal"> heritage site expertise</span> and enterprise-grade equipment.
                 Every York project we deliver is fully compliant and professional.
               </p>
@@ -561,7 +561,7 @@ export default function YorkPage() {
               Drone Surveys for York Sectors
             </h3>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              We deliver tailored drone survey solutions across York's key industries.
+              We deliver tailored drone survey solutions across York&apos;s key industries.
             </p>
           </div>
 

@@ -32,7 +32,7 @@ export default function CookiePolicyPage() {
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">1. What Are Cookies?</h2>
             <p className="text-text-secondary mb-6">
-              Cookies are small text files that are stored on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used to make websites work more efficiently and to provide information to website owners. Cookies can be "persistent" (remaining on your device for a set period) or "session" cookies (deleted when you close your browser).
+              Cookies are small text files that are stored on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used to make websites work more efficiently and to provide information to website owners. Cookies can be &quot;persistent&quot; (remaining on your device for a set period) or &quot;session&quot; cookies (deleted when you close your browser).
             </p>
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">2. How We Use Cookies</h2>
@@ -170,7 +170,7 @@ export default function CookiePolicyPage() {
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">8. Updates to This Policy</h2>
             <p className="text-text-secondary mb-6">
-              We may update this Cookie Policy from time to time to reflect changes in our practices or for legal, regulatory, or operational reasons. The updated policy will be posted on this page with a revised "last updated" date.
+              We may update this Cookie Policy from time to time to reflect changes in our practices or for legal, regulatory, or operational reasons. The updated policy will be posted on this page with a revised &quot;last updated&quot; date.
             </p>
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">9. More Information</h2>

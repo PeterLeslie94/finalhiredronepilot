@@ -95,7 +95,7 @@ export default function DroneCoastalSurveyPage() {
                   Understanding <span className="text-gold">Drone Shoreline Assessment</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone shoreline assessment employs UAV-mounted cameras and sensors to gather high-resolution data from coastlines, cliffs, beaches, and coastal defence structures. This technology enables us to produce detailed mapping, 3D reconstructions, and change analysis that uncovers erosion patterns, structural integrity, and environmental shifts along Britain's shores.
+                  A drone shoreline assessment employs UAV-mounted cameras and sensors to gather high-resolution data from coastlines, cliffs, beaches, and coastal defence structures. This technology enables us to produce detailed mapping, 3D reconstructions, and change analysis that uncovers erosion patterns, structural integrity, and environmental shifts along Britain&apos;s shores.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we utilise specialist coastal assessment equipment capable of recording centimetre-precise data across demanding shoreline environments. Our assessments furnish coastal authorities, engineers, and environmental specialists with the accurate information required to track erosion, design interventions, and safeguard critical coastal infrastructure.
@@ -121,7 +121,7 @@ export default function DroneCoastalSurveyPage() {
                         <h4 className="text-white font-bold text-lg">Peter Leslie</h4>
                         <p className="text-gold text-sm font-medium">Owner & Drone Pilot</p>
                         <p className="text-white/70 text-sm italic mt-2 max-w-xs">
-                          "Have questions? Ring me directly - I'm happy to discuss your project requirements."
+                          &quot;Have questions? Ring me directly - I&apos;m happy to discuss your project requirements.&quot;
                         </p>
                         <a
                           href="tel:+441334804554"
@@ -157,7 +157,7 @@ export default function DroneCoastalSurveyPage() {
                     {/* Left: What you get */}
                     <div>
                       <h3 className="text-gold font-bold text-sm uppercase tracking-wider mb-3">
-                        What You'll Receive
+                        What You&apos;ll Receive
                       </h3>
                       <ul className="space-y-2.5">
                         {[
@@ -256,7 +256,7 @@ export default function DroneCoastalSurveyPage() {
                   Shoreline Assessment <span className="text-gold">Pricing Guide</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Costs vary based on coastline length and project complexity. Here's a breakdown to assist your planning:
+                  Costs vary based on coastline length and project complexity. Here&apos;s a breakdown to assist your planning:
                 </p>
 
                 {/* Pricing Table */}
@@ -322,7 +322,7 @@ export default function DroneCoastalSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">50–70%</span> versus conventional coastal survey approaches. Share your project specifications and we'll deliver a customised quotation within 24 hours.
+                  Our UAV-based methodology typically reduces costs by <span className="text-gold font-semibold">50–70%</span> versus conventional coastal survey approaches. Share your project specifications and we&apos;ll deliver a customised quotation within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -657,7 +657,7 @@ export default function DroneCoastalSurveyPage() {
                   Field data acquisition is remarkably rapid versus traditional approaches. We can assess 5-10km of coastline daily depending on conditions and site complexity. A typical 1-2km cliff section requires just 2-3 hours of airtime, including preparation and control point positioning.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Processing and final delivery varies with project complexity and your specified outputs. Standard deliverables are generally complete within 5-7 working days. For time-critical projects, we provide expedited processing with 48-72 hour turnaround offered at supplementary cost. We'll establish achievable timeframes when quoting your project.
+                  Processing and final delivery varies with project complexity and your specified outputs. Standard deliverables are generally complete within 5-7 working days. For time-critical projects, we provide expedited processing with 48-72 hour turnaround offered at supplementary cost. We&apos;ll establish achievable timeframes when quoting your project.
                 </p>
 
                 {/* Timeline Table */}
@@ -775,7 +775,7 @@ export default function DroneCoastalSurveyPage() {
                     <svg className="w-5 h-5 text-gold mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary"><strong>Portfolio examples</strong> – Request demonstrations of comparable shoreline projects they've undertaken</span>
+                    <span className="text-text-primary"><strong>Portfolio examples</strong> – Request demonstrations of comparable shoreline projects they&apos;ve undertaken</span>
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
