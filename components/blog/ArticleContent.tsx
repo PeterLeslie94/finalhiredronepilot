@@ -35,13 +35,15 @@ export default function ArticleContent({ content, contentfulContent, keyTakeaway
   return (
     <div className="article-content">
       {content.map((block, index) => {
+        const safeTakeaways = keyTakeaways ?? [];
+
         // Render Key Takeaways before the first h2
         const shouldRenderTakeaways =
-          Boolean(keyTakeaways && keyTakeaways.length > 0) &&
+          safeTakeaways.length > 0 &&
           index === firstH2Index;
 
         const takeawaysElement = shouldRenderTakeaways ? (
-          <KeyTakeaways key="takeaways" takeaways={keyTakeaways} />
+          <KeyTakeaways key="takeaways" takeaways={safeTakeaways} />
         ) : null;
 
         switch (block.type) {
