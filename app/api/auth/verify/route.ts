@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { isAllowedAdminLoginEmail } from '@/lib/server/auth-config';
 import { SESSION_COOKIE_NAME } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
 import { createSessionToken, hashToken } from '@/lib/server/security';
@@ -9,6 +10,7 @@ export const runtime = 'nodejs';
 type MagicLinkRow = {
   id: string;
   identity_id: string;
+  email: string;
   expires_at: string;
   used_at: string | null;
   admin_id: string | null;
@@ -31,6 +33,7 @@ export async function GET(request: NextRequest) {
         SELECT
           ml.id,
           ml.identity_id,
+          i.email,
           ml.expires_at::text,
           ml.used_at::text,
           i.admin_id
@@ -48,6 +51,9 @@ export async function GET(request: NextRequest) {
       }
       if (row.used_at) {
         throw new Error('Link already used');
+      }
+      if (!isAllowedAdminLoginEmail(row.email)) {
+        throw new Error('Admin email not allowed');
       }
       const expiresAtMs = new Date(row.expires_at).getTime();
       if (Number.isFinite(expiresAtMs) && now.getTime() > expiresAtMs) {

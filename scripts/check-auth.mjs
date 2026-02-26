@@ -22,7 +22,7 @@ const ids = await pool.query(`SELECT id, email, role, admin_id, pilot_id FROM us
 console.log('User identities:', JSON.stringify(ids.rows, null, 2));
 
 // Check magic links
-const links = await pool.query(`SELECT id, identity_id, consumed_at, expires_at, created_at FROM auth_magic_links ORDER BY created_at DESC LIMIT 5`);
+const links = await pool.query(`SELECT id, identity_id, used_at, expires_at, created_at FROM auth_magic_links ORDER BY created_at DESC LIMIT 5`);
 console.log('Recent magic links:', JSON.stringify(links.rows, null, 2));
 
 // Check admins

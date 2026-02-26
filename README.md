@@ -55,12 +55,21 @@ Migrations live in `db/migrations/`.
 ## Auth (Magic Link)
 
 Admin and drone pilot access uses DB-backed magic-link sessions.
+Pilot dashboard login is retired; `/login` only issues links for admin identities.
 
 Bootstrap an admin identity:
 
 ```bash
 node scripts/create-admin.mjs you@company.com
 ```
+
+Optional hard lock to a single admin login email:
+
+```bash
+AUTH_ADMIN_LOGIN_EMAIL=peterlesliepay@gmail.com
+```
+
+When set, this env gate must match the login email (case-insensitive) in addition to the DB `ADMIN` role check.
 
 Then sign in at:
 

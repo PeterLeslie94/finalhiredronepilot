@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { logEmail } from '@/lib/server/audit';
+import { isAllowedAdminLoginEmail } from '@/lib/server/auth-config';
 import { query, withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
 import { consumeRateLimit } from '@/lib/server/rate-limit';
@@ -46,6 +47,10 @@ export async function POST(request: NextRequest) {
 
     if (!EMAIL_RE.test(email)) {
       // Generic response even for invalid email to avoid subtle enumeration.
+      return genericSuccess();
+    }
+    if (!isAllowedAdminLoginEmail(email)) {
+      // Generic response for non-allowlisted emails to avoid account enumeration.
       return genericSuccess();
     }
 
@@ -110,7 +115,11 @@ export async function POST(request: NextRequest) {
       throttled: output.throttled,
       ...(includeDevLink && output.magicLinkUrl ? { magic_link_url: output.magicLinkUrl } : {}),
     });
-  } catch {
+  } catch (error) {
+    console.error('[auth/request-link] Failed to request login link', {
+      name: error instanceof Error ? error.name : 'UnknownError',
+      message: error instanceof Error ? error.message : String(error),
+    });
     return jsonError('Failed to request login link', 500);
   }
 }
