@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { logEmail, logEnquiryEvent } from '@/lib/server/audit';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
+import { isHoneypotTripped } from '@/lib/honeypot';
 import { consumeRateLimit } from '@/lib/server/rate-limit';
 import { getClientIp, jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
 import { validateEnquiryPayload } from '@/lib/server/validation';
@@ -28,6 +29,15 @@ export async function POST(request: Request) {
     }
 
     const payload = await parseBody(request);
+    if (isHoneypotTripped(payload)) {
+      if (wantsHtmlRedirect(request)) {
+        return NextResponse.redirect(new URL('/thank-you', request.url), 303);
+      }
+      return NextResponse.json({
+        enquiry_id: null,
+        status: 'ACK_SENT',
+      });
+    }
 
     // Preserve compatibility with legacy forms by inferring source data.
     if (!payload.source_page) {

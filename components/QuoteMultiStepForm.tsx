@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from 'react';
 
+import HoneypotField from '@/components/HoneypotField';
+import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
+
 type QuoteMultiStepFormProps = {
   sourceForm: string;
   sourcePage?: string;
@@ -126,8 +129,13 @@ export default function QuoteMultiStepForm({
     setIsSubmitting(true);
     setError('');
 
+    const submitFormData = new FormData(event.currentTarget);
+    const honeypotRaw = submitFormData.get(HONEYPOT_FIELD_NAME);
+    const honeypot = typeof honeypotRaw === 'string' ? honeypotRaw : '';
+
     const payload = {
       ...formData,
+      [HONEYPOT_FIELD_NAME]: honeypot,
       source_form: sourceForm,
       source_page: sourcePage || (typeof window !== 'undefined' ? window.location.pathname : ''),
       consent_policy_version: CONSENT_POLICY_VERSION,
@@ -165,6 +173,7 @@ export default function QuoteMultiStepForm({
 
   return (
     <form onSubmit={handleSubmit} className={controlGap} data-no-legacy-bridge="true">
+      <HoneypotField />
       <div className="text-white/70 text-xs uppercase tracking-wide">{progressText}</div>
 
       {step === 1 && (

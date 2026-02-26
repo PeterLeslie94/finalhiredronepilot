@@ -2,6 +2,8 @@
 
 import { useRef, useState } from 'react';
 import PhotoUploader from '@/components/PhotoUploader';
+import HoneypotField from '@/components/HoneypotField';
+import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
 
 type Step = 1 | 2 | 3;
 
@@ -203,11 +205,19 @@ export default function PilotApplyPage() {
     setFormError('');
     setSuccessMessage('');
 
+    const submitFormData = new FormData(event.currentTarget);
+    const honeypotRaw = submitFormData.get(HONEYPOT_FIELD_NAME);
+    const honeypot = typeof honeypotRaw === 'string' ? honeypotRaw : '';
+
     const allFields = [...STEP_FIELDS[1], ...STEP_FIELDS[2], ...STEP_FIELDS[3]];
     const payload: PilotFormValues = {
       ...values,
       consent_source_page: typeof window !== 'undefined' ? window.location.pathname : values.consent_source_page,
       pilot_terms_version: values.pilot_terms_version || PILOT_TERMS_VERSION,
+    };
+    const submissionPayload = {
+      ...payload,
+      [HONEYPOT_FIELD_NAME]: honeypot,
     };
 
     const { valid, firstInvalid } = validateFields(allFields, payload);
@@ -222,7 +232,7 @@ export default function PilotApplyPage() {
       const response = await fetch('/api/pilot-applications/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(submissionPayload),
       });
 
       const body = (await response.json()) as { error?: string };
@@ -291,6 +301,7 @@ export default function PilotApplyPage() {
           </div>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
+            <HoneypotField />
             {step === 1 ? (
               <div className="space-y-4">
                 <div>

@@ -4,6 +4,7 @@ import { logEmail } from '@/lib/server/audit';
 import { isAllowedAdminLoginEmail } from '@/lib/server/auth-config';
 import { query, withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
+import { isHoneypotTripped } from '@/lib/honeypot';
 import { consumeRateLimit } from '@/lib/server/rate-limit';
 import { getCanonicalAppOrigin, getClientIp, jsonError, parseBody, wantsHtmlRedirect } from '@/lib/server/http';
 import { createMagicLinkToken } from '@/lib/server/security';
@@ -42,6 +43,9 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = await parseBody(request);
+    if (isHoneypotTripped(payload)) {
+      return genericSuccess();
+    }
     const emailRaw = typeof payload.email === 'string' ? payload.email : '';
     const email = emailRaw.trim().toLowerCase().slice(0, 200);
 

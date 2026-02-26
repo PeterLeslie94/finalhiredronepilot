@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import HoneypotField from '@/components/HoneypotField';
+import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
+
 type RequestLinkResponse = {
   ok?: boolean;
   throttled?: boolean;
@@ -39,11 +42,15 @@ export default function LoginPage() {
     setDevLink(null);
     setCopied(false);
 
+    const formData = new FormData(event.currentTarget);
+    const honeypotRaw = formData.get(HONEYPOT_FIELD_NAME);
+    const honeypot = typeof honeypotRaw === 'string' ? honeypotRaw : '';
+
     try {
       const response = await fetch('/api/auth/request-link/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, [HONEYPOT_FIELD_NAME]: honeypot }),
       });
       const body = (await response.json()) as RequestLinkResponse;
       if (!response.ok) {
@@ -114,6 +121,7 @@ export default function LoginPage() {
               </div>
             ) : (
               <form className="space-y-4" onSubmit={submit}>
+                <HoneypotField />
                 <div>
                   <input
                     className="form-input-light"

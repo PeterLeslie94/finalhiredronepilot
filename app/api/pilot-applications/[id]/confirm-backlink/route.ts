@@ -3,6 +3,7 @@ import { NextRequest } from 'next/server';
 import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { query } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
+import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
 import { hashToken } from '@/lib/server/security';
 
 export const runtime = 'nodejs';
@@ -20,6 +21,10 @@ function htmlPage(title: string, message: string, token: string | null = null): 
   const confirmAction = token
     ? `<form method="post" style="margin-top:28px;">
          <input type="hidden" name="token" value="${escapeHtml(token)}">
+         <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+           <label for="${HONEYPOT_FIELD_NAME}">Leave this field blank</label>
+           <input id="${HONEYPOT_FIELD_NAME}" name="${HONEYPOT_FIELD_NAME}" type="text" tabindex="-1" autocomplete="off">
+         </div>
          <button type="submit" style="background:#f97316;border:none;border-radius:6px;color:#111827;cursor:pointer;font-size:14px;font-weight:600;padding:12px 20px;">
            Confirm Backlink Added
          </button>
@@ -65,35 +70,44 @@ function hasTokenExpired(expiresAtRaw: string | null): boolean {
   return Date.now() > expiresAtMs;
 }
 
-async function getTokenFromRequest(request: NextRequest): Promise<string> {
-  const fromQuery = request.nextUrl.searchParams.get('token')?.trim();
-  if (fromQuery) return fromQuery;
+async function getSubmissionFromRequest(request: NextRequest): Promise<{ token: string; honeypot: string }> {
+  let token = request.nextUrl.searchParams.get('token')?.trim() || '';
+  let honeypot = request.nextUrl.searchParams.get(HONEYPOT_FIELD_NAME)?.trim() || '';
 
   const contentType = request.headers.get('content-type') || '';
   if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
     try {
       const formData = await request.formData();
       const fromForm = formData.get('token');
+      const honeypotFromForm = formData.get(HONEYPOT_FIELD_NAME);
       if (typeof fromForm === 'string') {
-        return fromForm.trim();
+        token = token || fromForm.trim();
+      }
+      if (typeof honeypotFromForm === 'string') {
+        honeypot = honeypot || honeypotFromForm.trim();
       }
     } catch {
-      return '';
+      return { token: '', honeypot: '' };
     }
   }
 
   if (contentType.includes('application/json')) {
     try {
-      const payload = (await request.json()) as { token?: unknown };
+      const payload = (await request.json()) as { token?: unknown; [HONEYPOT_FIELD_NAME]?: unknown };
+      const honeypotValue = payload[HONEYPOT_FIELD_NAME];
+      const honeypotFromJson = typeof honeypotValue === 'string' ? honeypotValue.trim() : '';
       if (typeof payload.token === 'string') {
-        return payload.token.trim();
+        token = token || payload.token.trim();
+      }
+      if (honeypotFromJson) {
+        honeypot = honeypot || honeypotFromJson;
       }
     } catch {
-      return '';
+      return { token: '', honeypot: '' };
     }
   }
 
-  return '';
+  return { token, honeypot };
 }
 
 type PilotApplicationConfirmationRow = {
@@ -153,7 +167,14 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const token = await getTokenFromRequest(request);
+  const { token, honeypot } = await getSubmissionFromRequest(request);
+
+  if (honeypot) {
+    return htmlPage(
+      'Thank You!',
+      "Your backlink confirmation has been received. We'll review your website and approve your listing shortly.",
+    );
+  }
 
   if (!token) {
     return htmlPage('Invalid Link', 'This confirmation request is missing a token. Please use the link from your email.');

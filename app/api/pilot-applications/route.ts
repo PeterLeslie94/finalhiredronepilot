@@ -4,6 +4,7 @@ import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
 import { jsonError, parseBody } from '@/lib/server/http';
+import { isHoneypotTripped } from '@/lib/honeypot';
 import { createInvitationToken } from '@/lib/server/security';
 import { validatePilotApplicationPayload } from '@/lib/server/validation';
 
@@ -13,6 +14,15 @@ const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TT
 export async function POST(request: Request) {
   try {
     const payload = await parseBody(request);
+    if (isHoneypotTripped(payload)) {
+      return NextResponse.json(
+        {
+          application_id: null,
+          status: 'SUBMITTED',
+        },
+        { status: 201 },
+      );
+    }
     if (!payload.consent_source_page) {
       payload.consent_source_page = request.headers.get('referer');
     }

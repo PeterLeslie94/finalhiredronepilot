@@ -2,29 +2,75 @@
 
 import { useEffect } from 'react';
 
+import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
+
 /**
  * Bridges legacy static forms (Netlify-style sidebar forms) into the new API pipeline
  * without editing every individual service page immediately.
  */
 export default function LegacyFormBridge() {
+  const getFormName = (form: HTMLFormElement): string =>
+    form.getAttribute('name') || form.querySelector('input[name="form-name"]')?.getAttribute('value') || '';
+
+  const isLegacyForm = (form: HTMLFormElement): boolean => {
+    const formName = getFormName(form);
+    return form.hasAttribute('data-netlify') || formName.includes('quote');
+  };
+
+  const ensureHoneypotField = (form: HTMLFormElement) => {
+    if (form.querySelector(`input[name="${HONEYPOT_FIELD_NAME}"]`)) return;
+
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('aria-hidden', 'true');
+    wrapper.style.position = 'absolute';
+    wrapper.style.left = '-10000px';
+    wrapper.style.top = 'auto';
+    wrapper.style.width = '1px';
+    wrapper.style.height = '1px';
+    wrapper.style.overflow = 'hidden';
+
+    const label = document.createElement('label');
+    label.setAttribute('for', HONEYPOT_FIELD_NAME);
+    label.textContent = 'Leave this field blank';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = HONEYPOT_FIELD_NAME;
+    input.id = HONEYPOT_FIELD_NAME;
+    input.tabIndex = -1;
+    input.autocomplete = 'off';
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(input);
+    form.appendChild(wrapper);
+  };
+
   useEffect(() => {
+    document.querySelectorAll('form').forEach((node) => {
+      if (!(node instanceof HTMLFormElement)) return;
+      if (!isLegacyForm(node)) return;
+      ensureHoneypotField(node);
+    });
+
     const onSubmit = async (event: Event) => {
       const form = event.target as HTMLFormElement | null;
       if (!form || form.tagName !== 'FORM') return;
 
-      const formName = form.getAttribute('name') || form.querySelector('input[name="form-name"]')?.getAttribute('value') || '';
-      const hasLegacyMarker = form.hasAttribute('data-netlify') || formName.includes('quote');
-      if (!hasLegacyMarker) return;
+      const formName = getFormName(form);
+      if (!isLegacyForm(form)) return;
 
       // Let explicit modern forms handle their own submit.
       if (form.dataset.noLegacyBridge === 'true') return;
 
       event.preventDefault();
+      ensureHoneypotField(form);
 
       const formData = new FormData(form);
       const payload = Object.fromEntries(formData.entries());
+      const honeypot = typeof payload[HONEYPOT_FIELD_NAME] === 'string' ? payload[HONEYPOT_FIELD_NAME] : '';
 
       const body = {
+        [HONEYPOT_FIELD_NAME]: honeypot,
         name: payload.name || '',
         email: payload.email || '',
         phone: payload.phone || '',
