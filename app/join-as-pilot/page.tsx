@@ -542,21 +542,22 @@ export default function PilotApplyPage() {
 
   const serviceSections = useMemo<ServiceSection[]>(() => {
     const seen = new Set<string>();
-    const sections: ServiceSection[] = PILOT_SERVICE_GROUPS.map((group) => {
-      const services = group.serviceSlugs
-        .map((slug) => {
-          const title = SERVICE_TITLE_MAP.get(slug);
-          if (!title) return null;
-          seen.add(slug);
-          return { slug, title };
-        })
-        .filter((item): item is { slug: string; title: string } => Boolean(item));
-      return {
+    const sections: ServiceSection[] = [];
+    for (const group of PILOT_SERVICE_GROUPS) {
+      const services: ServiceSection['services'] = [];
+      for (const slug of group.serviceSlugs) {
+        const title = SERVICE_TITLE_MAP.get(slug);
+        if (!title) continue;
+        seen.add(slug);
+        services.push({ slug, title });
+      }
+      if (services.length === 0) continue;
+      sections.push({
         key: group.key,
         label: group.label,
         services,
-      };
-    }).filter((section) => section.services.length > 0);
+      });
+    }
 
     const uncategorized = PILOT_SERVICE_OPTIONS
       .filter((service) => !seen.has(service.slug))
