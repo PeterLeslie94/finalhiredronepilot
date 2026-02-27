@@ -10,12 +10,6 @@ const LINKEDIN_URL = 'https://www.linkedin.com/in/peter-leslie-drones';
 
 export default function MobileAuthorCard({ author }: MobileAuthorCardProps) {
   const headline = author.headline?.trim() || 'GVC-Licensed Commercial Drone Pilot';
-  const baseBio = author.bio?.trim()
-    || 'Founder of HireDronePilot, helping UK clients compare quotes from independent drone pilots through a single streamlined platform.';
-  const hasCertificationMention = /(GVC|A2\s*CofC|Flyer ID|ARPAS-UK|Operational Authorisation)/i.test(baseBio);
-  const bio = hasCertificationMention
-    ? baseBio
-    : `${baseBio} Peter is a licensed UK drone pilot, holding CAA Operational Authorisation (GVC), A2 CofC, CAA Flyer ID (A1/A3), and ARPAS-UK membership.`;
 
   return (
     <div className="lg:hidden bg-white">
@@ -42,20 +36,17 @@ export default function MobileAuthorCard({ author }: MobileAuthorCardProps) {
               <div className="min-w-0">
                 <p className="text-lg font-bold leading-tight text-slate-900">{author.name}</p>
                 <p className="mt-0.5 text-xs font-semibold leading-tight text-gold-hover">{headline}</p>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-2 rounded-lg bg-[#0A66C2] px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#084d94] focus:outline-none focus:ring-2 focus:ring-[#0A66C2] focus:ring-offset-2"
+                >
+                  <Linkedin className="h-3.5 w-3.5" />
+                  Connect on LinkedIn
+                </a>
               </div>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              {bio}
-            </p>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0A66C2] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#084d94] focus:outline-none focus:ring-2 focus:ring-[#0A66C2] focus:ring-offset-2"
-            >
-              <Linkedin className="h-4 w-4" />
-              Connect on LinkedIn
-            </a>
           </div>
         </div>
       </div>
