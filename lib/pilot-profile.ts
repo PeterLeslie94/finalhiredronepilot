@@ -117,6 +117,95 @@ export const PILOT_SERVICE_OPTIONS = [
 
 export type PilotServiceSlug = (typeof PILOT_SERVICE_OPTIONS)[number]['slug'];
 
+export const PILOT_SERVICE_GROUPS: readonly {
+  key: string;
+  label: string;
+  serviceSlugs: readonly PilotServiceSlug[];
+}[] = [
+  {
+    key: 'mapping',
+    label: 'Mapping',
+    serviceSlugs: [
+      'drone-surveys',
+      'drone-topographical-survey',
+      'drone-lidar-mapping',
+      'drone-photogrammetry-survey',
+      'drone-point-cloud-mapping',
+      'drone-site-survey',
+      'drone-land-survey',
+      'drone-boundary-survey',
+      'drone-corridor-mapping',
+      'drone-elevation-survey',
+      'drone-as-built-survey',
+      'drone-setting-out-survey',
+      'drone-bathymetric-survey',
+    ],
+  },
+  {
+    key: 'inspections',
+    label: 'Inspections',
+    serviceSlugs: [
+      'drone-roof-inspection',
+      'drone-facade-survey',
+      'drone-bridge-inspection',
+      'drone-measured-building-survey',
+      'drone-thermal-imaging',
+      'drone-confined-space-inspection',
+    ],
+  },
+  {
+    key: 'infrastructure',
+    label: 'Infrastructure',
+    serviceSlugs: [
+      'drone-construction-monitoring',
+      'drone-road-survey',
+      'drone-railway-survey',
+      'drone-utility-survey',
+      'drone-industrial-survey',
+    ],
+  },
+  {
+    key: 'energy',
+    label: 'Energy',
+    serviceSlugs: [
+      'drone-volumetric-survey',
+      'drone-mining-survey',
+      'drone-quarry-survey',
+      'drone-landfill-survey',
+      'drone-solar-survey',
+      'drone-wind-farm-survey',
+    ],
+  },
+  {
+    key: 'specialist',
+    label: 'Specialist',
+    serviceSlugs: [
+      'drone-agricultural-survey',
+      'drone-environmental-survey',
+      'drone-forestry-survey',
+      'drone-coastal-survey',
+      'drone-flood-risk-survey',
+      'drone-archaeological-survey',
+      'drone-estate-survey',
+      'drone-gas-detection',
+      'drone-crop-spraying',
+      'drone-ground-penetrating-radar',
+      'drone-sonar-survey',
+      'drone-water-quality-assessment',
+    ],
+  },
+  {
+    key: 'photography',
+    label: 'Photography',
+    serviceSlugs: [
+      'drone-photography',
+      'drone-real-estate-photography',
+      'drone-wedding-photography',
+      'drone-videographer',
+    ],
+  },
+] as const;
+
 export const PILOT_SERVICE_OPTION_MAP: ReadonlyMap<string, (typeof PILOT_SERVICE_OPTIONS)[number]> = new Map(
   PILOT_SERVICE_OPTIONS.map((item) => [item.slug, item] as const),
 );
