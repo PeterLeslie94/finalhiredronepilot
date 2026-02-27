@@ -3,25 +3,77 @@ import { NextResponse } from 'next/server';
 import { logEmail, logPilotApplicationEvent } from '@/lib/server/audit';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
-import { jsonError, parseBody } from '@/lib/server/http';
+import { consumeRateLimit } from '@/lib/server/rate-limit';
+import {
+  assertTrustedOrigin,
+  getClientIp,
+  jsonError,
+  parseBody,
+  RequestOriginError,
+} from '@/lib/server/http';
 import { isHoneypotTripped } from '@/lib/honeypot';
 import { createInvitationToken } from '@/lib/server/security';
 import { validatePilotApplicationPayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
 const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
+const RATE_LIMIT_WINDOW_MS = Math.max(30_000, Number(process.env.PILOT_APPLICATION_RATE_LIMIT_WINDOW_MS || 10 * 60 * 1000));
+const RATE_LIMIT_MAX = Math.max(1, Number(process.env.PILOT_APPLICATION_RATE_LIMIT_MAX || 10));
+const MIN_COMPLETION_MS = Math.max(2_000, Number(process.env.PILOT_APPLICATION_MIN_COMPLETION_MS || 8_000));
+const MAX_COMPLETION_MS = Math.max(
+  MIN_COMPLETION_MS,
+  Number(process.env.PILOT_APPLICATION_MAX_COMPLETION_MS || 14 * 24 * 60 * 60 * 1000),
+);
+
+function maskedSubmissionResponse() {
+  return NextResponse.json(
+    {
+      application_id: null,
+      status: 'SUBMITTED',
+    },
+    { status: 201 },
+  );
+}
+
+function hasSuspiciousCompletionTiming(payload: Record<string, unknown>): boolean {
+  const raw = payload.form_started_at;
+  const startedAtMs =
+    typeof raw === 'number'
+      ? raw
+      : typeof raw === 'string'
+        ? Number(raw.trim())
+        : Number.NaN;
+
+  if (!Number.isFinite(startedAtMs) || startedAtMs <= 0) return true;
+  const elapsedMs = Date.now() - startedAtMs;
+  if (!Number.isFinite(elapsedMs)) return true;
+  return elapsedMs < MIN_COMPLETION_MS || elapsedMs > MAX_COMPLETION_MS;
+}
 
 export async function POST(request: Request) {
   try {
+    assertTrustedOrigin(request);
+
+    const requester = getClientIp(request) || 'unknown';
+    const rateLimit = consumeRateLimit({
+      scope: 'pilot-application-intake',
+      identifier: requester,
+      windowMs: RATE_LIMIT_WINDOW_MS,
+      max: RATE_LIMIT_MAX,
+    });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: 'Too many pilot applications submitted. Please try again shortly.' },
+        { status: 429, headers: { 'Retry-After': String(rateLimit.retryAfterSec) } },
+      );
+    }
+
     const payload = await parseBody(request);
     if (isHoneypotTripped(payload)) {
-      return NextResponse.json(
-        {
-          application_id: null,
-          status: 'SUBMITTED',
-        },
-        { status: 201 },
-      );
+      return maskedSubmissionResponse();
+    }
+    if (hasSuspiciousCompletionTiming(payload)) {
+      return maskedSubmissionResponse();
     }
     if (!payload.consent_source_page) {
       payload.consent_source_page = request.headers.get('referer');
@@ -171,6 +223,9 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
+    if (error instanceof RequestOriginError) {
+      return jsonError(error.message, 403);
+    }
     const message = error instanceof Error ? error.message : 'Failed to submit pilot application';
     return jsonError(message, 400);
   }

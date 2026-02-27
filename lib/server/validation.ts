@@ -105,6 +105,9 @@ const COVERAGE_REGION_SET = new Set<string>(PILOT_COVERAGE_REGIONS);
 const AVAILABILITY_SET = new Set<string>(PILOT_AVAILABILITY_OPTIONS.map((item) => item.value));
 const SERVICE_SLUG_SET = new Set<string>(PILOT_SERVICE_SLUGS);
 const SERVICE_LEVEL_SET = new Set<string>(PILOT_SERVICE_LEVELS);
+const DATA_IMAGE_MAX_BYTES = 1_500_000;
+
+type DataImageMime = 'image/jpeg' | 'image/png' | 'image/webp';
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -251,7 +254,80 @@ function isDataImageUrl(value: string): boolean {
   return /^data:image\/(png|jpeg|jpg|webp);base64,/i.test(value);
 }
 
-function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioItemInput[] {
+function detectDataImageMime(buffer: Buffer): DataImageMime | null {
+  if (buffer.length >= 8) {
+    const isPng =
+      buffer[0] === 0x89 &&
+      buffer[1] === 0x50 &&
+      buffer[2] === 0x4e &&
+      buffer[3] === 0x47 &&
+      buffer[4] === 0x0d &&
+      buffer[5] === 0x0a &&
+      buffer[6] === 0x1a &&
+      buffer[7] === 0x0a;
+    if (isPng) return 'image/png';
+  }
+
+  if (buffer.length >= 3) {
+    const isJpeg = buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff;
+    if (isJpeg) return 'image/jpeg';
+  }
+
+  if (buffer.length >= 12) {
+    const isWebp =
+      buffer.toString('ascii', 0, 4) === 'RIFF' &&
+      buffer.toString('ascii', 8, 12) === 'WEBP';
+    if (isWebp) return 'image/webp';
+  }
+
+  return null;
+}
+
+function normalizeStrictDataImageUrl(raw: string, label: string): string {
+  const trimmed = asTrimmedString(raw, 2_000_000);
+  const match = trimmed.match(/^data:(image\/(?:jpeg|png|webp));base64,([a-z0-9+/=\s]+)$/i);
+  if (!match) {
+    throw new Error(`${label} must be a JPG, PNG, or WEBP upload`);
+  }
+
+  const declaredMime = match[1].toLowerCase() as DataImageMime;
+  const base64Payload = match[2].replace(/\s+/g, '');
+  if (!base64Payload) {
+    throw new Error(`${label} is empty or invalid`);
+  }
+
+  const fileBuffer = Buffer.from(base64Payload, 'base64');
+  if (!fileBuffer.length) {
+    throw new Error(`${label} is empty or invalid`);
+  }
+  if (fileBuffer.length > DATA_IMAGE_MAX_BYTES) {
+    throw new Error(`${label} exceeds the allowed size`);
+  }
+
+  const detectedMime = detectDataImageMime(fileBuffer);
+  if (!detectedMime || detectedMime !== declaredMime) {
+    throw new Error(`${label} file content does not match the declared image format`);
+  }
+
+  return `data:${declaredMime};base64,${base64Payload}`;
+}
+
+function parseRequiredStrictDataImage(value: unknown, label: string): string {
+  const raw = asTrimmedString(value, 2_000_000);
+  if (!raw) throw new Error(`${label} is required`);
+  return normalizeStrictDataImageUrl(raw, label);
+}
+
+function parsePortfolioItems(
+  value: unknown,
+  required: boolean,
+  options?: {
+    strictDataImages?: boolean;
+    allowExternalUrls?: boolean;
+  },
+): PilotPortfolioItemInput[] {
+  const strictDataImages = options?.strictDataImages ?? false;
+  const allowExternalUrls = options?.allowExternalUrls ?? true;
   const source = parseJsonLike(value);
   if (!Array.isArray(source)) {
     if (required) throw new Error('At least one portfolio image is required');
@@ -265,10 +341,21 @@ function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioI
     if (typeof rawItem === 'string') {
       const imageUrl = asTrimmedString(rawItem, 2_000_000);
       if (!imageUrl) continue;
-      if (!isDataImageUrl(imageUrl) && !normalizeWebsiteUrl(imageUrl)) {
+      if (strictDataImages) {
+        items.push({ image_url: normalizeStrictDataImageUrl(imageUrl, 'Portfolio image') });
+        continue;
+      }
+
+      if (isDataImageUrl(imageUrl)) {
+        items.push({ image_url: imageUrl });
+        continue;
+      }
+
+      const normalizedWebsite = allowExternalUrls ? normalizeWebsiteUrl(imageUrl) : null;
+      if (!normalizedWebsite) {
         throw new Error('Portfolio images must be uploaded files or valid URLs');
       }
-      items.push({ image_url: imageUrl });
+      items.push({ image_url: normalizedWebsite });
       continue;
     }
 
@@ -277,7 +364,16 @@ function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioI
     const rawUrl = asTrimmedString(rawItem.image_url ?? rawItem.url ?? rawItem.data_url, 2_000_000);
     if (!rawUrl) continue;
 
-    const normalizedUrl = isDataImageUrl(rawUrl) ? rawUrl : normalizeWebsiteUrl(rawUrl);
+    if (strictDataImages) {
+      items.push({ image_url: normalizeStrictDataImageUrl(rawUrl, 'Portfolio image') });
+      continue;
+    }
+
+    const normalizedUrl = isDataImageUrl(rawUrl)
+      ? rawUrl
+      : allowExternalUrls
+        ? normalizeWebsiteUrl(rawUrl)
+        : null;
     if (!normalizedUrl) {
       throw new Error('Portfolio images must be uploaded files or valid URLs');
     }
@@ -470,7 +566,7 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
   const phone = asTrimmedString(payload.phone, 50);
   const websiteRaw = asTrimmedString(payload.website_url, 300);
   const websiteUrl = normalizeWebsiteUrl(websiteRaw);
-  const profilePhotoUrl = asTrimmedString(payload.profile_photo_url, 2_000_000) || null;
+  const profilePhotoUrl = parseRequiredStrictDataImage(payload.profile_photo_url, 'Profile photo');
   const summary = asTrimmedString(payload.two_sentence_summary, 1000);
   const insuranceProvider = asTrimmedString(payload.insurance_provider, 180);
   const insuranceExpiry = parseDate(payload.insurance_expiry);
@@ -487,7 +583,6 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
   if (phone.length < 6) throw new Error('Phone is required');
   if (!websiteRaw) throw new Error('Website URL is required');
   if (!websiteUrl) throw new Error('Invalid website URL');
-  if (!profilePhotoUrl) throw new Error('Profile photo is required');
   if (summary.length < 20) throw new Error('Summary must be at least 20 characters');
   if (!insuranceProvider) throw new Error('Insurance provider is required');
   if (!flyerId) throw new Error('Flyer ID is required');
@@ -562,7 +657,10 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
   );
   const additionalServicesNote = asTrimmedString(payload.additional_services_note, 600) || null;
   const equipmentItemsJson = parseEquipmentItems(payload.equipment_items_json, true);
-  const portfolioItemsJson = parsePortfolioItems(payload.portfolio_items_json, true);
+  const portfolioItemsJson = parsePortfolioItems(payload.portfolio_items_json, true, {
+    strictDataImages: true,
+    allowExternalUrls: false,
+  });
 
   const faqCoverageAnswer = parseFaqAnswer(payload.faq_coverage_answer, 'Coverage', true)!;
   const faqQualificationsAnswer = parseFaqAnswer(payload.faq_qualifications_answer, 'Qualifications', true)!;
