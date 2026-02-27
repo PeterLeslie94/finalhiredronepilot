@@ -448,7 +448,7 @@ export default function DroneWaterQualityAssessmentPage() {
                   Where Are <span className="text-gold">Drone Water Assessments</span> Used?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Drone water quality assessment serves environmental management, regulatory compliance, and operational monitoring across diverse sectors:
+                  Drone water quality assessment serves <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental management</Link>, regulatory compliance, and operational monitoring across diverse sectors:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
@@ -459,7 +459,7 @@ export default function DroneWaterQualityAssessmentPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Leaf className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Environmental Regulation</h3>
-                    <p className="text-text-secondary text-sm">Supporting Water Framework Directive monitoring, ecological status assessment, and pollution incident investigation for regulators.</p>
+                    <p className="text-text-secondary text-sm">Supporting Water Framework Directive monitoring, <Link href="/services/drone-coastal-survey" className="text-gold hover:underline">ecological status assessment</Link>, and pollution incident investigation for regulators.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <FlaskConical className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -474,12 +474,12 @@ export default function DroneWaterQualityAssessmentPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <BarChart3 className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Development Planning</h3>
-                    <p className="text-text-secondary text-sm">Baseline water quality surveys for Environmental Impact Assessments, construction monitoring, and post-development compliance.</p>
+                    <p className="text-text-secondary text-sm">Baseline water quality surveys for Environmental Impact Assessments, <Link href="/services/drone-flood-risk-survey" className="text-gold hover:underline">construction monitoring</Link>, and post-development compliance.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <ShieldCheck className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Aquaculture & Fisheries</h3>
-                    <p className="text-text-secondary text-sm">Monitoring water conditions at fish farms, stocked fisheries, and shellfish waters to protect stock health and productivity.</p>
+                    <p className="text-text-secondary text-sm">Monitoring water conditions at fish farms, stocked fisheries, and <Link href="/services/drone-bathymetric-survey" className="text-gold hover:underline">shellfish waters</Link> to protect stock health and productivity.</p>
                   </div>
                 </div>
 

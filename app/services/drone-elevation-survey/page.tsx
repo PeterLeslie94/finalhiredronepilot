@@ -96,10 +96,10 @@ export default function DroneElevationSurveyPage() {
                   Understanding <span className="text-gold">Drone Elevation Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV elevation survey captures detailed imagery of building facades and vertical surfaces using our expert drone systems. Unlike ground-based photography, our drones fly at precise distances parallel to each face of a building, capturing high-resolution images that we process into orthorectified elevation drawings.
+                  A UAV elevation survey captures detailed imagery of <Link href="/services/drone-facade-survey" className="text-gold hover:underline">building facades</Link> and vertical surfaces using our expert drone systems. Unlike ground-based photography, our drones fly at precise distances parallel to each face of a building, capturing high-resolution images that we process into orthorectified elevation drawings.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we use advanced photogrammetry techniques to transform these images into scale-accurate facade records. The resulting elevation drawings show true dimensions—you can measure directly from them with millimetre precision. This makes UAV elevation surveys invaluable for architects, heritage specialists, and anyone needing detailed building records without expensive scaffolding.
+                  At Hire Drone Pilot, we use advanced photogrammetry techniques to transform these images into scale-accurate facade records. The resulting elevation drawings show true dimensions—you can measure directly from them with millimetre precision. This makes UAV elevation surveys invaluable for architects, heritage specialists, and anyone needing detailed <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">building records</Link> without expensive scaffolding.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -600,7 +600,7 @@ export default function DroneElevationSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">3D Facade Models</h4>
-                      <p className="text-text-secondary text-sm">Textured 3D mesh models of building facades for visualisation, BIM integration, and detailed analysis.</p>
+                      <p className="text-text-secondary text-sm">Textured <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">3D mesh models</Link> of building facades for visualisation, BIM integration, and detailed analysis.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

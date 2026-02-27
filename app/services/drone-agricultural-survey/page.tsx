@@ -95,7 +95,7 @@ export default function DroneAgriculturalSurveyPage() {
                   Understanding <span className="text-gold">Drone Farm Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone farm survey deploys unmanned aircraft fitted with specialised imaging equipment to gather comprehensive data about your land, crops, and agricultural infrastructure. While conventional ground walks and satellite pictures have limitations, our UAVs operate at low altitudes to achieve centimetre-accurate measurements across your complete property.
+                  A drone farm survey deploys unmanned aircraft fitted with specialised imaging equipment to gather comprehensive data about your <Link href="/services/drone-land-survey" className="text-gold hover:underline">land</Link>, crops, and agricultural infrastructure. While conventional ground walks and satellite pictures have limitations, our UAVs operate at low altitudes to achieve centimetre-accurate measurements across your complete property.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   Hire Drone Pilot utilises cutting-edge multispectral and standard RGB cameras to produce detailed farm imagery, spot crop issues before they become visible, examine water flow patterns, and create precise perimeter measurements. These insights enable you to take action based on solid evidence, ultimately increasing harvest quality while lowering operational spending.
@@ -479,7 +479,7 @@ export default function DroneAgriculturalSurveyPage() {
                   Our drone agricultural surveys deliver ground sample distances (GSD) as detailed as 1-2cm per pixel—sufficient resolution to enumerate individual plants or spot minor weed clusters. For cartography and perimeter documentation, we achieve positional precision of ±2-5cm through RTK/PPK GPS systems and ground reference markers.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Such precision substantially surpasses satellite pictures (usually 30cm-10m resolution) and produces variable rate prescription maps compatible with your spraying or spreading equipment. Our NDVI vegetation health imagery can pinpoint stressed areas as compact as several square metres, enabling genuinely focused treatments.
+                  Such precision substantially surpasses satellite pictures (usually 30cm-10m resolution) and produces variable rate prescription maps compatible with your <Link href="/services/drone-crop-spraying" className="text-gold hover:underline">spraying</Link> or spreading equipment. Our NDVI vegetation health imagery can pinpoint stressed areas as compact as several square metres, enabling genuinely focused treatments.
                 </p>
               </div>
 
@@ -514,7 +514,7 @@ export default function DroneAgriculturalSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Conservation Programmes</h3>
-                    <p className="text-text-secondary text-sm">Record habitat zones, forest areas, hedges, and streams for Countryside Stewardship and SFI submissions.</p>
+                    <p className="text-text-secondary text-sm">Record <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">habitat zones</Link>, <Link href="/services/drone-forestry-survey" className="text-gold hover:underline">forest areas</Link>, hedges, and streams for Countryside Stewardship and SFI submissions.</p>
                   </div>
                 </div>
 
@@ -622,7 +622,7 @@ export default function DroneAgriculturalSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Water Flow Assessment</h4>
-                      <p className="text-text-secondary text-sm">Digital elevation models and surface runoff evaluation to locate drainage concerns, pooling zones, and best positions for additional channels.</p>
+                      <p className="text-text-secondary text-sm"><Link href="/services/drone-topographical-survey" className="text-gold hover:underline">Digital elevation models</Link> and surface runoff evaluation to locate drainage concerns, pooling zones, and best positions for additional channels.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

@@ -95,7 +95,7 @@ export default function DroneCoastalSurveyPage() {
                   Understanding <span className="text-gold">Drone Shoreline Assessment</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone shoreline assessment employs UAV-mounted cameras and sensors to gather high-resolution data from coastlines, cliffs, beaches, and coastal defence structures. This technology enables us to produce detailed mapping, 3D reconstructions, and change analysis that uncovers erosion patterns, structural integrity, and environmental shifts along Britain&apos;s shores.
+                  A drone shoreline assessment employs UAV-mounted cameras and sensors to gather high-resolution data from coastlines, cliffs, beaches, and coastal defence structures. This technology enables us to produce detailed mapping, 3D reconstructions, and change analysis that uncovers erosion patterns, structural integrity, and <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental shifts</Link> along Britain&apos;s shores.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we utilise specialist coastal assessment equipment capable of recording centimetre-precise data across demanding shoreline environments. Our assessments furnish coastal authorities, engineers, and environmental specialists with the accurate information required to track erosion, design interventions, and safeguard critical coastal infrastructure.
@@ -509,11 +509,11 @@ export default function DroneCoastalSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Environmental Impact Analysis</h3>
-                    <p className="text-text-secondary text-sm">Baseline assessments and ongoing monitoring for coastal developments, habitat evaluations, and marine conservation zones.</p>
+                    <p className="text-text-secondary text-sm">Baseline assessments and ongoing monitoring for coastal developments, <Link href="/services/drone-bathymetric-survey" className="text-gold hover:underline">habitat evaluations</Link>, and marine conservation zones.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Flood Risk Evaluation</h3>
-                    <p className="text-text-secondary text-sm">Comprehensive elevation data for coastal flood modelling, drainage engineering, and sea level rise impact studies.</p>
+                    <p className="text-text-secondary text-sm">Comprehensive elevation data for coastal <Link href="/services/drone-flood-risk-survey" className="text-gold hover:underline">flood modelling</Link>, drainage engineering, and sea level rise impact studies.</p>
                   </div>
                 </div>
 
@@ -624,7 +624,7 @@ export default function DroneCoastalSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Digital Surface Model (DSM)</h4>
-                      <p className="text-text-secondary text-sm">Elevation model of the coastal surface for contour generation, slope analysis, and flood risk assessment.</p>
+                      <p className="text-text-secondary text-sm">Elevation model of the coastal surface for <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">contour generation</Link>, slope analysis, and flood risk assessment.</p>
                     </div>
                   </li>
                 </ul>

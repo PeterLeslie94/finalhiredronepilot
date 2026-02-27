@@ -99,7 +99,7 @@ export default function DroneWeddingPhotographyPage() {
                   Drone wedding photography captures your ceremony, venue, and celebrations from elevated angles that traditional photography simply cannot reach. Imagine your guests arranged in a heart formation photographed from directly above, or your venue grounds bathed in golden evening light captured from the perfect vantage point.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we work alongside your existing wedding photographer to add a spectacular aerial dimension to your day. Our CAA certified operators fly discreetly, capturing images and video that become the centrepiece of your wedding album and social media memories.
+                  At Hire Drone Pilot, we work alongside your existing wedding photographer to add a spectacular aerial dimension to your day. Our CAA certified operators fly discreetly, capturing images and <Link href="/services/drone-videographer" className="text-gold hover:underline">video</Link> that become the centrepiece of your wedding album and social media memories.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -336,7 +336,7 @@ export default function DroneWeddingPhotographyPage() {
                   Your wedding venue was chosen for a reason—its beauty, its setting, its atmosphere. Ground-level photography captures only a fraction of this. Drone photography reveals the full grandeur of your chosen location: the manicured gardens, the surrounding countryside, the architectural splendour of the building itself.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Beyond the venue, aerial photography creates compositions impossible from ground level. Guests arranged in creative formations, the bridal party framed against the landscape, or the couple walking through grounds captured from a sweeping elevated perspective—these become the images that define your wedding memories.
+                  Beyond the venue, <Link href="/services/drone-photography" className="text-gold hover:underline">aerial photography</Link> creates compositions impossible from ground level. Guests arranged in creative formations, the bridal party framed against the landscape, or the couple walking through grounds captured from a sweeping elevated perspective—these become the images that define your wedding memories.
                 </p>
                 <div className="mt-8">
                   <h3 className="text-center font-bold text-teal text-xl mb-6">Why Add Drone Coverage to Your Wedding?</h3>

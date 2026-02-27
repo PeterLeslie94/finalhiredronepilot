@@ -96,7 +96,7 @@ export default function DroneRoadSurveyPage() {
                   Understanding <span className="text-gold">Drone Road Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV road survey employs drone-mounted cameras and sensors to capture highly precise data of road corridors, highways, and transport infrastructure. Our drones fly systematic grid patterns along roads, capturing thousands of overlapping images that are processed into precise 3D models, orthomosaics, and cross-sections.
+                  A UAV road survey employs drone-mounted cameras and sensors to capture highly precise data of <Link href="/services/drone-corridor-mapping" className="text-gold hover:underline">road corridors</Link>, highways, and transport infrastructure. Our drones fly systematic grid patterns along roads, capturing thousands of overlapping images that are processed into precise 3D models, orthomosaics, and cross-sections.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we deliver survey-grade road data for highway authorities, civil engineers, and transport planners. Whether you need cross-sections for resurfacing projects, surface condition assessments, or complete corridor mapping for new road schemes, our UAV road surveys provide the precise data you need—quicker and more economically than conventional methods.
@@ -502,7 +502,7 @@ export default function DroneRoadSurveyPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Road Design & Planning</h3>
-                    <p className="text-text-secondary text-sm">Accurate terrain models and existing conditions surveys for new road schemes, junction improvements, and road widening projects.</p>
+                    <p className="text-text-secondary text-sm">Accurate terrain models and <Link href="/services/drone-site-survey" className="text-gold hover:underline">existing conditions surveys</Link> for new road schemes, junction improvements, and road widening projects.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Resurfacing Projects</h3>
@@ -522,7 +522,7 @@ export default function DroneRoadSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Construction Monitoring</h3>
-                    <p className="text-text-secondary text-sm">Progress surveys during road construction, volume calculations for earthworks, and as-built verification.</p>
+                    <p className="text-text-secondary text-sm"><Link href="/services/drone-construction-monitoring" className="text-gold hover:underline">Progress surveys</Link> during road construction, <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">volume calculations</Link> for earthworks, and as-built verification.</p>
                   </div>
                 </div>
 
@@ -557,7 +557,7 @@ export default function DroneRoadSurveyPage() {
                   Yes—our high-resolution UAV imagery captures detailed road surface condition data. From centimetre-resolution orthomosaics, we can identify and map surface faults including cracking patterns, potholes, patching, rutting evidence, and deterioration of road markings.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  For highway authorities and maintenance contractors, this provides a powerful tool for condition assessment and planned maintenance prioritisation. Combined with our 3D surface models, we can quantify rutting depth, identify drainage issues, and support asset management decisions. This visual condition data complements conventional machine-based surveys and provides context that automated systems often miss.
+                  For highway authorities and maintenance contractors, this provides a powerful tool for condition assessment and planned maintenance prioritisation. Combined with our <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">3D surface models</Link>, we can quantify rutting depth, identify drainage issues, and support asset management decisions. This visual condition data complements conventional machine-based surveys and provides context that automated systems often miss.
                 </p>
               </div>
 

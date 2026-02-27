@@ -333,7 +333,7 @@ export default function DroneThermalImagingPage() {
                   How Does <span className="text-gold">Drone Thermal Imaging</span> Compare to Handheld Methods?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Handheld thermal cameras require inspectors to physically access every surface, limiting coverage to ground-level or areas reachable by ladder. This approach is time-consuming, provides inconsistent viewing angles, and frequently misses upper facades, rooftops, and hard-to-reach zones.
+                  Handheld thermal cameras require inspectors to physically access every surface, limiting coverage to ground-level or areas reachable by ladder. This approach is time-consuming, provides inconsistent viewing angles, and frequently misses upper <Link href="/services/drone-facade-survey" className="text-gold hover:underline">facades</Link>, <Link href="/services/drone-roof-inspection" className="text-gold hover:underline">rooftops</Link>, and hard-to-reach zones.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Drone-mounted thermal cameras capture entire building envelopes from optimal vantage points in a single flight, ensuring uniform coverage, consistent calibration, and the ability to survey large sites rapidly without access equipment.
@@ -561,7 +561,7 @@ export default function DroneThermalImagingPage() {
                   How Long Does a <span className="text-gold">Thermal Survey</span> Take?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  On-site data capture is rapid: 30-45 minutes for residential properties, 1-2 hours for commercial buildings, and up to a full day for large industrial complexes. Surveys are conducted during early morning or evening when temperature differentials are greatest.
+                  On-site data capture is rapid: 30-45 minutes for residential properties, 1-2 hours for commercial buildings, and up to a full day for large <Link href="/services/drone-industrial-survey" className="text-gold hover:underline">industrial complexes</Link>. Surveys are conducted during early morning or evening when temperature differentials are greatest.
                 </p>
 
                 {/* Timeline Table */}

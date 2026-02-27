@@ -431,7 +431,7 @@ export default function DroneSurveysPage() {
                   What Accuracy Can <span className="text-gold">Drone Surveys</span> Achieve?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  With properly established ground control points (GCPs), our drone surveys routinely achieve horizontal accuracy of 1-2cm and vertical accuracy of 2-3cm. This meets or exceeds the requirements for most engineering, planning, and construction applications. For projects requiring even tighter tolerances, we combine drone photogrammetry with RTK GPS corrections and LiDAR sensors to deliver sub-centimetre precision. Our outputs are referenced to OSGB36 or WGS84 coordinate systems and can be tied into your existing survey control network.
+                  With properly established ground control points (GCPs), our drone surveys routinely achieve horizontal accuracy of 1-2cm and vertical accuracy of 2-3cm. This meets or exceeds the requirements for most engineering, planning, and construction applications. For projects requiring even tighter tolerances, we combine drone photogrammetry with RTK GPS corrections and <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR sensors</Link> to deliver sub-centimetre precision. Our outputs are referenced to OSGB36 or WGS84 coordinate systems and can be tied into your existing survey control network.
                 </p>
               </div>
 
@@ -444,7 +444,9 @@ export default function DroneSurveysPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
                     <Map className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
-                    <h3 className="font-bold text-teal mb-2">Topographic Surveys</h3>
+                    <h3 className="font-bold text-teal mb-2">
+                      <Link href="/services/drone-topographical-survey" className="hover:text-gold transition-colors">Topographic Surveys</Link>
+                    </h3>
                     <p className="text-text-secondary text-sm">Detailed elevation mapping with contour lines, spot heights, and digital terrain models for planning applications and earthworks design.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
@@ -454,17 +456,23 @@ export default function DroneSurveysPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <BarChart3 className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
-                    <h3 className="font-bold text-teal mb-2">Volumetric Surveys</h3>
+                    <h3 className="font-bold text-teal mb-2">
+                      <Link href="/services/drone-volumetric-survey" className="hover:text-gold transition-colors">Volumetric Surveys</Link>
+                    </h3>
                     <p className="text-text-secondary text-sm">Accurate stockpile and cut-fill volume calculations for quarries, waste management, and construction earthworks projects.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Ruler className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
-                    <h3 className="font-bold text-teal mb-2">Site & Boundary Surveys</h3>
+                    <h3 className="font-bold text-teal mb-2">
+                      <Link href="/services/drone-site-survey" className="hover:text-gold transition-colors">Site Surveys</Link> & Boundary Surveys
+                    </h3>
                     <p className="text-text-secondary text-sm">Comprehensive site mapping for development planning, boundary verification, and pre-construction assessments.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Mountain className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
-                    <h3 className="font-bold text-teal mb-2">Environmental Surveys</h3>
+                    <h3 className="font-bold text-teal mb-2">
+                      <Link href="/services/drone-environmental-survey" className="hover:text-gold transition-colors">Environmental Surveys</Link>
+                    </h3>
                     <p className="text-text-secondary text-sm">Habitat mapping, erosion monitoring, and environmental impact assessments for ecological and conservation projects.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">

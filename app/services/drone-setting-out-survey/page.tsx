@@ -98,7 +98,7 @@ export default function DroneSettingOutSurveyPage() {
                   A drone setting out survey combines conventional setting out techniques with UAV technology to transfer design coordinates onto the ground with enhanced speed and verification. We mark the precise positions of building corners, foundation lines, road alignments, and infrastructure elements so construction can proceed accurately from design intent.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we use RTK-enabled UAVs alongside total stations and GNSS equipment to deliver survey-grade accuracy. The drone component allows instant as-built verification, creating imagery and coordinates that confirm your setting out positions match design specifications before groundworks begin.
+                  At Hire Drone Pilot, we use RTK-enabled UAVs alongside total stations and GNSS equipment to deliver survey-grade accuracy. The drone component allows instant <Link href="/services/drone-as-built-survey" className="text-gold hover:underline">as-built verification</Link>, creating imagery and coordinates that confirm your setting out positions match design specifications before groundworks begin.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -474,7 +474,7 @@ export default function DroneSettingOutSurveyPage() {
                   What Accuracy Can an <span className="text-gold">Drone Setting Out Survey</span> Achieve?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Our drone setting out surveys achieve positional accuracy of 10-20mm when using total station methods, meeting or exceeding construction tolerances for building corners, foundation lines, and infrastructure elements. This is the same accuracy as conventional setting out because we use the same survey-grade equipment.
+                  Our drone setting out surveys achieve positional accuracy of 10-20mm when using total station methods, meeting or exceeding construction tolerances for <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">building corners</Link>, foundation lines, and infrastructure elements. This is the same accuracy as conventional setting out because we use the same survey-grade equipment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   The UAV verification component adds a visual accuracy check using RTK-enabled positioning. We capture each marked position from the air and confirm coordinates against design data. This dual approach catches any errors in real-time, ensuring what&apos;s on the ground matches what&apos;s in the CAD drawing before expensive construction begins.
@@ -487,7 +487,7 @@ export default function DroneSettingOutSurveyPage() {
                   Where Are <span className="text-gold">Drone Setting Out Surveys</span> Used?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Drone setting out surveys serve construction and infrastructure projects where precision positioning and verification matter. Here are the key applications where our clients see the greatest value:
+                  Drone setting out surveys serve construction and <Link href="/services/drone-site-survey" className="text-gold hover:underline">infrastructure projects</Link> where precision positioning and verification matter. Here are the key applications where our clients see the greatest value:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
@@ -656,7 +656,7 @@ export default function DroneSettingOutSurveyPage() {
                   On-site setting out is typically completed in a single day. A straightforward project with 20-30 points takes 3-4 hours including drone verification. Larger sites with 50+ points may require a full day or multiple visits depending on complexity.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Outputs are often available same-day or next working day. Coordinate schedules and verification imagery are processed immediately after field work. For complex multi-phase projects, we agree delivery schedules at the outset to match your construction programme.
+                  Outputs are often available same-day or next working day. Coordinate schedules and verification imagery are processed immediately after field work. For complex multi-phase projects, we agree delivery schedules at the outset to match your <Link href="/services/drone-construction-monitoring" className="text-gold hover:underline">construction programme</Link>.
                 </p>
 
                 {/* Timeline Table */}

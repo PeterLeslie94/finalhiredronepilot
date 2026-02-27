@@ -95,10 +95,10 @@ export default function DroneLandfillSurveyPage() {
                   Understanding <span className="text-gold">Drone Landfill Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV landfill survey employs sophisticated drone technology to acquire precise survey data from waste management facilities, enabling accurate volume computations, capacity tracking, and regulatory compliance documentation. Our UAVs gather thousands of data points across your site within minutes, generating detailed 3D models that reveal the actual configuration and volume of your landfill cells.
+                  A UAV landfill survey employs sophisticated drone technology to acquire precise survey data from waste management facilities, enabling accurate <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">volume computations</Link>, capacity tracking, and regulatory compliance documentation. Our UAVs gather thousands of data points across your site within minutes, generating detailed 3D models that reveal the actual configuration and volume of your landfill cells.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we focus on landfill surveying for waste management operators, environmental consultants, and local authorities throughout the UK. Our surveys deliver the precise, defensible data you require for environmental permits, void space computations, and operational planning—all captured safely without interrupting active tipping operations.
+                  At Hire Drone Pilot, we focus on landfill surveying for waste management operators, <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental consultants</Link>, and local authorities throughout the UK. Our surveys deliver the precise, defensible data you require for environmental permits, void space computations, and operational planning—all captured safely without interrupting active tipping operations.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -509,7 +509,7 @@ export default function DroneLandfillSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Restoration Tracking</h3>
-                    <p className="text-text-secondary text-sm">Monitoring capping and restoration activities, confirming profiles against design specifications and settlement observation.</p>
+                    <p className="text-text-secondary text-sm">Monitoring capping and <Link href="/services/drone-quarry-survey" className="text-gold hover:underline">restoration activities</Link>, confirming profiles against design specifications and settlement observation.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Due Diligence Assessment</h3>
@@ -621,7 +621,7 @@ export default function DroneLandfillSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">CAD Files & Three-Dimensional Models</h4>
-                      <p className="text-text-secondary text-sm">Digital surface models, contours, and CAD-compatible files supporting AutoCAD, Civil 3D, and additional engineering software.</p>
+                      <p className="text-text-secondary text-sm"><Link href="/services/drone-topographical-survey" className="text-gold hover:underline">Digital surface models</Link>, contours, and CAD-compatible files supporting AutoCAD, Civil 3D, and additional engineering software.</p>
                     </div>
                   </li>
                 </ul>

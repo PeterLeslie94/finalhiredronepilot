@@ -96,10 +96,10 @@ export default function DroneBoundarySurveyPage() {
                   Understanding <span className="text-gold">Drone Boundary Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV boundary survey employs drone photography and GPS technology to precisely map the boundaries of land parcels, properties, and estates. Unlike conventional methods that require surveyors to physically walk every boundary line, our aircraft capture high-resolution imagery from above, generating precise orthomosaic maps that show exactly where your boundaries lie.
+                  A UAV boundary survey employs drone photography and GPS technology to precisely map the boundaries of <Link href="/services/drone-land-survey" className="text-gold hover:underline">land parcels</Link>, properties, and estates. Unlike conventional methods that require surveyors to physically walk every boundary line, our aircraft capture high-resolution imagery from above, generating precise orthomosaic maps that show exactly where your boundaries lie.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we combine RTK-GPS positioning with professional photogrammetry to deliver boundary surveys that are accurate to within centimetres. Whether you need to verify your property extent, resolve a boundary dispute, or calculate land areas for legal or planning purposes, our UAV surveys provide the evidence you need.
+                  At Hire Drone Pilot, we combine RTK-GPS positioning with professional <Link href="/services/drone-photogrammetry-survey" className="text-gold hover:underline">photogrammetry</Link> to deliver boundary surveys that are accurate to within centimetres. Whether you need to verify your property extent, resolve a boundary dispute, or calculate land areas for legal or planning purposes, our UAV surveys provide the evidence you need.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -506,7 +506,7 @@ export default function DroneBoundarySurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Development Sites</h3>
-                    <p className="text-text-secondary text-sm">Define site boundaries for planning applications, verify site areas, and establish development extents.</p>
+                    <p className="text-text-secondary text-sm">Define <Link href="/services/drone-site-survey" className="text-gold hover:underline">site boundaries</Link> for planning applications, verify site areas, and establish development extents.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Agricultural Schemes</h3>

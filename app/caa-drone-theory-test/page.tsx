@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Metadata } from 'next'
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle, Clock, AlertTriangle } from 'lucide-react';
 import ClientLogoMarquee from '@/components/ClientLogoMarquee';
@@ -459,7 +460,7 @@ export default function CAADroneTheoryTestPage() {
               </p>
 
               <p className="text-lg text-text-primary mb-6">
-                As the founder of the <a href="https://hiredronepilot.uk/" className="text-orange-600 hover:text-orange-700 font-semibold">UK's largest drone pilots for hire network</a> and a holder of a GVC licence, I know first-hand how important it is to pass this test.
+                As the founder of the <Link href="/" className="text-orange-600 hover:text-orange-700 font-semibold">UK's largest drone pilots for hire network</Link> and a holder of a GVC licence, I know first-hand how important it is to pass this test.
               </p>
 
               <div className="text-center my-12">

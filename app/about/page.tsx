@@ -254,12 +254,12 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Instead of running another generic directory, Peter built a quote-first platform
-                  that helps clients post once and compare independent drone pilot responses quickly.
+                  that helps clients post once and compare independent <Link href="/pilots" className="text-gold hover:underline">drone pilot</Link> responses quickly.
                   This improves speed, clarity, and quality control from the start.
                 </p>
                 <p>
                   The company goal is to become the UK&apos;s most trusted way to hire compliant
-                  drone pilots for surveys, inspections, and specialist aerial deliverables.
+                  drone pilots for <Link href="/services/drone-surveys" className="text-gold hover:underline">surveys</Link>, <Link href="/services/drone-roof-inspection" className="text-gold hover:underline">inspections</Link>, and specialist aerial deliverables.
                 </p>
               </div>
 
@@ -365,7 +365,7 @@ export default function AboutPage() {
                   Civil Aviation Authority Aligned Operations
                 </h3>
                 <p className="text-text-secondary">
-                  HireDronePilot is built around CAA compliance and operational accountability.
+                  HireDronePilot is built around <Link href="/caa-drone-theory-test" className="text-gold hover:underline">CAA</Link> compliance and operational accountability.
                   Credentials are not treated as marketing badges, they are part of how projects
                   are evaluated and how basic onboarding documents are reviewed before profiles
                   appear to clients.

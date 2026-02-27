@@ -96,10 +96,10 @@ export default function DroneGroundPenetratingRadarPage() {
                   What is <span className="text-gold">Drone Ground Penetrating Radar</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone ground penetrating radar (GPR) combines unmanned aerial vehicle technology with subsurface radar sensors to map what lies beneath the ground surface. The UAV-mounted GPR antenna transmits electromagnetic pulses into the ground and records the reflected signals, building a detailed cross-sectional profile of subsurface features.
+                  Drone ground penetrating radar (GPR) combines unmanned aerial vehicle technology with subsurface radar sensors to map what lies beneath the ground surface. The UAV-mounted GPR antenna transmits electromagnetic pulses into the ground and records the reflected signals, building a detailed cross-sectional profile of <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">subsurface features</Link>.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we deploy drone GPR systems capable of detecting buried utilities, underground voids, geological stratification, archaeological remains, and structural anomalies. This non-invasive approach covers significantly larger areas than traditional hand-pushed GPR trolleys, making it ideal for extensive site investigations and preliminary ground assessments.
+                  At Hire Drone Pilot, we deploy drone GPR systems capable of detecting <Link href="/services/drone-utility-survey" className="text-gold hover:underline">buried utilities</Link>, underground voids, geological stratification, <Link href="/services/drone-archaeological-survey" className="text-gold hover:underline">archaeological remains</Link>, and structural anomalies. This non-invasive approach covers significantly larger areas than traditional hand-pushed GPR trolleys, making it ideal for extensive <Link href="/services/drone-site-survey" className="text-gold hover:underline">site investigations</Link> and preliminary ground assessments.
                 </p>
 
                 {/* Conversion CTA Box */}

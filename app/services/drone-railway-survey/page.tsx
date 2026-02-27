@@ -96,7 +96,7 @@ export default function DroneRailwaySurveyPage() {
                   Understanding <span className="text-gold">Drone Railway Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV railway survey employs unmanned aircraft to gather detailed data along rail corridors without requiring track access or possessions. Our drones fly parallel to the track, capturing high-resolution imagery and precise measurements of the permanent way, structures, vegetation, and lineside assets.
+                  A UAV railway survey employs unmanned aircraft to gather detailed data along <Link href="/services/drone-corridor-mapping" className="text-gold hover:underline">rail corridors</Link> without requiring track access or possessions. Our drones fly parallel to the track, capturing high-resolution imagery and precise measurements of the permanent way, structures, vegetation, and lineside assets.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we specialise in rail infrastructure surveys for Network Rail projects, heritage railways, and private freight operators. Our drone-based approach delivers survey-grade precision while eliminating the safety risks and operational disruption of conventional track-based methods.
@@ -500,7 +500,7 @@ export default function DroneRailwaySurveyPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Clearance Analysis</h3>
-                    <p className="text-text-secondary text-sm">Structure gauge verification, platform clearances, and overhead line equipment surveys for electrification and freight gauge enhancement projects.</p>
+                    <p className="text-text-secondary text-sm">Structure gauge verification, platform clearances, and <Link href="/services/drone-utility-survey" className="text-gold hover:underline">overhead line equipment</Link> surveys for electrification and freight gauge enhancement projects.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Vegetation Management</h3>
@@ -516,7 +516,7 @@ export default function DroneRailwaySurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Heritage Railways</h3>
-                    <p className="text-text-secondary text-sm">Track condition surveys, level crossing assessments, and infrastructure documentation for preserved lines.</p>
+                    <p className="text-text-secondary text-sm">Track condition surveys, <Link href="/services/drone-road-survey" className="text-gold hover:underline">level crossing</Link> assessments, and infrastructure documentation for preserved lines.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Incident Response</h3>
@@ -555,7 +555,7 @@ export default function DroneRailwaySurveyPage() {
                   Yes—and this is where UAV railway surveys deliver transformational benefits. Our drones operate from positions outside the railway boundary, typically from adjacent land, roads, or Network Rail access points. We never need to step on the track or require a possession.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  For open track sections, we fly parallel to the corridor at appropriate standoff distances. For bridges, tunnels, and confined areas, we use oblique photography and LiDAR to capture data from accessible positions. This approach enables surveys during normal traffic operations—even on busy main lines.
+                  For open track sections, we fly parallel to the corridor at appropriate standoff distances. For <Link href="/services/drone-bridge-inspection" className="text-gold hover:underline">bridges</Link>, tunnels, and confined areas, we use oblique photography and LiDAR to capture data from accessible positions. This approach enables surveys during normal traffic operations—even on busy main lines.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   The result is quicker project timelines, dramatically reduced costs, and zero impact on train services. For Network Rail projects, this means no possession planning, no COSS coordination, and no track access forms—just high-quality survey data delivered efficiently.

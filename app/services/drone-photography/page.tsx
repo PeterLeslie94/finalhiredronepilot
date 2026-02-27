@@ -99,7 +99,7 @@ export default function DronePhotographyPage() {
                   Drone photography employs unmanned aerial vehicles fitted with high-resolution cameras to capture images from elevated perspectives that ground-based photography simply cannot achieve. From sweeping landscape vistas to detailed overhead shots of commercial properties, aerial photography transforms the way businesses and individuals present their projects.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, our CAA certified operators use professional-grade camera drones capable of capturing images at resolutions exceeding 48 megapixels. Whether you need marketing imagery for a property development, event coverage from a unique vantage point, or documentation of a construction site, our aerial photography delivers striking results that set your content apart.
+                  At Hire Drone Pilot, our CAA certified operators use professional-grade camera drones capable of capturing images at resolutions exceeding 48 megapixels. Whether you need marketing imagery for a <Link href="/services/drone-real-estate-photography" className="text-gold hover:underline">property development</Link>, event coverage from a unique vantage point, or documentation of a <Link href="/services/drone-site-survey" className="text-gold hover:underline">construction site</Link>, our aerial photography delivers striking results that set your content apart.
                 </p>
 
                 {/* Conversion CTA Box */}

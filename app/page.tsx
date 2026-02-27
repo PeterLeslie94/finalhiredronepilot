@@ -79,12 +79,12 @@ const services = [
 ];
 
 const industries = [
-  { name: 'Energy & Utilities', Icon: Zap, description: 'Infrastructure inspection, solar farm surveys' },
-  { name: 'Construction', Icon: HardHat, description: 'Progress monitoring, volumetric analysis, site surveys' },
-  { name: 'Real Estate', Icon: HomeIcon, description: 'Property marketing, boundary surveys, roof inspections' },
-  { name: 'Environmental', Icon: TreePine, description: 'Habitat mapping, flood modelling, conservation' },
-  { name: 'Mining & Quarrying', Icon: Mountain, description: 'Stockpile volumes, pit surveys, reclamation' },
-  { name: 'Agriculture', Icon: Wheat, description: 'Crop health mapping, irrigation planning, yield analysis' },
+  { name: 'Energy & Utilities', Icon: Zap, description: 'Infrastructure inspection, solar farm surveys', href: '/services/drone-solar-survey' },
+  { name: 'Construction', Icon: HardHat, description: 'Progress monitoring, volumetric analysis, site surveys', href: '/services/drone-construction-monitoring' },
+  { name: 'Real Estate', Icon: HomeIcon, description: 'Property marketing, boundary surveys, roof inspections', href: '/services/drone-real-estate-photography' },
+  { name: 'Environmental', Icon: TreePine, description: 'Habitat mapping, flood modelling, conservation', href: '/services/drone-environmental-survey' },
+  { name: 'Mining & Quarrying', Icon: Mountain, description: 'Stockpile volumes, pit surveys, reclamation', href: '/services/drone-mining-survey' },
+  { name: 'Agriculture', Icon: Wheat, description: 'Crop health mapping, irrigation planning, yield analysis', href: '/services/drone-agricultural-survey' },
 ];
 
 const accreditations = [
@@ -175,7 +175,7 @@ const faqs = [
   {
     question: 'Can you fly drones in restricted airspace?',
     answer:
-      'Some independent drone pilots can operate in controlled or restricted airspace where permissions are required. Confirm permissions and operational responsibility directly with your selected provider.',
+      'Some independent drone pilots can operate in controlled or restricted airspace where permissions are required. All commercial pilots must hold the appropriate CAA certification — learn more in our CAA drone theory test guide. Confirm permissions and operational responsibility directly with your selected provider.',
   },
   {
     question: 'What is the difference between photogrammetry and LiDAR?',
@@ -183,7 +183,7 @@ const faqs = [
   },
   {
     question: 'How much does a drone survey cost in the UK?',
-    answer: 'Costs vary based on site size, complexity, and deliverables required. As a guide, small site surveys start from around £500, while larger projects are priced per hectare. Contact us for a free, no-obligation quote tailored to your specific requirements.',
+    answer: 'Costs vary based on site size, complexity, and deliverables required. As a guide, small site surveys start from around £500, while larger projects are priced per hectare. See our UK drone statistics page for industry benchmarks, or contact us for a free, no-obligation quote tailored to your specific requirements.',
   },
   {
     question: 'Do you need access to my site for a drone survey?',
@@ -275,7 +275,7 @@ export default async function HomePage() {
                   </div>
                   <div>
                     <p className="font-semibold text-teal">Transparent Comparison</p>
-                    <p className="text-text-secondary text-sm">Review pricing, capability, and fit side-by-side</p>
+                    <p className="text-text-secondary text-sm">Review <Link href="/pricing" className="text-teal underline hover:text-gold transition-colors">pricing</Link>, capability, and fit side-by-side</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -346,7 +346,7 @@ export default async function HomePage() {
               <div className="space-y-4 text-text-secondary text-lg mb-8">
                 <p>
                   HireDronePilot is a UK-based platform that connects clients needing drone services
-                  with independent drone pilots.
+                  with <Link href="/pilots" className="text-teal underline hover:text-gold transition-colors">independent drone pilots</Link>.
                 </p>
                 <p>
                   The service works by having clients submit project details through a single form, which is then sent to relevant operators for them to provide quotes.
@@ -429,6 +429,10 @@ export default async function HomePage() {
               <ServiceCard key={service.href} {...service} />
             ))}
           </div>
+
+          <p className="text-center text-text-secondary text-lg mt-8">
+            Use our free <Link href="/resources" className="text-teal underline hover:text-gold transition-colors">drone survey calculators</Link> to estimate costs and plan your project.
+          </p>
         </div>
       </section>
 
@@ -657,8 +661,9 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry) => (
-              <div
+              <Link
                 key={industry.name}
+                href={industry.href}
                 className="bg-background-alt border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-14 h-14 bg-gold/10 rounded-xl flex items-center justify-center mb-4">
@@ -666,7 +671,7 @@ export default async function HomePage() {
                 </div>
                 <h4 className="text-teal font-bold text-xl mb-2">{industry.name}</h4>
                 <p className="text-text-secondary">{industry.description}</p>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -789,19 +794,37 @@ export default async function HomePage() {
               <p className="text-text-secondary text-lg mb-6">
                 Our drone pilot network covers projects across the country. From city-centre inspections in London to remote assets in Scotland, we route your brief to qualified drone operators who can deliver on scope and timeline.
               </p>
-              <ul className="space-y-3 mb-8">
-                {['Scotland & Northern England', 'Midlands & Wales', 'South East & London', 'South West & East Anglia'].map((region) => (
-                  <li key={region} className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                {[
+                  { name: 'London', slug: 'london' },
+                  { name: 'Edinburgh', slug: 'edinburgh' },
+                  { name: 'Manchester', slug: 'manchester' },
+                  { name: 'Birmingham', slug: 'birmingham' },
+                  { name: 'Glasgow', slug: 'glasgow' },
+                  { name: 'Bristol', slug: 'bristol' },
+                  { name: 'Leeds', slug: 'leeds' },
+                  { name: 'Newcastle', slug: 'newcastle' },
+                ].map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/cities/${city.slug}`}
+                    className="flex items-center gap-2 rounded-lg border border-border bg-background-alt px-3 py-2.5 text-text-primary font-medium hover:border-gold hover:text-teal transition-colors"
+                  >
+                    <svg className="w-4 h-4 text-gold flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-text-primary">{region}</span>
-                  </li>
+                    {city.name}
+                  </Link>
                 ))}
-              </ul>
-              <Link href="/contact" className="btn btn-primary">
-                Find Your Local Team
-              </Link>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/cities" className="btn btn-primary">
+                  Browse All Locations
+                </Link>
+                <Link href="/contact" className="inline-flex items-center justify-center gap-2 btn bg-transparent text-teal border-teal hover:bg-teal hover:text-white">
+                  Find Your Local Team
+                </Link>
+              </div>
             </div>
             <div className="relative">
               <div className="bg-background-alt rounded-2xl p-4 border border-border">
@@ -980,7 +1003,15 @@ export default async function HomePage() {
 
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl p-8">
-              <FAQ items={faqs} />
+              <FAQ items={faqs.map((faq) => {
+                if (faq.question === 'How much does a drone survey cost in the UK?') {
+                  return { ...faq, answer: <>Costs vary based on site size, complexity, and deliverables required. As a guide, small site surveys start from around £500, while larger projects are priced per hectare. See our <Link href="/drone-statistics" className="text-teal underline hover:text-gold transition-colors">UK drone statistics</Link> page for industry benchmarks, or contact us for a free, no-obligation quote tailored to your specific requirements.</> };
+                }
+                if (faq.question === 'Can you fly drones in restricted airspace?') {
+                  return { ...faq, answer: <>Some independent drone pilots can operate in controlled or restricted airspace where permissions are required. All commercial pilots must hold the appropriate CAA certification — learn more in our <Link href="/caa-drone-theory-test" className="text-teal underline hover:text-gold transition-colors">CAA drone theory test</Link> guide. Confirm permissions and operational responsibility directly with your selected provider.</> };
+                }
+                return faq;
+              })} />
             </div>
           </div>
           <FAQSchema faqs={faqs} />

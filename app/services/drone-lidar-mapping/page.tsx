@@ -95,10 +95,10 @@ export default function LiDARMappingPage() {
                   Understanding <span className="text-gold">Drone LiDAR Survey</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV LiDAR survey employs Light Detection and Ranging technology mounted on our aircraft to produce remarkably detailed 3D maps of terrain, structures, and vegetation. Unlike conventional photography-based assessments, our LiDAR systems emit thousands of laser pulses per second, calculating the exact distance to every surface they encounter.
+                  A UAV LiDAR survey employs Light Detection and Ranging technology mounted on our aircraft to produce remarkably detailed 3D maps of <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain</Link>, structures, and vegetation. Unlike conventional photography-based assessments, our LiDAR systems emit thousands of laser pulses per second, calculating the exact distance to every surface they encounter.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we utilise the latest UAV-mounted LiDAR sensors capable of capturing up to 300 points per square metre. This generates dense, precise point clouds that expose the true contours of the land—even beneath heavy tree cover where photogrammetry simply cannot penetrate.
+                  At Hire Drone Pilot, we utilise the latest UAV-mounted LiDAR sensors capable of capturing up to 300 points per square metre. This generates dense, precise <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">point clouds</Link> that expose the true contours of the land—even beneath heavy tree cover where <Link href="/services/drone-photogrammetry-survey" className="text-gold hover:underline">photogrammetry</Link> simply cannot penetrate.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -504,7 +504,7 @@ export default function LiDARMappingPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Flood Risk Assessment</h3>
-                    <p className="text-text-secondary text-sm">Precise DTMs for flood modelling, drainage design, and environmental impact assessments demanding true ground elevations.</p>
+                    <p className="text-text-secondary text-sm">Precise DTMs for flood modelling, drainage design, and environmental impact assessments demanding true <Link href="/services/drone-elevation-survey" className="text-gold hover:underline">ground elevations</Link>.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Archaeological Assessments</h3>

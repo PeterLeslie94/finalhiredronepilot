@@ -57,7 +57,7 @@ export default async function ResourcesPage() {
             </h1>
             <p className="text-white/80 text-lg md:text-xl mb-8">
               Free calculators, tutorials, and expert insights
-              to help you plan and understand your aerial survey projects.
+              to help you plan and understand your <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">aerial survey</Link> projects.
             </p>
             <div className="flex flex-wrap gap-3">
               <a href="#calculators" className="btn btn-primary">
@@ -94,7 +94,7 @@ export default async function ResourcesPage() {
               Survey Calculators
             </h2>
             <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-              Plan your drone survey project with our free interactive calculators.
+              Plan your <Link href="/services/drone-surveys" className="text-gold hover:underline">drone survey</Link> project with our free interactive calculators.
               Get instant estimates for costs, flight times, and ROI.
             </p>
           </div>
@@ -187,7 +187,7 @@ export default async function ResourcesPage() {
                 Compare Quotes for Your Project
               </h3>
               <p className="text-text-secondary text-lg mb-6">
-                Used our calculators and ready for precise pricing? Tell us about
+                Used our calculators and ready for precise <Link href="/pricing" className="text-gold hover:underline">pricing</Link>? Tell us about
                 your project and we&apos;ll provide a tailored quote within 24 hours.
               </p>
               <ul className="space-y-3">

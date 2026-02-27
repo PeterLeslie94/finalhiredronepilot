@@ -119,12 +119,12 @@ export default function DroneGasDetectionPage() {
               <div>
                 <h2 className="text-3xl font-bold text-teal mb-4">Safer Gas Inspection Workflows</h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone gas detection supports faster visual and sensor-led checks on industrial sites,
+                  Drone gas detection supports faster visual and sensor-led checks on <Link href="/services/drone-industrial-survey" className="text-gold hover:underline">industrial sites</Link>,
                   reducing exposure in high-risk zones and improving inspection coverage in complex environments.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   HireDronePilot helps you compare independent drone pilots equipped for industrial projects, from
-                  elevated assets and process areas to hard-to-access infrastructure.
+                  elevated assets and process areas to <Link href="/services/drone-confined-space-inspection" className="text-gold hover:underline">hard-to-access infrastructure</Link>.
                 </p>
               </div>
 

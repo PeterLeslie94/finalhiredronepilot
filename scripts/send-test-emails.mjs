@@ -240,7 +240,7 @@ const templates = [
     const backlinkToken = 'sample-backlink-token-abc123';
     const profileUrl = `${BASE_URL}/pilots/${slug}`;
     const confirmIntegrationUrl = `${BASE_URL}/api/pilots/${pilotId}/confirm-integration?token=${backlinkToken}`;
-    const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Verified on HireDronePilot&quot; width=&quot;200&quot; height=&quot;60&quot;&gt;&lt;/a&gt;`;
+    const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Vetted and verified drone pilot badge (Active)&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
 
     return {
       key: 'pilot_approved',

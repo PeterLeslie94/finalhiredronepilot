@@ -96,7 +96,7 @@ export default function DroneConfinedSpaceInspectionPage() {
                   What is <span className="text-gold">Drone Confined Space Inspection</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone confined space inspection uses compact, collision-tolerant UAVs designed specifically for indoor and enclosed environments. These specialist aircraft navigate inside tanks, pressure vessels, storage silos, boilers, chimneys, tunnels, and other confined spaces to capture high-definition visual and thermal data without requiring human entry.
+                  Drone confined space inspection uses compact, collision-tolerant UAVs designed specifically for indoor and enclosed environments. These specialist aircraft navigate inside tanks, pressure vessels, storage silos, boilers, chimneys, tunnels, and other confined spaces to capture high-definition visual and <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">thermal data</Link> without requiring human entry.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we deploy caged or guarded drone platforms equipped with powerful LED lighting, 4K cameras, and optional thermal sensors. These aircraft can operate in complete darkness, GPS-denied environments, and spaces as confined as 500mm diameter openings, delivering imagery that supports maintenance decisions, regulatory compliance, and asset management.
@@ -432,7 +432,7 @@ export default function DroneConfinedSpaceInspectionPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Factory className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Boilers & Heat Exchangers</h3>
-                    <p className="text-text-secondary text-sm">Power station boilers, industrial furnaces, kilns, and heat recovery units where high temperatures prohibit rapid human entry.</p>
+                    <p className="text-text-secondary text-sm">Power station boilers, <Link href="/services/drone-industrial-survey" className="text-gold hover:underline">industrial furnaces</Link>, kilns, and heat recovery units where high temperatures prohibit rapid human entry.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Shield className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -442,7 +442,7 @@ export default function DroneConfinedSpaceInspectionPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <AlertTriangle className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Tunnels & Culverts</h3>
-                    <p className="text-text-secondary text-sm">Drainage systems, sewer tunnels, railway tunnels, and utility culverts where access is restricted or atmosphere is hazardous.</p>
+                    <p className="text-text-secondary text-sm">Drainage systems, sewer tunnels, railway tunnels, and utility culverts where access is restricted or <Link href="/services/drone-gas-detection" className="text-gold hover:underline">atmosphere is hazardous</Link>.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Eye className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -475,7 +475,7 @@ export default function DroneConfinedSpaceInspectionPage() {
                   Where Are <span className="text-gold">Confined Space Inspections</span> Used?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone confined space inspection serves critical roles across numerous industries where enclosed assets require regular assessment for corrosion, structural integrity, coating condition, and regulatory compliance. Key sectors include oil and gas, power generation, water utilities, chemical processing, food and beverage manufacturing, marine and offshore, and mining operations.
+                  Drone confined space inspection serves critical roles across numerous industries where enclosed assets require regular assessment for corrosion, <Link href="/services/drone-bridge-inspection" className="text-gold hover:underline">structural integrity</Link>, coating condition, and regulatory compliance. Key sectors include oil and gas, power generation, water utilities, chemical processing, food and beverage manufacturing, marine and offshore, and mining operations.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   The technology proves particularly valuable during planned shutdowns and turnarounds, where reducing inspection time directly translates to shorter outage durations and significant cost savings for the asset owner.

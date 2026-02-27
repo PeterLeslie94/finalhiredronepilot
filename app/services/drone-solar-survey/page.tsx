@@ -95,7 +95,7 @@ export default function DroneSolarFarmSurveyPage() {
                   Understanding <span className="text-gold">Drone Solar Farm Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV solar farm survey employs thermal imaging cameras fitted to our aircraft to inspect solar panel installations swiftly and precisely. Unlike conventional ground-based inspections, our drones can survey complete solar farms in hours instead of days, gathering detailed thermal data that uncovers panel faults invisible to the unaided eye.
+                  A UAV solar farm survey employs <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">thermal imaging</Link> cameras fitted to our aircraft to inspect solar panel installations swiftly and precisely. Unlike conventional ground-based inspections, our drones can survey complete solar farms in hours instead of days, gathering detailed thermal data that uncovers panel faults invisible to the unaided eye.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we merge high-resolution RGB imagery with radiometric thermal sensors capable of detecting temperature variations as minute as 0.05 degrees Celsius. This precision enables us to pinpoint hotspots, bypass diode failures, cell fractures, and soiling problems that diminish your energy output and can cause expensive damage if left unaddressed.

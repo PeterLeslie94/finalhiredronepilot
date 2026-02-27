@@ -509,11 +509,11 @@ export default function DroneEnvironmentalSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Wetland & Coastal Surveys</h3>
-                    <p className="text-text-secondary text-sm">Chart fragile wetland habitats, saltmarsh extent, and coastal vegetation without disturbing sensitive areas.</p>
+                    <p className="text-text-secondary text-sm">Chart fragile wetland habitats, saltmarsh extent, and <Link href="/services/drone-coastal-survey" className="text-gold hover:underline">coastal vegetation</Link> without disturbing sensitive areas.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Agricultural & Estate Management</h3>
-                    <p className="text-text-secondary text-sm">Identify field margins, hedgerow condition, and habitat features for environmental stewardship schemes.</p>
+                    <p className="text-text-secondary text-sm">Identify <Link href="/services/drone-agricultural-survey" className="text-gold hover:underline">field margins</Link>, hedgerow condition, and habitat features for environmental stewardship schemes.</p>
                   </div>
                 </div>
 
@@ -545,7 +545,7 @@ export default function DroneEnvironmentalSurveyPage() {
                   Can UAVs Map <span className="text-gold">Habitats and Vegetation</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Absolutely—this is where drone ecological surveys truly shine. Utilising high-resolution RGB imagery combined with multispectral sensors, we capture detailed spectral signatures that distinguish between grassland types, scrub, woodland, wetland, and other habitat categories with remarkable precision.
+                  Absolutely—this is where drone ecological surveys truly shine. Utilising high-resolution RGB imagery combined with multispectral sensors, we capture detailed spectral signatures that distinguish between grassland types, scrub, <Link href="/services/drone-forestry-survey" className="text-gold hover:underline">woodland</Link>, wetland, and other habitat categories with remarkable precision.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Our vegetation classification workflows produce habitat maps aligned with Phase 1, UKHab, or NVC classification systems as required. We calculate vegetation indices like NDVI to reveal plant health patterns invisible to standard photography—essential for identifying stressed vegetation, invasive species spread, or areas of poor establishment in restoration projects.
@@ -635,7 +635,7 @@ export default function DroneEnvironmentalSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">3D Site Models</h4>
-                      <p className="text-text-secondary text-sm">Digital Surface Models and terrain data for visualisation, drainage analysis, and landscape planning purposes.</p>
+                      <p className="text-text-secondary text-sm">Digital Surface Models and terrain data for visualisation, <Link href="/services/drone-flood-risk-survey" className="text-gold hover:underline">drainage analysis</Link>, and landscape planning purposes.</p>
                     </div>
                   </li>
                 </ul>
@@ -816,7 +816,7 @@ export default function DroneEnvironmentalSurveyPage() {
                   Is <span className="text-gold">Drone Environmental Survey</span> Cheaper Than Traditional Methods?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  In most scenarios, yes—significantly. Traditional habitat surveys require teams of ecologists walking transects for days, which quickly becomes expensive for large or complex sites. Access difficulties in wetlands, dense vegetation, or steep terrain add further time and cost.
+                  In most scenarios, yes—significantly. Traditional habitat surveys require teams of ecologists walking transects for days, which quickly becomes expensive for large or complex sites. Access difficulties in <Link href="/services/drone-water-quality-assessment" className="text-gold hover:underline">wetlands</Link>, dense vegetation, or steep terrain add further time and cost.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   Our drone environmental surveys capture equivalent or better spatial data in a fraction of the time. A site that might take a ground team a week to survey can be flown in hours. The cost savings typically range from 40-60% compared to traditional methods, while providing more complete coverage and consistent documentation. For repeat monitoring surveys, the economics become even more favourable—your baseline data enables rapid comparison without starting from scratch.

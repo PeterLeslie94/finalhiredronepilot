@@ -95,10 +95,10 @@ export default function DroneVolumetricSurveyPage() {
                   Understanding <span className="text-gold">Drone Volumetric Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV volumetric survey employs drone photogrammetry to determine the exact volume of material stockpiles, excavations, and earthworks. Our drones photograph hundreds of overlapping frames that transform into comprehensive 3D models, enabling automatic extraction of precise volume data.
+                  A UAV volumetric survey employs drone <Link href="/services/drone-photogrammetry-survey" className="text-gold hover:underline">photogrammetry</Link> to determine the exact volume of material stockpiles, excavations, and earthworks. Our drones photograph hundreds of overlapping frames that transform into comprehensive 3D models, enabling automatic extraction of precise volume data.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Hire Drone Pilot provides volumetric surveys achieving 1-3% accuracy—frequently surpassing the precision of conventional ground-based techniques. Whether you need aggregate stockpile measurements at a quarry, earthworks monitoring on a construction project, or material inventory verification, our UAV surveys deliver the information you require swiftly and without risk.
+                  Hire Drone Pilot provides volumetric surveys achieving 1-3% accuracy—frequently surpassing the precision of conventional ground-based techniques. Whether you need aggregate stockpile measurements at a <Link href="/services/drone-quarry-survey" className="text-gold hover:underline">quarry</Link>, earthworks monitoring on a <Link href="/services/drone-construction-monitoring" className="text-gold hover:underline">construction project</Link>, or material inventory verification, our UAV surveys deliver the information you require swiftly and without risk.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -368,7 +368,7 @@ export default function DroneVolumetricSurveyPage() {
                   Conventional stockpile measurement depends on physical tape readings, GPS surveys with rod measurements, or wheel-based techniques. Surveyors must physically traverse around and across stockpiles—a labour-intensive process that introduces safety hazards and frequently overlooks irregular contours and surface variations.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV volumetric surveys record thousands of surface points without personnel setting foot on the stockpile. Our drone methodology generates comprehensive 3D models capturing every undulation, gradient, and irregularity. This delivers swifter data acquisition, enhanced safety, and measurements typically surpassing ground-based methods in accuracy.
+                  UAV volumetric surveys record thousands of surface points without personnel setting foot on the stockpile. Our drone methodology generates comprehensive <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">3D models</Link> capturing every undulation, gradient, and irregularity. This delivers swifter data acquisition, enhanced safety, and measurements typically surpassing ground-based methods in accuracy.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -801,7 +801,7 @@ export default function DroneVolumetricSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Hire Drone Pilot meets every criterion. We hold CAA approval, carry full insurance, and have completed volumetric surveys for quarries, construction sites, and material suppliers across the UK. Our RTK-equipped technology and stringent processing protocols guarantee the precision your business relies upon.
+                  Hire Drone Pilot meets every criterion. We hold CAA approval, carry full insurance, and have completed volumetric surveys for quarries, <Link href="/services/drone-site-survey" className="text-gold hover:underline">construction sites</Link>, and material suppliers across the UK. Our RTK-equipped technology and stringent processing protocols guarantee the precision your business relies upon.
                 </p>
 
                 {/* CTA after provider section */}

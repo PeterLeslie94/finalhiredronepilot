@@ -96,10 +96,10 @@ export default function DronePointCloudMappingPage() {
                   What Is <span className="text-gold">Drone Point Cloud Mapping</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A point cloud is a collection of millions of individual 3D data points, each with precise X, Y, and Z coordinates, that together form a detailed digital representation of a physical environment. Drone point cloud mapping uses UAVs equipped with cameras or LiDAR sensors to capture the data needed to generate these dense 3D datasets from above.
+                  A point cloud is a collection of millions of individual 3D data points, each with precise X, Y, and Z coordinates, that together form a detailed digital representation of a physical environment. Drone point cloud mapping uses UAVs equipped with cameras or <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR sensors</Link> to capture the data needed to generate these dense 3D datasets from above.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we produce point clouds through two primary methods: photogrammetry (using overlapping aerial photographs processed through specialised software) and LiDAR (using laser scanning to directly measure distances). The resulting point clouds can contain hundreds of millions of points, providing an extraordinarily detailed 3D record of buildings, terrain, vegetation, and infrastructure.
+                  At Hire Drone Pilot, we produce point clouds through two primary methods: <Link href="/services/drone-photogrammetry-survey" className="text-gold hover:underline">photogrammetry</Link> (using overlapping aerial photographs processed through specialised software) and LiDAR (using laser scanning to directly measure distances). The resulting point clouds can contain hundreds of millions of points, providing an extraordinarily detailed 3D record of <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">buildings</Link>, <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain</Link>, vegetation, and infrastructure.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -441,7 +441,7 @@ export default function DronePointCloudMappingPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Building2 className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">BIM & Construction</h3>
-                    <p className="text-text-secondary text-sm">As-built point clouds imported into Revit, ArchiCAD, or other BIM platforms for clash detection, progress tracking, and digital twin creation.</p>
+                    <p className="text-text-secondary text-sm"><Link href="/services/drone-as-built-survey" className="text-gold hover:underline">As-built</Link> point clouds imported into Revit, ArchiCAD, or other BIM platforms for clash detection, progress tracking, and digital twin creation.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Landmark className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />

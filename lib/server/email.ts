@@ -270,7 +270,7 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
     case 'pilot_approved': {
       const profileUrl = `${BASE_URL}/pilots/${data.slug}`;
       const confirmIntegrationUrl = `${BASE_URL}/api/pilots/${data.pilotId}/confirm-integration?token=${data.backlinkToken}`;
-      const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Verified on HireDronePilot&quot; width=&quot;200&quot; height=&quot;60&quot;&gt;&lt;/a&gt;`;
+      const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Vetted and verified drone pilot badge (Active)&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
 
       return {
         subject: 'Your HireDronePilot Profile Is Live',

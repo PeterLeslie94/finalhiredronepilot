@@ -98,7 +98,7 @@ export default function DroneAsBuiltSurveyPage() {
                   A UAV as-built survey captures the precise dimensions, positions, and conditions of completed construction works using drone photogrammetry and survey-grade GPS technology. It creates an accurate record of what was actually built, rather than what was planned, providing essential documentation for handover, compliance, and future reference.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we deploy the latest drone technology to capture comprehensive as-built data quickly and accurately. Our surveys document everything from building positions and levels to infrastructure layouts and landscaping, delivering the precise measurements needed to verify construction against approved designs.
+                  At Hire Drone Pilot, we deploy the latest drone technology to capture comprehensive as-built data quickly and accurately. Our surveys document everything from <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">building positions</Link> and levels to <Link href="/services/drone-setting-out-survey" className="text-gold hover:underline">infrastructure layouts</Link> and landscaping, delivering the precise measurements needed to verify construction against approved designs.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -322,7 +322,7 @@ export default function DroneAsBuiltSurveyPage() {
                 </ul>
 
                 <p className="text-text-secondary leading-relaxed mb-6">
-                  Our drone approach typically saves <span className="text-gold font-semibold">50-70%</span> compared to conventional ground surveys while delivering faster turnaround. Contact us with your project details and we will provide a tailored quote within 24 hours.
+                  Our drone approach typically saves <span className="text-gold font-semibold">50-70%</span> compared to conventional <Link href="/services/drone-site-survey" className="text-gold hover:underline">ground surveys</Link> while delivering faster turnaround. Contact us with your project details and we will provide a tailored quote within 24 hours.
                 </p>
 
                 {/* CTA Banner */}
@@ -550,7 +550,7 @@ export default function DroneAsBuiltSurveyPage() {
                   Can <span className="text-gold">Drone As-Built Surveys</span> Compare to BIM Models?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Absolutely—this is one of the most powerful applications of UAV as-built surveying. We create precise 3D point clouds and models from drone data that can be directly compared against your design BIM, identifying deviations between what was planned and what was built.
+                  Absolutely—this is one of the most powerful applications of UAV as-built surveying. We create precise 3D <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">point clouds</Link> and models from drone data that can be directly compared against your design BIM, identifying deviations between what was planned and what was built.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   Our comparison reports highlight discrepancies using colour-coded deviation maps, making it immediately clear where construction differs from design intent. Whether you are verifying contractor performance, updating as-built models, or preparing for handover, this comparison capability provides objective evidence of construction precision.

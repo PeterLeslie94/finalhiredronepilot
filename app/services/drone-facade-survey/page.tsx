@@ -96,10 +96,10 @@ export default function DroneFacadeSurveyPage() {
                   Understanding <span className="text-gold">Drone Facade Assessments</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone facade assessment employs high-resolution cameras and thermal detection sensors fitted to our UAVs to gather comprehensive imagery of building exteriors. This enables us to spot defects, damage, and degradation across the complete facade without requiring scaffolding, boom lifts, or abseil crews.
+                  A drone facade assessment employs high-resolution cameras and <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">thermal detection</Link> sensors fitted to our UAVs to gather comprehensive imagery of building exteriors. This enables us to spot defects, damage, and degradation across the complete facade without requiring scaffolding, boom lifts, or abseil crews.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we operate cutting-edge drone technology capable of capturing sub-millimetre precision from secure operating distances. Our assessments uncover cracks, water penetration, deteriorated sealants, unstable cladding, and structural concerns that would otherwise demand costly access equipment to examine.
+                  At Hire Drone Pilot, we operate cutting-edge drone technology capable of capturing sub-millimetre precision from secure operating distances. Our assessments uncover cracks, water penetration, deteriorated sealants, unstable cladding, and <Link href="/services/drone-bridge-inspection" className="text-gold hover:underline">structural concerns</Link> that would otherwise demand costly access equipment to examine.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -476,7 +476,7 @@ export default function DroneFacadeSurveyPage() {
                   Our drone facade assessments gather imagery at resolutions of 2-5mm per pixel, enabling us to spot hairline cracks, minor degradation, and early-stage defects that might escape notice during conventional visual inspections. This degree of clarity surpasses what&apos;s attainable by the human eye from scaffolding or abseil access.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  For thermal scanning surveys, we employ radiometric cameras detecting temperature differences as minimal as 0.05 degrees Celsius. This enables us to pinpoint moisture penetration, insulation failures, and thermal bridging with exact precision. All imagery is geotagged and can be superimposed onto building elevations for accurate defect position mapping.
+                  For thermal scanning surveys, we employ radiometric cameras detecting temperature differences as minimal as 0.05 degrees Celsius. This enables us to pinpoint moisture penetration, insulation failures, and thermal bridging with exact precision. All imagery is geotagged and can be superimposed onto <Link href="/services/drone-elevation-survey" className="text-gold hover:underline">building elevations</Link> for accurate defect position mapping.
                 </p>
               </div>
 
@@ -662,7 +662,7 @@ export default function DroneFacadeSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">3D Representations (Optional)</h4>
-                      <p className="text-text-secondary text-sm">Photogrammetric 3D model of building exteriors for measurement, visualisation, and BIM compatibility.</p>
+                      <p className="text-text-secondary text-sm">Photogrammetric 3D model of <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">building exteriors</Link> for measurement, visualisation, and BIM compatibility.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

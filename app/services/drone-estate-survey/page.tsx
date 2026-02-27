@@ -99,7 +99,7 @@ export default function DroneEstateSurveyPage() {
                   A drone estate assessment furnishes thorough documentation of country estates, manor houses, and substantial landed properties from above. Employing professional-grade UAVs fitted with high-resolution cameras, we gather detailed imagery of every facet of your estate - from the principal residence and outbuildings to parkland, woodland, and boundary features.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At HireDronePilot, we recognise that estates are complex properties demanding careful, methodical documentation. Our assessments yield accurate boundary mapping, comprehensive building surveys, woodland evaluations, and complete orthomosaic imagery providing a full picture of your landholding. Whether you are planning enhancements, managing succession, or simply require current records of your estate, our drone surveys furnish the data you need.
+                  At HireDronePilot, we recognise that estates are complex properties demanding careful, methodical documentation. Our assessments yield accurate <Link href="/services/drone-boundary-survey" className="text-gold hover:underline">boundary mapping</Link>, comprehensive <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">building surveys</Link>, <Link href="/services/drone-forestry-survey" className="text-gold hover:underline">woodland evaluations</Link>, and complete orthomosaic imagery providing a full picture of your landholding. Whether you are planning enhancements, managing succession, or simply require current records of your estate, our drone surveys furnish the data you need.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -665,7 +665,7 @@ export default function DroneEstateSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">CAD Plans & Three-Dimensional Models</h4>
-                      <p className="text-text-secondary text-sm">Professional CAD drawings in DWG/DXF format, accompanied by 3D terrain models for design and visualisation applications.</p>
+                      <p className="text-text-secondary text-sm">Professional CAD drawings in DWG/DXF format, accompanied by 3D <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain models</Link> for design and visualisation applications.</p>
                     </div>
                   </li>
                 </ul>

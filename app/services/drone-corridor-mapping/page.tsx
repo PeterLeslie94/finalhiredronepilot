@@ -96,10 +96,10 @@ export default function DroneCorridorMappingPage() {
                   Understanding <span className="text-gold">Drone Corridor Mapping</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV corridor mapping is a specialist drone surveying technique designed for linear infrastructure such as pipelines, power lines, railways, roads, and waterways. Employing advanced drone technology, we capture continuous, high-resolution data along extended routes that would require conventional survey teams weeks to cover on foot.
+                  UAV corridor mapping is a specialist drone surveying technique designed for linear infrastructure such as pipelines, power lines, <Link href="/services/drone-railway-survey" className="text-gold hover:underline">railways</Link>, <Link href="/services/drone-road-survey" className="text-gold hover:underline">roads</Link>, and waterways. Employing advanced drone technology, we capture continuous, high-resolution data along extended routes that would require conventional survey teams weeks to cover on foot.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, our corridor mapping missions combine photogrammetry and LiDAR sensors to deliver precise orthomosaics, digital terrain models, and cross-sectional profiles. We can survey corridors of 20km or more in a single day, supplying infrastructure operators with the detailed spatial data they require for planning, maintenance, and compliance.
+                  At Hire Drone Pilot, our corridor mapping missions combine photogrammetry and <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR sensors</Link> to deliver precise orthomosaics, <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">digital terrain models</Link>, and cross-sectional profiles. We can survey corridors of 20km or more in a single day, supplying infrastructure operators with the detailed spatial data they require for planning, maintenance, and compliance.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -499,7 +499,7 @@ export default function DroneCorridorMappingPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Pipeline Route Surveys</h3>
-                    <p className="text-text-secondary text-sm">Route planning for new pipelines, condition monitoring of existing infrastructure, and wayleave documentation for gas, oil, and water utilities.</p>
+                    <p className="text-text-secondary text-sm">Route planning for new pipelines, condition monitoring of existing infrastructure, and wayleave documentation for gas, oil, and <Link href="/services/drone-utility-survey" className="text-gold hover:underline">water utilities</Link>.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Railway Corridor Mapping</h3>

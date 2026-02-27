@@ -515,7 +515,7 @@ export default function DroneRealEstatePhotographyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Aerial Video Fly-Around (Optional)</h4>
-                      <p className="text-text-secondary text-sm">A cinematic 60-90 second aerial video showcasing the property and its surroundings for enhanced online engagement.</p>
+                      <p className="text-text-secondary text-sm">A cinematic 60-90 second <Link href="/services/drone-videographer" className="text-gold hover:underline">aerial video</Link> showcasing the property and its surroundings for enhanced online engagement.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">
@@ -671,7 +671,7 @@ export default function DroneRealEstatePhotographyPage() {
                   Does <span className="text-gold">Drone Photography</span> Increase Property Sales?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  The evidence strongly suggests it does. Properties listed with aerial photography consistently attract more online views, generate more enquiries, and achieve faster sales than those without. For properties with grounds, scenic surroundings, or unique features, aerial imagery can be the deciding factor that prompts a buyer to book a viewing.
+                  The evidence strongly suggests it does. Properties listed with <Link href="/services/drone-photography" className="text-gold hover:underline">aerial photography</Link> consistently attract more online views, generate more enquiries, and achieve faster sales than those without. For properties with grounds, scenic surroundings, or unique features, aerial imagery can be the deciding factor that prompts a buyer to book a viewing.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   The investment is modest relative to the value at stake. A £200-£500 photography package supporting the sale of a property worth hundreds of thousands of pounds is a remarkably cost-effective marketing tool. Many agents now consider drone photography standard for properties above a certain price threshold.

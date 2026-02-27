@@ -441,7 +441,7 @@ export default function DroneVideographerPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <ShieldCheck className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Construction & Development</h3>
-                    <p className="text-text-secondary text-sm">Progress documentation, time-lapse sequences, and completion films that communicate project milestones to stakeholders and investors.</p>
+                    <p className="text-text-secondary text-sm"><Link href="/services/drone-construction-monitoring" className="text-gold hover:underline">Progress documentation</Link>, time-lapse sequences, and completion films that communicate project milestones to stakeholders and investors.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Video className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -674,7 +674,7 @@ export default function DroneVideographerPage() {
                   Is <span className="text-gold">Drone Video</span> Worth the Investment?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Video content consistently outperforms static imagery across every digital platform. Social media posts with video receive significantly higher engagement, property listings with video generate more enquiries, and corporate websites with video see longer visitor sessions. Adding aerial footage elevates this impact further by providing perspectives that audiences find genuinely captivating.
+                  Video content consistently outperforms <Link href="/services/drone-photography" className="text-gold hover:underline">static imagery</Link> across every digital platform. Social media posts with video receive significantly higher engagement, <Link href="/services/drone-real-estate-photography" className="text-gold hover:underline">property listings</Link> with video generate more enquiries, and corporate websites with video see longer visitor sessions. Adding aerial footage elevates this impact further by providing perspectives that audiences find genuinely captivating.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   The cost of drone videography is remarkably accessible compared to traditional aerial filming methods. A professional aerial video that would have cost £5,000-£15,000 via helicopter just a decade ago can now be produced from £400 using drone technology, representing savings of <span className="text-gold font-semibold">90% or more</span>.

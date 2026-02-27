@@ -99,7 +99,7 @@ export default function DroneSiteSurveyPage() {
                   A UAV site survey delivers a thorough drone assessment of your development site, documenting everything from perimeters and access routes to existing features and ground conditions. Unlike conventional ground surveys that can require days to finish, our drone approach captures the entire site in hours—providing the complete picture you need for planning, design, and due diligence.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we combine high-resolution drone photography with precision photogrammetry to produce detailed orthomosaic maps, 3D models, and CAD-ready site plans. Whether you&apos;re acquiring a site, preparing a planning application, or briefing your design team, our UAV site surveys provide you with accurate, up-to-date information about precisely what exists on the ground.
+                  At Hire Drone Pilot, we combine high-resolution drone photography with precision photogrammetry to produce detailed orthomosaic maps, <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">3D models</Link>, and CAD-ready site plans. Whether you&apos;re acquiring a site, preparing a planning application, or briefing your design team, our UAV site surveys provide you with accurate, up-to-date information about precisely what exists on the ground.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -634,7 +634,7 @@ export default function DroneSiteSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Digital Terrain Model (DTM)</h4>
-                      <p className="text-text-secondary text-sm">Bare-earth surface model revealing ground levels across the site. Essential for level design and earthworks planning.</p>
+                      <p className="text-text-secondary text-sm">Bare-earth surface model revealing <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">ground levels</Link> across the site. Essential for level design and earthworks planning.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">
@@ -656,7 +656,7 @@ export default function DroneSiteSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Perimeter Mapping</h4>
-                      <p className="text-text-secondary text-sm">Precise mapping of physical boundaries, fence lines, and property extents visible from drone imagery.</p>
+                      <p className="text-text-secondary text-sm">Precise mapping of physical <Link href="/services/drone-boundary-survey" className="text-gold hover:underline">boundaries</Link>, fence lines, and property extents visible from drone imagery.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

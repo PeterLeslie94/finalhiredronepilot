@@ -96,10 +96,10 @@ export default function DroneUtilitySurveyPage() {
                   Understanding <span className="text-gold">Drone Utility Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV utility survey employs cutting-edge drone technology to inspect, map, and evaluate utility infrastructure including power lines, transmission towers, pipelines, substations, and telecommunications equipment. Our drones capture high-resolution imagery and LiDAR data that reveals asset condition, clearance distances, and vegetation encroachment risks.
+                  A UAV utility survey employs cutting-edge drone technology to inspect, map, and evaluate utility infrastructure including power lines, transmission towers, pipelines, substations, and telecommunications equipment. Our drones capture high-resolution imagery and <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR</Link> data that reveals asset condition, clearance distances, and vegetation encroachment risks.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we deploy specialist sensors optimised for utility corridor surveys. Our systems can identify conductor sag, insulator damage, corrosion, and vegetation proximity issues that might go unnoticed during conventional ground inspections—all without the need for costly outages or workers at height.
+                  At Hire Drone Pilot, we deploy specialist sensors optimised for <Link href="/services/drone-corridor-mapping" className="text-gold hover:underline">utility corridor</Link> surveys. Our systems can identify conductor sag, insulator damage, corrosion, and vegetation proximity issues that might go unnoticed during conventional ground inspections—all without the need for costly outages or workers at height.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -479,7 +479,7 @@ export default function DroneUtilitySurveyPage() {
                   Our UAV utility surveys attain clearance measurement precision of ±5-10cm using combined LiDAR and photogrammetry techniques. This exceeds the requirements for vegetation management planning and regulatory compliance reporting.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  For conductor sag analysis and thermal imaging, we deploy specialist sensors calibrated for power line inspection. RTK/PPK positioning ensures every measurement is precisely georeferenced, enabling accurate comparison with design specifications and tracking of changes over time.
+                  For conductor sag analysis and <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">thermal imaging</Link>, we deploy specialist sensors calibrated for power line inspection. RTK/PPK positioning ensures every measurement is precisely georeferenced, enabling accurate comparison with design specifications and tracking of changes over time.
                 </p>
               </div>
 
@@ -514,7 +514,7 @@ export default function DroneUtilitySurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Rail Electrification</h3>
-                    <p className="text-text-secondary text-sm">Overhead line equipment surveys, catenary inspections, and clearance verification for railway electrification projects.</p>
+                    <p className="text-text-secondary text-sm">Overhead line equipment surveys, catenary inspections, and clearance verification for <Link href="/services/drone-railway-survey" className="text-gold hover:underline">railway electrification</Link> projects.</p>
                   </div>
                 </div>
 

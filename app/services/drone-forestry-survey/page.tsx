@@ -95,10 +95,10 @@ export default function DroneForestryPage() {
                   Understanding <span className="text-gold">Drone Woodland Assessment</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone woodland assessment deploys UAV-mounted sensors to gather comprehensive data on forest areas, individual tree structures, and overall woodland condition. In contrast to conventional ground-based approaches, our drones traverse expansive areas rapidly while capturing detailed imagery and accurate elevation measurements.
+                  A drone woodland assessment deploys UAV-mounted sensors to gather comprehensive data on forest areas, individual tree structures, and overall woodland condition. In contrast to conventional ground-based approaches, our drones traverse expansive areas rapidly while capturing detailed imagery and accurate <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">elevation measurements</Link>.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we integrate photogrammetry with LiDAR technology to produce thorough forest inventories. Our assessments capture tree heights, canopy coverage, species composition, and standing timber volumes—equipping woodland managers with essential data for strategic planning.
+                  At Hire Drone Pilot, we integrate photogrammetry with <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR technology</Link> to produce thorough forest inventories. Our assessments capture tree heights, canopy coverage, species composition, and standing timber volumes—equipping woodland managers with essential data for strategic planning.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -518,11 +518,11 @@ export default function DroneForestryPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Estate Woodland Management</h3>
-                    <p className="text-text-secondary text-sm">Comprehensive forest mapping for property valuations, management planning, and long-range strategic decisions.</p>
+                    <p className="text-text-secondary text-sm">Comprehensive forest mapping for <Link href="/services/drone-estate-survey" className="text-gold hover:underline">property valuations</Link>, management planning, and long-range strategic decisions.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Ecological & Conservation</h3>
-                    <p className="text-text-secondary text-sm">Habitat evaluation, ancient woodland documentation, and biodiversity tracking for environmental initiatives.</p>
+                    <p className="text-text-secondary text-sm">Habitat evaluation, ancient woodland documentation, and biodiversity tracking for <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental initiatives</Link>.</p>
                   </div>
                 </div>
 

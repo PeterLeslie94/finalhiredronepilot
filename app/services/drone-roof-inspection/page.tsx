@@ -468,7 +468,7 @@ export default function DroneRoofSurveyPage() {
                   Our drone roof assessments gather imagery at resolutions of 1-2cm per pixel—sharp enough to spot individual fractured tiles, raised flashings, obstructed gutters, and even early-stage moss formation. This degree of clarity frequently surpasses what can be observed during a manual rooftop walkover.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  When paired with orthomosaic processing, we generate scaled, quantifiable roof plans enabling you to compute areas, schedule repairs, and specify materials with assurance. For structural evaluations or insurance claims, this documentation furnishes unambiguous, timestamped proof of roof condition.
+                  When paired with orthomosaic processing, we generate scaled, quantifiable <Link href="/services/drone-measured-building-survey" className="text-gold hover:underline">roof plans</Link> enabling you to compute areas, schedule repairs, and specify materials with assurance. For structural evaluations or insurance claims, this documentation furnishes unambiguous, timestamped proof of roof condition.
                 </p>
               </div>
 
@@ -507,7 +507,7 @@ export default function DroneRoofSurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Factory className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Heritage & Listed Structures</h3>
-                    <p className="text-text-secondary text-sm">Churches, historic estates, and protected buildings where physical access might cause harm or faces restrictions.</p>
+                    <p className="text-text-secondary text-sm">Churches, historic estates, and <Link href="/services/drone-facade-survey" className="text-gold hover:underline">protected buildings</Link> where physical access might cause harm or faces restrictions.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <ShieldCheck className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -517,7 +517,7 @@ export default function DroneRoofSurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Thermometer className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Energy Performance Reviews</h3>
-                    <p className="text-text-secondary text-sm">Thermal drone inspections to detect heat loss, insulation faults, and moisture penetration for energy efficiency enhancements.</p>
+                    <p className="text-text-secondary text-sm">Thermal drone inspections to detect heat loss, insulation faults, and moisture penetration for <Link href="/services/drone-solar-survey" className="text-gold hover:underline">energy efficiency</Link> enhancements.</p>
                   </div>
                 </div>
 
@@ -549,7 +549,7 @@ export default function DroneRoofSurveyPage() {
                   Can <span className="text-gold">Drone Roof Inspections</span> Identify Leaks?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Absolutely—through thermal imaging. Our aircraft can be fitted with radiometric thermal cameras that sense temperature differences across your roof surface. Trapped moisture holds heat distinctively compared to dry materials, rendering water ingress detectable even when no visible surface damage exists.
+                  Absolutely—through <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">thermal imaging</Link>. Our aircraft can be fitted with radiometric thermal cameras that sense temperature differences across your roof surface. Trapped moisture holds heat distinctively compared to dry materials, rendering water ingress detectable even when no visible surface damage exists.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Thermal drone roof inspections prove especially effective for:

@@ -368,7 +368,7 @@ export default function DroneConstructionMonitoringPage() {
                   Conventional progress photography captures ground-level images from fixed viewpoints—useful but limited. You see parts of the site, but never the complete picture. Critical progress in areas hidden from view goes undocumented.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone construction monitoring captures your entire site from above, producing georeferenced orthomosaics that show exactly what&apos;s happening across every square metre. You can measure areas, compare phases precisely, and create accurate 3D models that integrate with your BIM workflows.
+                  Drone construction monitoring captures your entire site from above, producing georeferenced orthomosaics that show exactly what&apos;s happening across every square metre. You can measure areas, compare phases precisely, and create accurate <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">3D models</Link> that integrate with your BIM workflows.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -485,7 +485,7 @@ export default function DroneConstructionMonitoringPage() {
                   Our drone construction monitoring produces orthomosaics with ground sample distances (GSD) as low as 1cm per pixel, enabling you to see fine detail across your entire site. With ground control points, we achieve positional precision of ±2-3cm—sufficient for progress verification and BIM comparison.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  This precision means you can overlay UAV imagery directly onto your design drawings, compare actual construction against planned positions, and identify deviations before they become costly problems. For projects demanding even higher accuracy, we can integrate our monitoring with full topographic assessments at key milestones.
+                  This precision means you can overlay UAV imagery directly onto your <Link href="/services/drone-as-built-survey" className="text-gold hover:underline">design drawings</Link>, compare actual construction against planned positions, and identify deviations before they become costly problems. For projects demanding even higher accuracy, we can integrate our monitoring with full <Link href="/services/drone-site-survey" className="text-gold hover:underline">topographic assessments</Link> at key milestones.
                 </p>
               </div>
 
@@ -653,7 +653,7 @@ export default function DroneConstructionMonitoringPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Volume Change Reports</h4>
-                      <p className="text-text-secondary text-sm">Track earthworks progress with cut/fill calculations between surveys. Verify quantities for payment applications.</p>
+                      <p className="text-text-secondary text-sm">Track earthworks progress with <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">cut/fill calculations</Link> between surveys. Verify quantities for payment applications.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

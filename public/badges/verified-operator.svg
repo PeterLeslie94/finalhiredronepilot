@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60" fill="none">
-  <rect width="200" height="60" rx="6" fill="#1f2937"/>
-  <circle cx="30" cy="30" r="14" fill="#f97316" opacity="0.15"/>
-  <path d="M25 30l3.5 3.5L35 26" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <text x="52" y="25" fill="#ffffff" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">Verified on</text>
-  <text x="52" y="42" fill="#f97316" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">HireDronePilot</text>
+  <defs>
+    <linearGradient id="badge-orange" x1="20" y1="16" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F98846"/>
+      <stop offset="1" stop-color="#E1590C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="198" height="58" rx="29" fill="#ffffff" stroke="#F36D21" stroke-opacity="0.28"/>
+  <circle cx="30" cy="30" r="18" fill="url(#badge-orange)"/>
+  <path d="M30 17.5L22 21V29.5C22 36.5 25.7 40.7 30 43C34.3 40.7 38 36.5 38 29.5V21Z" fill="#ffffff"/>
+  <path d="M25.5 30.5L28.7 33.8L34.7 27.8" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="24" fill="#6B7280" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="6.4" font-weight="700" letter-spacing="0.9">VETTED &amp; VERIFIED</text>
+  <text x="54" y="36.5" fill="#111827" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="11.5" font-weight="900">DRONE PILOT</text>
+  <text x="54" y="47.5" fill="#F36D21" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="7.2" font-weight="700">HireDronePilot.uk</text>
+  <rect x="145" y="22.5" width="46" height="15" rx="7.5" fill="#ECFDF5" stroke="#D1FAE5"/>
+  <circle cx="153.5" cy="30" r="3.2" fill="#10B981"/>
+  <text x="160" y="33.2" fill="#059669" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" font-size="7" font-weight="700">Active</text>
 </svg>

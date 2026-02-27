@@ -1,6 +1,11 @@
-import Link from 'next/link';
+'use client';
+
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Phone, Mail } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight, Mail, Phone, X } from 'lucide-react';
+
+type NavLinkItem = { name: string; href: string; desc: string };
 
 const navCategories = [
   {
@@ -90,7 +95,9 @@ const resourceLinks = [
   { name: 'Pricing', href: '/pricing', desc: 'Drone service costs guide' },
 ] as const;
 
-function DesktopDropdown({ name, links }: { name: string; links: readonly { name: string; href: string; desc: string }[] }) {
+type MobilePanel = 'root' | 'services' | 'category';
+
+function DesktopDropdown({ name, links }: { name: string; links: readonly NavLinkItem[] }) {
   return (
     <div className="group relative">
       <button className="nav-link text-white font-medium transition-colors flex items-center gap-0.5 px-1.5 py-2 text-sm hover:text-gold">
@@ -119,7 +126,128 @@ function DesktopDropdown({ name, links }: { name: string; links: readonly { name
   );
 }
 
+function MobileNavLink({
+  href,
+  title,
+  description,
+  onNavigate,
+  tone = 'default',
+}: {
+  href: string;
+  title: string;
+  description?: string;
+  onNavigate: () => void;
+  tone?: 'default' | 'muted';
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onNavigate}
+      className={[
+        'block min-h-11 rounded-2xl border px-4 py-3 text-white transition-all duration-200 ease-out',
+        'hover:-translate-y-0.5 hover:border-gold/70 hover:bg-white/10',
+        tone === 'muted'
+          ? 'border-white/10 bg-white/[0.02]'
+          : 'border-white/15 bg-white/[0.05]',
+      ].join(' ')}
+    >
+      <span className="block text-sm font-semibold text-white">{title}</span>
+      {description ? <span className="mt-0.5 block text-xs text-white/65">{description}</span> : null}
+    </Link>
+  );
+}
+
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activePanel, setActivePanel] = useState<MobilePanel>('root');
+  const [activeCategoryName, setActiveCategoryName] = useState<string | null>(null);
+  const [mobileMenuTop, setMobileMenuTop] = useState(0);
+  const mobileMenuId = useId();
+
+  const headerRef = useRef<HTMLElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const menuCloseRef = useRef<HTMLButtonElement>(null);
+  const wasMenuOpenRef = useRef(false);
+
+  const activeCategory = useMemo(
+    () => navCategories.find((category) => category.name === activeCategoryName) ?? null,
+    [activeCategoryName]
+  );
+
+  const getMobileHeaderBottom = useCallback(() => {
+    const rect = headerRef.current?.getBoundingClientRect();
+    return rect ? Math.round(rect.bottom) : 0;
+  }, []);
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setActivePanel('root');
+    setActiveCategoryName(null);
+  }, []);
+
+  const openMobileMenu = useCallback(() => {
+    setMobileMenuTop(getMobileHeaderBottom());
+    setActivePanel('root');
+    setActiveCategoryName(null);
+    setIsMobileMenuOpen(true);
+  }, [getMobileHeaderBottom]);
+
+  const showServicesPanel = useCallback(() => {
+    setActivePanel('services');
+    setActiveCategoryName(null);
+  }, []);
+
+  const showCategoryPanel = useCallback((categoryName: string) => {
+    setActivePanel('category');
+    setActiveCategoryName(categoryName);
+  }, []);
+
+  const showRootPanel = useCallback(() => {
+    setActivePanel('root');
+    setActiveCategoryName(null);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMobileMenu();
+      }
+    };
+    const onResize = () => {
+      setMobileMenuTop(getMobileHeaderBottom());
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', onResize);
+    window.requestAnimationFrame(() => {
+      menuCloseRef.current?.focus();
+    });
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [closeMobileMenu, getMobileHeaderBottom, isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (wasMenuOpenRef.current && !isMobileMenuOpen) {
+      menuTriggerRef.current?.focus();
+    }
+    wasMenuOpenRef.current = isMobileMenuOpen;
+  }, [isMobileMenuOpen]);
+
+  const panelIndex = activePanel === 'root' ? 0 : activePanel === 'services' ? 1 : 2;
+  const panelClassFor = (target: number) => {
+    if (target === panelIndex) return 'opacity-100 translate-x-0 pointer-events-auto';
+    if (target < panelIndex) return 'opacity-0 -translate-x-6 pointer-events-none';
+    return 'opacity-0 translate-x-6 pointer-events-none';
+  };
+
   return (
     <>
       <div className="bg-gold relative z-40">
@@ -139,15 +267,11 @@ export default function Header() {
             <Link href="/join-as-pilot" className="hover:text-teal transition-colors">
               Join As Drone Pilot
             </Link>
-            <span className="text-teal-dark/40">|</span>
-            <Link href="/login" className="hover:text-teal transition-colors">
-              Drone Pilot Login
-            </Link>
           </div>
         </div>
       </div>
 
-      <header className="sticky top-0 left-0 right-0 z-50 backdrop-blur-xl bg-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
+      <header ref={headerRef} className="sticky top-0 left-0 right-0 z-50 backdrop-blur-xl bg-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
         <div className="container">
           <nav className="flex items-center justify-between py-4 gap-3">
             <Link href="/" className="flex-shrink-0 mr-2 flex items-center gap-2 group transition-all duration-300 hover:scale-105">
@@ -186,70 +310,209 @@ export default function Header() {
                 Contact
               </Link>
 
-              <Link href="/contact" className="flex-shrink-0 btn btn-primary btn-shimmer ml-1.5 text-sm px-3 py-2 whitespace-nowrap">
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('openQuoteModal'))}
+                className="flex-shrink-0 btn btn-primary btn-shimmer ml-1.5 text-sm px-3 py-2 whitespace-nowrap"
+              >
                 Compare Quotes
-              </Link>
+              </button>
             </div>
 
-            <details className="xl:hidden relative group">
-              <summary className="list-none cursor-pointer text-white p-2 border border-white/20 rounded-lg hover:border-gold [&::-webkit-details-marker]:hidden">
-                <span className="text-sm font-semibold">Menu</span>
-              </summary>
-              <div className="absolute right-0 top-full mt-3 w-[min(92vw,360px)] bg-teal-dark border border-white/10 rounded-2xl shadow-2xl p-4 max-h-[70vh] overflow-y-auto">
-                <div className="space-y-2">
-                  <Link href="/about" className="block text-white hover:text-gold transition-colors py-2">
-                    About
-                  </Link>
-
-                  {navCategories.map((category) => (
-                    <details key={category.name} className="border-t border-white/10 pt-2">
-                      <summary className="list-none cursor-pointer text-white hover:text-gold transition-colors flex items-center justify-between py-2 [&::-webkit-details-marker]:hidden">
-                        <span>{category.name}</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </summary>
-                      <div className="space-y-1 pt-1">
-                        {category.services.map((service) => (
-                          <Link key={service.href} href={service.href} className="block px-2 py-1 text-sm text-white/80 hover:text-gold transition-colors">
-                            {service.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </details>
-                  ))}
-
-                  <details className="border-t border-white/10 pt-2">
-                    <summary className="list-none cursor-pointer text-white hover:text-gold transition-colors flex items-center justify-between py-2 [&::-webkit-details-marker]:hidden">
-                      <span>Resources</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </summary>
-                    <div className="space-y-1 pt-1">
-                      {resourceLinks.map((item) => (
-                        <Link key={item.href} href={item.href} className="block px-2 py-1 text-sm text-white/80 hover:text-gold transition-colors">
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-
-                  <Link href="/pilots" className="block text-white hover:text-gold transition-colors py-2 border-t border-white/10">
-                    Pilots
-                  </Link>
-                  <Link href="/contact" className="block text-white hover:text-gold transition-colors py-2">
-                    Contact
-                  </Link>
-                  <Link href="/contact" className="block btn btn-primary btn-shimmer text-center mt-2">
-                    Compare Quotes
-                  </Link>
-                </div>
-              </div>
-            </details>
+            <button
+              ref={menuTriggerRef}
+              type="button"
+              className={`xl:hidden inline-flex items-center gap-3 rounded-xl border border-white/20 bg-white/[0.06] px-3 py-2 text-white hover:border-gold transition-colors ${isMobileMenuOpen ? 'hamburger-open' : ''}`}
+              onClick={isMobileMenuOpen ? closeMobileMenu : openMobileMenu}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={mobileMenuId}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            >
+              <span className="text-sm font-semibold tracking-wide">{isMobileMenuOpen ? 'Close' : 'Menu'}</span>
+              <span className="flex flex-col justify-between h-4 w-5">
+                <span className="hamburger-line h-0.5 w-full rounded bg-white transition-all duration-300" />
+                <span className="hamburger-line h-0.5 w-full rounded bg-white transition-all duration-300" />
+                <span className="hamburger-line h-0.5 w-full rounded bg-white transition-all duration-300" />
+              </span>
+            </button>
           </nav>
         </div>
+
       </header>
+
+      {isMobileMenuOpen ? (
+        <div
+          id={mobileMenuId}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          className="fixed inset-x-0 bottom-0 z-[60] opacity-100 pointer-events-auto xl:hidden"
+          style={{ top: mobileMenuTop ? `${mobileMenuTop}px` : '0px' }}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 border-0 bg-[linear-gradient(180deg,rgba(3,7,18,0.58)_0%,rgba(3,7,18,0.78)_100%)] opacity-100"
+            onClick={closeMobileMenu}
+            aria-label="Close navigation menu"
+          />
+
+          <div className="relative flex h-full flex-col border-t border-white/10 bg-[radial-gradient(circle_at_88%_-40%,rgba(249,115,22,0.26),transparent_54%),linear-gradient(165deg,rgba(31,41,55,0.98),rgba(3,7,18,0.98))]">
+            <div className="relative flex items-center gap-3 border-b border-white/10 px-4 py-3 backdrop-blur-xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold/90">Quick Action</p>
+              <a
+                href="tel:+441334804554"
+                className="inline-flex items-center gap-1.5 rounded-full border border-gold/45 bg-gold/20 px-3 py-2 text-[0.78rem] font-bold tracking-[0.01em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-gold/80 hover:bg-gold/30"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call now: +44 1334 804554</span>
+              </a>
+              <button
+                ref={menuCloseRef}
+                type="button"
+                className="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-gold/80 hover:bg-gold/15"
+                onClick={closeMobileMenu}
+                aria-label="Close navigation menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative flex-1 overflow-hidden">
+              <section
+                className={`absolute inset-0 overflow-y-auto p-4 transition-all duration-200 ease-out ${panelClassFor(0)}`}
+                aria-hidden={activePanel !== 'root'}
+              >
+                <div className="space-y-5">
+                  <div>
+                    <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-gold/90">Navigate</p>
+                    <div className="space-y-2">
+                      <MobileNavLink href="/about" title="About" description="Who we are and how we work" onNavigate={closeMobileMenu} />
+                      <button
+                        type="button"
+                        className="grid min-h-11 w-full grid-cols-[1fr_auto] items-center gap-2 rounded-2xl border border-gold/45 bg-gold/10 px-4 py-3 text-left text-white transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-gold/70 hover:bg-gold/20"
+                        onClick={showServicesPanel}
+                      >
+                        <span>
+                          <span className="block text-sm font-semibold text-white">Browse Services</span>
+                          <span className="mt-0.5 block text-xs text-white/70">Explore all survey categories</span>
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-gold" />
+                      </button>
+                      <MobileNavLink href="/resources" title="Resources" description="Guides, tools and calculators" onNavigate={closeMobileMenu} />
+                      <MobileNavLink href="/pilots" title="Pilots" description="Find drone pilots in your area" onNavigate={closeMobileMenu} />
+                      <MobileNavLink href="/contact" title="Contact" description="Tell us about your project" onNavigate={closeMobileMenu} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-gold/90">Popular Resources</p>
+                    <div className="space-y-2">
+                      {resourceLinks
+                        .filter((resource) => resource.href !== '/resources' && resource.href !== '/join-as-pilot')
+                        .map((resource) => (
+                          <MobileNavLink
+                            key={resource.href}
+                            href={resource.href}
+                            title={resource.name}
+                            description={resource.desc}
+                            onNavigate={closeMobileMenu}
+                            tone="muted"
+                          />
+                        ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-gold/90">Pilot Area</p>
+                    <div className="space-y-2">
+                      <MobileNavLink href="/join-as-pilot" title="Join As Drone Pilot" onNavigate={closeMobileMenu} tone="muted" />
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => { closeMobileMenu(); window.dispatchEvent(new CustomEvent('openQuoteModal')); }}
+                    className="btn btn-outline w-full text-sm"
+                  >
+                    Compare Quotes
+                  </button>
+                </div>
+              </section>
+
+              <section
+                className={`absolute inset-0 overflow-y-auto p-4 transition-all duration-200 ease-out ${panelClassFor(1)}`}
+                aria-hidden={activePanel !== 'services'}
+              >
+                <div className="space-y-5">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors hover:text-gold"
+                    onClick={showRootPanel}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Main Menu</span>
+                  </button>
+
+                  <div>
+                    <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-gold/90">Service Categories</p>
+                    <h2 className="text-xl font-heading text-white">Browse by category</h2>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-2.5">
+                    {navCategories.map((category) => (
+                      <button
+                        key={category.name}
+                        type="button"
+                        className="flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/[0.08] px-4 py-3 text-left transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-gold/70 hover:bg-white/[0.12]"
+                        onClick={() => showCategoryPanel(category.name)}
+                      >
+                        <span className="text-left">
+                          <span className="block text-base font-semibold text-white">{category.name}</span>
+                          <span className="block text-xs text-white/65">{category.services.length} services</span>
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-gold" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <section
+                className={`absolute inset-0 overflow-y-auto p-4 transition-all duration-200 ease-out ${panelClassFor(2)}`}
+                aria-hidden={activePanel !== 'category'}
+              >
+                <div className="space-y-5">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 transition-colors hover:text-gold"
+                    onClick={showServicesPanel}
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Service Categories</span>
+                  </button>
+
+                  <div>
+                    <p className="mb-2 text-[0.7rem] font-bold uppercase tracking-[0.14em] text-gold/90">Selected Category</p>
+                    <h2 className="text-xl font-heading text-white">{activeCategory?.name ?? 'Services'}</h2>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {activeCategory?.services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        onClick={closeMobileMenu}
+                        className="block min-h-[52px] rounded-2xl border border-white/15 bg-white/[0.05] px-4 py-3 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-gold/70 hover:bg-white/10"
+                      >
+                        <span className="block text-sm font-semibold text-white">{service.name}</span>
+                        <span className="block text-xs text-white/65 mt-1">{service.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

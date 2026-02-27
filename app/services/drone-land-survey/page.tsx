@@ -96,7 +96,7 @@ export default function DroneLandSurveyPage() {
                   Understanding <span className="text-gold">Drone Land Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV land survey employs drone photography and photogrammetry to generate precise maps and measurements of land parcels, boundaries, and terrain features. Our aircraft capture thousands of overlapping images which are processed to produce survey-grade orthomosaics, digital elevation models, and precise area calculations.
+                  A UAV land survey employs drone photography and photogrammetry to generate precise maps and measurements of land parcels, <Link href="/services/drone-boundary-survey" className="text-gold hover:underline">boundaries</Link>, and terrain features. Our aircraft capture thousands of overlapping images which are processed to produce survey-grade orthomosaics, <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">digital elevation models</Link>, and precise area calculations.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we utilise the latest RTK-enabled aircraft to achieve centimetre-level accuracy across sites of any scale. Whether you require mapping for a single field or surveying an entire estate, our UAV land surveys deliver the detailed, georeferenced data you need for planning, management, and legal purposes.
@@ -502,7 +502,7 @@ export default function DroneLandSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Planning Applications</h3>
-                    <p className="text-text-secondary text-sm">Site surveys for planning submissions, existing site plans, and red line boundary mapping for development proposals.</p>
+                    <p className="text-text-secondary text-sm"><Link href="/services/drone-site-survey" className="text-gold hover:underline">Site surveys</Link> for planning submissions, existing site plans, and red line boundary mapping for development proposals.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Estate Management</h3>
@@ -609,7 +609,7 @@ export default function DroneLandSurveyPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-teal">Digital Terrain Model (DTM)</h4>
-                      <p className="text-text-secondary text-sm">Bare-earth surface model showing ground elevation. Essential for drainage planning, earthworks, and level analysis.</p>
+                      <p className="text-text-secondary text-sm">Bare-earth surface model showing ground elevation. Essential for drainage planning, <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">earthworks</Link>, and level analysis.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 bg-background-alt rounded-xl p-4">

@@ -96,7 +96,7 @@ export default function DroneIndustrialSurveyPage() {
                   Understanding <span className="text-gold">Drone Industrial Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone industrial survey uses UAV technology to capture thorough data of industrial facilities, manufacturing plants, warehouses, and production sites. Our UAVs equipped with high-resolution cameras and sensors can map entire facilities, inspect rooftops and infrastructure, and create detailed records of your industrial assets.
+                  A drone industrial survey uses UAV technology to capture thorough data of industrial facilities, manufacturing plants, warehouses, and production sites. Our UAVs equipped with high-resolution cameras and <Link href="/services/drone-thermal-imaging" className="text-gold hover:underline">sensors</Link> can map entire facilities, inspect <Link href="/services/drone-roof-inspection" className="text-gold hover:underline">rooftops</Link> and infrastructure, and create detailed records of your industrial assets.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we specialise in surveys of active industrial sites throughout the UK. Our approach minimises operational disruption while delivering the accurate spatial data you need for facility management, maintenance planning, insurance documentation, and regulatory compliance.
@@ -363,7 +363,7 @@ export default function DroneIndustrialSurveyPage() {
                   Conventional industrial surveys typically require ground teams, scaffolding, cherry pickers, or rope access to inspect and measure facilities. This approach is time-consuming, expensive, and often requires shutting down operations for safety.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone industrial surveys capture the same data - and often more - from the air in a fraction of the time. Our UAVs can survey rooftops, facades, pipework, and storage tanks without scaffolding, reach areas inaccessible to ground teams, and capture data while your facility continues normal operations.
+                  Drone industrial surveys capture the same data - and often more - from the air in a fraction of the time. Our UAVs can survey rooftops, facades, pipework, and <Link href="/services/drone-confined-space-inspection" className="text-gold hover:underline">storage tanks</Link> without scaffolding, reach areas inaccessible to ground teams, and capture data while your facility continues normal operations.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -506,7 +506,7 @@ export default function DroneIndustrialSurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Infrastructure Mapping</h3>
-                    <p className="text-text-secondary text-sm">Pipework, storage tanks, conveyors, and utility runs captured in precise 3D for maintenance planning.</p>
+                    <p className="text-text-secondary text-sm">Pipework, storage tanks, conveyors, and <Link href="/services/drone-utility-survey" className="text-gold hover:underline">utility runs</Link> captured in precise 3D for maintenance planning.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Progress Monitoring</h3>
@@ -568,7 +568,7 @@ export default function DroneIndustrialSurveyPage() {
                   ))}
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  For sites with specific hazards (chemical plants, refineries, etc.), we hold ATEX-rated equipment and can obtain additional permits as required. We work with your HSE team to ensure full compliance with site-specific safety requirements.
+                  For sites with specific hazards (<Link href="/services/drone-gas-detection" className="text-gold hover:underline">chemical plants</Link>, refineries, etc.), we hold ATEX-rated equipment and can obtain additional permits as required. We work with your HSE team to ensure full compliance with site-specific safety requirements.
                 </p>
               </div>
 

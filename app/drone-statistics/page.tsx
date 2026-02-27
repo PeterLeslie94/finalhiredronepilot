@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Metadata } from 'next'
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { TrendingUp, Users, PieChart as PieChartIcon, BarChart3, AlertTriangle, Shield, Activity, Plane, Scale, FileText, Clock, DollarSign, Globe, Heart, Smile, Frown, Meh, Eye, Zap, Home, MapPin, Music, Trees, Copy, Check } from 'lucide-react';
 import { CitationButton } from '@/components/statistics/CitationButton';
@@ -88,12 +89,12 @@ export default function DroneStatisticsPage() {
                         >
                           LinkedIn
                         </a>
-                        <a
+                        <Link
                           href="/about"
                           className="btn btn-outline !px-7 !py-3.5 !text-sm min-w-[170px]"
                         >
                           About Peter
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -494,10 +495,10 @@ export default function DroneStatisticsPage() {
               <div className="bg-gray-50 rounded-lg p-6">
                 <h4 className="font-bold text-gray-900 mb-3">What This Means:</h4>
                 <p className="text-gray-700 mb-3">
-                  The FAA's registration data shows that <strong>recreational use dominates the drone market</strong>, with nearly two-thirds of all registered drones being flown for hobby and personal purposes. This includes aerial photography enthusiasts, FPV racing enthusiasts, and hobbyists exploring the technology.
+                  The FAA's registration data shows that <strong>recreational use dominates the drone market</strong>, with nearly two-thirds of all registered drones being flown for hobby and personal purposes. This includes <Link href="/services/drone-photography" className="text-gold hover:underline">aerial photography</Link> enthusiasts, FPV racing enthusiasts, and hobbyists exploring the technology.
                 </p>
                 <p className="text-gray-700">
-                  The commercial sector, while smaller in registration numbers, represents significant economic activity across industries including construction, agriculture, surveying, real estate, and media production. The 37% commercial share translates to over 316,000 drones actively contributing to business operations across the United States.
+                  The commercial sector, while smaller in registration numbers, represents significant economic activity across industries including construction, <Link href="/services/drone-agricultural-survey" className="text-gold hover:underline">agriculture</Link>, surveying, real estate, and media production. The 37% commercial share translates to over 316,000 drones actively contributing to business operations across the United States.
                 </p>
               </div>
             </div>
@@ -811,7 +812,7 @@ export default function DroneStatisticsPage() {
               <div className="bg-orange-50 rounded-lg p-6 border-l-4 border-orange-500">
                 <h4 className="font-bold text-orange-900 mb-2">Part 107 Waivers</h4>
                 <p className="text-gray-700">
-                  A <strong>Part 107 waiver</strong> is required for drone pilots who want to fly outside of the standard Part 107 rules. This allows operators to request permission for operations that would otherwise be prohibited.
+                  A <strong>Part 107 waiver</strong> is required for <Link href="/pilots" className="text-gold hover:underline">drone pilots</Link> who want to fly outside of the standard Part 107 rules. This allows operators to request permission for operations that would otherwise be prohibited.
                 </p>
               </div>
             </div>

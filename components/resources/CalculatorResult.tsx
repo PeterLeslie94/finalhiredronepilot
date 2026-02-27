@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import QuoteButton from '@/components/QuoteButton';
 
 interface ResultItem {
   label: string;
@@ -64,12 +64,9 @@ export default function CalculatorResult({
           <p className="text-white/80 text-sm mb-4">
             Want an accurate quote for your project?
           </p>
-          <Link
-            href="/contact"
-            className="btn btn-primary w-full justify-center"
-          >
+          <QuoteButton className="btn btn-primary w-full justify-center">
             Compare Quotes
-          </Link>
+          </QuoteButton>
         </div>
       )}
     </div>

@@ -96,10 +96,10 @@ export default function DroneBathymetricSurveyPage() {
                   What Is a <span className="text-gold">Drone Bathymetric Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone bathymetric survey uses unmanned aerial vehicles equipped with echo sounder payloads or integrated sonar sensors to measure the depth and map the underwater topography of rivers, lakes, reservoirs, ponds, and coastal areas. The drone flies precise transects over the water surface while the tethered or mounted sonar device records depth readings at high frequency.
+                  A drone bathymetric survey uses unmanned aerial vehicles equipped with echo sounder payloads or integrated <Link href="/services/drone-sonar-survey" className="text-gold hover:underline">sonar sensors</Link> to measure the depth and map the underwater topography of rivers, lakes, reservoirs, ponds, and <Link href="/services/drone-coastal-survey" className="text-gold hover:underline">coastal areas</Link>. The drone flies precise transects over the water surface while the tethered or mounted sonar device records depth readings at high frequency.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we combine this underwater depth data with aerial photogrammetry of the surrounding terrain to produce seamless topo-bathymetric models. This gives you a complete picture of the entire site—above and below the waterline—in a single survey operation. The result is georeferenced depth charts, bed profiles, and volumetric data that would traditionally require boat-based survey teams.
+                  At Hire Drone Pilot, we combine this underwater depth data with aerial photogrammetry of the surrounding <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain</Link> to produce seamless topo-bathymetric models. This gives you a complete picture of the entire site—above and below the waterline—in a single survey operation. The result is georeferenced depth charts, bed profiles, and volumetric data that would traditionally require boat-based survey teams.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -446,7 +446,7 @@ export default function DroneBathymetricSurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Waves className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Flood Risk Assessment</h3>
-                    <p className="text-text-secondary text-sm">River channel surveys providing cross-sectional data for hydraulic modelling, flood mapping, and Environment Agency reporting requirements.</p>
+                    <p className="text-text-secondary text-sm">River channel surveys providing cross-sectional data for hydraulic modelling, <Link href="/services/drone-flood-risk-survey" className="text-gold hover:underline">flood mapping</Link>, and Environment Agency reporting requirements.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Droplets className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -456,7 +456,7 @@ export default function DroneBathymetricSurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Fish className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Ecological & Habitat Surveys</h3>
-                    <p className="text-text-secondary text-sm">Non-invasive bed mapping for habitat assessment, fish passage studies, and environmental impact assessments without disturbing sensitive ecosystems.</p>
+                    <p className="text-text-secondary text-sm">Non-invasive bed mapping for habitat assessment, fish passage studies, and <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental impact assessments</Link> without disturbing sensitive ecosystems.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Anchor className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />

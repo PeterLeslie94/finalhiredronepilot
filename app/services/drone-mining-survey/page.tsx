@@ -95,10 +95,10 @@ export default function DroneMiningsurveyPage() {
                   Understanding <span className="text-gold">Drone Mining Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A UAV mining survey employs drone technology to capture comprehensive survey data from mining operations, quarries, and aggregate facilities. Our UAVs fitted with high-resolution cameras and RTK GPS systems traverse your site, acquiring thousands of images which we transform into precise 3D models, orthomosaics, and volume computations.
+                  A UAV mining survey employs drone technology to capture comprehensive survey data from mining operations, quarries, and aggregate facilities. Our UAVs fitted with high-resolution cameras and RTK GPS systems traverse your site, acquiring thousands of images which we transform into precise 3D models, orthomosaics, and <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">volume computations</Link>.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Hire Drone Pilot specialises in supporting mining and quarrying operations throughout the UK to monitor progress, oversee stockpiles, and maintain precise site documentation. Our surveys deliver the data essential for stock management, compliance documentation, and operational planning—all gathered without interrupting your activities.
+                  Hire Drone Pilot specialises in supporting mining and <Link href="/services/drone-quarry-survey" className="text-gold hover:underline">quarrying operations</Link> throughout the UK to monitor progress, oversee stockpiles, and maintain precise site documentation. Our surveys deliver the data essential for stock management, compliance documentation, and operational planning—all gathered without interrupting your activities.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -499,7 +499,7 @@ export default function DroneMiningsurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Regulatory Compliance & Documentation</h3>
-                    <p className="text-text-secondary text-sm">Evidence supporting planning conditions, environmental assessments, and regulatory requirements with precisely dated records.</p>
+                    <p className="text-text-secondary text-sm">Evidence supporting planning conditions, <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental assessments</Link>, and regulatory requirements with precisely dated records.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Restoration Progress Tracking</h3>
@@ -507,7 +507,7 @@ export default function DroneMiningsurveyPage() {
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Facility Planning & Design</h3>
-                    <p className="text-text-secondary text-sm">Precise topographic data supporting expansion proposals, haul route design, and operational enhancement.</p>
+                    <p className="text-text-secondary text-sm">Precise <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">topographic data</Link> supporting expansion proposals, haul route design, and operational enhancement.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Infrastructure Assessment</h3>

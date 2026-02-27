@@ -96,7 +96,7 @@ export default function DroneSonarSurveyPage() {
                   What is a <span className="text-gold">Drone Sonar Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone sonar survey uses an unmanned aerial vehicle to deploy a tethered or droppable sonar transducer into water bodies, capturing detailed bathymetric (depth) data and underwater imagery. The drone positions the sonar module precisely across the water surface following pre-programmed survey lines, building a comprehensive map of the underwater terrain.
+                  A drone sonar survey uses an unmanned aerial vehicle to deploy a tethered or droppable sonar transducer into water bodies, capturing detailed <Link href="/services/drone-bathymetric-survey" className="text-gold hover:underline">bathymetric</Link> (depth) data and underwater imagery. The drone positions the sonar module precisely across the water surface following pre-programmed survey lines, building a comprehensive map of the underwater terrain.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we deploy single-beam and multi-beam sonar systems carried by heavy-lift drones. This approach eliminates the need for survey boats, launches, and watercraft operators, making it ideal for remote, shallow, or hazardous water bodies where conventional boat-based surveys prove difficult or impossible.
@@ -440,7 +440,7 @@ export default function DroneSonarSurveyPage() {
                   Where Are <span className="text-gold">Drone Sonar Surveys</span> Used?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Drone sonar technology serves diverse industries and applications across the water management, environmental, and infrastructure sectors:
+                  Drone sonar technology serves diverse industries and applications across the <Link href="/services/drone-water-quality-assessment" className="text-gold hover:underline">water management</Link>, environmental, and infrastructure sectors:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
@@ -451,7 +451,7 @@ export default function DroneSonarSurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Fish className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Environmental Assessment</h3>
-                    <p className="text-text-secondary text-sm">Aquatic habitat mapping, baseline surveys for development planning, and ecological impact assessments.</p>
+                    <p className="text-text-secondary text-sm">Aquatic habitat mapping, baseline surveys for development planning, and <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">ecological impact assessments</Link>.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <Anchor className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
@@ -660,7 +660,7 @@ export default function DroneSonarSurveyPage() {
                   One of the most powerful advantages of drone-based survey technology is the ability to combine aerial topographic mapping with underwater bathymetric profiling in a single mobilisation. This creates a seamless dataset spanning the entire site, from surrounding terrain through the water margins and down to the bed of the water body.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  Combined surveys prove particularly valuable for flood modelling, dam safety assessments, reservoir capacity studies, and environmental impact assessments where understanding the complete hydrological picture is essential.
+                  Combined surveys prove particularly valuable for <Link href="/services/drone-coastal-survey" className="text-gold hover:underline">flood modelling</Link>, dam safety assessments, reservoir capacity studies, and environmental impact assessments where understanding the complete hydrological picture is essential.
                 </p>
 
                 <div className="mt-4 flex items-start gap-3 bg-gold/10 border border-gold/30 rounded-lg p-4">

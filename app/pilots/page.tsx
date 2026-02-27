@@ -51,7 +51,7 @@ export default async function PilotsDirectoryPage() {
             Drone Pilots Directory
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Browse our network of verified drone operators across the UK. Every pilot is CAA-registered, insured, and ready to quote on your project.
+            Browse our network of verified drone operators across the UK. Every pilot is <Link href="/caa-drone-theory-test" className="text-gold hover:underline">CAA-registered</Link>, insured, and ready to quote on your project.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <TrustBadge animated={false} />

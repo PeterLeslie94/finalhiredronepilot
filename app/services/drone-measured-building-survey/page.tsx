@@ -95,10 +95,10 @@ export default function DroneMeasuredBuildingSurveyPage() {
                   Understanding <span className="text-gold">Drone Measured Building Survey</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone measured building survey captures accurate external dimensions of buildings utilising photogrammetry. Our UAVs photograph every facade, roof plane, and architectural feature, generating precise 3D models from which we extract thorough measurement data.
+                  A drone measured building survey captures accurate external dimensions of buildings utilising photogrammetry. Our UAVs photograph every <Link href="/services/drone-facade-survey" className="text-gold hover:underline">facade</Link>, roof plane, and architectural feature, generating precise 3D models from which we extract thorough measurement data.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we merge high-resolution drone imagery with sophisticated processing to produce elevation drawings, facade measurements, and 3D building models. This methodology is especially beneficial for buildings where conventional access is challenging, hazardous, or would necessitate costly scaffolding.
+                  At Hire Drone Pilot, we merge high-resolution drone imagery with sophisticated processing to produce <Link href="/services/drone-elevation-survey" className="text-gold hover:underline">elevation drawings</Link>, facade measurements, and 3D building models. This methodology is especially beneficial for buildings where conventional access is challenging, hazardous, or would necessitate costly scaffolding.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -481,7 +481,7 @@ export default function DroneMeasuredBuildingSurveyPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Architectural Design</h3>
-                    <p className="text-text-secondary text-sm">Precise as-built drawings for extensions, modifications, and refurbishment projects where original drawings are absent or unreliable.</p>
+                    <p className="text-text-secondary text-sm">Precise <Link href="/services/drone-as-built-survey" className="text-gold hover:underline">as-built drawings</Link> for extensions, modifications, and refurbishment projects where original drawings are absent or unreliable.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Planning Applications</h3>

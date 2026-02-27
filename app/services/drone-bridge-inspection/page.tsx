@@ -96,7 +96,7 @@ export default function DroneBridgeInspectionPage() {
                   Understanding <span className="text-gold">Drone Bridge Inspection</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone bridge inspection employs unmanned aircraft fitted with high-resolution cameras and sensors to evaluate the structural condition of bridges. Our UAVs gather comprehensive imagery of every accessible surface, including deck undersides, bearings, expansion joints, and zones that would otherwise demand costly access equipment.
+                  A drone bridge inspection employs unmanned aircraft fitted with high-resolution cameras and sensors to evaluate the structural condition of bridges. Our UAVs gather comprehensive imagery of every accessible <Link href="/services/drone-facade-survey" className="text-gold hover:underline">surface</Link>, including deck undersides, bearings, expansion joints, and zones that would otherwise demand costly access equipment.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   At Hire Drone Pilot, we operate cutting-edge multi-rotor drones capable of stable, precise flight in confined spaces. This enables us to record defects, corrosion, cracking, and deterioration with millimetre-level precision, furnishing asset managers with the data they require to make informed maintenance decisions.
@@ -360,7 +360,7 @@ export default function DroneBridgeInspectionPage() {
                   How Does <span className="text-gold">Drone Bridge Inspection</span> Compare to Conventional Approaches?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Conventional bridge inspections typically demand under-bridge inspection units (UBIUs), scaffolding, abseil crews, or rope access teams. These approaches are time-intensive, costly, and frequently necessitate lane closures or complete road closures that interrupt traffic and commerce.
+                  Conventional bridge inspections typically demand under-bridge inspection units (UBIUs), scaffolding, abseil crews, or rope access teams. These approaches are time-intensive, costly, and frequently necessitate lane closures or complete <Link href="/services/drone-road-survey" className="text-gold hover:underline">road closures</Link> that interrupt traffic and commerce.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Drone bridge inspection removes most of these obstacles. Our UAVs can reach the underside of bridge decks, abutments, piers, and bearings without any traffic management needs in most situations. This translates to swifter inspections, reduced expenses, and minimal disruption to the public.
@@ -562,7 +562,7 @@ export default function DroneBridgeInspectionPage() {
                   Yes - inspecting bridge undersides represents one of the primary advantages of drone bridge inspection. Our drone pilots are qualified to fly in confined spaces between bridge beams, beneath deck soffits, and around complex structural elements that would be exceedingly challenging and costly to reach by conventional means.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  We employ compact, agile drones fitted with obstacle avoidance sensors and powerful LED illumination systems. This enables us to gather high-quality imagery of bearings, expansion joints, drainage systems, and structural connections - zones that frequently contain the most critical defects yet are hardest to inspect.
+                  We employ compact, agile drones fitted with obstacle avoidance sensors and powerful LED illumination systems. This enables us to gather high-quality imagery of bearings, expansion joints, <Link href="/services/drone-utility-survey" className="text-gold hover:underline">drainage systems</Link>, and structural connections - zones that frequently contain the most critical defects yet are hardest to inspect.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   For bridges over water or deep valleys, drone inspection removes the need for boat access or rope crews, substantially reducing both expense and hazard whilst frequently delivering superior imagery coverage.
@@ -799,7 +799,7 @@ export default function DroneBridgeInspectionPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, comprehensively insured, and have completed bridge inspections for highways authorities, Network Rail contractors, and local councils throughout the UK.
+                  At Hire Drone Pilot, we meet every criterion. We&apos;re CAA certified, comprehensively insured, and have completed bridge inspections for <Link href="/services/drone-corridor-mapping" className="text-gold hover:underline">highways</Link> authorities, Network Rail contractors, and local councils throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}

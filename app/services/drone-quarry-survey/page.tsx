@@ -96,10 +96,10 @@ export default function DroneQuarrySurveyPage() {
                   What Is a <span className="text-gold">Drone Quarry Survey</span>?
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone quarry survey uses unmanned aerial vehicles to capture detailed aerial imagery and elevation data across quarry operations. The data is processed using photogrammetry to produce accurate 3D models, orthomosaic maps, and digital terrain surfaces from which stockpile volumes, pit depths, and site topography can be precisely calculated.
+                  A drone quarry survey uses unmanned aerial vehicles to capture detailed aerial imagery and elevation data across quarry operations. The data is processed using photogrammetry to produce accurate 3D models, orthomosaic maps, and <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">digital terrain surfaces</Link> from which <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">stockpile volumes</Link>, pit depths, and site topography can be precisely calculated.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we provide regular and one-off drone surveys for quarries, aggregate operations, and mineral extraction sites throughout the UK. Our surveys deliver the volumetric data, progress mapping, and compliance documentation that quarry managers need—without requiring personnel to enter hazardous working areas or halt operations during measurement.
+                  At Hire Drone Pilot, we provide regular and one-off drone surveys for quarries, aggregate operations, and <Link href="/services/drone-mining-survey" className="text-gold hover:underline">mineral extraction sites</Link> throughout the UK. Our surveys deliver the volumetric data, progress mapping, and compliance documentation that quarry managers need—without requiring personnel to enter hazardous working areas or halt operations during measurement.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -468,7 +468,7 @@ export default function DroneQuarrySurveyPage() {
                   <div className="bg-background-alt rounded-xl p-6">
                     <Layers className="w-8 h-8 text-gold mb-3" strokeWidth={1.5} />
                     <h3 className="font-bold text-teal mb-2">Restoration Planning</h3>
-                    <p className="text-text-secondary text-sm">Detailed baseline surveys and progress monitoring for quarry restoration schemes, including void capacity calculations and fill tracking.</p>
+                    <p className="text-text-secondary text-sm">Detailed baseline surveys and progress monitoring for quarry restoration schemes, including <Link href="/services/drone-landfill-survey" className="text-gold hover:underline">void capacity calculations</Link> and fill tracking.</p>
                   </div>
                 </div>
 

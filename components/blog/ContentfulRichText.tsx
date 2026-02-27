@@ -3,6 +3,7 @@
 import { documentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES, MARKS, Document, Block, Text } from '@contentful/rich-text-types';
 import Image from 'next/image';
+import Link from 'next/link';
 import KeyTakeaways from './KeyTakeaways';
 import React from 'react';
 import { generateSlug } from '@/lib/utils/slug';
@@ -30,6 +31,29 @@ function isValidUrl(url: string): boolean {
   } catch {
     const dangerousProtocols = ['javascript:', 'data:', 'vbscript:'];
     return !dangerousProtocols.some(proto => trimmedUrl.startsWith(proto));
+  }
+}
+
+function isInternalUrl(url: string): boolean {
+  if (!url) return false;
+  const trimmed = url.trim();
+  if (trimmed.startsWith('/') || trimmed.startsWith('#')) return true;
+  try {
+    const parsed = new URL(trimmed);
+    return parsed.hostname === 'hiredronepilot.uk' || parsed.hostname === 'www.hiredronepilot.uk';
+  } catch {
+    return false;
+  }
+}
+
+function toRelativePath(url: string): string {
+  const trimmed = url.trim();
+  if (trimmed.startsWith('/') || trimmed.startsWith('#')) return trimmed;
+  try {
+    const parsed = new URL(trimmed);
+    return parsed.pathname + parsed.search + parsed.hash;
+  } catch {
+    return trimmed;
   }
 }
 
@@ -148,12 +172,23 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
       if (!isValidUrl(uri)) {
         return <span className="text-gray-700">{children}</span>;
       }
+      if (isInternalUrl(uri)) {
+        const href = toRelativePath(uri);
+        return (
+          <Link
+            href={href}
+            className="text-gold hover:underline underline-offset-2 transition-colors"
+          >
+            {children}
+          </Link>
+        );
+      }
       return (
         <a
           href={uri}
           className="text-blue-600 hover:text-blue-800 underline underline-offset-2 transition-colors"
-          target={uri.startsWith('http') ? '_blank' : undefined}
-          rel={uri.startsWith('http') ? 'noopener noreferrer' : undefined}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {children}
         </a>

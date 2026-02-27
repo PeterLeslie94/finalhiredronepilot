@@ -121,10 +121,10 @@ export default function DroneCropSprayingPage() {
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
                   Drone crop spraying allows targeted treatment across specific zones instead of
                   blanket application. This improves control, reduces input waste, and helps teams
-                  respond quickly to changing field conditions.
+                  respond quickly to changing <Link href="/services/drone-land-survey" className="text-gold hover:underline">field conditions</Link>.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  HireDronePilot connects you with UK drone pilots operating compliant agricultural workflows
+                  HireDronePilot connects you with UK drone pilots operating compliant <Link href="/services/drone-agricultural-survey" className="text-gold hover:underline">agricultural workflows</Link>
                   for small and large sites, including hard-to-reach areas where ground equipment is slower
                   or less practical.
                 </p>

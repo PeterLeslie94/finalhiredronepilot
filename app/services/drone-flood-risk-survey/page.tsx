@@ -95,10 +95,10 @@ export default function DroneFloodRiskSurveyPage() {
                   Understanding <span className="text-gold">Drone Flood Risk Assessment</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone flood risk assessment employs UAV technology to gather highly precise elevation data from land, watercourses, and floodplains. This information underpins Flood Risk Assessments (FRAs) necessary for planning applications, insurance evaluations, and environmental impact studies throughout Britain.
+                  A drone flood risk assessment employs UAV technology to gather highly precise elevation data from land, watercourses, and floodplains. This information underpins Flood Risk Assessments (FRAs) necessary for planning applications, insurance evaluations, and <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">environmental impact studies</Link> throughout Britain.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At Hire Drone Pilot, we operate survey-grade UAVs with RTK positioning to capture centimetre-accurate terrain models. Our data integrates with flood modelling software, enabling engineers and planners to comprehend how water will behave during storm events and pinpoint areas vulnerable to flooding.
+                  At Hire Drone Pilot, we operate survey-grade UAVs with RTK positioning to capture centimetre-accurate <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain models</Link>. Our data integrates with flood modelling software, enabling engineers and planners to comprehend how water will behave during storm events and pinpoint areas vulnerable to flooding.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -362,7 +362,7 @@ export default function DroneFloodRiskSurveyPage() {
                   Conventional flood risk surveys depend on ground-based teams manually gathering spot heights across floodplains. This methodology is time-intensive, costly, and frequently yields sparse data points that overlook critical terrain features influencing water flow.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Drone flood risk assessments capture millions of elevation points in a fraction of the time, generating detailed terrain models that reveal every undulation, drainage channel, and flow path. This data density produces more precise flood models and identifies hazards that conventional surveys might miss.
+                  Drone flood risk assessments capture millions of elevation points in a fraction of the time, generating detailed terrain models that reveal every undulation, <Link href="/services/drone-corridor-mapping" className="text-gold hover:underline">drainage channel</Link>, and flow path. This data density produces more precise flood models and identifies hazards that conventional surveys might miss.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -478,7 +478,7 @@ export default function DroneFloodRiskSurveyPage() {
                   Our drone flood risk assessments attain vertical precision of ±2-5cm and horizontal precision of ±5-10cm when employing ground control points. This accuracy level is vital for flood modelling, where even minor elevation changes can substantially influence predicted water depths and flow patterns.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  We utilise RTK/PPK-enabled UAVs with high-resolution sensors to capture dense point clouds. For Environment Agency submissions and planning applications, we establish surveyed control networks and furnish comprehensive accuracy reports with every project. The resulting data surpasses the requirements for most Flood Risk Assessments and hydraulic modelling applications.
+                  We utilise RTK/PPK-enabled UAVs with high-resolution sensors to capture dense <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">point clouds</Link>. For Environment Agency submissions and planning applications, we establish surveyed control networks and furnish comprehensive accuracy reports with every project. The resulting data surpasses the requirements for most Flood Risk Assessments and hydraulic modelling applications.
                 </p>
               </div>
 
@@ -811,7 +811,7 @@ export default function DroneFloodRiskSurveyPage() {
                   Drone Assessment <span className="text-gold">Cost Advantages</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  In the majority of situations, substantially so. Conventional ground surveys of floodplains necessitate teams working in demanding terrain, frequently near water and in wet conditions. The time required to manually capture adequate elevation points makes traditional surveys expensive, particularly for larger catchments.
+                  In the majority of situations, substantially so. Conventional ground surveys of floodplains necessitate teams working in demanding terrain, frequently near <Link href="/services/drone-coastal-survey" className="text-gold hover:underline">water</Link> and in wet conditions. The time required to manually capture adequate elevation points makes traditional surveys expensive, particularly for larger catchments.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   Our drone flood risk assessments gather equivalent or superior data in a fraction of the time. A catchment that might occupy a ground team for several days can be surveyed in hours, with considerably denser data coverage. The savings typically span 40-60% compared with conventional approaches, whilst delivering quicker turnaround and superior data for flood modelling.

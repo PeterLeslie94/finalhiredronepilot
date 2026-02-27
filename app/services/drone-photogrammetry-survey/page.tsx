@@ -95,7 +95,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   Understanding <span className="text-gold">Drone Photogrammetry Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV photogrammetry surveys employ overlapping drone photographs captured by our aircraft to produce highly precise 2D and 3D digital representations of terrain, structures, and infrastructure. Advanced software processes hundreds or thousands of images, recognising common features to reconstruct accurate geometry and surface characteristics.
+                  UAV photogrammetry surveys employ overlapping drone photographs captured by our aircraft to produce highly precise 2D and 3D digital representations of <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">terrain</Link>, structures, and infrastructure. Advanced software processes hundreds or thousands of images, recognising common features to reconstruct accurate geometry and surface characteristics.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   Hire Drone Pilot utilises high-resolution camera systems mounted on professional aircraft capable of recording centimetre-level detail. The outcome is survey-grade orthomosaic imagery, digital elevation products, and textured 3D meshes serving architects, engineers, planners, and construction professionals throughout the UK.
@@ -365,10 +365,10 @@ export default function DronePhotogrammetrySurveyPage() {
                   <span className="text-gold">Drone Photogrammetry</span> vs LiDAR Technology
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Both technologies generate 3D models, yet they operate through fundamentally distinct methods. UAV photogrammetry employs overlapping photographs to compute surface positions—it excels at recording visual detail, textures, and colours, making it perfect for construction sites, building assessments, and promotional imagery.
+                  Both technologies generate 3D models, yet they operate through fundamentally distinct methods. UAV photogrammetry employs overlapping photographs to compute surface positions—it excels at recording visual detail, textures, and colours, making it perfect for <Link href="/services/drone-site-survey" className="text-gold hover:underline">construction sites</Link>, building assessments, and promotional imagery.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  LiDAR emits laser pulses capable of penetrating vegetation to reach the terrain beneath. This proves essential for forestry surveys and sites with dense canopy cover. Nevertheless, for most clear sites, construction tracking, and projects demanding visual records, photogrammetry produces outstanding results at reduced cost.
+                  <Link href="/services/drone-lidar-mapping" className="text-gold hover:underline">LiDAR</Link> emits laser pulses capable of penetrating vegetation to reach the terrain beneath. This proves essential for forestry surveys and sites with dense canopy cover. Nevertheless, for most clear sites, construction tracking, and projects demanding visual records, photogrammetry produces outstanding results at reduced cost.
                 </p>
                 {/* Technology Comparison Cards */}
                 <div className="mt-8">
@@ -500,7 +500,7 @@ export default function DronePhotogrammetrySurveyPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Construction Progress Tracking</h3>
-                    <p className="text-text-secondary text-sm">Periodic site surveys monitoring advancement, confirming earthwork volumes, and generating visual records for stakeholders and project archives.</p>
+                    <p className="text-text-secondary text-sm">Periodic site surveys monitoring advancement, confirming <Link href="/services/drone-volumetric-survey" className="text-gold hover:underline">earthwork volumes</Link>, and generating visual records for stakeholders and project archives.</p>
                   </div>
                   <div className="bg-background-alt rounded-xl p-6">
                     <h3 className="font-bold text-teal mb-2">Planning Submissions</h3>
@@ -555,7 +555,7 @@ export default function DronePhotogrammetrySurveyPage() {
                   The power of photogrammetry stems from capturing identical features from multiple viewpoints. Our aircraft follows a pre-programmed grid pattern, typically recording images with 75-85% overlap. This ensures each ground point appears in dozens of photographs shot from varying positions.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Advanced software examines these images, recognising millions of matching points through sophisticated algorithms. By computing each camera&apos;s location when capturing each photograph, the software triangulates the exact 3D coordinates of every matched point—producing a dense point cloud that faithfully represents the terrain and structures.
+                  Advanced software examines these images, recognising millions of matching points through sophisticated algorithms. By computing each camera&apos;s location when capturing each photograph, the software triangulates the exact 3D coordinates of every matched point—producing a <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">dense point cloud</Link> that faithfully represents the terrain and structures.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
                   From this point cloud, we derive surface models, contours, and textured 3D meshes. The photographic data also yields geo-referenced orthomosaics—seamless, distortion-free drone maps merging the visual richness of photographs with the geometric precision of conventional survey drawings.

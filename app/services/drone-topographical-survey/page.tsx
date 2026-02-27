@@ -95,10 +95,10 @@ export default function DroneTopographicSurveyPage() {
                   Understanding <span className="text-gold">Drone Topographic Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  UAV topographic surveys harness high-resolution drone imagery and photogrammetric processing to generate comprehensive terrain maps, feature records, and elevation data. Our aircraft capture thousands of overlapping photographs that transform into precise 3D models, contour drawings, and CAD-ready files for planning submissions and engineering projects.
+                  UAV topographic surveys harness high-resolution drone imagery and <Link href="/services/drone-photogrammetry-survey" className="text-gold hover:underline">photogrammetric processing</Link> to generate comprehensive terrain maps, feature records, and <Link href="/services/drone-elevation-survey" className="text-gold hover:underline">elevation data</Link>. Our aircraft capture thousands of overlapping photographs that transform into precise 3D models, contour drawings, and CAD-ready files for planning submissions and engineering projects.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  Hire Drone Pilot produces RICS-compliant topographic data that satisfies the demands of planning departments, architectural practices, and civil engineering firms. Our photogrammetry methodology suits open land, active construction zones, and development plots requiring accurate ground elevations, boundary delineation, and feature mapping.
+                  Hire Drone Pilot produces RICS-compliant topographic data that satisfies the demands of planning departments, architectural practices, and civil engineering firms. Our photogrammetry methodology suits open land, active construction zones, and <Link href="/services/drone-site-survey" className="text-gold hover:underline">development plots</Link> requiring accurate ground elevations, boundary delineation, and feature mapping.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -551,7 +551,7 @@ export default function DroneTopographicSurveyPage() {
                   Site Elements Captured by <span className="text-gold">Drone Topographic Surveys</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  Our drone surveys record an extensive array of site elements visible from above. High-resolution photography and 3D point clouds enable precise mapping and measurement of everything across your property, delivering the detail required for planning and design purposes.
+                  Our drone surveys record an extensive array of site elements visible from above. High-resolution photography and <Link href="/services/drone-point-cloud-mapping" className="text-gold hover:underline">3D point clouds</Link> enable precise mapping and measurement of everything across your property, delivering the detail required for planning and design purposes.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
                   The following features can be identified and recorded from our drone datasets:

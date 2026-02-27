@@ -95,10 +95,10 @@ export default function DroneArchaeologicalSurveyPage() {
                   Understanding <span className="text-gold">Drone Archaeological Assessment</span>
                 </h2>
                 <p className="text-text-secondary text-lg leading-relaxed mb-4">
-                  A drone archaeological assessment employs sophisticated UAV technology to identify, document, and chart archaeological features that remain hidden or challenging to observe from ground level. Our unmanned aircraft gather high-resolution imagery and data that expose crop marks, earthworks, and subsurface structures throughout the terrain.
+                  A drone archaeological assessment employs sophisticated UAV technology to identify, document, and chart archaeological features that remain hidden or challenging to observe from ground level. Our unmanned aircraft gather high-resolution imagery and data that expose crop marks, earthworks, and <Link href="/services/drone-ground-penetrating-radar" className="text-gold hover:underline">subsurface structures</Link> throughout the terrain.
                 </p>
                 <p className="text-text-secondary text-lg leading-relaxed">
-                  At HireDronePilot, we integrate photogrammetry, multispectral sensing, and thermal detection to produce thorough archaeological documentation. This non-destructive methodology safeguards site integrity whilst furnishing archaeologists with precise survey information for research, planning submissions, and heritage stewardship.
+                  At HireDronePilot, we integrate photogrammetry, multispectral sensing, and thermal detection to produce thorough archaeological documentation. This non-destructive methodology safeguards site integrity whilst furnishing archaeologists with precise <Link href="/services/drone-site-survey" className="text-gold hover:underline">survey information</Link> for research, planning submissions, and heritage stewardship.
                 </p>
 
                 {/* Conversion CTA Box */}
@@ -587,7 +587,7 @@ export default function DroneArchaeologicalSurveyPage() {
                       </div>
                       <div>
                         <h4 className="font-bold text-teal">Micro-Topography Mapping</h4>
-                        <p className="text-text-secondary text-sm">High-resolution elevation models expose subtle earthworks, platforms, and hollows imperceptible to the naked eye at ground level.</p>
+                        <p className="text-text-secondary text-sm">High-resolution <Link href="/services/drone-topographical-survey" className="text-gold hover:underline">elevation models</Link> expose subtle earthworks, platforms, and hollows imperceptible to the naked eye at ground level.</p>
                       </div>
                     </div>
                   </div>
@@ -822,7 +822,7 @@ export default function DroneArchaeologicalSurveyPage() {
                   </li>
                 </ul>
                 <p className="text-text-secondary text-lg leading-relaxed mb-6">
-                  At HireDronePilot, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed archaeological survey projects for commercial archaeology units, heritage bodies, and research initiatives throughout the UK.
+                  At HireDronePilot, we satisfy every criterion. We are CAA certified, comprehensively insured, and have executed archaeological survey projects for commercial archaeology units, heritage bodies, and <Link href="/services/drone-environmental-survey" className="text-gold hover:underline">research initiatives</Link> throughout the UK.
                 </p>
 
                 {/* CTA after provider section */}
