@@ -113,8 +113,8 @@ export const PILOT_SERVICE_OPTIONS = [
 
 export type PilotServiceSlug = (typeof PILOT_SERVICE_OPTIONS)[number]['slug'];
 
-export const PILOT_SERVICE_OPTION_MAP = new Map(
-  PILOT_SERVICE_OPTIONS.map((item) => [item.slug, item]),
+export const PILOT_SERVICE_OPTION_MAP: ReadonlyMap<string, (typeof PILOT_SERVICE_OPTIONS)[number]> = new Map(
+  PILOT_SERVICE_OPTIONS.map((item) => [item.slug, item] as const),
 );
 
 export const PILOT_SERVICE_SLUGS = PILOT_SERVICE_OPTIONS.map((item) => item.slug);

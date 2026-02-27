@@ -5,14 +5,11 @@ import { notFound } from 'next/navigation';
 import {
   ArrowUpRight,
   BadgeCheck,
-  CalendarClock,
   Camera,
   CheckCircle2,
-  Clock3,
   Globe2,
   Link2,
   Linkedin,
-  Map,
   MapPin,
   Monitor,
   Shield,
@@ -85,6 +82,39 @@ type PilotProfile = {
   faq_permissions_answer: string | null;
 };
 
+const PILOT_RICH_PROFILE_COLUMNS = [
+  'base_city',
+  'coverage_uk_wide',
+  'coverage_regions',
+  'coverage_notes',
+  'availability_status',
+  'google_business_profile_url',
+  'linkedin_url',
+  'instagram_url',
+  'youtube_url',
+  'facebook_url',
+  'total_projects_completed',
+  'years_experience',
+  'avg_response_hours',
+  'avg_quote_turnaround_hours',
+  'data_delivery_min_days',
+  'data_delivery_max_days',
+  'repeat_hire_rate_pct',
+  'member_since_year',
+  'top_service_slugs',
+  'additional_services_note',
+  'equipment_items_json',
+  'portfolio_items_json',
+  'skills_levels_json',
+  'faq_coverage_answer',
+  'faq_qualifications_answer',
+  'faq_turnaround_answer',
+  'faq_formats_answer',
+  'faq_permissions_answer',
+] as const;
+
+let hasRichPilotProfileColumnsPromise: Promise<boolean> | null = null;
+
 function toArray<T>(value: unknown, fallback: T[]): T[] {
   if (Array.isArray(value)) return value as T[];
   if (typeof value === 'string' && value.trim()) {
@@ -116,20 +146,30 @@ function toRecord(value: unknown): Record<string, string> {
 }
 
 async function getPilot(slug: string): Promise<PilotProfile | null> {
-  const result = await query<PilotProfile>(
-    `SELECT
-      id,
-      name,
-      business_name,
-      slug,
-      tier::text,
-      profile_photo_url,
-      two_sentence_summary,
-      licence_level,
-      website_url,
-      insurance_provider,
-      insurance_expiry::text,
-      base_city,
+  if (!hasRichPilotProfileColumnsPromise) {
+    hasRichPilotProfileColumnsPromise = (async () => {
+      try {
+        const check = await query<{ missing_count: number }>(
+          `SELECT COUNT(*)::int AS missing_count
+             FROM unnest($1::text[]) AS c(column_name)
+             LEFT JOIN information_schema.columns cols
+               ON cols.table_schema = 'public'
+              AND cols.table_name = 'pilots'
+              AND cols.column_name = c.column_name
+            WHERE cols.column_name IS NULL`,
+          [PILOT_RICH_PROFILE_COLUMNS],
+        );
+        return (check.rows[0]?.missing_count ?? 1) === 0;
+      } catch {
+        return false;
+      }
+    })();
+  }
+
+  const hasRichProfileColumns = await hasRichPilotProfileColumnsPromise;
+
+  const richProfileSelect = hasRichProfileColumns
+    ? `base_city,
       coverage_uk_wide,
       coverage_regions,
       coverage_notes,
@@ -156,7 +196,50 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       faq_qualifications_answer,
       faq_turnaround_answer,
       faq_formats_answer,
-      faq_permissions_answer
+      faq_permissions_answer`
+    : `NULL::text AS base_city,
+      false AS coverage_uk_wide,
+      NULL::text[] AS coverage_regions,
+      NULL::text AS coverage_notes,
+      NULL::text AS availability_status,
+      NULL::text AS google_business_profile_url,
+      NULL::text AS linkedin_url,
+      NULL::text AS instagram_url,
+      NULL::text AS youtube_url,
+      NULL::text AS facebook_url,
+      NULL::int AS total_projects_completed,
+      NULL::int AS years_experience,
+      NULL::int AS avg_response_hours,
+      NULL::int AS avg_quote_turnaround_hours,
+      NULL::int AS data_delivery_min_days,
+      NULL::int AS data_delivery_max_days,
+      NULL::int AS repeat_hire_rate_pct,
+      NULL::int AS member_since_year,
+      NULL::text[] AS top_service_slugs,
+      NULL::text AS additional_services_note,
+      '[]'::jsonb AS equipment_items_json,
+      '[]'::jsonb AS portfolio_items_json,
+      '{}'::jsonb AS skills_levels_json,
+      NULL::text AS faq_coverage_answer,
+      NULL::text AS faq_qualifications_answer,
+      NULL::text AS faq_turnaround_answer,
+      NULL::text AS faq_formats_answer,
+      NULL::text AS faq_permissions_answer`;
+
+  const result = await query<PilotProfile>(
+    `SELECT
+      id,
+      name,
+      business_name,
+      slug,
+      tier::text,
+      profile_photo_url,
+      two_sentence_summary,
+      licence_level,
+      website_url,
+      insurance_provider,
+      insurance_expiry::text,
+      ${richProfileSelect}
      FROM pilots
      WHERE slug = $1 AND active = true`,
     [slug],

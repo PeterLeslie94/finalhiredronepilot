@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { X, ExternalLink } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
@@ -76,7 +75,6 @@ function formatDate(dateStr: string | null): string {
 }
 
 export default function AdminPilotApplicationsPage() {
-  const searchParams = useSearchParams();
   const [items, setItems] = useState<PilotApplication[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -84,9 +82,11 @@ export default function AdminPilotApplicationsPage() {
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [confirmRejectId, setConfirmRejectId] = useState<string | null>(null);
-  const [queueView, setQueueView] = useState<'default' | 'upgrade'>(
-    searchParams.get('view') === 'upgrade' ? 'upgrade' : 'default',
-  );
+  const [queueView, setQueueView] = useState<'default' | 'upgrade'>(() => {
+    if (typeof window === 'undefined') return 'default';
+    const params = new URLSearchParams(window.location.search);
+    return params.get('view') === 'upgrade' ? 'upgrade' : 'default';
+  });
 
   const selected = items.find((i) => i.id === selectedId) ?? null;
 
@@ -136,13 +136,18 @@ export default function AdminPilotApplicationsPage() {
   }, [queueView]);
 
   useEffect(() => {
-    const selectedFromQuery = searchParams.get('selected');
-    if (selectedFromQuery) {
+    const syncFromLocation = () => {
+      const params = new URLSearchParams(window.location.search);
+      const selectedFromQuery = params.get('selected');
       setSelectedId(selectedFromQuery);
-    }
-    const view = searchParams.get('view');
-    setQueueView(view === 'upgrade' ? 'upgrade' : 'default');
-  }, [searchParams]);
+      const view = params.get('view');
+      setQueueView(view === 'upgrade' ? 'upgrade' : 'default');
+    };
+
+    syncFromLocation();
+    window.addEventListener('popstate', syncFromLocation);
+    return () => window.removeEventListener('popstate', syncFromLocation);
+  }, []);
 
   const updateStatus = async (id: string, action: 'approve' | 'reject' | 'request-info') => {
     try {

@@ -7,7 +7,7 @@ import { assertTrustedOrigin, jsonError, RequestOriginError } from '@/lib/server
 export const runtime = 'nodejs';
 
 const COVERAGE_REGION_SET = new Set(PILOT_COVERAGE_REGIONS);
-const AVAILABILITY_SET = new Set(PILOT_AVAILABILITY_OPTIONS.map((item) => item.value));
+const AVAILABILITY_SET = new Set<string>(PILOT_AVAILABILITY_OPTIONS.map((item) => item.value));
 const SERVICE_SLUG_SET = new Set(PILOT_SERVICE_SLUGS);
 const SKILL_LEVEL_SET = new Set(PILOT_SKILL_LEVELS);
 
