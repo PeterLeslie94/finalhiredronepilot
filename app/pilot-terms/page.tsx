@@ -13,7 +13,7 @@ export default function PilotTermsPage() {
         <div className="container">
           <div className="max-w-3xl pt-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Drone Pilot Terms</h1>
-            <p className="text-white/80 text-lg">Last updated: February 12, 2026</p>
+            <p className="text-white/80 text-lg">Last updated: February 27, 2026</p>
           </div>
         </div>
       </section>
@@ -68,21 +68,37 @@ export default function PilotTermsPage() {
               5. Liability and Disputes
             </h2>
             <p className="text-text-secondary mb-6">
-              HireDronePilot is not liable for drone pilot-client disputes, workmanship claims,
-              delays, cancellations, or payment outcomes. Disputes must be resolved directly between
-              client and drone pilot.
+              HireDronePilot is not liable for drone pilot-client disputes, scope disagreements,
+              workmanship claims, delays, cancellations, or payment outcomes. Quotes, contracts, and
+              disputes must be resolved directly between client and drone pilot.
             </p>
 
             <h2 className="text-2xl font-bold text-teal mt-10 mb-4">
               6. Suspension and Removal
             </h2>
             <p className="text-text-secondary mb-6">
-              HireDronePilot may suspend invitations, restrict visibility, or remove a profile where
-              there are credible safety or compliance concerns, repeated complaints, policy breaches,
-              or suspected fraud.
+              HireDronePilot may suspend invitations, restrict visibility, or remove a profile for
+              credible safety or compliance concerns, repeated complaints, policy breaches, suspected
+              fraud, or at its sole discretion, including for no reason at all.
             </p>
 
-            <h2 className="text-2xl font-bold text-teal mt-10 mb-4">7. Contact</h2>
+            <h2 className="text-2xl font-bold text-teal mt-10 mb-4">
+              7. Application Checkbox Acknowledgement
+            </h2>
+            <p className="text-text-secondary mb-4">
+              When you submit the pilot application and tick the required checkbox, you confirm that:
+            </p>
+            <ul className="list-disc pl-6 text-text-secondary space-y-2 mb-6">
+              <li>You accept the Drone Pilot Terms, Marketplace Terms, and Privacy Policy.</li>
+              <li>You operate as an independent contractor.</li>
+              <li>HireDronePilot acts as an intro marketplace and facilitator only.</li>
+              <li>You are responsible for legal compliance, permissions, insurance, and safe service delivery.</li>
+              <li>HireDronePilot performs basic document checks only and does not verify document authenticity.</li>
+              <li>Client-pilot disputes and payment outcomes are resolved directly between client and pilot.</li>
+              <li>HireDronePilot may suspend, restrict, or remove your profile for safety or compliance concerns, repeated complaints, policy breaches, suspected fraud, or at its sole discretion, including for no reason at all.</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold text-teal mt-10 mb-4">8. Contact</h2>
             <div className="bg-background-alt p-6 rounded-lg">
               <p className="text-text-secondary mb-2">
                 <strong className="text-teal">Email:</strong>{' '}

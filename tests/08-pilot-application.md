@@ -13,44 +13,38 @@
 **Steps:**
 1. Navigate to `/join-as-pilot`
 2. **Step 1 (Business Details):**
-   - Pilot Name: `Test Drone Ops`
-   - Business Name: `Test Drone Ops Ltd`
-   - Email: `testpilot@example.com`
-   - Phone: `07900555555`
-   - Website URL: `example.com` (auto-normalizes to `https://example.com`)
-   - Base City / Area: `London`
-   - Click **Next**
+   - Mini-step 1: Pilot Name `Test Drone Ops` + Business Name `Test Drone Ops Ltd`
+   - Mini-step 2: Email `testpilot@example.com` + Phone `07900555555`
+   - Mini-step 3: Website URL `example.com` (auto-normalizes to `https://example.com`)
+   - Mini-step 4: Base City / Area dropdown: choose `London`
 3. **Step 2 (Compliance Details):**
-   - Insurance Provider: `Coverdrone`
-   - Flyer ID: `FLY-TEST-001`
-   - Operator ID: `OP-TEST-001`
-   - Licence Level: check **A2 CofC**
-   - Click **Next**
+   - Mini-step 1: Insurance Provider `Coverdrone` (optional expiry can be blank)
+   - Mini-step 2: Flyer ID `FLY-TEST-001` + Operator ID `OP-TEST-001`
+   - Mini-step 3: Licence Level: check **A2 CofC**
 4. **Step 3 (Top Services & Ratings):**
    - Mini-step 1: select exactly 6 services
    - Mini-step 2: set a rating for each selected service and optionally add additional service notes
-   - Click **Next**
 5. **Step 4 (Coverage & Metrics):**
    - Mini-step 1: choose availability timing
    - Mini-step 2: choose UK Nationwide or one+ nations (England/Scotland/Wales/Northern Ireland)
-   - Complete each metric mini-step with valid whole numbers
-   - Click **Next**
+   - Mini-step 3: jobs completed + years experience
+   - Mini-step 4: total flight hours + drones owned
+   - Mini-step 5: quote turnaround + min/max data delivery days
+   - Mini-step 6: first year started flying drones
 6. **Step 5 (Media & Equipment):**
    - Upload headshot image (any ratio accepted; app auto-crops to square)
-   - Select at least one drone model in **Drones You Own** (or add an entry in Other Drones)
+   - Select at least one drone model in **Drones You Own** (from the popular model checklist)
    - Upload at least one portfolio image (max 3)
-   - Click **Next**
 7. **Step 6 (FAQ, Links & Consent):**
-   - Two Sentence Summary: `I run a reliable drone operations business delivering mapping and inspection work across the UK. Clients choose me for fast communication and clear deliverables.`
-   - Fill all FAQ answers (>= 12 chars each)
-   - Check consent checkbox
+   - Mini-step 1: complete Two Sentence Summary + all FAQ answers (>= 12 chars each)
+   - Mini-step 2: optional links + check consent checkbox (includes Drone Pilot Terms, Marketplace Terms, Privacy Policy acknowledgements)
    - Click **Submit Application**
 
 **Expected:**
 - Success message: "Application received. We review each profile and will contact you if we need anything else."
 - Form resets to step 1
 - `pilot_applications` table has new row with `status = 'SUBMITTED'`
-- `consent_to_pilot_terms = true`, `pilot_terms_version = 'pilot-terms-v1'`, `consent_source_page = '/join-as-pilot'`
+- `consent_to_pilot_terms = true`, `pilot_terms_version = 'pilot-terms-v2'`, `consent_source_page = '/join-as-pilot'`
 
 **Pass:** `[ ]`
 
@@ -64,7 +58,8 @@
 3. Enter invalid email → blur
 4. Enter phone < 6 chars → blur
 5. Leave website URL blank → blur
-6. Click **Next**
+6. Leave Base City / Area dropdown unselected
+7. Click **Next**
 
 **Expected:**
 - Field-level error messages appear on blur:
@@ -72,6 +67,7 @@
   - Email: "Enter a valid email address."
   - Phone: "Phone number must be at least 6 characters."
   - Website: "Website URL is required."
+  - Base city: "Select your nearest city."
 - **Next** validates and focuses the first invalid field
 - Cannot proceed to step 2 with invalid fields
 
