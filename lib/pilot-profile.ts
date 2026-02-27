@@ -17,9 +17,9 @@ export const PILOT_COVERAGE_LABELS: Record<PilotCoverageRegion, string> = {
 export type PilotAvailabilityStatus = 'AVAILABLE' | 'LIMITED' | 'UNAVAILABLE';
 
 export const PILOT_AVAILABILITY_OPTIONS: readonly { value: PilotAvailabilityStatus; label: string }[] = [
-  { value: 'AVAILABLE', label: 'Available for New Projects' },
-  { value: 'LIMITED', label: 'Limited Availability' },
-  { value: 'UNAVAILABLE', label: 'Currently Unavailable' },
+  { value: 'AVAILABLE', label: 'Immediately' },
+  { value: 'LIMITED', label: 'Within 1-2 weeks' },
+  { value: 'UNAVAILABLE', label: 'Over 2 weeks' },
 ] as const;
 
 export type PilotSkillLevel = 'Intermediate' | 'Advanced' | 'Expert';
@@ -44,24 +44,47 @@ export type PilotSkillKey = (typeof PILOT_SKILL_CATEGORIES)[number]['key'];
 export const PILOT_FAQ_QUESTIONS = [
   {
     key: 'coverage',
-    question: 'What areas do you cover?',
+    question: 'What drone work are you most experienced in?',
   },
   {
     key: 'qualifications',
-    question: 'What qualifications and insurance do you have?',
+    question: 'What qualifications, certifications, and insurance do you hold?',
   },
   {
     key: 'turnaround',
-    question: 'How quickly can you deliver survey data?',
+    question: 'What kinds of jobs have you completed recently?',
   },
   {
     key: 'formats',
-    question: 'What file formats do you deliver?',
+    question: 'How do you run a job from planning through delivery?',
   },
   {
     key: 'permissions',
-    question: 'Do you need permission to fly on my site?',
+    question: 'Why do clients choose you over other drone pilots?',
   },
+] as const;
+
+export const PILOT_POPULAR_DRONE_MODELS = [
+  'DJI Mini 4 Pro',
+  'DJI Mini 3 Pro',
+  'DJI Air 3S',
+  'DJI Air 3',
+  'DJI Mavic 3 Classic',
+  'DJI Mavic 3 Pro',
+  'DJI Mavic 3 Enterprise',
+  'DJI Mavic 3 Thermal',
+  'DJI Matrice 4E',
+  'DJI Matrice 30T',
+  'DJI Matrice 350 RTK',
+  'DJI Matrice 300 RTK',
+  'DJI Inspire 3',
+  'DJI Avata 2',
+  'DJI Agras T40',
+  'Autel EVO II Pro V3',
+  'Autel EVO Max 4T',
+  'Parrot Anafi Ai',
+  'Skydio X10',
+  'WingtraOne GEN II',
 ] as const;
 
 export type PilotFaqKey = (typeof PILOT_FAQ_QUESTIONS)[number]['key'];

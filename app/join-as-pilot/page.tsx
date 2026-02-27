@@ -11,6 +11,7 @@ import {
   PILOT_COVERAGE_LABELS,
   PILOT_COVERAGE_REGIONS,
   PILOT_FAQ_QUESTIONS,
+  PILOT_POPULAR_DRONE_MODELS,
   PILOT_SERVICE_GROUPS,
   PILOT_SERVICE_LEVELS,
   PILOT_SERVICE_OPTIONS,
@@ -84,10 +85,16 @@ type StepDefinition = {
   fields: PilotFormField[];
 };
 
-type PilotApplicationDraftV1 = {
+type MiniStepDefinition = {
+  title: string;
+  fields: PilotFormField[];
+};
+
+type PilotApplicationDraftV2 = {
   version: number;
   savedAt: number;
   step: Step;
+  miniStep: number;
   values: PilotFormValues;
 };
 
@@ -104,8 +111,9 @@ const PILOT_TERMS_VERSION = 'pilot-terms-v1';
 const CURRENT_YEAR = new Date().getUTCFullYear();
 
 const DRAFT_STORAGE_KEY = 'pilot-application-draft-v1';
-const DRAFT_VERSION = 1;
+const DRAFT_VERSION = 2;
 const DRAFT_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000;
+const MAX_DRONE_ITEMS = 12;
 
 const INITIAL_VALUES: PilotFormValues = {
   pilot_name: '',
@@ -138,7 +146,7 @@ const INITIAL_VALUES: PilotFormValues = {
   top_service_ratings_json: {},
 
   profile_photo_url: '',
-  equipment_items_json: [{ name: '', details: '' }],
+  equipment_items_json: [],
   portfolio_items_json: [],
 
   two_sentence_summary: '',
@@ -169,7 +177,7 @@ const STEP_DEFINITIONS: Record<Step, StepDefinition> = {
   2: {
     title: 'Compliance Details',
     shortLabel: 'Compliance',
-    fields: ['insurance_provider', 'flyer_id', 'operator_id', 'licence_level'],
+    fields: ['insurance_provider', 'insurance_expiry', 'flyer_id', 'operator_id', 'licence_level'],
   },
   3: {
     title: 'Top Services & Ratings',
@@ -207,9 +215,81 @@ const STEP_DEFINITIONS: Record<Step, StepDefinition> = {
       'faq_turnaround_answer',
       'faq_formats_answer',
       'faq_permissions_answer',
+      'google_business_profile_url',
+      'linkedin_url',
+      'instagram_url',
+      'youtube_url',
+      'facebook_url',
       'consent_to_pilot_terms',
     ],
   },
+};
+
+const STEP_MINI_STEPS: Record<Step, MiniStepDefinition[]> = {
+  1: [
+    { title: 'What is your name?', fields: ['pilot_name'] },
+    { title: 'What is your business name?', fields: ['business_name'] },
+    { title: 'What is your email address?', fields: ['email'] },
+    { title: 'What is your phone number?', fields: ['phone'] },
+    { title: 'What is your website address?', fields: ['website_url'] },
+    { title: 'Where are you based?', fields: ['base_city'] },
+  ],
+  2: [
+    { title: 'Who is your insurance provider?', fields: ['insurance_provider'] },
+    { title: 'When does your insurance expire?', fields: ['insurance_expiry'] },
+    { title: 'What is your Flyer ID?', fields: ['flyer_id'] },
+    { title: 'What is your Operator ID?', fields: ['operator_id'] },
+    { title: 'What licence level do you hold?', fields: ['licence_level'] },
+  ],
+  3: [
+    {
+      title: 'Pick the 6 Services You Are Most Experienced In',
+      fields: ['top_service_slugs'],
+    },
+    {
+      title: 'Rate your experience in these services and add any additional notes',
+      fields: ['top_service_ratings_json', 'additional_services_note'],
+    },
+  ],
+  4: [
+    { title: 'How quickly are you available for work?', fields: ['availability_status'] },
+    { title: 'How much of the UK will you cover?', fields: ['coverage_regions', 'coverage_notes'] },
+    { title: 'How many commercial drone jobs have you completed?', fields: ['total_projects_completed'] },
+    { title: 'How many years have you been flying drones?', fields: ['years_experience'] },
+    {
+      title: 'How many total flight hours have you done (hobby + commercial)?',
+      fields: ['drone_flight_hours_total'],
+    },
+    { title: 'How many drones do you own?', fields: ['drones_owned_total'] },
+    { title: 'How quickly do you usually return quotes? (hours)', fields: ['avg_quote_turnaround_hours'] },
+    { title: 'What is your minimum data delivery time (days)?', fields: ['data_delivery_min_days'] },
+    { title: 'What is your maximum data delivery time (days)?', fields: ['data_delivery_max_days'] },
+    { title: 'When did you first start flying drones?', fields: ['member_since_year'] },
+  ],
+  5: [
+    { title: 'Upload your pilot headshot', fields: ['profile_photo_url'] },
+    { title: 'Drones You Own', fields: ['equipment_items_json'] },
+    { title: 'Add portfolio images', fields: ['portfolio_items_json'] },
+  ],
+  6: [
+    { title: 'Describe yourself and your business in 2 sentences', fields: ['two_sentence_summary'] },
+    { title: PILOT_FAQ_QUESTIONS[0].question, fields: ['faq_coverage_answer'] },
+    { title: PILOT_FAQ_QUESTIONS[1].question, fields: ['faq_qualifications_answer'] },
+    { title: PILOT_FAQ_QUESTIONS[2].question, fields: ['faq_turnaround_answer'] },
+    { title: PILOT_FAQ_QUESTIONS[3].question, fields: ['faq_formats_answer'] },
+    { title: PILOT_FAQ_QUESTIONS[4].question, fields: ['faq_permissions_answer'] },
+    {
+      title: 'Links & consent',
+      fields: [
+        'google_business_profile_url',
+        'linkedin_url',
+        'instagram_url',
+        'youtube_url',
+        'facebook_url',
+        'consent_to_pilot_terms',
+      ],
+    },
+  ],
 };
 
 const ALL_STEP_FIELDS: PilotFormField[] = STEP_ORDER.flatMap((step) => STEP_DEFINITIONS[step].fields);
@@ -221,6 +301,15 @@ const COVERAGE_REGION_SET = new Set<string>(PILOT_COVERAGE_REGIONS);
 const AVAILABILITY_SET = new Set<string>(PILOT_AVAILABILITY_OPTIONS.map((option) => option.value));
 const LICENCE_SET = new Set<string>(LICENCE_OPTIONS);
 const SERVICE_TITLE_MAP = new Map<string, string>(PILOT_SERVICE_OPTIONS.map((service) => [service.slug, service.title]));
+const POPULAR_DRONE_SET = new Set<string>(PILOT_POPULAR_DRONE_MODELS);
+const URL_FIELDS = [
+  'website_url',
+  'google_business_profile_url',
+  'linkedin_url',
+  'instagram_url',
+  'youtube_url',
+  'facebook_url',
+] as const;
 
 const STRING_FIELDS = [
   'pilot_name',
@@ -355,12 +444,12 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       return max >= min ? '' : 'Maximum data delivery days cannot be lower than minimum data delivery days.';
     }
     case 'member_since_year':
-      return validateNumberField(values.member_since_year, 2000, CURRENT_YEAR, 'Member since year');
+      return validateNumberField(values.member_since_year, 2000, CURRENT_YEAR, 'Start year');
     case 'profile_photo_url':
-      return values.profile_photo_url.trim() ? '' : 'Please upload a square 1:1 headshot.';
+      return values.profile_photo_url.trim() ? '' : 'Please upload a drone pilot headshot.';
     case 'equipment_items_json': {
       const validRows = values.equipment_items_json.filter((item) => item.name.trim().length > 0);
-      return validRows.length > 0 ? '' : 'Add at least one equipment or drone entry.';
+      return validRows.length > 0 ? '' : 'Select at least one drone you own.';
     }
     case 'portfolio_items_json':
       if (values.portfolio_items_json.length === 0) return 'Add at least one portfolio image.';
@@ -476,16 +565,15 @@ function sanitizeDraftValues(rawValues: unknown): PilotFormValues | null {
 
   if (Array.isArray(source.equipment_items_json)) {
     const rows = source.equipment_items_json
-      .slice(0, 12)
+      .slice(0, MAX_DRONE_ITEMS)
       .map((item) => {
         if (!isRecord(item)) return null;
         const name = typeof item.name === 'string' ? item.name : '';
-        const details = typeof item.details === 'string' ? item.details : '';
-        if (!name && !details) return null;
-        return { name, details };
+        if (!name.trim()) return null;
+        return { name, details: '' };
       })
       .filter((item): item is EquipmentDraftItem => Boolean(item));
-    next.equipment_items_json = rows.length > 0 ? rows : [{ name: '', details: '' }];
+    next.equipment_items_json = rows;
   }
 
   if (Array.isArray(source.portfolio_items_json)) {
@@ -510,15 +598,29 @@ function clampDraftStep(raw: unknown): Step {
   return STEP_ORDER.includes(raw as Step) ? (raw as Step) : 1;
 }
 
-function stepForField(field: PilotFormField): Step {
+function miniStepCount(step: Step): number {
+  return STEP_MINI_STEPS[step].length;
+}
+
+function clampMiniStep(raw: unknown, step: Step): number {
+  if (typeof raw !== 'number' || !Number.isInteger(raw)) return 1;
+  const max = miniStepCount(step);
+  if (raw < 1) return 1;
+  if (raw > max) return max;
+  return raw;
+}
+
+function stepForField(field: PilotFormField): { step: Step; miniStep: number } {
   for (const step of STEP_ORDER) {
-    if (STEP_DEFINITIONS[step].fields.includes(field)) return step;
+    const foundIndex = STEP_MINI_STEPS[step].findIndex((mini) => mini.fields.includes(field));
+    if (foundIndex >= 0) return { step, miniStep: foundIndex + 1 };
   }
-  return 6;
+  return { step: 6, miniStep: 1 };
 }
 
 export default function PilotApplyPage() {
   const [step, setStep] = useState<Step>(1);
+  const [miniStep, setMiniStep] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [formError, setFormError] = useState('');
@@ -538,6 +640,33 @@ export default function PilotApplyPage() {
   const selectedLicences = useMemo(
     () => getSelectedLicences(values.licence_level),
     [values.licence_level],
+  );
+  const selectedEquipmentNames = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          values.equipment_items_json
+            .map((item) => item.name.trim())
+            .filter((name) => name.length > 0),
+        ),
+      ),
+    [values.equipment_items_json],
+  );
+  const selectedPopularDrones = useMemo(
+    () => selectedEquipmentNames.filter((name) => POPULAR_DRONE_SET.has(name)),
+    [selectedEquipmentNames],
+  );
+  const selectedPopularDroneSet = useMemo(
+    () => new Set(selectedPopularDrones),
+    [selectedPopularDrones],
+  );
+  const customDroneNames = useMemo(
+    () => selectedEquipmentNames.filter((name) => !POPULAR_DRONE_SET.has(name)),
+    [selectedEquipmentNames],
+  );
+  const customDroneText = useMemo(
+    () => customDroneNames.join('\n'),
+    [customDroneNames],
   );
 
   const serviceSections = useMemo<ServiceSection[]>(() => {
@@ -574,6 +703,12 @@ export default function PilotApplyPage() {
     return sections;
   }, []);
 
+  const currentStepMiniSteps = STEP_MINI_STEPS[step];
+  const currentMiniStepDefinition = currentStepMiniSteps[Math.max(0, miniStep - 1)] || currentStepMiniSteps[0];
+  const currentMiniStepFields = currentMiniStepDefinition.fields;
+  const isFirstMiniStep = miniStep <= 1;
+  const isLastMiniStep = miniStep >= currentStepMiniSteps.length;
+
   const scrollToFormTop = useCallback((behavior: ScrollBehavior = 'smooth') => {
     formTopRef.current?.scrollIntoView({ behavior, block: 'start' });
   }, []);
@@ -583,12 +718,23 @@ export default function PilotApplyPage() {
     window.localStorage.removeItem(DRAFT_STORAGE_KEY);
   }, []);
 
-  const setStepWithScroll = useCallback((nextStep: Step, behavior: ScrollBehavior = 'smooth') => {
-    setStep(nextStep);
+  const setStepWithScroll = useCallback(
+    (nextStep: Step, nextMiniStep = 1, behavior: ScrollBehavior = 'smooth') => {
+      setStep(nextStep);
+      setMiniStep(clampMiniStep(nextMiniStep, nextStep));
+      window.setTimeout(() => {
+        scrollToFormTop(behavior);
+      }, 0);
+    },
+    [scrollToFormTop],
+  );
+
+  const setMiniStepWithScroll = useCallback((nextMiniStep: number, behavior: ScrollBehavior = 'smooth') => {
+    setMiniStep(clampMiniStep(nextMiniStep, step));
     window.setTimeout(() => {
       scrollToFormTop(behavior);
     }, 0);
-  }, [scrollToFormTop]);
+  }, [scrollToFormTop, step]);
 
   const setFieldValue = <K extends PilotFormField>(field: K, value: PilotFormValues[K]) => {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -612,6 +758,14 @@ export default function PilotApplyPage() {
       }
       return { ...prev, [field]: message };
     });
+  };
+
+  const normalizeAndValidateUrlField = (field: typeof URL_FIELDS[number]) => {
+    const normalized = normalizeWebsiteInput(values[field]);
+    if (normalized) {
+      setFieldValue(field, normalized);
+    }
+    setFieldError(field, validateField(field, { ...values, [field]: normalized }));
   };
 
   const focusField = useCallback((field: PilotFormField) => {
@@ -642,7 +796,7 @@ export default function PilotApplyPage() {
     }
 
     if (field === 'equipment_items_json') {
-      const equipmentInput = document.querySelector<HTMLElement>('[name="equipment_name_0"]');
+      const equipmentInput = document.querySelector<HTMLElement>('[name="popular_drone_model"], [name="other_drones"]');
       equipmentInput?.focus();
       equipmentInput?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
@@ -672,19 +826,28 @@ export default function PilotApplyPage() {
   }, [fieldErrors]);
 
   const goNextStep = () => {
-    const { valid, firstInvalid } = validateFields(STEP_DEFINITIONS[step].fields, values);
+    const { valid, firstInvalid } = validateFields(currentMiniStepFields, values);
     if (!valid && firstInvalid) {
       focusField(firstInvalid);
       return;
     }
+    if (!isLastMiniStep) {
+      setMiniStepWithScroll(miniStep + 1);
+      return;
+    }
     if (step < TOTAL_STEPS) {
-      setStepWithScroll((step + 1) as Step);
+      setStepWithScroll((step + 1) as Step, 1);
     }
   };
 
   const goPrevStep = () => {
+    if (!isFirstMiniStep) {
+      setMiniStepWithScroll(miniStep - 1);
+      return;
+    }
     if (step > 1) {
-      setStepWithScroll((step - 1) as Step);
+      const prevStep = (step - 1) as Step;
+      setStepWithScroll(prevStep, miniStepCount(prevStep));
     }
   };
 
@@ -726,37 +889,43 @@ export default function PilotApplyPage() {
     });
   };
 
+  const setOwnedDrones = (popularModels: string[], customInput: string) => {
+    const customModels = customInput
+      .split(/[\n,]+/)
+      .map((item) => item.trim())
+      .filter((item) => item.length > 0);
+    const names = Array.from(new Set([...popularModels, ...customModels])).slice(0, MAX_DRONE_ITEMS);
+    setFieldValue(
+      'equipment_items_json',
+      names.map((name) => ({ name, details: '' })),
+    );
+  };
+
   const toggleCoverageRegion = (region: PilotCoverageRegion) => {
     const hasRegion = values.coverage_regions.includes(region);
     const next = hasRegion
       ? values.coverage_regions.filter((item) => item !== region)
       : [...values.coverage_regions, region];
+    setFieldValue('coverage_uk_wide', false);
     setFieldValue('coverage_regions', next as PilotCoverageRegion[]);
   };
 
-  const equipmentRows = useMemo(
-    () => values.equipment_items_json,
-    [values.equipment_items_json],
-  );
-
-  const setEquipmentRow = (index: number, key: keyof EquipmentDraftItem, nextValue: string) => {
-    const nextRows = equipmentRows.map((row, rowIndex) =>
-      rowIndex === index ? { ...row, [key]: nextValue } : row,
-    );
-    setFieldValue('equipment_items_json', nextRows);
-  };
-
-  const addEquipmentRow = () => {
-    if (equipmentRows.length >= 12) return;
-    setFieldValue('equipment_items_json', [...equipmentRows, { name: '', details: '' }]);
-  };
-
-  const removeEquipmentRow = (index: number) => {
-    if (equipmentRows.length === 1) {
-      setFieldValue('equipment_items_json', [{ name: '', details: '' }]);
-      return;
+  const toggleUkNationwide = (checked: boolean) => {
+    setFieldValue('coverage_uk_wide', checked);
+    if (checked) {
+      setFieldValue('coverage_regions', []);
     }
-    setFieldValue('equipment_items_json', equipmentRows.filter((_, rowIndex) => rowIndex !== index));
+  };
+
+  const togglePopularDroneModel = (model: string) => {
+    const nextPopular = selectedPopularDroneSet.has(model)
+      ? selectedPopularDrones.filter((item) => item !== model)
+      : [...selectedPopularDrones, model];
+    setOwnedDrones(nextPopular, customDroneText);
+  };
+
+  const setCustomDroneText = (text: string) => {
+    setOwnedDrones(selectedPopularDrones, text);
   };
 
   useEffect(() => {
@@ -769,7 +938,7 @@ export default function PilotApplyPage() {
         return;
       }
 
-      const parsed = JSON.parse(raw) as Partial<PilotApplicationDraftV1>;
+      const parsed = JSON.parse(raw) as Partial<PilotApplicationDraftV2>;
       if (
         parsed.version !== DRAFT_VERSION ||
         typeof parsed.savedAt !== 'number' ||
@@ -788,7 +957,9 @@ export default function PilotApplyPage() {
       }
 
       setValues(restoredValues);
-      setStep(clampDraftStep(parsed.step));
+      const restoredStep = clampDraftStep(parsed.step);
+      setStep(restoredStep);
+      setMiniStep(clampMiniStep(parsed.miniStep, restoredStep));
     } catch {
       clearDraft();
     } finally {
@@ -805,10 +976,11 @@ export default function PilotApplyPage() {
     }
 
     const timeout = window.setTimeout(() => {
-      const draft: PilotApplicationDraftV1 = {
+      const draft: PilotApplicationDraftV2 = {
         version: DRAFT_VERSION,
         savedAt: Date.now(),
         step,
+        miniStep,
         values,
       };
 
@@ -816,7 +988,7 @@ export default function PilotApplyPage() {
         window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
       } catch (error) {
         if (error instanceof DOMException && error.name === 'QuotaExceededError') {
-          const reducedDraft: PilotApplicationDraftV1 = {
+          const reducedDraft: PilotApplicationDraftV2 = {
             ...draft,
             values: {
               ...values,
@@ -836,7 +1008,7 @@ export default function PilotApplyPage() {
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [isDraftReady, step, values]);
+  }, [isDraftReady, miniStep, step, values]);
 
   useEffect(() => {
     const pendingField = pendingFocusRef.current;
@@ -846,7 +1018,7 @@ export default function PilotApplyPage() {
     window.setTimeout(() => {
       focusField(pendingField);
     }, 0);
-  }, [focusField, step]);
+  }, [focusField, miniStep, step]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -892,10 +1064,10 @@ export default function PilotApplyPage() {
 
     const { valid, firstInvalid } = validateFields(ALL_STEP_FIELDS, payload);
     if (!valid && firstInvalid) {
-      const targetStep = stepForField(firstInvalid);
-      if (targetStep !== step) {
+      const targetPosition = stepForField(firstInvalid);
+      if (targetPosition.step !== step || targetPosition.miniStep !== miniStep) {
         pendingFocusRef.current = firstInvalid;
-        setStepWithScroll(targetStep);
+        setStepWithScroll(targetPosition.step, targetPosition.miniStep);
       } else {
         focusField(firstInvalid);
       }
@@ -923,6 +1095,7 @@ export default function PilotApplyPage() {
       setValues(INITIAL_VALUES);
       setFieldErrors({});
       setStep(1);
+      setMiniStep(1);
       scrollToFormTop('smooth');
     } catch (submitError) {
       setFormError(submitError instanceof Error ? submitError.message : 'Submission failed');
@@ -932,6 +1105,7 @@ export default function PilotApplyPage() {
   };
 
   const stepTitle = STEP_DEFINITIONS[step].title;
+  const stepMiniTitle = currentMiniStepDefinition.title;
 
   const fieldId = useCallback((field: PilotFormField) => `pilot-field-${field}`, []);
   const errorId = useCallback((field: PilotFormField) => `pilot-error-${field}`, []);
@@ -984,6 +1158,12 @@ export default function PilotApplyPage() {
                 Step {step} of {TOTAL_STEPS}
               </span>
             </div>
+            <div className="mb-3 rounded-lg border border-white/15 bg-white/5 px-3 py-2">
+              <p className="text-white text-sm font-medium">{stepMiniTitle}</p>
+              <p className="text-white/60 text-xs mt-0.5">
+                Question {miniStep} of {currentStepMiniSteps.length}
+              </p>
+            </div>
             <div className="grid grid-cols-6 gap-2">
               {STEP_ORDER.map((value) => (
                 <div key={value} className={`h-1.5 rounded-full ${value <= step ? 'bg-gold' : 'bg-white/20'}`} />
@@ -1009,48 +1189,53 @@ export default function PilotApplyPage() {
               <fieldset className="space-y-4">
                 <legend className="sr-only">Business Details</legend>
 
-                <div>
-                  <label htmlFor={fieldId('pilot_name')} className="block text-sm text-white mb-1">
-                    Drone Pilot Name *
-                  </label>
-                  <input
-                    id={fieldId('pilot_name')}
-                    name="pilot_name"
-                    autoComplete="name"
-                    className={inputClass}
-                    placeholder="e.g. Alex Smith"
-                    value={values.pilot_name}
-                    aria-invalid={Boolean(fieldErrors.pilot_name)}
-                    aria-describedby={describedBy('pilot_name')}
-                    onChange={(event) => setFieldValue('pilot_name', event.target.value)}
-                    onBlur={() => setFieldError('pilot_name', validateField('pilot_name', values))}
-                    required
-                    autoFocus
-                  />
-                  {renderFieldError('pilot_name')}
-                </div>
+                {miniStep === 1 ? (
+                  <div>
+                    <label htmlFor={fieldId('pilot_name')} className="block text-sm text-white mb-1">
+                      Drone Pilot Name *
+                    </label>
+                    <input
+                      id={fieldId('pilot_name')}
+                      name="pilot_name"
+                      autoComplete="name"
+                      className={inputClass}
+                      placeholder="e.g. Alex Smith"
+                      value={values.pilot_name}
+                      aria-invalid={Boolean(fieldErrors.pilot_name)}
+                      aria-describedby={describedBy('pilot_name')}
+                      onChange={(event) => setFieldValue('pilot_name', event.target.value)}
+                      onBlur={() => setFieldError('pilot_name', validateField('pilot_name', values))}
+                      required
+                      autoFocus
+                    />
+                    {renderFieldError('pilot_name')}
+                  </div>
+                ) : null}
 
-                <div>
-                  <label htmlFor={fieldId('business_name')} className="block text-sm text-white mb-1">
-                    Business Name *
-                  </label>
-                  <input
-                    id={fieldId('business_name')}
-                    name="business_name"
-                    autoComplete="organization"
-                    className={inputClass}
-                    placeholder="e.g. Test Drone Services Ltd"
-                    value={values.business_name}
-                    aria-invalid={Boolean(fieldErrors.business_name)}
-                    aria-describedby={describedBy('business_name')}
-                    onChange={(event) => setFieldValue('business_name', event.target.value)}
-                    onBlur={() => setFieldError('business_name', validateField('business_name', values))}
-                    required
-                  />
-                  {renderFieldError('business_name')}
-                </div>
+                {miniStep === 2 ? (
+                  <div>
+                    <label htmlFor={fieldId('business_name')} className="block text-sm text-white mb-1">
+                      Business Name *
+                    </label>
+                    <input
+                      id={fieldId('business_name')}
+                      name="business_name"
+                      autoComplete="organization"
+                      className={inputClass}
+                      placeholder="e.g. Test Drone Services Ltd"
+                      value={values.business_name}
+                      aria-invalid={Boolean(fieldErrors.business_name)}
+                      aria-describedby={describedBy('business_name')}
+                      onChange={(event) => setFieldValue('business_name', event.target.value)}
+                      onBlur={() => setFieldError('business_name', validateField('business_name', values))}
+                      required
+                      autoFocus
+                    />
+                    {renderFieldError('business_name')}
+                  </div>
+                ) : null}
 
-                <div className="grid gap-4 md:grid-cols-2">
+                {miniStep === 3 ? (
                   <div>
                     <label htmlFor={fieldId('email')} className="block text-sm text-white mb-1">
                       Email *
@@ -1068,10 +1253,13 @@ export default function PilotApplyPage() {
                       onChange={(event) => setFieldValue('email', event.target.value)}
                       onBlur={() => setFieldError('email', validateField('email', values))}
                       required
+                      autoFocus
                     />
                     {renderFieldError('email')}
                   </div>
+                ) : null}
 
+                {miniStep === 4 ? (
                   <div>
                     <label htmlFor={fieldId('phone')} className="block text-sm text-white mb-1">
                       Phone *
@@ -1090,58 +1278,61 @@ export default function PilotApplyPage() {
                       onChange={(event) => setFieldValue('phone', event.target.value)}
                       onBlur={() => setFieldError('phone', validateField('phone', values))}
                       required
+                      autoFocus
                     />
                     {renderFieldError('phone')}
                   </div>
-                </div>
+                ) : null}
 
-                <div>
-                  <label htmlFor={fieldId('website_url')} className="block text-sm text-white mb-1">
-                    Website URL *
-                  </label>
-                  <input
-                    id={fieldId('website_url')}
-                    type="url"
-                    name="website_url"
-                    autoComplete="url"
-                    className={inputClass}
-                    placeholder="https://example.com"
-                    value={values.website_url}
-                    aria-invalid={Boolean(fieldErrors.website_url)}
-                    aria-describedby={describedBy('website_url', 'pilot-website-url-hint')}
-                    onChange={(event) => setFieldValue('website_url', event.target.value)}
-                    onBlur={() => {
-                      const normalized = normalizeWebsiteInput(values.website_url);
-                      if (normalized) setFieldValue('website_url', normalized);
-                      setFieldError('website_url', validateField('website_url', { ...values, website_url: normalized }));
-                    }}
-                    required
-                  />
-                  <p id="pilot-website-url-hint" className="text-white/60 text-xs mt-1">
-                    Use your business website (we accept URLs without https).
-                  </p>
-                  {renderFieldError('website_url')}
-                </div>
+                {miniStep === 5 ? (
+                  <div>
+                    <label htmlFor={fieldId('website_url')} className="block text-sm text-white mb-1">
+                      Website URL *
+                    </label>
+                    <input
+                      id={fieldId('website_url')}
+                      type="url"
+                      name="website_url"
+                      autoComplete="url"
+                      className={inputClass}
+                      placeholder="https://example.com"
+                      value={values.website_url}
+                      aria-invalid={Boolean(fieldErrors.website_url)}
+                      aria-describedby={describedBy('website_url', 'pilot-website-url-hint')}
+                      onChange={(event) => setFieldValue('website_url', event.target.value)}
+                      onBlur={() => normalizeAndValidateUrlField('website_url')}
+                      required
+                      autoFocus
+                    />
+                    <p id="pilot-website-url-hint" className="text-white/60 text-xs mt-1">
+                      Use your business website (we accept URLs without https).
+                    </p>
+                    {renderFieldError('website_url')}
+                  </div>
+                ) : null}
 
-                <div>
-                  <label htmlFor={fieldId('base_city')} className="block text-sm text-white mb-1">
-                    Base City / Area *
-                  </label>
-                  <input
-                    id={fieldId('base_city')}
-                    name="base_city"
-                    autoComplete="address-level2"
-                    className={inputClass}
-                    placeholder="e.g. London"
-                    value={values.base_city}
-                    aria-invalid={Boolean(fieldErrors.base_city)}
-                    aria-describedby={describedBy('base_city')}
-                    onChange={(event) => setFieldValue('base_city', event.target.value)}
-                    onBlur={() => setFieldError('base_city', validateField('base_city', values))}
-                    required
-                  />
-                  {renderFieldError('base_city')}
-                </div>
+                {miniStep === 6 ? (
+                  <div>
+                    <label htmlFor={fieldId('base_city')} className="block text-sm text-white mb-1">
+                      Base City / Area *
+                    </label>
+                    <input
+                      id={fieldId('base_city')}
+                      name="base_city"
+                      autoComplete="address-level2"
+                      className={inputClass}
+                      placeholder="e.g. London"
+                      value={values.base_city}
+                      aria-invalid={Boolean(fieldErrors.base_city)}
+                      aria-describedby={describedBy('base_city')}
+                      onChange={(event) => setFieldValue('base_city', event.target.value)}
+                      onBlur={() => setFieldError('base_city', validateField('base_city', values))}
+                      required
+                      autoFocus
+                    />
+                    {renderFieldError('base_city')}
+                  </div>
+                ) : null}
               </fieldset>
             ) : null}
 
@@ -1149,41 +1340,48 @@ export default function PilotApplyPage() {
               <fieldset className="space-y-4">
                 <legend className="sr-only">Compliance Details</legend>
 
-                <div>
-                  <label htmlFor={fieldId('insurance_provider')} className="block text-sm text-white mb-1">
-                    Insurance Provider *
-                  </label>
-                  <input
-                    id={fieldId('insurance_provider')}
-                    name="insurance_provider"
-                    className={inputClass}
-                    placeholder="e.g. Coverdrone"
-                    value={values.insurance_provider}
-                    aria-invalid={Boolean(fieldErrors.insurance_provider)}
-                    aria-describedby={describedBy('insurance_provider')}
-                    onChange={(event) => setFieldValue('insurance_provider', event.target.value)}
-                    onBlur={() => setFieldError('insurance_provider', validateField('insurance_provider', values))}
-                    required
-                  />
-                  {renderFieldError('insurance_provider')}
-                </div>
+                {miniStep === 1 ? (
+                  <div>
+                    <label htmlFor={fieldId('insurance_provider')} className="block text-sm text-white mb-1">
+                      Insurance Provider *
+                    </label>
+                    <input
+                      id={fieldId('insurance_provider')}
+                      name="insurance_provider"
+                      className={inputClass}
+                      placeholder="e.g. Coverdrone"
+                      value={values.insurance_provider}
+                      aria-invalid={Boolean(fieldErrors.insurance_provider)}
+                      aria-describedby={describedBy('insurance_provider')}
+                      onChange={(event) => setFieldValue('insurance_provider', event.target.value)}
+                      onBlur={() => setFieldError('insurance_provider', validateField('insurance_provider', values))}
+                      required
+                      autoFocus
+                    />
+                    {renderFieldError('insurance_provider')}
+                  </div>
+                ) : null}
 
-                <div>
-                  <label htmlFor={fieldId('insurance_expiry')} className="block text-sm text-white mb-1">
-                    Insurance Expiry Date
-                  </label>
-                  <input
-                    id={fieldId('insurance_expiry')}
-                    type="date"
-                    name="insurance_expiry"
-                    className={inputClass}
-                    value={values.insurance_expiry}
-                    onChange={(event) => setFieldValue('insurance_expiry', event.target.value)}
-                  />
-                  <p className="text-white/60 text-xs mt-1">Optional: insurance expiry date.</p>
-                </div>
+                {miniStep === 2 ? (
+                  <div>
+                    <label htmlFor={fieldId('insurance_expiry')} className="block text-sm text-white mb-1">
+                      Insurance Expiry Date
+                    </label>
+                    <input
+                      id={fieldId('insurance_expiry')}
+                      type="date"
+                      name="insurance_expiry"
+                      className={inputClass}
+                      value={values.insurance_expiry}
+                      onChange={(event) => setFieldValue('insurance_expiry', event.target.value)}
+                      autoFocus
+                    />
+                    <p className="text-white/60 text-xs mt-1">Optional: insurance expiry date.</p>
+                    {renderFieldError('insurance_expiry')}
+                  </div>
+                ) : null}
 
-                <div className="grid gap-4 md:grid-cols-2">
+                {miniStep === 3 ? (
                   <div>
                     <label htmlFor={fieldId('flyer_id')} className="block text-sm text-white mb-1">
                       Flyer ID *
@@ -1200,11 +1398,14 @@ export default function PilotApplyPage() {
                       onChange={(event) => setFieldValue('flyer_id', event.target.value)}
                       onBlur={() => setFieldError('flyer_id', validateField('flyer_id', values))}
                       required
+                      autoFocus
                     />
                     <p id="pilot-flyer-id-hint" className="text-white/60 text-xs mt-1">CAA-issued flyer ID.</p>
                     {renderFieldError('flyer_id')}
                   </div>
+                ) : null}
 
+                {miniStep === 4 ? (
                   <div>
                     <label htmlFor={fieldId('operator_id')} className="block text-sm text-white mb-1">
                       Operator ID *
@@ -1221,39 +1422,43 @@ export default function PilotApplyPage() {
                       onChange={(event) => setFieldValue('operator_id', event.target.value)}
                       onBlur={() => setFieldError('operator_id', validateField('operator_id', values))}
                       required
+                      autoFocus
                     />
                     <p id="pilot-operator-id-hint" className="text-white/60 text-xs mt-1">CAA-issued operator ID.</p>
                     {renderFieldError('operator_id')}
                   </div>
-                </div>
+                ) : null}
 
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
-                  <p className="text-white font-semibold">Licence Level *</p>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {LICENCE_OPTIONS.map((option) => {
-                      const id = `${fieldId('licence_level')}-${option.toLowerCase().replace(/\s+/g, '-')}`;
-                      return (
-                        <label
-                          htmlFor={id}
-                          key={option}
-                          className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90"
-                        >
-                          <input
-                            id={id}
-                            type="checkbox"
-                            name="licence_level"
-                            checked={selectedLicences.includes(option)}
-                            aria-invalid={Boolean(fieldErrors.licence_level)}
-                            aria-describedby={describedBy('licence_level')}
-                            onChange={() => toggleLicence(option)}
-                          />
-                          <span>{option}</span>
-                        </label>
-                      );
-                    })}
+                {miniStep === 5 ? (
+                  <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                    <p className="text-white font-semibold">Licence Level *</p>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {LICENCE_OPTIONS.map((option) => {
+                        const id = `${fieldId('licence_level')}-${option.toLowerCase().replace(/\s+/g, '-')}`;
+                        return (
+                          <label
+                            htmlFor={id}
+                            key={option}
+                            className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90"
+                          >
+                            <input
+                              id={id}
+                              type="checkbox"
+                              name="licence_level"
+                              checked={selectedLicences.includes(option)}
+                              aria-invalid={Boolean(fieldErrors.licence_level)}
+                              aria-describedby={describedBy('licence_level')}
+                              onChange={() => toggleLicence(option)}
+                              autoFocus={option === LICENCE_OPTIONS[0]}
+                            />
+                            <span>{option}</span>
+                          </label>
+                        );
+                      })}
+                    </div>
+                    {renderFieldError('licence_level')}
                   </div>
-                  {renderFieldError('licence_level')}
-                </div>
+                ) : null}
               </fieldset>
             ) : null}
 
@@ -1261,105 +1466,116 @@ export default function PilotApplyPage() {
               <fieldset className="space-y-5">
                 <legend className="sr-only">Top Services & Ratings</legend>
 
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-white font-semibold">Top Services (select exactly 6) *</p>
-                    <span className="text-xs text-white/60">{values.top_service_slugs.length}/6 selected</span>
-                  </div>
+                {miniStep === 1 ? (
+                  <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-white font-semibold">Top Services (select exactly 6) *</p>
+                      <span className="text-xs text-white/60">{values.top_service_slugs.length}/6 selected</span>
+                    </div>
 
-                  <div className="space-y-3">
-                    {serviceSections.map((section) => (
-                      <div key={section.key} className="rounded-lg border border-white/15 bg-white/5 p-3">
-                        <p className="text-xs uppercase tracking-wide text-white/60 mb-2">{section.label}</p>
-                        <div className="grid gap-2 sm:grid-cols-2">
-                          {section.services.map((service) => {
-                            const checked = values.top_service_slugs.includes(service.slug);
-                            const disabled = !checked && values.top_service_slugs.length >= 6;
-                            return (
-                              <label
-                                key={service.slug}
-                                className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors ${
-                                  checked
-                                    ? 'border-gold/70 bg-gold/10 text-white'
-                                    : 'border-white/20 bg-white/5 text-white/90'
-                                } ${disabled ? 'opacity-60' : ''}`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  name="top_service_slugs"
-                                  checked={checked}
-                                  disabled={disabled}
-                                  aria-invalid={Boolean(fieldErrors.top_service_slugs)}
-                                  aria-describedby={describedBy('top_service_slugs')}
-                                  onChange={() => toggleServiceSlug(service.slug)}
-                                />
-                                <span>{service.title}</span>
-                              </label>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  {renderFieldError('top_service_slugs', 'text-red-200 text-sm')}
-
-                  {values.top_service_slugs.length > 0 ? (
-                    <div ref={ratingsSectionRef} className="mt-3 rounded-lg border border-white/15 bg-white/5 p-3 space-y-3">
-                      <p className="text-sm text-white/90">Set a rating for each selected top service.</p>
-                      <div className="grid gap-2">
-                        {values.top_service_slugs.map((slug) => (
-                          <div key={`rating-${slug}`} className="grid gap-2 sm:grid-cols-[1fr,220px] sm:items-center">
-                            <label htmlFor={`service-rating-${slug}`} className="text-sm text-white/90">
-                              {SERVICE_TITLE_MAP.get(slug) || slug}
-                            </label>
-                            <select
-                              id={`service-rating-${slug}`}
-                              name={`service_rating_${slug}`}
-                              className={inputClass}
-                              value={values.top_service_ratings_json[slug] || ''}
-                              aria-invalid={Boolean(fieldErrors.top_service_ratings_json)}
-                              aria-describedby={describedBy('top_service_ratings_json')}
-                              onChange={(event) => setServiceRating(slug, event.target.value as PilotServiceLevel | '')}
-                            >
-                              <option value="" className="text-gray-900">Select rating</option>
-                              {PILOT_SERVICE_LEVELS.map((level) => (
-                                <option key={`${slug}-${level}`} value={level} className="text-gray-900">
-                                  {level}
-                                </option>
-                              ))}
-                            </select>
+                    <div className="space-y-3">
+                      {serviceSections.map((section) => (
+                        <div key={section.key} className="rounded-lg border border-white/15 bg-white/5 p-3">
+                          <p className="text-xs uppercase tracking-wide text-white/60 mb-2">{section.label}</p>
+                          <div className="grid gap-2 sm:grid-cols-2">
+                            {section.services.map((service) => {
+                              const checked = values.top_service_slugs.includes(service.slug);
+                              const disabled = !checked && values.top_service_slugs.length >= 6;
+                              return (
+                                <label
+                                  key={service.slug}
+                                  className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors ${
+                                    checked
+                                      ? 'border-gold/70 bg-gold/10 text-white'
+                                      : 'border-white/20 bg-white/5 text-white/90'
+                                  } ${disabled ? 'opacity-60' : ''}`}
+                                >
+                                  <input
+                                    type="checkbox"
+                                    name="top_service_slugs"
+                                    checked={checked}
+                                    disabled={disabled}
+                                    aria-invalid={Boolean(fieldErrors.top_service_slugs)}
+                                    aria-describedby={describedBy('top_service_slugs')}
+                                    onChange={() => toggleServiceSlug(service.slug)}
+                                    autoFocus={section === serviceSections[0] && service.slug === serviceSections[0]?.services[0]?.slug}
+                                  />
+                                  <span>{service.title}</span>
+                                </label>
+                              );
+                            })}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
+                    </div>
+                    {renderFieldError('top_service_slugs', 'text-red-200 text-sm')}
+                  </div>
+                ) : null}
+
+                {miniStep === 2 ? (
+                  <>
+                    <div ref={ratingsSectionRef} className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                      <p className="text-sm text-white/90">Set a rating for each selected top service.</p>
+                      {values.top_service_slugs.length === 0 ? (
+                        <p className="text-sm text-white/70">Select your top 6 services first.</p>
+                      ) : (
+                        <div className="grid gap-2">
+                          {values.top_service_slugs.map((slug, index) => (
+                            <div key={`rating-${slug}`} className="grid gap-2 sm:grid-cols-[1fr,220px] sm:items-center">
+                              <label htmlFor={`service-rating-${slug}`} className="text-sm text-white/90">
+                                {SERVICE_TITLE_MAP.get(slug) || slug}
+                              </label>
+                              <select
+                                id={`service-rating-${slug}`}
+                                name={`service_rating_${slug}`}
+                                className={inputClass}
+                                value={values.top_service_ratings_json[slug] || ''}
+                                aria-invalid={Boolean(fieldErrors.top_service_ratings_json)}
+                                aria-describedby={describedBy('top_service_ratings_json')}
+                                onChange={(event) => setServiceRating(slug, event.target.value as PilotServiceLevel | '')}
+                                autoFocus={index === 0}
+                              >
+                                <option value="" className="text-gray-900">Select rating</option>
+                                {PILOT_SERVICE_LEVELS.map((level) => (
+                                  <option key={`${slug}-${level}`} value={level} className="text-gray-900">
+                                    {level}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                       {renderFieldError('top_service_ratings_json', 'text-red-200 text-sm')}
                     </div>
-                  ) : null}
-                </div>
 
-                <div>
-                  <label htmlFor={fieldId('additional_services_note')} className="block text-sm text-white mb-1">
-                    Additional Service Capabilities
-                  </label>
-                  <textarea
-                    id={fieldId('additional_services_note')}
-                    name="additional_services_note"
-                    className={`${inputClass} resize-none`}
-                    rows={3}
-                    placeholder="Optional: additional service capabilities"
-                    value={values.additional_services_note}
-                    onChange={(event) => setFieldValue('additional_services_note', event.target.value)}
-                  />
-                </div>
+                    <div>
+                      <label htmlFor={fieldId('additional_services_note')} className="block text-sm text-white mb-1">
+                        Additional Service Capabilities
+                      </label>
+                      <textarea
+                        id={fieldId('additional_services_note')}
+                        name="additional_services_note"
+                        className={`${inputClass} resize-none`}
+                        rows={3}
+                        placeholder="Optional: additional service capabilities"
+                        value={values.additional_services_note}
+                        onChange={(event) => setFieldValue('additional_services_note', event.target.value)}
+                      />
+                    </div>
+                  </>
+                ) : null}
               </fieldset>
             ) : null}
 
             {step === 4 ? (
               <fieldset className="space-y-5">
                 <legend className="sr-only">Coverage & Metrics</legend>
-
-                <div className="grid gap-4 md:grid-cols-2">
+                {miniStep === 1 ? (
                   <div>
-                    <label htmlFor={fieldId('availability_status')} className="block text-sm text-white mb-1">Availability *</label>
+                    <label htmlFor={fieldId('availability_status')} className="block text-sm text-white mb-1">
+                      How quickly are you available for work? *
+                    </label>
                     <select
                       id={fieldId('availability_status')}
                       name="availability_status"
@@ -1368,6 +1584,7 @@ export default function PilotApplyPage() {
                       aria-invalid={Boolean(fieldErrors.availability_status)}
                       aria-describedby={describedBy('availability_status')}
                       onChange={(event) => setFieldValue('availability_status', event.target.value)}
+                      autoFocus
                     >
                       {PILOT_AVAILABILITY_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value} className="text-gray-900">
@@ -1377,56 +1594,59 @@ export default function PilotApplyPage() {
                     </select>
                     {renderFieldError('availability_status')}
                   </div>
+                ) : null}
 
-                  <div className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 flex items-center gap-2">
-                    <input
-                      id="coverage-uk-wide"
-                      type="checkbox"
-                      name="coverage_uk_wide"
-                      checked={values.coverage_uk_wide}
-                      onChange={(event) => setFieldValue('coverage_uk_wide', event.target.checked)}
-                    />
-                    <label htmlFor="coverage-uk-wide" className="text-sm text-white/90">UK-wide coverage</label>
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
-                  <p className="text-white font-semibold">Coverage Regions</p>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {PILOT_COVERAGE_REGIONS.map((region) => (
-                      <label key={region} className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90">
+                {miniStep === 2 ? (
+                  <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                    <p className="text-white font-semibold">How much of the UK will you cover? *</p>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <label className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90">
                         <input
                           type="checkbox"
-                          name="coverage_regions"
-                          checked={values.coverage_regions.includes(region)}
-                          disabled={values.coverage_uk_wide}
+                          name="coverage_uk_wide"
+                          checked={values.coverage_uk_wide}
+                          onChange={(event) => toggleUkNationwide(event.target.checked)}
                           aria-invalid={Boolean(fieldErrors.coverage_regions)}
                           aria-describedby={describedBy('coverage_regions')}
-                          onChange={() => toggleCoverageRegion(region)}
+                          autoFocus
                         />
-                        <span>{PILOT_COVERAGE_LABELS[region]}</span>
+                        <span>UK Nationwide</span>
                       </label>
-                    ))}
+                      {PILOT_COVERAGE_REGIONS.map((region) => (
+                        <label key={region} className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90">
+                          <input
+                            type="checkbox"
+                            name="coverage_regions"
+                            checked={values.coverage_regions.includes(region)}
+                            disabled={values.coverage_uk_wide}
+                            aria-invalid={Boolean(fieldErrors.coverage_regions)}
+                            aria-describedby={describedBy('coverage_regions')}
+                            onChange={() => toggleCoverageRegion(region)}
+                          />
+                          <span>{PILOT_COVERAGE_LABELS[region]}</span>
+                        </label>
+                      ))}
+                    </div>
+                    <label htmlFor={fieldId('coverage_notes')} className="block text-sm text-white mb-1">
+                      Coverage Notes
+                    </label>
+                    <textarea
+                      id={fieldId('coverage_notes')}
+                      name="coverage_notes"
+                      className={`${inputClass} resize-none`}
+                      rows={2}
+                      placeholder="Optional: travel notes / primary areas"
+                      value={values.coverage_notes}
+                      onChange={(event) => setFieldValue('coverage_notes', event.target.value)}
+                    />
+                    {renderFieldError('coverage_regions', 'text-red-200 text-sm')}
                   </div>
-                  <label htmlFor={fieldId('coverage_notes')} className="block text-sm text-white mb-1">
-                    Coverage Notes
-                  </label>
-                  <textarea
-                    id={fieldId('coverage_notes')}
-                    name="coverage_notes"
-                    className={`${inputClass} resize-none`}
-                    rows={2}
-                    placeholder="Optional: travel notes / primary areas"
-                    value={values.coverage_notes}
-                    onChange={(event) => setFieldValue('coverage_notes', event.target.value)}
-                  />
-                  {renderFieldError('coverage_regions', 'text-red-200 text-sm')}
-                </div>
+                ) : null}
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                {miniStep === 3 ? (
                   <div>
                     <label htmlFor={fieldId('total_projects_completed')} className="block text-sm text-white mb-1">
-                      Total Career Projects *
+                      How Many Commercial Drone Jobs Have You Completed? *
                     </label>
                     <input
                       id={fieldId('total_projects_completed')}
@@ -1441,13 +1661,16 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('total_projects_completed')}
                       onChange={(event) => setFieldValue('total_projects_completed', event.target.value)}
                       onBlur={() => setFieldError('total_projects_completed', validateField('total_projects_completed', values))}
+                      autoFocus
                     />
                     {renderFieldError('total_projects_completed')}
                   </div>
+                ) : null}
 
+                {miniStep === 4 ? (
                   <div>
                     <label htmlFor={fieldId('years_experience')} className="block text-sm text-white mb-1">
-                      Years Experience *
+                      How Many Years Have You Been Flying Drones? *
                     </label>
                     <input
                       id={fieldId('years_experience')}
@@ -1462,13 +1685,16 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('years_experience')}
                       onChange={(event) => setFieldValue('years_experience', event.target.value)}
                       onBlur={() => setFieldError('years_experience', validateField('years_experience', values))}
+                      autoFocus
                     />
                     {renderFieldError('years_experience')}
                   </div>
+                ) : null}
 
+                {miniStep === 5 ? (
                   <div>
                     <label htmlFor={fieldId('drone_flight_hours_total')} className="block text-sm text-white mb-1">
-                      Drone Flight Hours *
+                      How Many Hours Have You Done Flying Drones (Hobby + Commercial)? *
                     </label>
                     <input
                       id={fieldId('drone_flight_hours_total')}
@@ -1483,13 +1709,16 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('drone_flight_hours_total')}
                       onChange={(event) => setFieldValue('drone_flight_hours_total', event.target.value)}
                       onBlur={() => setFieldError('drone_flight_hours_total', validateField('drone_flight_hours_total', values))}
+                      autoFocus
                     />
                     {renderFieldError('drone_flight_hours_total')}
                   </div>
+                ) : null}
 
+                {miniStep === 6 ? (
                   <div>
                     <label htmlFor={fieldId('drones_owned_total')} className="block text-sm text-white mb-1">
-                      Drones Owned *
+                      How many drones do you own? *
                     </label>
                     <input
                       id={fieldId('drones_owned_total')}
@@ -1504,10 +1733,13 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('drones_owned_total')}
                       onChange={(event) => setFieldValue('drones_owned_total', event.target.value)}
                       onBlur={() => setFieldError('drones_owned_total', validateField('drones_owned_total', values))}
+                      autoFocus
                     />
                     {renderFieldError('drones_owned_total')}
                   </div>
+                ) : null}
 
+                {miniStep === 7 ? (
                   <div>
                     <label htmlFor={fieldId('avg_quote_turnaround_hours')} className="block text-sm text-white mb-1">
                       Average Quote Turnaround (Hours) *
@@ -1525,13 +1757,16 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('avg_quote_turnaround_hours', 'pilot-turnaround-hint')}
                       onChange={(event) => setFieldValue('avg_quote_turnaround_hours', event.target.value)}
                       onBlur={() => setFieldError('avg_quote_turnaround_hours', validateField('avg_quote_turnaround_hours', values))}
+                      autoFocus
                     />
                     <p id="pilot-turnaround-hint" className="text-white/60 text-xs mt-1">
                       Typical time to respond with a quote.
                     </p>
                     {renderFieldError('avg_quote_turnaround_hours')}
                   </div>
+                ) : null}
 
+                {miniStep === 8 ? (
                   <div>
                     <label htmlFor={fieldId('data_delivery_min_days')} className="block text-sm text-white mb-1">
                       Data Delivery Min Days *
@@ -1549,10 +1784,13 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('data_delivery_min_days')}
                       onChange={(event) => setFieldValue('data_delivery_min_days', event.target.value)}
                       onBlur={() => setFieldError('data_delivery_min_days', validateField('data_delivery_min_days', values))}
+                      autoFocus
                     />
                     {renderFieldError('data_delivery_min_days')}
                   </div>
+                ) : null}
 
+                {miniStep === 9 ? (
                   <div>
                     <label htmlFor={fieldId('data_delivery_max_days')} className="block text-sm text-white mb-1">
                       Data Delivery Max Days *
@@ -1570,13 +1808,16 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('data_delivery_max_days')}
                       onChange={(event) => setFieldValue('data_delivery_max_days', event.target.value)}
                       onBlur={() => setFieldError('data_delivery_max_days', validateField('data_delivery_max_days', values))}
+                      autoFocus
                     />
                     {renderFieldError('data_delivery_max_days')}
                   </div>
+                ) : null}
 
+                {miniStep === 10 ? (
                   <div>
                     <label htmlFor={fieldId('member_since_year')} className="block text-sm text-white mb-1">
-                      Member Since Year *
+                      When did you first start flying drones? *
                     </label>
                     <input
                       id={fieldId('member_since_year')}
@@ -1591,13 +1832,14 @@ export default function PilotApplyPage() {
                       aria-describedby={describedBy('member_since_year', 'pilot-member-since-hint')}
                       onChange={(event) => setFieldValue('member_since_year', event.target.value)}
                       onBlur={() => setFieldError('member_since_year', validateField('member_since_year', values))}
+                      autoFocus
                     />
                     <p id="pilot-member-since-hint" className="text-white/60 text-xs mt-1">
-                      Year you started operating as a drone pilot.
+                      Enter the year you first started flying drones.
                     </p>
                     {renderFieldError('member_since_year')}
                   </div>
-                </div>
+                ) : null}
               </fieldset>
             ) : null}
 
@@ -1605,232 +1847,270 @@ export default function PilotApplyPage() {
               <fieldset className="space-y-5">
                 <legend className="sr-only">Media & Equipment</legend>
 
-                <div ref={photoDropzoneRef} className="space-y-3">
-                  <p className="text-white font-semibold text-sm">Drone Pilot Headshot (1:1 square) *</p>
-                  <PhotoUploader
-                    value={values.profile_photo_url}
-                    onChange={(url) => setFieldValue('profile_photo_url', url)}
-                    error={fieldErrors.profile_photo_url}
-                    className="[&_div[role=button]]:border-white/35 [&_div[role=button]]:bg-white/5 [&_div[role=button]_.text-gray-600]:text-white/80 [&_div[role=button]_.text-gray-400]:text-white/60 [&_p.text-red-600]:text-red-200 [&_button.text-red-600]:text-gold [&_button.text-red-600:hover]:text-gold-light"
-                  />
-                </div>
-
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <p className="text-white font-semibold">Equipment & Drones *</p>
-                    <button type="button" className="text-xs text-gold hover:text-gold-light" onClick={addEquipmentRow}>
-                      + Add Row
-                    </button>
+                {miniStep === 1 ? (
+                  <div ref={photoDropzoneRef} className="space-y-3">
+                    <p className="text-white font-semibold text-sm">Drone Pilot Headshot *</p>
+                    <p className="text-white/60 text-xs">Upload any image ratio. We automatically crop to square.</p>
+                    <PhotoUploader
+                      value={values.profile_photo_url}
+                      onChange={(url) => setFieldValue('profile_photo_url', url)}
+                      error={fieldErrors.profile_photo_url}
+                      className="[&_div[role=button]]:border-white/35 [&_div[role=button]]:bg-white/5 [&_div[role=button]_.text-gray-600]:text-white/80 [&_div[role=button]_.text-gray-400]:text-white/60 [&_p.text-red-600]:text-red-200 [&_button.text-red-600]:text-gold [&_button.text-red-600:hover]:text-gold-light"
+                    />
                   </div>
-                  {equipmentRows.map((item, index) => (
-                    <div key={`equipment-${index}`} className="grid gap-2 sm:grid-cols-[1.2fr,1fr,auto]">
-                      <input
-                        name={`equipment_name_${index}`}
-                        className={inputClass}
-                        placeholder="Equipment name (e.g. DJI Mavic 3 Enterprise)"
-                        value={item.name}
-                        onChange={(event) => setEquipmentRow(index, 'name', event.target.value)}
-                      />
-                      <input
-                        name={`equipment_details_${index}`}
-                        className={inputClass}
-                        placeholder="Optional details"
-                        value={item.details}
-                        onChange={(event) => setEquipmentRow(index, 'details', event.target.value)}
-                      />
-                      <button
-                        type="button"
-                        className="rounded-lg border border-white/20 px-3 py-2 text-xs text-white/80 hover:bg-white/10"
-                        onClick={() => removeEquipmentRow(index)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                  {renderFieldError('equipment_items_json', 'text-red-200 text-sm')}
-                </div>
+                ) : null}
 
-                <div ref={portfolioUploaderRef}>
-                  <p className="text-white font-semibold text-sm mb-2">Portfolio Images (up to 3) *</p>
-                  <PortfolioUploader
-                    value={values.portfolio_items_json}
-                    onChange={(items) => setFieldValue('portfolio_items_json', items)}
-                    maxItems={3}
-                    error={fieldErrors.portfolio_items_json}
-                  />
-                </div>
+                {miniStep === 2 ? (
+                  <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-white font-semibold">Drones You Own *</p>
+                      <span className="text-xs text-white/60">{selectedEquipmentNames.length}/{MAX_DRONE_ITEMS} selected</span>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      {PILOT_POPULAR_DRONE_MODELS.map((model, index) => (
+                        <label
+                          key={model}
+                          className={`flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90 ${
+                            !selectedPopularDroneSet.has(model) && selectedEquipmentNames.length >= MAX_DRONE_ITEMS
+                              ? 'opacity-60'
+                              : ''
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            name="popular_drone_model"
+                            checked={selectedPopularDroneSet.has(model)}
+                            disabled={!selectedPopularDroneSet.has(model) && selectedEquipmentNames.length >= MAX_DRONE_ITEMS}
+                            onChange={() => togglePopularDroneModel(model)}
+                            autoFocus={index === 0}
+                          />
+                          <span>{model}</span>
+                        </label>
+                      ))}
+                    </div>
+                    <p className="text-white/60 text-xs">You can list up to {MAX_DRONE_ITEMS} drones.</p>
+                    <div>
+                      <label htmlFor="other-drones" className="block text-sm text-white mb-1">
+                        Other Drones
+                      </label>
+                      <textarea
+                        id="other-drones"
+                        name="other_drones"
+                        className={`${inputClass} resize-y`}
+                        rows={4}
+                        placeholder="Add one drone per line (optional)"
+                        value={customDroneText}
+                        onChange={(event) => setCustomDroneText(event.target.value)}
+                      />
+                    </div>
+                    {renderFieldError('equipment_items_json', 'text-red-200 text-sm')}
+                  </div>
+                ) : null}
+
+                {miniStep === 3 ? (
+                  <div ref={portfolioUploaderRef}>
+                    <p className="text-white font-semibold text-sm mb-2">Portfolio Images (up to 3) *</p>
+                    <PortfolioUploader
+                      value={values.portfolio_items_json}
+                      onChange={(items) => setFieldValue('portfolio_items_json', items)}
+                      maxItems={3}
+                      error={fieldErrors.portfolio_items_json}
+                    />
+                  </div>
+                ) : null}
               </fieldset>
             ) : null}
 
             {step === 6 ? (
               <fieldset className="space-y-5">
                 <legend className="sr-only">FAQ, Links & Consent</legend>
-
-                <div>
-                  <label htmlFor={fieldId('two_sentence_summary')} className="block text-sm text-white mb-1">
-                    Two Sentence Summary *
-                  </label>
-                  <textarea
-                    id={fieldId('two_sentence_summary')}
-                    name="two_sentence_summary"
-                    className={`${inputClass} resize-none`}
-                    rows={5}
-                    placeholder="Describe sectors, typical jobs, and what makes your service stand out"
-                    value={values.two_sentence_summary}
-                    aria-invalid={Boolean(fieldErrors.two_sentence_summary)}
-                    aria-describedby={describedBy('two_sentence_summary', 'pilot-summary-hint')}
-                    onChange={(event) => setFieldValue('two_sentence_summary', event.target.value)}
-                    onBlur={() => setFieldError('two_sentence_summary', validateField('two_sentence_summary', values))}
-                    required
-                  />
-                  <p id="pilot-summary-hint" className="text-white/60 text-xs mt-1">
-                    Include key sectors, typical jobs, and what makes your service stand out.
-                  </p>
-                  {renderFieldError('two_sentence_summary')}
-                </div>
-
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-4">
-                  <p className="text-white font-semibold">Profile FAQ Answers *</p>
-                  {PILOT_FAQ_QUESTIONS.map((faq) => {
-                    const fieldKey = (`faq_${faq.key}_answer`) as PilotFormField;
-                    return (
-                      <div key={faq.key}>
-                        <label htmlFor={fieldId(fieldKey)} className="block text-sm text-white/90 mb-1">{faq.question}</label>
-                        <textarea
-                          id={fieldId(fieldKey)}
-                          name={fieldKey}
-                          className={`${inputClass} resize-none`}
-                          rows={2}
-                          value={values[fieldKey] as string}
-                          aria-invalid={Boolean(fieldErrors[fieldKey])}
-                          aria-describedby={describedBy(fieldKey)}
-                          onChange={(event) => setFieldValue(fieldKey, event.target.value as never)}
-                          onBlur={() => setFieldError(fieldKey, validateField(fieldKey, values))}
-                          placeholder="1-2 sentence answer"
-                        />
-                        {renderFieldError(fieldKey)}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
-                  <p className="text-white font-semibold">Links & Social Profiles</p>
-                  <label htmlFor={fieldId('google_business_profile_url')} className="block text-sm text-white mb-1">
-                    Google Business Profile URL
-                  </label>
-                  <input
-                    id={fieldId('google_business_profile_url')}
-                    name="google_business_profile_url"
-                    autoComplete="url"
-                    className={inputClass}
-                    placeholder="https://... (optional)"
-                    value={values.google_business_profile_url}
-                    aria-invalid={Boolean(fieldErrors.google_business_profile_url)}
-                    aria-describedby={describedBy('google_business_profile_url', 'pilot-google-business-hint')}
-                    onChange={(event) => setFieldValue('google_business_profile_url', event.target.value)}
-                    onBlur={() => setFieldError('google_business_profile_url', validateField('google_business_profile_url', values))}
-                  />
-                  <p id="pilot-google-business-hint" className="text-white/60 text-xs">
-                    Add your Google profile link to show a verified business badge on your profile.
-                  </p>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor={fieldId('linkedin_url')} className="block text-sm text-white mb-1">LinkedIn URL</label>
-                      <input
-                        id={fieldId('linkedin_url')}
-                        name="linkedin_url"
-                        autoComplete="url"
-                        className={inputClass}
-                        placeholder="https://... (optional)"
-                        value={values.linkedin_url}
-                        aria-invalid={Boolean(fieldErrors.linkedin_url)}
-                        aria-describedby={describedBy('linkedin_url')}
-                        onChange={(event) => setFieldValue('linkedin_url', event.target.value)}
-                        onBlur={() => setFieldError('linkedin_url', validateField('linkedin_url', values))}
-                      />
-                      {renderFieldError('linkedin_url')}
-                    </div>
-                    <div>
-                      <label htmlFor={fieldId('instagram_url')} className="block text-sm text-white mb-1">Instagram URL</label>
-                      <input
-                        id={fieldId('instagram_url')}
-                        name="instagram_url"
-                        autoComplete="url"
-                        className={inputClass}
-                        placeholder="https://... (optional)"
-                        value={values.instagram_url}
-                        aria-invalid={Boolean(fieldErrors.instagram_url)}
-                        aria-describedby={describedBy('instagram_url')}
-                        onChange={(event) => setFieldValue('instagram_url', event.target.value)}
-                        onBlur={() => setFieldError('instagram_url', validateField('instagram_url', values))}
-                      />
-                      {renderFieldError('instagram_url')}
-                    </div>
-                    <div>
-                      <label htmlFor={fieldId('youtube_url')} className="block text-sm text-white mb-1">YouTube URL</label>
-                      <input
-                        id={fieldId('youtube_url')}
-                        name="youtube_url"
-                        autoComplete="url"
-                        className={inputClass}
-                        placeholder="https://... (optional)"
-                        value={values.youtube_url}
-                        aria-invalid={Boolean(fieldErrors.youtube_url)}
-                        aria-describedby={describedBy('youtube_url')}
-                        onChange={(event) => setFieldValue('youtube_url', event.target.value)}
-                        onBlur={() => setFieldError('youtube_url', validateField('youtube_url', values))}
-                      />
-                      {renderFieldError('youtube_url')}
-                    </div>
-                    <div>
-                      <label htmlFor={fieldId('facebook_url')} className="block text-sm text-white mb-1">Facebook URL</label>
-                      <input
-                        id={fieldId('facebook_url')}
-                        name="facebook_url"
-                        autoComplete="url"
-                        className={inputClass}
-                        placeholder="https://... (optional)"
-                        value={values.facebook_url}
-                        aria-invalid={Boolean(fieldErrors.facebook_url)}
-                        aria-describedby={describedBy('facebook_url')}
-                        onChange={(event) => setFieldValue('facebook_url', event.target.value)}
-                        onBlur={() => setFieldError('facebook_url', validateField('facebook_url', values))}
-                      />
-                      {renderFieldError('facebook_url')}
-                    </div>
+                {miniStep === 1 ? (
+                  <div>
+                    <label htmlFor={fieldId('two_sentence_summary')} className="block text-sm text-white mb-1">
+                      Two Sentence Summary *
+                    </label>
+                    <textarea
+                      id={fieldId('two_sentence_summary')}
+                      name="two_sentence_summary"
+                      className={`${inputClass} resize-none`}
+                      rows={5}
+                      placeholder="Describe yourself and your business in 2 sentences."
+                      value={values.two_sentence_summary}
+                      aria-invalid={Boolean(fieldErrors.two_sentence_summary)}
+                      aria-describedby={describedBy('two_sentence_summary', 'pilot-summary-hint')}
+                      onChange={(event) => setFieldValue('two_sentence_summary', event.target.value)}
+                      onBlur={() => setFieldError('two_sentence_summary', validateField('two_sentence_summary', values))}
+                      required
+                      autoFocus
+                    />
+                    <p id="pilot-summary-hint" className="text-white/60 text-xs mt-1">
+                      Describe yourself and your business in 2 sentences.
+                    </p>
+                    {renderFieldError('two_sentence_summary')}
                   </div>
-                  {renderFieldError('google_business_profile_url', 'text-red-200 text-sm')}
-                </div>
+                ) : null}
 
-                <label className="rounded-xl border border-white/20 bg-white/5 p-4 flex items-start gap-3 text-white/85 text-sm">
-                  <input
-                    id={fieldId('consent_to_pilot_terms')}
-                    type="checkbox"
-                    name="consent_to_pilot_terms"
-                    className="mt-1"
-                    checked={values.consent_to_pilot_terms}
-                    aria-invalid={Boolean(fieldErrors.consent_to_pilot_terms)}
-                    aria-describedby={describedBy('consent_to_pilot_terms')}
-                    onChange={(event) => setFieldValue('consent_to_pilot_terms', event.target.checked)}
-                    required
-                  />
-                  <span>
-                    I confirm I operate as an independent drone pilot and accept the{' '}
-                    <a href="/pilot-terms" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
-                      Drone Pilot Terms
-                    </a>{' '}
-                    and{' '}
-                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
-                      Privacy Policy
-                    </a>
-                    . I understand HireDronePilot is an intro marketplace and facilitator only,
-                    performs basic document checks only, and does not verify authenticity of uploaded
-                    documents.
-                  </span>
-                </label>
-                {renderFieldError('consent_to_pilot_terms')}
+                {miniStep >= 2 && miniStep <= 6 ? (
+                  <div>
+                    {(() => {
+                      const faqFieldByMiniStep: Record<number, PilotFormField> = {
+                        2: 'faq_coverage_answer',
+                        3: 'faq_qualifications_answer',
+                        4: 'faq_turnaround_answer',
+                        5: 'faq_formats_answer',
+                        6: 'faq_permissions_answer',
+                      };
+                      const fieldKey = faqFieldByMiniStep[miniStep];
+                      if (!fieldKey) return null;
+                      const faqIndex = miniStep - 2;
+                      const question = PILOT_FAQ_QUESTIONS[faqIndex]?.question || '';
+                      return (
+                        <>
+                          <label htmlFor={fieldId(fieldKey)} className="block text-sm text-white mb-1">
+                            {question} *
+                          </label>
+                          <textarea
+                            id={fieldId(fieldKey)}
+                            name={fieldKey}
+                            className={`${inputClass} resize-none`}
+                            rows={4}
+                            value={values[fieldKey] as string}
+                            aria-invalid={Boolean(fieldErrors[fieldKey])}
+                            aria-describedby={describedBy(fieldKey)}
+                            onChange={(event) => setFieldValue(fieldKey, event.target.value as never)}
+                            onBlur={() => setFieldError(fieldKey, validateField(fieldKey, values))}
+                            placeholder="1-2 sentence answer"
+                            autoFocus
+                          />
+                          {renderFieldError(fieldKey)}
+                        </>
+                      );
+                    })()}
+                  </div>
+                ) : null}
+
+                {miniStep === 7 ? (
+                  <>
+                    <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                      <p className="text-white font-semibold">Links & Social Profiles</p>
+                      <label htmlFor={fieldId('google_business_profile_url')} className="block text-sm text-white mb-1">
+                        Google Business Profile URL
+                      </label>
+                      <input
+                        id={fieldId('google_business_profile_url')}
+                        name="google_business_profile_url"
+                        autoComplete="url"
+                        className={inputClass}
+                        placeholder="https://... (optional)"
+                        value={values.google_business_profile_url}
+                        aria-invalid={Boolean(fieldErrors.google_business_profile_url)}
+                        aria-describedby={describedBy('google_business_profile_url', 'pilot-google-business-hint')}
+                        onChange={(event) => setFieldValue('google_business_profile_url', event.target.value)}
+                        onBlur={() => normalizeAndValidateUrlField('google_business_profile_url')}
+                        autoFocus
+                      />
+                      <p id="pilot-google-business-hint" className="text-white/60 text-xs">
+                        Add your Google profile link to show a verified business badge on your profile.
+                      </p>
+
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <div>
+                          <label htmlFor={fieldId('linkedin_url')} className="block text-sm text-white mb-1">LinkedIn URL</label>
+                          <input
+                            id={fieldId('linkedin_url')}
+                            name="linkedin_url"
+                            autoComplete="url"
+                            className={inputClass}
+                            placeholder="https://... (optional)"
+                            value={values.linkedin_url}
+                            aria-invalid={Boolean(fieldErrors.linkedin_url)}
+                            aria-describedby={describedBy('linkedin_url')}
+                            onChange={(event) => setFieldValue('linkedin_url', event.target.value)}
+                            onBlur={() => normalizeAndValidateUrlField('linkedin_url')}
+                          />
+                          {renderFieldError('linkedin_url')}
+                        </div>
+                        <div>
+                          <label htmlFor={fieldId('instagram_url')} className="block text-sm text-white mb-1">Instagram URL</label>
+                          <input
+                            id={fieldId('instagram_url')}
+                            name="instagram_url"
+                            autoComplete="url"
+                            className={inputClass}
+                            placeholder="https://... (optional)"
+                            value={values.instagram_url}
+                            aria-invalid={Boolean(fieldErrors.instagram_url)}
+                            aria-describedby={describedBy('instagram_url')}
+                            onChange={(event) => setFieldValue('instagram_url', event.target.value)}
+                            onBlur={() => normalizeAndValidateUrlField('instagram_url')}
+                          />
+                          {renderFieldError('instagram_url')}
+                        </div>
+                        <div>
+                          <label htmlFor={fieldId('youtube_url')} className="block text-sm text-white mb-1">YouTube URL</label>
+                          <input
+                            id={fieldId('youtube_url')}
+                            name="youtube_url"
+                            autoComplete="url"
+                            className={inputClass}
+                            placeholder="https://... (optional)"
+                            value={values.youtube_url}
+                            aria-invalid={Boolean(fieldErrors.youtube_url)}
+                            aria-describedby={describedBy('youtube_url')}
+                            onChange={(event) => setFieldValue('youtube_url', event.target.value)}
+                            onBlur={() => normalizeAndValidateUrlField('youtube_url')}
+                          />
+                          {renderFieldError('youtube_url')}
+                        </div>
+                        <div>
+                          <label htmlFor={fieldId('facebook_url')} className="block text-sm text-white mb-1">Facebook URL</label>
+                          <input
+                            id={fieldId('facebook_url')}
+                            name="facebook_url"
+                            autoComplete="url"
+                            className={inputClass}
+                            placeholder="https://... (optional)"
+                            value={values.facebook_url}
+                            aria-invalid={Boolean(fieldErrors.facebook_url)}
+                            aria-describedby={describedBy('facebook_url')}
+                            onChange={(event) => setFieldValue('facebook_url', event.target.value)}
+                            onBlur={() => normalizeAndValidateUrlField('facebook_url')}
+                          />
+                          {renderFieldError('facebook_url')}
+                        </div>
+                      </div>
+                      {renderFieldError('google_business_profile_url', 'text-red-200 text-sm')}
+                    </div>
+
+                    <label className="rounded-xl border border-white/20 bg-white/5 p-4 flex items-start gap-3 text-white/85 text-sm">
+                      <input
+                        id={fieldId('consent_to_pilot_terms')}
+                        type="checkbox"
+                        name="consent_to_pilot_terms"
+                        className="mt-1"
+                        checked={values.consent_to_pilot_terms}
+                        aria-invalid={Boolean(fieldErrors.consent_to_pilot_terms)}
+                        aria-describedby={describedBy('consent_to_pilot_terms')}
+                        onChange={(event) => setFieldValue('consent_to_pilot_terms', event.target.checked)}
+                        required
+                      />
+                      <span>
+                        I confirm I operate as an independent drone pilot and accept the{' '}
+                        <a href="/pilot-terms" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                          Drone Pilot Terms
+                        </a>{' '}
+                        and{' '}
+                        <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
+                          Privacy Policy
+                        </a>
+                        . I understand HireDronePilot is an intro marketplace and facilitator only,
+                        performs basic document checks only, and does not verify authenticity of uploaded
+                        documents.
+                      </span>
+                    </label>
+                    {renderFieldError('consent_to_pilot_terms')}
+                  </>
+                ) : null}
               </fieldset>
             ) : null}
 
@@ -1840,10 +2120,10 @@ export default function PilotApplyPage() {
             <div className="sticky bottom-3 md:bottom-auto md:static z-20 bg-teal/95 backdrop-blur rounded-xl border border-white/10 p-3">
               <div
                 className={`flex flex-col-reverse gap-3 sm:flex-row ${
-                  step === 1 ? 'sm:justify-end' : 'sm:justify-between'
+                  step === 1 && isFirstMiniStep ? 'sm:justify-end' : 'sm:justify-between'
                 }`}
               >
-                {step > 1 ? (
+                {!(step === 1 && isFirstMiniStep) ? (
                   <button
                     type="button"
                     onClick={goPrevStep}
@@ -1854,7 +2134,7 @@ export default function PilotApplyPage() {
                   </button>
                 ) : null}
 
-                {step < TOTAL_STEPS ? (
+                {!(step === TOTAL_STEPS && isLastMiniStep) ? (
                   <button
                     type="button"
                     onClick={goNextStep}

@@ -24,7 +24,7 @@ const services = [
     title: 'Drone Survey',
     description: 'Comprehensive aerial surveys delivering precise topographic data and 3D models across Aberdeen.',
     image: '/images/services/service-drone-survey.avif',
-    href: '/services/drone-survey',
+    href: '/services/drone-surveys',
   },
   {
     title: 'Volumetric Survey',
@@ -42,19 +42,19 @@ const services = [
     title: 'Thermal Imaging',
     description: 'Thermal drone inspections for Aberdeen building diagnostics, energy facilities, and infrastructure.',
     image: '/images/services/service-thermal-imaging.avif',
-    href: '/services/thermal-imaging',
+    href: '/services/drone-thermal-imaging',
   },
   {
     title: 'Topographic Survey',
     description: 'Detailed topographic surveys for planning, design and construction projects in Aberdeen.',
     image: '/images/services/service-topographic-survey.avif',
-    href: '/services/topographic-survey',
+    href: '/services/drone-topographical-survey',
   },
   {
     title: 'Building Inspection',
     description: 'Safe, efficient building and roof inspections across Aberdeen and surrounding areas.',
     image: '/images/services/service-building-inspection.avif',
-    href: '/services/building-inspection',
+    href: '/services/drone-roof-inspection',
   },
 ];
 

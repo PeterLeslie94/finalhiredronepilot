@@ -5,7 +5,18 @@ import { X, ExternalLink, Search } from 'lucide-react';
 
 import AdminCard from '@/components/admin/AdminCard';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
-import { PILOT_AVAILABILITY_OPTIONS } from '@/lib/pilot-profile';
+import PhotoUploader from '@/components/PhotoUploader';
+import PortfolioUploader, { PortfolioDraftItem } from '@/components/PortfolioUploader';
+import {
+  PILOT_AVAILABILITY_OPTIONS,
+  PILOT_COVERAGE_LABELS,
+  PILOT_COVERAGE_REGIONS,
+  PILOT_FAQ_QUESTIONS,
+  PILOT_SERVICE_LEVELS,
+  PILOT_SERVICE_OPTIONS,
+  PilotCoverageRegion,
+  PilotServiceLevel,
+} from '@/lib/pilot-profile';
 
 type PilotRow = {
   id: string;
@@ -62,6 +73,13 @@ type PilotDetail = PilotRow & {
   backlink_token_hash: string | null;
 };
 
+type EquipmentDraftItem = {
+  name: string;
+  details: string;
+};
+
+type PilotServiceRatingsDraft = Record<string, PilotServiceLevel | ''>;
+
 type PilotEditForm = {
   name: string;
   business_name: string;
@@ -77,7 +95,7 @@ type PilotEditForm = {
   operator_id: string;
   base_city: string;
   coverage_uk_wide: boolean;
-  coverage_regions: string;
+  coverage_regions: PilotCoverageRegion[];
   coverage_notes: string;
   availability_status: string;
   google_business_profile_url: string;
@@ -93,11 +111,11 @@ type PilotEditForm = {
   data_delivery_min_days: string;
   data_delivery_max_days: string;
   member_since_year: string;
-  top_service_slugs: string;
-  top_service_ratings_json: string;
+  top_service_slugs: string[];
+  top_service_ratings_json: PilotServiceRatingsDraft;
   additional_services_note: string;
-  equipment_items_json: string;
-  portfolio_items_json: string;
+  equipment_items_json: EquipmentDraftItem[];
+  portfolio_items_json: PortfolioDraftItem[];
   faq_coverage_answer: string;
   faq_qualifications_answer: string;
   faq_turnaround_answer: string;
@@ -108,13 +126,84 @@ type PilotEditForm = {
   active: boolean;
 };
 
-function toPrettyJson(value: unknown, fallback: string): string {
-  if (value === null || value === undefined) return fallback;
-  try {
-    return JSON.stringify(value, null, 2);
-  } catch {
-    return fallback;
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function parseCoverageRegions(value: unknown): PilotCoverageRegion[] {
+  if (!Array.isArray(value)) return [];
+  const allowed = new Set<string>(PILOT_COVERAGE_REGIONS);
+  const normalized = value
+    .map((item) => (typeof item === 'string' ? item.trim().toUpperCase().replace(/[\s-]+/g, '_') : ''))
+    .filter((item): item is PilotCoverageRegion => Boolean(item) && allowed.has(item));
+  return Array.from(new Set(normalized));
+}
+
+function parseTopServiceSlugs(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const allowed = new Set<string>(PILOT_SERVICE_OPTIONS.map((service) => service.slug));
+  const normalized = value
+    .map((item) => (typeof item === 'string' ? item.trim().toLowerCase() : ''))
+    .filter((item) => Boolean(item) && allowed.has(item));
+  return Array.from(new Set(normalized)).slice(0, 6);
+}
+
+function parseTopServiceRatings(value: unknown): PilotServiceRatingsDraft {
+  if (!isRecord(value)) return {};
+  const allowedServices = new Set<string>(PILOT_SERVICE_OPTIONS.map((service) => service.slug));
+  const allowedLevels = new Set(PILOT_SERVICE_LEVELS);
+  const next: PilotServiceRatingsDraft = {};
+  for (const [rawSlug, rawLevel] of Object.entries(value)) {
+    const slug = rawSlug.trim().toLowerCase();
+    if (!slug || !allowedServices.has(slug)) continue;
+    if (typeof rawLevel !== 'string') continue;
+    const level = rawLevel.trim();
+    if (!allowedLevels.has(level as PilotServiceLevel)) continue;
+    next[slug] = level as PilotServiceLevel;
   }
+  return next;
+}
+
+function parseEquipmentItems(value: unknown): EquipmentDraftItem[] {
+  if (!Array.isArray(value)) return [];
+  const items = value
+    .map((item) => {
+      if (!isRecord(item)) return null;
+      const name = typeof item.name === 'string' ? item.name.trim() : '';
+      const details = typeof item.details === 'string' ? item.details.trim() : '';
+      if (!name) return null;
+      return { name, details };
+    })
+    .filter((item): item is EquipmentDraftItem => Boolean(item));
+  return items.slice(0, 12);
+}
+
+function parsePortfolioItems(value: unknown): PortfolioDraftItem[] {
+  if (!Array.isArray(value)) return [];
+  const items = value
+    .map((item) => {
+      if (typeof item === 'string') {
+        const imageUrl = item.trim();
+        if (!imageUrl) return null;
+        return { image_url: imageUrl };
+      }
+      if (!isRecord(item)) return null;
+      const imageUrl = typeof item.image_url === 'string' ? item.image_url.trim() : '';
+      if (!imageUrl) return null;
+      return { image_url: imageUrl };
+    })
+    .filter((item): item is PortfolioDraftItem => Boolean(item));
+  return items.slice(0, 3);
+}
+
+function parseNullableInteger(value: string): number | null {
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  const parsed = Number(trimmed);
+  if (!Number.isInteger(parsed)) {
+    throw new Error('Numeric fields must be whole numbers.');
+  }
+  return parsed;
 }
 
 function toLocalDateTime(value: string) {
@@ -142,6 +231,13 @@ function isExpiredOrSoon(dateStr: string | null): 'expired' | 'soon' | 'ok' {
 }
 
 function toEditForm(detail: PilotDetail): PilotEditForm {
+  const topServiceSlugs = parseTopServiceSlugs(detail.top_service_slugs);
+  const topServiceRatingsRaw = parseTopServiceRatings(detail.top_service_ratings_json);
+  const topServiceRatings: PilotServiceRatingsDraft = {};
+  for (const slug of topServiceSlugs) {
+    topServiceRatings[slug] = topServiceRatingsRaw[slug] || '';
+  }
+
   return {
     name: detail.name || '',
     business_name: detail.business_name || '',
@@ -157,7 +253,7 @@ function toEditForm(detail: PilotDetail): PilotEditForm {
     operator_id: detail.operator_id || '',
     base_city: detail.base_city || '',
     coverage_uk_wide: detail.coverage_uk_wide ?? false,
-    coverage_regions: toPrettyJson(detail.coverage_regions || [], '[]'),
+    coverage_regions: parseCoverageRegions(detail.coverage_regions),
     coverage_notes: detail.coverage_notes || '',
     availability_status: detail.availability_status || 'AVAILABLE',
     google_business_profile_url: detail.google_business_profile_url || '',
@@ -173,11 +269,11 @@ function toEditForm(detail: PilotDetail): PilotEditForm {
     data_delivery_min_days: detail.data_delivery_min_days?.toString() || '',
     data_delivery_max_days: detail.data_delivery_max_days?.toString() || '',
     member_since_year: detail.member_since_year?.toString() || '',
-    top_service_slugs: toPrettyJson(detail.top_service_slugs || [], '[]'),
-    top_service_ratings_json: toPrettyJson(detail.top_service_ratings_json ?? {}, '{}'),
+    top_service_slugs: topServiceSlugs,
+    top_service_ratings_json: topServiceRatings,
     additional_services_note: detail.additional_services_note || '',
-    equipment_items_json: toPrettyJson(detail.equipment_items_json ?? [], '[]'),
-    portfolio_items_json: toPrettyJson(detail.portfolio_items_json ?? [], '[]'),
+    equipment_items_json: parseEquipmentItems(detail.equipment_items_json),
+    portfolio_items_json: parsePortfolioItems(detail.portfolio_items_json),
     faq_coverage_answer: detail.faq_coverage_answer || '',
     faq_qualifications_answer: detail.faq_qualifications_answer || '',
     faq_turnaround_answer: detail.faq_turnaround_answer || '',
@@ -281,33 +377,52 @@ export default function AdminPilotsPage() {
     setSaving(true);
     setSaveMsg('');
     try {
-      const parseJsonInput = (value: string, fallback: unknown) => {
-        const trimmed = value.trim();
-        if (!trimmed) return fallback;
-        return JSON.parse(trimmed);
-      };
-
-      let parsedCoverageRegions: unknown = null;
-      let parsedTopServices: unknown = null;
-      let parsedTopServiceRatings: unknown = {};
-      let parsedEquipment: unknown = [];
-      let parsedPortfolio: unknown = [];
-
-      try {
-        parsedCoverageRegions = parseJsonInput(editForm.coverage_regions, null);
-        parsedTopServices = parseJsonInput(editForm.top_service_slugs, null);
-        parsedTopServiceRatings = parseJsonInput(editForm.top_service_ratings_json, {});
-        parsedEquipment = parseJsonInput(editForm.equipment_items_json, []);
-        parsedPortfolio = parseJsonInput(editForm.portfolio_items_json, []);
-      } catch {
-        throw new Error('One or more JSON fields are invalid. Please check coverage/services/ratings/equipment/portfolio.');
+      const parsedMinDays = parseNullableInteger(editForm.data_delivery_min_days);
+      const parsedMaxDays = parseNullableInteger(editForm.data_delivery_max_days);
+      if (
+        parsedMinDays !== null &&
+        parsedMaxDays !== null &&
+        parsedMaxDays < parsedMinDays
+      ) {
+        throw new Error('Maximum data delivery days cannot be lower than minimum data delivery days.');
       }
+
+      const allowedServiceSlugs = new Set<string>(PILOT_SERVICE_OPTIONS.map((service) => service.slug));
+      const normalizedTopServices = Array.from(new Set(
+        editForm.top_service_slugs
+          .map((slug) => slug.trim().toLowerCase())
+          .filter((slug) => Boolean(slug) && allowedServiceSlugs.has(slug)),
+      ));
+      if (normalizedTopServices.length !== 0 && normalizedTopServices.length !== 6) {
+        throw new Error('Select exactly 6 top services, or leave all top services empty.');
+      }
+
+      const normalizedRatings: Record<string, PilotServiceLevel> = {};
+      for (const slug of normalizedTopServices) {
+        const level = editForm.top_service_ratings_json[slug];
+        if (!level) {
+          throw new Error(`Please set a service rating for ${slug}.`);
+        }
+        if (!PILOT_SERVICE_LEVELS.includes(level as PilotServiceLevel)) {
+          throw new Error(`Invalid service rating level for ${slug}.`);
+        }
+        normalizedRatings[slug] = level as PilotServiceLevel;
+      }
+
+      const normalizedCoverageRegions = Array.from(new Set(
+        editForm.coverage_regions.filter((region) => PILOT_COVERAGE_REGIONS.includes(region)),
+      ));
+      const normalizedEquipment = parseEquipmentItems(editForm.equipment_items_json);
+      const normalizedPortfolio = parsePortfolioItems(editForm.portfolio_items_json);
 
       const response = await fetch(`/api/admin/pilots/${detail.id}/`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...editForm,
+          name: editForm.name,
+          email: editForm.email,
+          active: editForm.active,
+          tier: editForm.tier,
           business_name: editForm.business_name || null,
           phone: editForm.phone || null,
           website_url: editForm.website_url || null,
@@ -320,7 +435,7 @@ export default function AdminPilotsPage() {
           operator_id: editForm.operator_id || null,
           base_city: editForm.base_city || null,
           coverage_uk_wide: editForm.coverage_uk_wide,
-          coverage_regions: parsedCoverageRegions,
+          coverage_regions: normalizedCoverageRegions,
           coverage_notes: editForm.coverage_notes || null,
           availability_status: editForm.availability_status || null,
           google_business_profile_url: editForm.google_business_profile_url || null,
@@ -328,19 +443,19 @@ export default function AdminPilotsPage() {
           instagram_url: editForm.instagram_url || null,
           youtube_url: editForm.youtube_url || null,
           facebook_url: editForm.facebook_url || null,
-          total_projects_completed: editForm.total_projects_completed || null,
-          years_experience: editForm.years_experience || null,
-          drone_flight_hours_total: editForm.drone_flight_hours_total || null,
-          drones_owned_total: editForm.drones_owned_total || null,
-          avg_quote_turnaround_hours: editForm.avg_quote_turnaround_hours || null,
-          data_delivery_min_days: editForm.data_delivery_min_days || null,
-          data_delivery_max_days: editForm.data_delivery_max_days || null,
-          member_since_year: editForm.member_since_year || null,
-          top_service_slugs: parsedTopServices,
-          top_service_ratings_json: parsedTopServiceRatings,
+          total_projects_completed: parseNullableInteger(editForm.total_projects_completed),
+          years_experience: parseNullableInteger(editForm.years_experience),
+          drone_flight_hours_total: parseNullableInteger(editForm.drone_flight_hours_total),
+          drones_owned_total: parseNullableInteger(editForm.drones_owned_total),
+          avg_quote_turnaround_hours: parseNullableInteger(editForm.avg_quote_turnaround_hours),
+          data_delivery_min_days: parsedMinDays,
+          data_delivery_max_days: parsedMaxDays,
+          member_since_year: parseNullableInteger(editForm.member_since_year),
+          top_service_slugs: normalizedTopServices,
+          top_service_ratings_json: normalizedRatings,
           additional_services_note: editForm.additional_services_note || null,
-          equipment_items_json: parsedEquipment,
-          portfolio_items_json: parsedPortfolio,
+          equipment_items_json: normalizedEquipment,
+          portfolio_items_json: normalizedPortfolio,
           faq_coverage_answer: editForm.faq_coverage_answer || null,
           faq_qualifications_answer: editForm.faq_qualifications_answer || null,
           faq_turnaround_answer: editForm.faq_turnaround_answer || null,
@@ -392,6 +507,90 @@ export default function AdminPilotsPage() {
     setDetail(null);
     setEditForm(null);
     setSaveMsg('');
+  };
+
+  const setEditField = <K extends keyof PilotEditForm>(field: K, value: PilotEditForm[K]) => {
+    setEditForm((current) => (current ? { ...current, [field]: value } : current));
+  };
+
+  const toggleCoverageRegion = (region: PilotCoverageRegion) => {
+    setEditForm((current) => {
+      if (!current) return current;
+      const hasRegion = current.coverage_regions.includes(region);
+      const next = hasRegion
+        ? current.coverage_regions.filter((item) => item !== region)
+        : [...current.coverage_regions, region];
+      return { ...current, coverage_regions: next };
+    });
+  };
+
+  const toggleTopService = (slug: string) => {
+    setEditForm((current) => {
+      if (!current) return current;
+      const hasSlug = current.top_service_slugs.includes(slug);
+      if (hasSlug) {
+        const nextSlugs = current.top_service_slugs.filter((item) => item !== slug);
+        const nextRatings = { ...current.top_service_ratings_json };
+        delete nextRatings[slug];
+        return {
+          ...current,
+          top_service_slugs: nextSlugs,
+          top_service_ratings_json: nextRatings,
+        };
+      }
+      if (current.top_service_slugs.length >= 6) return current;
+      return {
+        ...current,
+        top_service_slugs: [...current.top_service_slugs, slug],
+        top_service_ratings_json: {
+          ...current.top_service_ratings_json,
+          [slug]: '',
+        },
+      };
+    });
+  };
+
+  const setTopServiceRating = (slug: string, level: PilotServiceLevel | '') => {
+    setEditForm((current) => {
+      if (!current) return current;
+      return {
+        ...current,
+        top_service_ratings_json: {
+          ...current.top_service_ratings_json,
+          [slug]: level,
+        },
+      };
+    });
+  };
+
+  const updateEquipmentRow = (index: number, field: keyof EquipmentDraftItem, value: string) => {
+    setEditForm((current) => {
+      if (!current) return current;
+      const nextRows = current.equipment_items_json.map((item, rowIndex) => (
+        rowIndex === index ? { ...item, [field]: value } : item
+      ));
+      return { ...current, equipment_items_json: nextRows };
+    });
+  };
+
+  const addEquipmentRow = () => {
+    setEditForm((current) => {
+      if (!current || current.equipment_items_json.length >= 12) return current;
+      return {
+        ...current,
+        equipment_items_json: [...current.equipment_items_json, { name: '', details: '' }],
+      };
+    });
+  };
+
+  const removeEquipmentRow = (index: number) => {
+    setEditForm((current) => {
+      if (!current) return current;
+      return {
+        ...current,
+        equipment_items_json: current.equipment_items_json.filter((_, rowIndex) => rowIndex !== index),
+      };
+    });
   };
 
   return (
@@ -554,7 +753,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.name}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, name: event.target.value } : current)}
+                        onChange={(event) => setEditField('name', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -563,7 +762,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.business_name}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, business_name: event.target.value } : current)}
+                        onChange={(event) => setEditField('business_name', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -572,7 +771,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="email"
                         value={editForm.email}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, email: event.target.value } : current)}
+                        onChange={(event) => setEditField('email', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -581,7 +780,16 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.phone}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, phone: event.target.value } : current)}
+                        onChange={(event) => setEditField('phone', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Base City</label>
+                      <input
+                        type="text"
+                        value={editForm.base_city}
+                        onChange={(event) => setEditField('base_city', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -590,17 +798,15 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.website_url}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, website_url: event.target.value } : current)}
+                        onChange={(event) => setEditField('website_url', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
                     <div className="md:col-span-2">
-                      <label className="block text-xs font-medium text-gray-500 mb-1">Profile Photo URL</label>
-                      <input
-                        type="text"
+                      <label className="block text-xs font-medium text-gray-500 mb-2">Profile Photo</label>
+                      <PhotoUploader
                         value={editForm.profile_photo_url}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, profile_photo_url: event.target.value } : current)}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                        onChange={(next) => setEditField('profile_photo_url', next)}
                       />
                     </div>
                     <div className="md:col-span-2">
@@ -608,7 +814,7 @@ export default function AdminPilotsPage() {
                       <textarea
                         rows={3}
                         value={editForm.two_sentence_summary}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, two_sentence_summary: event.target.value } : current)}
+                        onChange={(event) => setEditField('two_sentence_summary', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-y"
                       />
                     </div>
@@ -622,7 +828,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.licence_level}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, licence_level: event.target.value } : current)}
+                        onChange={(event) => setEditField('licence_level', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -631,7 +837,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.insurance_provider}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, insurance_provider: event.target.value } : current)}
+                        onChange={(event) => setEditField('insurance_provider', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -640,7 +846,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="date"
                         value={editForm.insurance_expiry}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, insurance_expiry: event.target.value } : current)}
+                        onChange={(event) => setEditField('insurance_expiry', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -649,7 +855,7 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.flyer_id}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, flyer_id: event.target.value } : current)}
+                        onChange={(event) => setEditField('flyer_id', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
@@ -658,31 +864,372 @@ export default function AdminPilotsPage() {
                       <input
                         type="text"
                         value={editForm.operator_id}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, operator_id: event.target.value } : current)}
+                        onChange={(event) => setEditField('operator_id', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Coverage & Availability">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Availability</label>
+                      <select
+                        value={editForm.availability_status}
+                        onChange={(event) => setEditField('availability_status', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white"
+                      >
+                        {PILOT_AVAILABILITY_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>{option.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-3 py-2">
+                      <div>
+                        <p className="text-sm font-medium text-gray-800">UK-wide coverage</p>
+                        <p className="text-xs text-gray-500">Enable when this pilot can travel nationwide.</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setEditField('coverage_uk_wide', !editForm.coverage_uk_wide)}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                          editForm.coverage_uk_wide ? 'bg-green-500' : 'bg-gray-300'
+                        }`}
+                      >
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                            editForm.coverage_uk_wide ? 'translate-x-6' : 'translate-x-1'
+                          }`}
+                        />
+                      </button>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-2">Coverage Regions</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {PILOT_COVERAGE_REGIONS.map((region) => (
+                          <label key={region} className="flex items-center gap-2 text-sm text-gray-700 rounded border border-gray-200 px-3 py-2 bg-white">
+                            <input
+                              type="checkbox"
+                              checked={editForm.coverage_regions.includes(region)}
+                              onChange={() => toggleCoverageRegion(region)}
+                            />
+                            <span>{PILOT_COVERAGE_LABELS[region]}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Coverage Notes</label>
+                      <textarea
+                        rows={3}
+                        value={editForm.coverage_notes}
+                        onChange={(event) => setEditField('coverage_notes', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-y"
+                      />
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Business Links">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="md:col-span-2">
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Google Business Profile URL</label>
+                      <input
+                        type="text"
+                        value={editForm.google_business_profile_url}
+                        onChange={(event) => setEditField('google_business_profile_url', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
                       />
                     </div>
                     <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">LinkedIn URL</label>
+                      <input
+                        type="text"
+                        value={editForm.linkedin_url}
+                        onChange={(event) => setEditField('linkedin_url', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Instagram URL</label>
+                      <input
+                        type="text"
+                        value={editForm.instagram_url}
+                        onChange={(event) => setEditField('instagram_url', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">YouTube URL</label>
+                      <input
+                        type="text"
+                        value={editForm.youtube_url}
+                        onChange={(event) => setEditField('youtube_url', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Facebook URL</label>
+                      <input
+                        type="text"
+                        value={editForm.facebook_url}
+                        onChange={(event) => setEditField('facebook_url', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Performance Metrics">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Total Projects Completed</label>
+                      <input
+                        type="number"
+                        value={editForm.total_projects_completed}
+                        onChange={(event) => setEditField('total_projects_completed', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Years Experience</label>
+                      <input
+                        type="number"
+                        value={editForm.years_experience}
+                        onChange={(event) => setEditField('years_experience', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Drone Flight Hours</label>
+                      <input
+                        type="number"
+                        value={editForm.drone_flight_hours_total}
+                        onChange={(event) => setEditField('drone_flight_hours_total', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Drones Owned</label>
+                      <input
+                        type="number"
+                        value={editForm.drones_owned_total}
+                        onChange={(event) => setEditField('drones_owned_total', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Quote Turnaround (hours)</label>
+                      <input
+                        type="number"
+                        value={editForm.avg_quote_turnaround_hours}
+                        onChange={(event) => setEditField('avg_quote_turnaround_hours', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Member Since Year</label>
+                      <input
+                        type="number"
+                        value={editForm.member_since_year}
+                        onChange={(event) => setEditField('member_since_year', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Data Delivery Min (days)</label>
+                      <input
+                        type="number"
+                        value={editForm.data_delivery_min_days}
+                        onChange={(event) => setEditField('data_delivery_min_days', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Data Delivery Max (days)</label>
+                      <input
+                        type="number"
+                        value={editForm.data_delivery_max_days}
+                        onChange={(event) => setEditField('data_delivery_max_days', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Top Services">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-medium text-gray-500">Select Services</label>
+                      <span className="text-xs text-gray-500">{editForm.top_service_slugs.length}/6 selected</span>
+                    </div>
+
+                    <div className="max-h-64 overflow-y-auto rounded-lg border border-gray-200 bg-white p-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                        {PILOT_SERVICE_OPTIONS.map((service) => {
+                          const checked = editForm.top_service_slugs.includes(service.slug);
+                          const disabled = !checked && editForm.top_service_slugs.length >= 6;
+                          return (
+                            <label
+                              key={service.slug}
+                              className={`flex items-center gap-2 rounded px-2 py-1.5 text-sm ${
+                                disabled ? 'text-gray-400' : 'text-gray-700 hover:bg-gray-50'
+                              }`}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                disabled={disabled}
+                                onChange={() => toggleTopService(service.slug)}
+                              />
+                              <span>{service.title}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {editForm.top_service_slugs.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {editForm.top_service_slugs.map((slug) => {
+                          const service = PILOT_SERVICE_OPTIONS.find((item) => item.slug === slug);
+                          return (
+                            <div key={slug}>
+                              <label className="block text-xs font-medium text-gray-500 mb-1">
+                                {service?.title || slug}
+                              </label>
+                              <select
+                                value={editForm.top_service_ratings_json[slug] || ''}
+                                onChange={(event) => setTopServiceRating(slug, event.target.value as PilotServiceLevel | '')}
+                                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white"
+                              >
+                                <option value="">Select level...</option>
+                                {PILOT_SERVICE_LEVELS.map((level) => (
+                                  <option key={level} value={level}>{level}</option>
+                                ))}
+                              </select>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-1">Additional Services Note</label>
+                      <textarea
+                        rows={2}
+                        value={editForm.additional_services_note}
+                        onChange={(event) => setEditField('additional_services_note', event.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-y"
+                      />
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Equipment & Portfolio">
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-xs font-medium text-gray-500">Drones / Equipment</label>
+                        <button
+                          type="button"
+                          onClick={addEquipmentRow}
+                          className="text-xs font-medium text-[#f97316] hover:text-[#e8650d]"
+                        >
+                          Add Row
+                        </button>
+                      </div>
+                      {editForm.equipment_items_json.length > 0 ? (
+                        <div className="space-y-2">
+                          {editForm.equipment_items_json.map((row, index) => (
+                            <div key={`equipment-${index}`} className="grid gap-2 sm:grid-cols-[1.1fr,1fr,auto]">
+                              <input
+                                type="text"
+                                value={row.name}
+                                onChange={(event) => updateEquipmentRow(index, 'name', event.target.value)}
+                                placeholder="Name"
+                                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                              />
+                              <input
+                                type="text"
+                                value={row.details}
+                                onChange={(event) => updateEquipmentRow(index, 'details', event.target.value)}
+                                placeholder="Details"
+                                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => removeEquipmentRow(index)}
+                                className="px-3 py-2 text-xs border border-red-200 text-red-600 rounded-lg hover:bg-red-50"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-gray-500">No equipment rows added yet.</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-500 mb-2">Portfolio Images</label>
+                      <div className="rounded-xl bg-slate-900 p-3">
+                        <PortfolioUploader
+                          value={editForm.portfolio_items_json}
+                          onChange={(items) => setEditField('portfolio_items_json', items)}
+                          maxItems={3}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="FAQ Answers">
+                  <div className="space-y-3">
+                    {[
+                      { question: PILOT_FAQ_QUESTIONS[0].question, field: 'faq_coverage_answer' as const },
+                      { question: PILOT_FAQ_QUESTIONS[1].question, field: 'faq_qualifications_answer' as const },
+                      { question: PILOT_FAQ_QUESTIONS[2].question, field: 'faq_turnaround_answer' as const },
+                      { question: PILOT_FAQ_QUESTIONS[3].question, field: 'faq_formats_answer' as const },
+                      { question: PILOT_FAQ_QUESTIONS[4].question, field: 'faq_permissions_answer' as const },
+                    ].map((item) => (
+                      <div key={item.field}>
+                        <label className="block text-xs font-medium text-gray-500 mb-1">{item.question}</label>
+                        <textarea
+                          rows={3}
+                          value={editForm[item.field]}
+                          onChange={(event) => setEditField(item.field, event.target.value)}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-y"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </AdminCard>
+
+                <AdminCard title="Admin Controls">
+                  <div className="space-y-4">
+                    <div>
                       <label className="block text-xs font-medium text-gray-500 mb-1">Tier</label>
                       <select
                         value={editForm.tier}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, tier: event.target.value } : current)}
+                        onChange={(event) => setEditField('tier', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white"
                       >
                         <option value="VERIFIED_OPERATOR">Verified Operator</option>
                         <option value="INTEGRATED_OPERATOR">Integrated Operator</option>
                       </select>
                     </div>
-                  </div>
-                </AdminCard>
 
-                <AdminCard title="Admin Controls">
-                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <label className="text-sm font-medium text-gray-700">Active</label>
                       <button
                         type="button"
-                        onClick={() => setEditForm((current) => current ? { ...current, active: !current.active } : current)}
+                        onClick={() => setEditField('active', !editForm.active)}
                         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                           editForm.active ? 'bg-green-500' : 'bg-gray-300'
                         }`}
@@ -700,7 +1247,7 @@ export default function AdminPilotsPage() {
                       <textarea
                         rows={4}
                         value={editForm.notes}
-                        onChange={(event) => setEditForm((current) => current ? { ...current, notes: event.target.value } : current)}
+                        onChange={(event) => setEditField('notes', event.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg resize-y"
                       />
                     </div>

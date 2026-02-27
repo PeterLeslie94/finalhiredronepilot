@@ -1004,7 +1004,7 @@ export default function DroneLandSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/volumetric-analysis"
+              href="/services/drone-volumetric-survey"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Volumetric Analysis</h3>

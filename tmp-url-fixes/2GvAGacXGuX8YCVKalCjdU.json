@@ -1,0 +1,600 @@
+{
+  "nodeType": "document",
+  "data": {},
+  "content": [
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Many new DJI Neo owners are surprised to find their drone's real-world flight time doesn't match the advertised 18 minutes. This difference between the specifications on the box and the performance in your hands can be a source of confusion and frustration. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "This guide will walk you through the factors that determine the Neo's ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/blog/drone-battery-life"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "battery life",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": " and provide clear, actionable instructions to help you understand and maximize every minute of your flight time.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "38NVrdbXKPGaqbTgHkMy97",
+            "type": "Asset",
+            "createdAt": "2025-10-30T11:41:22.061Z",
+            "updatedAt": "2025-10-30T11:41:22.061Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "peter-leslie-drone-pilot-36",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/38NVrdbXKPGaqbTgHkMy97/11a74c83ef9b3b6e9fb3539d68f6d170/peter-leslie-drone-pilot-36.webp",
+              "details": {
+                "size": 159784,
+                "image": {
+                  "width": 1920,
+                  "height": 1080
+                }
+              },
+              "fileName": "peter-leslie-drone-pilot-36.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Achieve the Maximum 18-Minute Flight Time",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "To get the full 18-minute flight time from your DJI Neo's Intelligent Flight Battery, you must replicate the exact laboratory conditions under which DJI conducted its tests. This involves flying the drone forward at a constant, slow speed of 2 meters per second in a completely windless environment, at sea level. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "During this flight, the camera should be in ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-photography"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "photo mode",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ", with no video recording or photo-taking operations performed. You must also start with a battery at 100% and fly until it is fully depleted to 0%. These conditions are designed to establish a best-case benchmark and are not representative of typical, everyday use.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Account for Propeller Guard Usage",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "For safer flights, especially indoors or near obstacles, attach the propeller guards, but be aware that this will reduce your maximum flight time to approximately 17 minutes. This one-minute reduction is due to the added weight and slight change in aerodynamics. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Before taking off, make a conscious decision based on your environment. If you are an experienced pilot flying in a wide-open area and need to maximize every second of flight, you may opt to remove them. However, for most situations, the protection the guards offer to your drone and your surroundings is worth the minor trade-off in battery life.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "49ghXyX1EMTzwxvjR5fU3d",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:11:29.259Z",
+            "updatedAt": "2025-09-04T16:11:29.259Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "dji-drone-comparison-4",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/49ghXyX1EMTzwxvjR5fU3d/f00eb42dc652be4c2cd801d4e3ec8970/dji-drone-comparison-4.webp",
+              "details": {
+                "size": 49318,
+                "image": {
+                  "width": 1000,
+                  "height": 1379
+                }
+              },
+              "fileName": "dji-drone-comparison-4.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Replicate DJI's Test Parameters to Understand Battery Benchmarks",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "To conduct your own baseline test that mirrors DJI's official methodology, find a day with no wind or use a large indoor space. After ensuring your battery is fully charged, set the drone to fly forward at a consistent 2 m/s (approximately 4.5 mph). ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "In the DJI Fly app, confirm the camera is set to photo mode and do not record video or perform any complex maneuvers. Fly the drone from its 100% battery level until the battery is completely drained. This process will help you verify your battery's health and understand its maximum potential under ideal, controlled circumstances.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Plan Your Flights for a Realistic 12-14 Minute Duration",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "When planning your missions, set your expectations for a realistic flight time of 12 to 14 minutes, as this is what most users experience in normal, real-world conditions. Factors such as wind, faster flying speeds, aggressive maneuvers, and prolonged hovering all consume more power and drain the battery faster. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Before flying, check the weather and account for wind, as the drone will use significant energy to maintain its position. Plan your shots efficiently to avoid unnecessary hovering. By setting your timers and return-to-home warnings based on a 12-minute flight, you can operate more safely and avoid being caught off guard by a low-battery alert.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "5ov1CdJSL52V2MHq2gEOj7",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:11:00.676Z",
+            "updatedAt": "2025-09-04T16:11:00.676Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "dji-neo-100-alt",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/5ov1CdJSL52V2MHq2gEOj7/c18c52b1aeb7450ca646ce12155a1bf7/dji-neo-100-alt.webp",
+              "details": {
+                "size": 74880,
+                "image": {
+                  "width": 980,
+                  "height": 1024
+                }
+              },
+              "fileName": "dji-neo-100-alt.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Perform Multiple Short Hops on a Single Charge",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Leverage the battery's design to perform numerous short, successive flights from a single charge, which is ideal for capturing quick shots or vlogging-style sequences. A fully charged DJI Neo battery is capable of supporting at least 20 consecutive palm takeoffs and landings. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "To utilize this, use the palm takeoff feature for a quick launch, fly for a short period to capture your clip, and then use the palm landing feature to safely retrieve the drone. This method is highly efficient for capturing a variety of shots from different spots without covering long distances, thereby maximizing the number of flight operations per battery instead of total continuous air time.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Frequently Asked Questions",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How long does it take to charge a DJI Neo battery?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "When charging the battery directly within the drone's body using a 15W charger, it takes approximately 50 minutes to go from 0% to 100%. Using the two-way charging hub with a 60W charger, you can charge three batteries simultaneously in about 60 minutes. The time can vary depending on the power of your charger.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Does recording video affect the battery life?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, recording video consumes more power than simply flying in photo mode, which will reduce the total flight time. The official 18-minute flight time is measured without any ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-videographer"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "video recording",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": " operations. For maximum flight duration, minimize video recording or plan for shorter flight times when you need to capture footage.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How should I store the batteries when not in use?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "For long-term storage (more than 10 days), you should not keep the batteries fully charged or fully depleted. The battery's intelligent system will automatically discharge itself to about 60% after 9-10 days of inactivity to preserve its health. Store the batteries in a cool, dry place between 22°C and 30°C (71.6°F and 86°F), ideally in a fireproof battery bag and removed from the drone.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Can cold weather impact the DJI Neo's battery performance?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, cold weather significantly impacts Li-ion battery performance, leading to a noticeable reduction in flight time. Flying in temperatures below 5°C (41°F) can cause a sharp drop in voltage and reduce the battery's discharge capability. Always ensure your batteries are warm before takeoff in cold conditions and be aware that your flight time will be shorter than usual.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Do new batteries need a few charge cycles to reach full capacity?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, new Li-ion batteries often require a few full charge and discharge cycles to reach their optimal performance and capacity. If you notice a shorter flight time with a brand-new battery, fly it for a few full cycles (from 100% down to around 20%) to \"break it in\" and you may see an improvement in its duration.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Is it harmful to leave the battery charging overnight?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "It is not recommended to leave DJI batteries charging overnight or unattended for long periods. The Intelligent Flight Battery has overcharging protection, but to maximize the battery's lifespan, it is best practice to unplug it once it is fully charged. Consistently overcharging can degrade the battery cells over time.​",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Conclusion",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Ultimately, the DJI Neo's advertised 18-minute flight time represents a perfect-scenario benchmark, while a 12 to 14-minute duration is a more practical expectation for everyday flights. By understanding the impact of environmental factors like wind, flying style, and the use of accessories like propeller guards, you can better plan your flights. Managing your expectations and flying with these variables in mind will allow you to operate more effectively, improve your safety, and get the most enjoyment out of your DJI Neo.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    }
+  ]
+}

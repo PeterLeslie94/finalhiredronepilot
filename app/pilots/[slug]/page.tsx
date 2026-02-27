@@ -296,9 +296,9 @@ function licenceLevelLabel(level: string | null): string {
 }
 
 function availabilityLabel(status: string | null): string {
-  if (status === 'LIMITED') return 'Limited Availability';
-  if (status === 'UNAVAILABLE') return 'Currently Unavailable';
-  return 'Available for New Projects';
+  if (status === 'LIMITED') return 'Within 1-2 weeks';
+  if (status === 'UNAVAILABLE') return 'Over 2 weeks';
+  return 'Immediately';
 }
 
 function availabilityStyles(status: string | null): string {

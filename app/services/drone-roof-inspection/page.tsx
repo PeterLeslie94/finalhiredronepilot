@@ -1051,7 +1051,7 @@ export default function DroneRoofSurveyPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
-              href="/services/drone-survey"
+              href="/services/drone-surveys"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">UAV Surveying</h3>
@@ -1069,7 +1069,7 @@ export default function DroneRoofSurveyPage() {
               </p>
             </Link>
             <Link
-              href="/services/thermal-imaging"
+              href="/services/drone-thermal-imaging"
               className="bg-white border border-border rounded-xl p-6 hover:border-gold hover:shadow-lg transition-all duration-300"
             >
               <h3 className="text-teal font-bold text-lg mb-2">Thermal Analysis</h3>

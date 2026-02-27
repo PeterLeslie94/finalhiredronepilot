@@ -7,6 +7,7 @@ import Link from 'next/link';
 import KeyTakeaways from './KeyTakeaways';
 import React from 'react';
 import { generateSlug } from '@/lib/utils/slug';
+import { normalizeLegacyServicePath } from '@/lib/service-url-map';
 
 function getTextFromNode(node: Block): string {
   let text = '';
@@ -173,7 +174,7 @@ function createRenderOptions(keyTakeaways?: string[]): Options {
         return <span className="text-gray-700">{children}</span>;
       }
       if (isInternalUrl(uri)) {
-        const href = toRelativePath(uri);
+        const href = normalizeLegacyServicePath(toRelativePath(uri));
         return (
           <Link
             href={href}

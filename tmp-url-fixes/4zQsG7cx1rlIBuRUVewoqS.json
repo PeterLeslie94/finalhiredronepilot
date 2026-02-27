@@ -1,0 +1,900 @@
+{
+  "nodeType": "document",
+  "data": {},
+  "content": [
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You've spotted a drone hovering over your property, and your first instinct is to grab a jammer to take it down. But wait—is that even legal in the UK?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "As a GVC-licensed commercial drone pilot, this is a topic I encounter frequently. The answer isn't as straightforward as you might think. While the technology is readily available online, using drone jammers comes with serious legal implications that could land you in court facing hefty fines or even imprisonment.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Let's unpack what the law actually says.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "4xIl2wESOHpmEvAU0kEk2o",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:10:24.290Z",
+            "updatedAt": "2025-09-04T16:10:24.290Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "drone-field-operations-uk-004",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/4xIl2wESOHpmEvAU0kEk2o/3979b8c6119924cd4b048e1a63d16a2a/drone-field-operations-uk-004.webp",
+              "details": {
+                "size": 184874,
+                "image": {
+                  "width": 1000,
+                  "height": 1333
+                }
+              },
+              "fileName": "drone-field-operations-uk-004.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The Wireless Telegraphy Act 2006 makes it illegal to use drone jammers without authorisation",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "In the UK, drone jammers fall under the strict regulations set out by the Wireless Telegraphy Act 2006.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "This legislation makes it illegal for you to use any device that deliberately interferes with wireless signals without proper authorisation from Ofcom, ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(the UK's communications regulator)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ".",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "If you purchase and use a drone jammer, you're committing an offense that could result in serious penalties—including up to two years imprisonment and/or unlimited fines. The Act doesn't distinguish between different purposes. Even if you're using a jammer on your own property to prevent drone intrusions, you're still breaking the law.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "From my perspective as a certified drone pilot, the indiscriminate nature of jammers is the biggest issue. They don't just stop a rogue drone; ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "they can endanger legitimate, professional drone operations",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " and even critical public services.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Only certain governmental bodies and security services can obtain the necessary authorisation to legally deploy signal jamming technology. As a private citizen, you won't be granted permission to use these devices, regardless of your justification.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "KDWfZTGNP6f8b70716yYP",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:07:52.495Z",
+            "updatedAt": "2025-09-04T16:07:52.495Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "professional-drone-pilot-uk-030",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/KDWfZTGNP6f8b70716yYP/8a4c60118e35f12f3a6d3e95bf64e56f/professional-drone-pilot-uk-030.webp",
+              "details": {
+                "size": 203688,
+                "image": {
+                  "width": 1696,
+                  "height": 1272
+                }
+              },
+              "fileName": "professional-drone-pilot-uk-030.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Private individuals cannot legally own or operate a drone jammer in the UK",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Why can't you simply buy a drone jammer for personal use? The UK government strictly prohibits private individuals from owning or operating drone jammers under any circumstances.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Unlike some equipment that may be legal to own but illegal to use, drone jammers fall into the category of prohibited devices altogether.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "This prohibition stems from the significant risks jammers pose to critical communications. When you deploy a jammer, you're not just affecting the targeted drone but potentially disrupting emergency services, air traffic control, and cellular networks. This is a real concern for professional drone pilots conducting legitimate ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-surveys"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "drone surveys",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ". The consequences for illegal possession can be severe, including hefty fines up to £5,000 and possible imprisonment.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Only specific government agencies and authorized security services have legal permission to deploy this technology, and they must follow strict protocols to minimize collateral interference.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Only authorised bodies such as police, military, and critical infrastructure operators can use jamming devices",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "While private citizens face strict prohibitions, select authorized bodies do have legal permission to use drone jammers under specific circumstances.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "In the UK, these include police forces, military units, and operators of critical national infrastructure like airports, power stations, and government facilities. We see these systems being essential for operations like ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/blog/airport-drone-detection"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "airport drone detection",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ".",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "These organizations must obtain proper authorization through official channels, ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(typically requiring approval from both the Home Office and Ofcom)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ". They're also bound by strict operational guidelines that dictate when and how jamming technology may be deployed.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "If you're responsible for sensitive facility security, you'll need to consult with relevant authorities before implementing any counter-drone measures. The process involves rigorous assessment of necessity, proportionality, and potential collateral effects on legitimate communications. Unauthorized jamming, even by security personnel, remains illegal and carries significant penalties.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "1mSsgu6BDL7mzLqU041gEL",
+            "type": "Asset",
+            "createdAt": "2025-09-04T15:42:02.639Z",
+            "updatedAt": "2025-09-04T15:42:02.639Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "take-drone-on-a-plane",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/1mSsgu6BDL7mzLqU041gEL/69e683e2f0c3cf3fdd187225d3fb4e24/take-drone-on-a-plane.webp",
+              "details": {
+                "size": 195044,
+                "image": {
+                  "width": 1200,
+                  "height": 680
+                }
+              },
+              "fileName": "take-drone-on-a-plane.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Illegal use of a drone jammer can result in fines, prosecution, and possible imprisonment",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Because unauthorized use of drone jammers directly violates several UK laws, the penalties can be severe and far-reaching.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "If you're caught using a jamming device without proper authorization, you could face prosecution under the Wireless Telegraphy Act 2006, with fines reaching up to £5,000 and potential imprisonment for up to six months. We've written before about the legality of shooting down drones in the UK, and jamming falls into a similar category of illegal interference.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "More serious cases, especially those causing significant disruption to essential services or endangering public safety, might be prosecuted under the Communications Act 2003 or even anti-terrorism legislation, carrying maximum sentences of several years.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You'll also likely have your equipment confiscated, and if you've used a jammer in connection with another crime, you'll face additional charges. The legal consequences extend beyond criminal penalties to potential civil liability if your jamming causes damage or financial loss to others, such as a company providing ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "professional drone services",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ".",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "1cXMyqJWwmpIzf5sUmcpsp",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:12:14.651Z",
+            "updatedAt": "2025-09-04T16:12:14.651Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "dji-drone-comparison-1",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/1cXMyqJWwmpIzf5sUmcpsp/93ef899ccb7735443e70d7ea0ab1ee0a/dji-drone-comparison-1.webp",
+              "details": {
+                "size": 78822,
+                "image": {
+                  "width": 1000,
+                  "height": 1355
+                }
+              },
+              "fileName": "dji-drone-comparison-1.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Legal alternatives to drone jamming include reporting to authorities and using approved detection systems.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Rather than risking legal penalties by using prohibited jammers, you can effectively address unwanted drone activity through several legitimate alternatives. If you're concerned about a drone flying near your property, your first step should be to contact the local police on their non-emergency line or report it to the Civil Aviation Authority ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(CAA)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ". It's a common issue, and we have a detailed guide on how to stop drones flying over your property in the UK.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "As professionals, we rely on a clear airspace, and illegal jamming creates unpredictable risks for everyone. Reporting the issue through proper channels is always the safest and most effective solution.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You'll find legal drone detection systems available that can identify nearby drones without interfering with their signals. These systems simply alert you to a drone's presence without jamming its communications. Some advanced solutions even record flight data that can be useful for authorities trying to identify the drone operator.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Additionally, consider using physical privacy measures like window coverings. If you're a business owner, you can invest in CAA-approved drone detection technology that's specifically designed to protect sensitive sites while remaining within legal boundaries.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Frequently Asked Questions",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How Do Drone Jammers Actually Work?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Drone jammers work by emitting radio frequency signals that interfere with the connection between a drone and its controller. They flood the frequency bands used by drones with noise, preventing the controller's signals from reaching the drone. When jammed, most drones are programmed to either hover in place, return to their launch point, or land immediately. Some advanced jammers can also block GPS signals, disrupting the drone's navigation system and causing it to lose signal.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Can I Report Someone Using a Drone Jammer Illegally?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, you can report illegal drone jammer use to the police or Ofcom. Since jammers interfere with radio signals, they violate the Wireless Telegraphy Act 2006. Call your local police non-emergency number or contact Ofcom directly through their website or interference reporting line. Make sure you provide details about when and where the jamming occurred. Documentation ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(like photos or videos of the activity)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " will strengthen your report.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "What Frequencies Do Drone Jammers Typically Target?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Drone jammers typically target multiple frequency bands used by consumer drones, including 2.4GHz and 5.8GHz, which are common for drone control and video transmission. They may also target GPS/GNSS frequencies ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(1.5GHz)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " to disrupt navigation systems. Some jammers additionally block 433MHz, 900MHz, and newer 5G frequencies. Remember that regardless of which frequencies they target, using these devices remains illegal in the UK without proper authorization.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How Can I Legally Protect My Property From Unwanted Drones?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You can legally protect your property from unwanted drones by understanding privacy laws, reporting intrusions to the police, installing physical barriers like nets or canopies, using anti-drone detection systems, and posting clear ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "\"no drone zone\"",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " signs. Documenting incidents is also key. It's a frequent concern when a neighbour's drone is over your garden in the UK. Remember, you can't use jammers as they're illegal. Instead, focus on deterrence, documentation, and working with authorities.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Are Drone Jammers Available to Purchase Despite Legal Restrictions?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Drone jammers are available online despite being illegal in the UK. You'll find them on some websites and international marketplaces, but purchasing one puts you at legal risk. Using a jammer violates the Wireless Telegraphy Act and can result in hefty fines or imprisonment. These devices also interfere with legitimate communications, potentially affecting emergency services or professional aerial services. Don't be tempted by their availability—legal alternatives offer better protection.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Conclusion",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You can't legally own or operate a drone jammer in the UK as a private individual. If you're caught using one, you'll face fines up to £5,000 and possibly jail time.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Only government bodies with proper authorization can use these devices. Instead, you should report drone concerns to authorities or invest in legal detection systems to protect your privacy and security.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    }
+  ]
+}

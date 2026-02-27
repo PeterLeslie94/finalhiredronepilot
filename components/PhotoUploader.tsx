@@ -25,12 +25,9 @@ async function fileToSquareDataUrl(file: File): Promise<string> {
         reject(new Error('Could not read the image size.'));
         return;
       }
-
-      const delta = Math.abs(width - height) / Math.max(width, height);
-      if (delta > 0.03) {
-        reject(new Error('Headshot must be square (1:1 aspect ratio).'));
-        return;
-      }
+      const cropSize = Math.min(width, height);
+      const offsetX = Math.floor((width - cropSize) / 2);
+      const offsetY = Math.floor((height - cropSize) / 2);
 
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
@@ -44,7 +41,7 @@ async function fileToSquareDataUrl(file: File): Promise<string> {
         canvas.width = size;
         canvas.height = size;
         context.clearRect(0, 0, size, size);
-        context.drawImage(image, 0, 0, size, size);
+        context.drawImage(image, offsetX, offsetY, cropSize, cropSize, 0, 0, size, size);
 
         for (const quality of JPEG_QUALITY_LEVELS) {
           const candidate = canvas.toDataURL('image/jpeg', quality);
@@ -159,7 +156,7 @@ export default function PhotoUploader({ value, onChange, error, className }: Pho
           <div className="text-gray-600">
             <p className="font-medium">Drag and drop your headshot here</p>
             <p className="text-sm text-gray-400 mt-1">
-              Or click to select. Square 1:1 only (JPG, PNG, WEBP). Auto-compressed on upload.
+              Or click to select. Any image ratio is accepted and auto-cropped to 1:1 (JPG, PNG, WEBP).
             </p>
           </div>
         )}

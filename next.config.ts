@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { LEGACY_SERVICE_PATH_MAP } from './lib/service-url-map';
 
 const securityHeaders = [
   { key: 'X-Content-Type-Options', value: 'nosniff' },
@@ -26,6 +27,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
+  },
+  async redirects() {
+    return Object.entries(LEGACY_SERVICE_PATH_MAP).map(([source, destination]) => ({
+      source,
+      destination,
+      permanent: true,
+    }));
   },
   async headers() {
     return [

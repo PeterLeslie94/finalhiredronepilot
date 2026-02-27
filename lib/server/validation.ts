@@ -417,7 +417,7 @@ export function validateEnquiryPayload(payload: Record<string, unknown>): Enquir
   if (!EMAIL_RE.test(email)) throw new Error('Invalid email');
   if (phone.length < 6) throw new Error('Phone must be at least 6 characters');
 
-  const serviceSlug = asTrimmedString(payload.service_slug, 120) || 'drone-survey';
+  const serviceSlug = asTrimmedString(payload.service_slug, 120) || 'drone-surveys';
   const dateNeeded = parseDate(payload.date_needed);
 
   const rawFlex = asTrimmedString(payload.date_flexibility, 20).toUpperCase() || 'ASAP';
@@ -650,7 +650,7 @@ export function validateInviteSelectionPayload(payload: Record<string, unknown>)
 }
 
 export function validateAdminEnquiryUpdatePayload(payload: Record<string, unknown>): AdminEnquiryUpdateInput {
-  const serviceSlug = asTrimmedString(payload.service_slug, 120) || 'drone-survey';
+  const serviceSlug = asTrimmedString(payload.service_slug, 120) || 'drone-surveys';
   const rawFlex = asTrimmedString(payload.date_flexibility, 20).toUpperCase() || 'ASAP';
   if (!isInSet(rawFlex, DATE_FLEXIBILITY)) {
     throw new Error('Invalid date flexibility');

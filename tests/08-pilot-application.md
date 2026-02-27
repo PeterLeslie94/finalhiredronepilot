@@ -27,21 +27,21 @@
    - Licence Level: check **A2 CofC**
    - Click **Next**
 4. **Step 3 (Top Services & Ratings):**
-   - Select exactly 6 services
-   - Set a rating for each selected service
+   - Mini-step 1: select exactly 6 services
+   - Mini-step 2: set a rating for each selected service and optionally add additional service notes
    - Click **Next**
 5. **Step 4 (Coverage & Metrics):**
-   - Keep availability default or choose one
-   - If UK-wide unchecked, select at least one region
-   - Fill numeric fields with valid whole numbers
+   - Mini-step 1: choose availability timing
+   - Mini-step 2: choose UK Nationwide or one+ nations (England/Scotland/Wales/Northern Ireland)
+   - Complete each metric mini-step with valid whole numbers
    - Click **Next**
 6. **Step 5 (Media & Equipment):**
-   - Upload square headshot (1:1)
-   - Add at least one equipment row with a name
+   - Upload headshot image (any ratio accepted; app auto-crops to square)
+   - Select at least one drone model in **Drones You Own** (or add an entry in Other Drones)
    - Upload at least one portfolio image (max 3)
    - Click **Next**
 7. **Step 6 (FAQ, Links & Consent):**
-   - Two Sentence Summary: `Test drone operations covering surveys and inspections. Reliable deliverables and clear comms.`
+   - Two Sentence Summary: `I run a reliable drone operations business delivering mapping and inspection work across the UK. Clients choose me for fast communication and clear deliverables.`
    - Fill all FAQ answers (>= 12 chars each)
    - Check consent checkbox
    - Click **Submit Application**
@@ -105,8 +105,9 @@
 1. Complete steps 1-2, proceed to step 3
 2. Select fewer than 6 services
 3. Click **Next**
-4. Select exactly 6 services but leave one rating empty
-5. Click **Next**
+4. Select exactly 6 services and continue to mini-step 2
+5. Leave one rating empty
+6. Click **Next**
 
 **Expected:**
 - Error: "Select exactly 6 top services to feature on your profile."
@@ -121,9 +122,9 @@
 
 **Steps:**
 1. Complete steps 1-3, proceed to step 4
-2. Clear numeric fields and click **Next**
-3. Enter invalid ranges (for example min delivery > max delivery) and click **Next**
-4. Uncheck UK-wide and select no coverage region, click **Next**
+2. In coverage mini-step, untick UK Nationwide and select no nation, click **Next**
+3. Clear numeric fields on each metric mini-step and click **Next**
+4. Enter invalid ranges (for example min delivery > max delivery) and click **Next**
 
 **Expected:**
 - Numeric fields show required/range errors
@@ -140,12 +141,12 @@
 **Steps:**
 1. Complete steps 1-4, proceed to step 5
 2. Leave headshot empty and click **Next**
-3. Add headshot but leave equipment blank and click **Next**
-4. Add equipment but leave portfolio empty and click **Next**
+3. Add headshot but leave drones selection blank and click **Next**
+4. Select a drone but leave portfolio empty and click **Next**
 
 **Expected:**
-- Error: "Please upload a square 1:1 headshot."
-- Error: "Add at least one equipment or drone entry."
+- Error: "Please upload a drone pilot headshot."
+- Error: "Select at least one drone you own."
 - Error: "Add at least one portfolio image."
 - Cannot proceed to step 6 until valid
 

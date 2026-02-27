@@ -1,0 +1,1095 @@
+{
+  "nodeType": "document",
+  "data": {},
+  "content": [
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The truth is, while you technically ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "can",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " fly a drone near a police station if the airspace is clear, doing so without notifying them is a risk I would never take in my work as a GVC licensed drone pilot. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The official drone laws in the uk require a 50-meter standoff from the building, but the real key is calling the ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "101",
+          "marks": [
+            {
+              "type": "code"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " non-emergency line to log your flight and get an incident number—that simple step can be the difference between a smooth operation and having your equipment confiscated. ",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Whether you're a hobbyist ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "just trying to stay on the right side of the law",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " or a commercial operator ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "planning a job nearby",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ", this guide will give you the insider's perspective on not just what the rules say, but how to navigate them safely in the real world.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "59K01EAJmeDFykvDTc96Sf",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:07:34.733Z",
+            "updatedAt": "2025-09-04T16:07:34.733Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "professional-drone-pilot-uk-086",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/59K01EAJmeDFykvDTc96Sf/07fb7cfdc618f1645dbdd7942cb62d21/professional-drone-pilot-uk-086.webp",
+              "details": {
+                "size": 155372,
+                "image": {
+                  "width": 1000,
+                  "height": 749
+                }
+              },
+              "fileName": "professional-drone-pilot-uk-086.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Flying a drone over a police station is subject to strict UK airspace laws",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "While the UK allows recreational drone use in many areas, flying over a police station falls under strict airspace regulations. The Civil Aviation Authority ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(CAA)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " classifies police facilities as ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "\"sensitive areas\"",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " where drone operations are heavily restricted.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Under the Air Navigation Order, you must maintain a minimum distance of 50 meters from buildings not under your control, including police stations. Flying directly overhead isn't permitted without specific authorization.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Additionally, police stations are considered critical infrastructure, making them subject to heightened security protocols.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Drone and Model Aircraft Code further ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "prohibits surveillance activities",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " that might compromise security operations.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "If you're caught flying over a police station without permission, you could face fines up to £2,500 and potential criminal charges for breaching security or privacy laws.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "7GVE5Qpi6PKv4svZIugWgs",
+            "type": "Asset",
+            "createdAt": "2025-09-04T15:42:02.616Z",
+            "updatedAt": "2025-09-04T15:42:02.616Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "weighted-landing-pad",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/7GVE5Qpi6PKv4svZIugWgs/76984a94a09940ec65695c89932b5a94/weighted-landing-pad.webp",
+              "details": {
+                "size": 162642,
+                "image": {
+                  "width": 810,
+                  "height": 810
+                }
+              },
+              "fileName": "weighted-landing-pad.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Police stations are often located within restricted or sensitive zones",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Geographic positioning of police stations frequently places them within areas designated as restricted or sensitive zones under UK drone regulations.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Many police facilities are situated near government buildings, airports, or prisons, or within congested urban areas that carry additional flight restrictions.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "When you're planning drone flights, you'll need to check if the police station falls within a Flight Restriction Zone ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(FRZ)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ", No-Fly Zone, or other controlled airspace. The Drone and Model Aircraft Registration and Education Service ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "(DMARES)",
+          "marks": [
+            {
+              "type": "italic"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " provides maps highlighting these restricted areas.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Police stations themselves are considered sensitive locations due to security concerns and operational privacy requirements.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You should always use apps like Drone Assist or the NATS website to verify the specific restrictions before flying near any police facility.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Here's a tip from my own experience: even if an app shows no flight restrictions, ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "I always notify the local police",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " of any planned drone flight, regardless of the location. They'll give you a report number, and trust me, this is invaluable.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "When people inevitably walk up to interrupt your flight, showing them an official police report number alongside your air traffic control notification usually resolves any complaints on the spot. It's a professional step that avoids a lot of potential hassle.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Penalties for violations can be severe, including fines and possible prosecution.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "34qlHRkE1vgi11r6L8jEK7",
+            "type": "Asset",
+            "createdAt": "2025-08-07T21:47:31.540Z",
+            "updatedAt": "2025-08-07T21:47:31.540Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 3,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "James-Leslie-Flying-A-drone (1)",
+            "description": "",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/34qlHRkE1vgi11r6L8jEK7/0262b4925a98b276e6b1efabdd856f7f/James-Leslie-Flying-A-drone__1_.webp",
+              "details": {
+                "size": 125774,
+                "image": {
+                  "width": 1200,
+                  "height": 1600
+                }
+              },
+              "fileName": "James-Leslie-Flying-A-drone (1).webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Filming near police property requires special authorisation",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Photography and videography near police property in the UK falls under strict regulations that extend beyond standard drone operation rules.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You'll need explicit authorisation from the relevant police force before filming or taking aerial photographs of their facilities. This requirement exists for both security and operational reasons.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "To obtain permission, you'll need to submit a formal request to the specific police force, detailing your purpose, equipment, and intended use of the footage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Be prepared to undergo background checks and potentially sign confidentiality agreements.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Even with authorisation, you'll likely face restrictions on what you can capture and publish. Remember that unauthorised filming of police property could result in equipment confiscation, criminal charges under the Official Secrets Act, or anti-terrorism legislation. These consequences reflect the sensitive nature of law enforcement facilities.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "5ov1CdJSL52V2MHq2gEOj7",
+            "type": "Asset",
+            "createdAt": "2025-09-04T16:11:00.676Z",
+            "updatedAt": "2025-09-04T16:11:00.676Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "dji-neo-100-alt",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/5ov1CdJSL52V2MHq2gEOj7/c18c52b1aeb7450ca646ce12155a1bf7/dji-neo-100-alt.webp",
+              "details": {
+                "size": 74880,
+                "image": {
+                  "width": 980,
+                  "height": 1024
+                }
+              },
+              "fileName": "dji-neo-100-alt.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Unauthorised Drone flights over police premises can result in serious penalties",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Flying your drone over a police station without authorisation can trigger severe legal consequences under multiple UK laws. You could face charges under the Air Navigation Order 2016, with penalties including fines up to £2,500 and possible imprisonment for reckless endangerment.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The Police Act 1997 and Counter-Terrorism legislation provide additional grounds for prosecution if you're suspected of surveillance or intelligence gathering.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Even unintentional flights over police premises can be interpreted as reconnaissance activity, potentially resulting in arrest and equipment seizure. You'll likely face trespassing charges as police stations are protected spaces.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Terrorism Act 2000 carries particularly harsh penalties, including sentences up to ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "15 years if your actions are deemed terrorist-related",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": ".",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Don't risk your freedom—always obtain proper permissions before flying near sensitive government facilities.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Operating near police stations poses safety and security risks.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Operating a drone near police stations brings about significant safety and security concerns that extend beyond legal implications.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Your drone could interfere with police operations, including emergency responses or planned security activities. Police stations often handle sensitive situations requiring unobstructed airspace.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Flying drones nearby risks compromising officer safety and operational security. Your drone might capture confidential information like officer identities, security measures, or tactical deployments. This could inadvertently aid criminals planning illegal activities.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Additionally, unexpected drone flights might be misinterpreted as threats, potentially triggering security protocols that divert valuable police resources.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The presence of an unauthorized drone could cause unnecessary alarm or distraction during critical operations. For these reasons, even if not explicitly illegal in some circumstances, it's highly inadvisable to operate drones near police facilities.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Frequently Asked Questions",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Can Police Legally Shoot Down or Disable Unauthorized Drones?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Police can't legally shoot down your drone in most circumstances. However, they do have powers to disable unauthorized drones if they're causing a threat to public safety or security. Under the Air Traffic Management and Unmanned Aircraft Act 2021, UK officers can seize control, land, or confiscate your drone if you're flying it illegally. They'll typically only intervene when there's a genuine risk. For more on this, read about the legality of ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/blog/shooting-down-drones-uk-legal"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "shooting down drones",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ".",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How Do Police Differentiate Between Recreational Drones and Potential Threats?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Police differentiate between recreational drones and threats through several methods. They'll assess your flight pattern, hover duration, and proximity to sensitive areas. They monitor if you're capturing images or video of restricted zones. Your drone's behavior matters - erratic movements or deliberate approaches raise suspicion. Officers also check if you've registered your drone and follow regulations. In uncertain situations, they'll attempt to identify the drone operator before taking action.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Are Exceptions Made for Media Covering Police-Related News Events?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, media may receive exceptions when covering police-related news events, but you'll need to obtain proper authorization first. Media organizations should contact the relevant police department and apply for special permissions through the CAA. You'll still need to follow safety protocols, maintain appropriate distances, and respect privacy laws. These exceptions aren't automatic - they're granted case-by-case based on public interest and safety considerations.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "What Technology Do Police Use to Detect Unauthorized Drone Activity?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "UK police use radio frequency analyzers to detect drone control signals and sophisticated radar systems like those used for airport drone detection. They employ acoustic sensors that identify unique drone sound signatures and optical detection systems with cameras. Some stations have installed counter-drone technology that can track drones and identify the drone operator's location. You'll also find police using signal jammers and GPS blockers when dealing with persistent unauthorized drone threats.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Can I Apply for Permission to Survey Police Stations for Architectural Projects?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Yes, you can apply for permission to survey police stations for architectural projects. You'll need to contact the specific police force that manages the station through their non-emergency channels. Submit a formal request detailing your project's purpose, when you'd like to conduct the survey, and what equipment you'll use. For such specialized work, you may need ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-surveys"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "professional drone surveys",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ". Be prepared for a thorough security screening and to follow strict guidelines if permission is granted.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Need to Film Near a Sensitive Location? Hire a Pro",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Flying a drone near a UK police station involves respecting the 50-meter standoff rule, navigating potential flight restriction zones, and understanding the serious legal risks of getting it wrong.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Instead of tackling this complex challenge alone, the safest and most efficient solution is to hire an expert. The drone pilots in our network are General Visual Line of Sight Certificate (GVC)-certified and experienced in securing the necessary permissions and coordinating with authorities for flights in sensitive areas.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "As the UK's premier managed marketplace, HireDronePilot connects businesses with verified professional ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/pilots"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "drone pilots for hire",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ". We streamline drone services through competitive bidding, ensuring quality, compliance, and value for every aerial project across the United Kingdom.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Don't risk the heavy fines and legal trouble. ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "Get a quote from a vetted professional for your project near a sensitive UK location and ensure your flight is safe, legal, and successful.",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  ]
+}

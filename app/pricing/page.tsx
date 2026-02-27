@@ -51,7 +51,7 @@ const serviceData = [
     name: 'Drone Photography',
     price: '£200-400',
     duration: '2-4 hours',
-    href: '/services/aerial-photography',
+    href: '/services/drone-photography',
   },
   {
     name: 'Drone Roof Inspection',
@@ -69,7 +69,7 @@ const serviceData = [
     name: 'Drone Thermal Imaging',
     price: '£300-600',
     duration: '2-4 hours',
-    href: '/services/thermal-imaging',
+    href: '/services/drone-thermal-imaging',
   },
   {
     name: 'Drone Gas Detection',
@@ -99,13 +99,13 @@ const serviceData = [
     name: 'Drone Videography',
     price: '£350-750',
     duration: '3-5 hours',
-    href: '/services/aerial-photography',
+    href: '/services/drone-photography',
   },
   {
     name: 'Drone Surveys',
     price: '£300-800',
     duration: '2-4 hours',
-    href: '/services/drone-survey',
+    href: '/services/drone-surveys',
   },
   {
     name: 'Bathymetric Survey',
@@ -141,7 +141,7 @@ const serviceData = [
     name: 'Drone Wedding Photography',
     price: '£400-800',
     duration: '2-4 hours',
-    href: '/services/aerial-photography',
+    href: '/services/drone-photography',
   },
 ];
 

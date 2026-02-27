@@ -5,7 +5,7 @@ import { X, ExternalLink } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
-import { titleFromServiceSlug } from '@/lib/pilot-profile';
+import { PILOT_FAQ_QUESTIONS, titleFromServiceSlug } from '@/lib/pilot-profile';
 
 type PilotApplication = {
   id: string;
@@ -503,7 +503,7 @@ export default function AdminPilotApplicationsPage() {
               <AdminCard title="Drones & Portfolio">
                 <div className="space-y-3 text-sm">
                   <div>
-                    <p className="text-gray-500 mb-1">Equipment</p>
+                    <p className="text-gray-500 mb-1">Drones You Own</p>
                     {(selected.equipment_items_json || []).length === 0 ? (
                       <p className="text-gray-900">N/A</p>
                     ) : (
@@ -527,23 +527,23 @@ export default function AdminPilotApplicationsPage() {
               <AdminCard title="FAQ Answers">
                 <dl className="space-y-3 text-sm">
                   <div>
-                    <dt className="text-gray-500">Coverage</dt>
+                    <dt className="text-gray-500">{PILOT_FAQ_QUESTIONS[0].question}</dt>
                     <dd className="text-gray-900">{selected.faq_coverage_answer || 'N/A'}</dd>
                   </div>
                   <div>
-                    <dt className="text-gray-500">Qualifications</dt>
+                    <dt className="text-gray-500">{PILOT_FAQ_QUESTIONS[1].question}</dt>
                     <dd className="text-gray-900">{selected.faq_qualifications_answer || 'N/A'}</dd>
                   </div>
                   <div>
-                    <dt className="text-gray-500">Turnaround</dt>
+                    <dt className="text-gray-500">{PILOT_FAQ_QUESTIONS[2].question}</dt>
                     <dd className="text-gray-900">{selected.faq_turnaround_answer || 'N/A'}</dd>
                   </div>
                   <div>
-                    <dt className="text-gray-500">File Formats</dt>
+                    <dt className="text-gray-500">{PILOT_FAQ_QUESTIONS[3].question}</dt>
                     <dd className="text-gray-900">{selected.faq_formats_answer || 'N/A'}</dd>
                   </div>
                   <div>
-                    <dt className="text-gray-500">Permissions</dt>
+                    <dt className="text-gray-500">{PILOT_FAQ_QUESTIONS[4].question}</dt>
                     <dd className="text-gray-900">{selected.faq_permissions_answer || 'N/A'}</dd>
                   </div>
                 </dl>

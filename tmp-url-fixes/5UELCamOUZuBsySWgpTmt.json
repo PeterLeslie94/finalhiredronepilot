@@ -1,0 +1,1755 @@
+{
+  "nodeType": "document",
+  "data": {},
+  "content": [
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Your roof is your home's first line of defence against the elements. You might not think about it until there's a problem.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "While general guidelines suggest scheduling ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-roof-inspection"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "drone roof inspections",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": " twice yearly, that's not the whole story. Several key factors determine how often you'll need a professional to check your roof. Getting the timing wrong could cost you thousands in preventable damage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "5eVREBQuwX8a96peuwfR7v",
+            "type": "Asset",
+            "createdAt": "2025-10-03T13:16:33.466Z",
+            "updatedAt": "2025-10-03T13:16:33.466Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "drone-roof-inspection-033",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/5eVREBQuwX8a96peuwfR7v/113086ed4349bb48be1772b7d72e8231/drone-roof-inspection-033.webp",
+              "details": {
+                "size": 37780,
+                "image": {
+                  "width": 680,
+                  "height": 504
+                }
+              },
+              "fileName": "drone-roof-inspection-033.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How often should you get a roof inspection?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Most homeowners should ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "schedule professional roof inspections twice per year",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " - once in the spring and once in the fall. These seasonal checks help identify any damage from winter storms or summer weather before small issues become major problems.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "I've found that even on roofs that look perfectly fine from the ground, ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "a closer look often reveals minor uplifted shingles",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " or blockages in valleys you’d never spot otherwise.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "You'll need additional inspections after severe weather events like hailstorms, severe gales, or flash floods. If you live in an area prone to extreme weather, consider quarterly inspections.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "For newer roofs under 5 years old, annual inspections may suffice if there haven't been any significant weather events. Don't wait for obvious signs of damage to call an inspector. Regular inspections can catch problems early, extend your roof's lifespan, and protect your warranty coverage. They're also essential when you're planning to buy or sell a home.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Drone Roof Inspection Frequency by Building Type",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "The type of building and the roof's design also play a significant role in determining inspection frequency.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "table",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-header-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Building/Roof Type",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-header-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Recommended Inspection Frequency",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Standard Residential (Pitched)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Annually",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Commercial (e.g., Offices, Retail)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Twice per year",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Industrial (e.g., Warehouses)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Twice per year or quarterly",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Historic/Listed Building",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Annually (by a specialist)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Flat Roof (any building type)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Twice per year (Spring & Autumn)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "High-Rise Building",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Annually",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "2olebek8CadNO8z8odIQcu",
+            "type": "Asset",
+            "createdAt": "2025-10-03T13:16:33.341Z",
+            "updatedAt": "2025-10-03T13:16:33.341Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "drone-roof-inspection-017",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/2olebek8CadNO8z8odIQcu/181e4a550b6aeb5e32e0a93e8b963aa3/drone-roof-inspection-017.webp",
+              "details": {
+                "size": 85550,
+                "image": {
+                  "width": 680,
+                  "height": 510
+                }
+              },
+              "fileName": "drone-roof-inspection-017.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "What factors affect how frequently your roof should be inspected?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Several key factors determine how often you should schedule roof inspections.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Roof Age",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Older roofs need more frequent inspections",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " as they're more susceptible to damage and wear. If your roof is over 15 years old, you'll want at least two inspections yearly.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Local Climate Conditions",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Harsh weather conditions like heavy snow, intense heat, or frequent storms also increase inspection needs.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Surrounding Tree Coverage",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Dense tree coverage means more debris and potential damage from falling branches, requiring additional check-ups.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-3",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Roofing Material",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Your roofing material matters too. Below is a general guide for different common materials used in the UK.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "table",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-header-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Material Type",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-header-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Recommended Inspection Frequency",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Asphalt Shingles",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Every 1-2 years",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Slate or Clay Tiles",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Annually",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Felt, EPDM, or GRP (Flat Roofs)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Twice per year (Spring & Autumn)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Metal Roofing",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Every 2-3 years",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Thatched Roofs",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Annually (by a specialist)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "table-row",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Green Roofs",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "nodeType": "table-cell",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "data": {},
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Twice per year",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "While metal roofs might only need inspections every other year, asphalt shingles require annual checks.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Clay tiles can be fragile and need more frequent monitoring, especially in areas with extreme temperature fluctuations. Clay tiles, in particular, are notorious for hairline cracks that are nearly invisible from a ladder but stand out clearly from an aerial view. It's a detail that can make all the difference in catching a problem early.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "4zl5P5vikmtdQeeiehrjUC",
+            "type": "Asset",
+            "createdAt": "2025-10-03T13:16:33.385Z",
+            "updatedAt": "2025-10-03T13:16:33.385Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "drone-roof-inspection-026",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/4zl5P5vikmtdQeeiehrjUC/0852e329b2ab80d22dbcdf6d2f8f4e6b/drone-roof-inspection-026.webp",
+              "details": {
+                "size": 26386,
+                "image": {
+                  "width": 680,
+                  "height": 383
+                }
+              },
+              "fileName": "drone-roof-inspection-026.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Should you get a roof inspection after severe weather or storms?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Beyond regular maintenance schedules, ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/blog/storm-damage-roof-inspections"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "severe weather events",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": " demand immediate attention to your roof's condition. ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "You should schedule an inspection after any major storm",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " involving hail, high winds, heavy snow, or flying debris. These elements can cause hidden damage that might lead to leaks and structural issues if left unchecked.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Don't wait for visible signs of damage to appear inside your home. By then, the problem may have already escalated.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "A prompt inspection after severe weather can identify issues like lifted shingles, damaged flashing, or compromised seals around vents and chimneys.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "My advice is to not underestimate high winds. I often spot subtle but significant ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "'creasing'",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " on asphalt shingles where the wind has lifted and folded them back. ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "It’s a classic entry point for water",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " that you’re unlikely to see without a detailed, close-up look.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "If you've experienced multiple storms in succession, it's even more critical to have a professional assess your roof's integrity. Quick action can prevent minor storm damage from becoming a major repair expense.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "When is the best time of year to schedule a roof inspection?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Timing your annual roof inspection strategically can maximize its effectiveness and value. ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "The best time to schedule an inspection is during early fall",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": ", before winter weather sets in. This allows you to identify and fix any issues before snow, ice, and freezing temperatures can worsen existing damage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Spring serves as your second-best option. After winter's harsh conditions, you'll want to check for any damage caused by ice dams, heavy snow loads, or freeze-thaw cycles. However, you may face longer wait times during spring as many homeowners discover winter damage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "blockquote",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "From a practical standpoint, I also find ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "the light in spring and fall is much better for spotting subtle issues",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " like dents from hail or granule loss, compared to the harsh glare of a summer afternoon.",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Avoid scheduling inspections during summer's intense heat or winter's severe weather. These conditions can make it dangerous for inspectors to work on your roof and may prevent them from spotting certain problems effectively.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "34qlHRkE1vgi11r6L8jEK7",
+            "type": "Asset",
+            "createdAt": "2025-08-07T21:47:31.540Z",
+            "updatedAt": "2025-08-07T21:47:31.540Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 3,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "James-Leslie-Flying-A-drone (1)",
+            "description": "",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/34qlHRkE1vgi11r6L8jEK7/0262b4925a98b276e6b1efabdd856f7f/James-Leslie-Flying-A-drone__1_.webp",
+              "details": {
+                "size": 125774,
+                "image": {
+                  "width": 1200,
+                  "height": 1600
+                }
+              },
+              "fileName": "James-Leslie-Flying-A-drone (1).webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "What happens if you skip regular roof inspections?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Skipping regular roof inspections can lead to severe and costly consequences for your home. Without professional assessments, small issues like loose shingles or minor leaks can quickly escalate into major structural damage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Water infiltration may cause rotting wood, mould growth, and compromised insulation before you notice any visible signs inside your house. You'll likely miss early warning signs that could have been addressed with simple repairs.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "This can lead to extensive damage that requires complete roof replacement. Additionally, ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": "neglecting inspections often voids your roof warranty",
+          "marks": [
+            {
+              "type": "bold"
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "text",
+          "value": " and can result in insurance claim denials if problems arise. The money you think you're saving by avoiding routine inspections will be far outweighed by the thousands you'll spend fixing preventable damage.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "How routine inspections extend the lifespan of your roof",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Regular roof inspections can dramatically boost your roof's longevity. They work by catching and fixing minor problems before they turn into major issues. During these inspections, professionals can spot early signs of wear, loose shingles, or small leaks that you might miss.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "By addressing problems early, you'll prevent water damage to your roof's structural components and avoid costly repairs down the line.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Professional inspectors can identify and seal entry points where moisture might penetrate, replace damaged flashing, and ensure proper ventilation. These are all factors that contribute to a longer-lasting roof. Your roof can last several years beyond its expected lifespan when you maintain a consistent inspection schedule.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "embedded-asset-block",
+      "data": {
+        "target": {
+          "metadata": {
+            "tags": [],
+            "concepts": []
+          },
+          "sys": {
+            "space": {
+              "sys": {
+                "type": "Link",
+                "linkType": "Space",
+                "id": "mi01fklde62c"
+              }
+            },
+            "id": "4ErhfeTs5FiK0WYP15XXh8",
+            "type": "Asset",
+            "createdAt": "2025-10-03T13:16:33.387Z",
+            "updatedAt": "2025-10-03T13:16:33.387Z",
+            "environment": {
+              "sys": {
+                "id": "master",
+                "type": "Link",
+                "linkType": "Environment"
+              }
+            },
+            "publishedVersion": 2,
+            "revision": 1,
+            "locale": "en-US"
+          },
+          "fields": {
+            "title": "drone-roof-inspection-022",
+            "file": {
+              "url": "//images.ctfassets.net/mi01fklde62c/4ErhfeTs5FiK0WYP15XXh8/7a66132d78d0e19d2eb1332bf2bd4824/drone-roof-inspection-022.webp",
+              "details": {
+                "size": 96644,
+                "image": {
+                  "width": 680,
+                  "height": 510
+                }
+              },
+              "fileName": "drone-roof-inspection-022.webp",
+              "contentType": "image/webp"
+            }
+          }
+        }
+      },
+      "content": []
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "What are the warning signs you need a roof inspection sooner?",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "While routine inspections are essential, certain warning signs demand immediate professional attention for your roof.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "unordered-list",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "If you notice water stains on your ceiling, peeling paint, or damp spots in your attic, you're likely dealing with a leak that needs quick assessment.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "Missing, cracked, or curled shingles are red flags that your roof's protective layer is compromised.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "Watch for excessive granules in your gutters, as this indicates shingle deterioration.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "You should also check for sagging areas, which could signal structural issues.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "After severe weather events like hailstorms or high winds, inspect for visible damage.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "nodeType": "list-item",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "paragraph",
+              "data": {},
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "If you spot daylight coming through your roof boards or feel drafts in your attic, don't wait for your next scheduled inspection - call a professional immediately.",
+                  "marks": [],
+                  "data": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nodeType": "heading-2",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Secure Your Property with a Professional Drone Roof Inspection",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Proactive drone roof surveys are essential to prevent minor roof issues from becoming costly structural problems. A drone inspection offers a safer, faster, and more thorough alternative to traditional methods, providing high-resolution imagery to catch subtle damage that might otherwise be missed. For this specialised task, you need an expert.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "HireDronePilot is the UK's premier managed marketplace, connecting businesses with verified professional drone pilots for hire. Our network features certified drone operators with extensive experience in aerial surveying and ",
+          "marks": [],
+          "data": {}
+        },
+        {
+          "nodeType": "hyperlink",
+          "data": {
+            "uri": "/services/drone-roof-inspection"
+          },
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "building inspections",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        },
+        {
+          "nodeType": "text",
+          "value": ". We streamline drone services through competitive bidding, ensuring quality, compliance, and value for every aerial project across the United Kingdom. Get a complete and accurate view of your roof’s condition by visiting us at https://hiredronepilot.uk/.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    },
+    {
+      "nodeType": "paragraph",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "text",
+          "value": "Don’t wait for a leak to reveal a problem—schedule your professional drone roof inspection today and protect your property with confidence.",
+          "marks": [],
+          "data": {}
+        }
+      ]
+    }
+  ]
+}
