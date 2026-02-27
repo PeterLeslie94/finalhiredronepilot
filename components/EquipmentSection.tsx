@@ -1,11 +1,18 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import DroneCarousel from './DroneCarousel';
 import SensorCard from './SensorCard';
 import DiagonalDivider from './DiagonalDivider';
 import { drones, sensors } from '@/data/equipment';
 
 export default function EquipmentSection() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/services/')) {
+    return null;
+  }
+
   return (
     <>
       {/* Drone Fleet Section */}
