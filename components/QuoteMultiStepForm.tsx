@@ -84,6 +84,7 @@ export default function QuoteMultiStepForm({
   onSuccess,
 }: QuoteMultiStepFormProps) {
   const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
@@ -157,10 +158,9 @@ export default function QuoteMultiStepForm({
 
       if (onSuccess) {
         onSuccess();
-        return;
       }
-
-      window.location.href = '/thank-you';
+      setSubmitted(true);
+      setIsSubmitting(false);
     } catch (submitError) {
       const message = submitError instanceof Error ? submitError.message : 'Failed to submit';
       setError(message);
@@ -170,6 +170,17 @@ export default function QuoteMultiStepForm({
 
   const inputClass = compact ? 'form-input text-sm py-2.5' : 'form-input';
   const controlGap = compact ? 'space-y-3' : 'space-y-4';
+
+  if (submitted) {
+    return (
+      <div className="rounded-xl border border-emerald-300/30 bg-emerald-300/10 p-4 text-emerald-100">
+        <p className="text-sm font-semibold">We are reviewing your enquiry.</p>
+        <p className="mt-2 text-sm text-emerald-100/90">
+          Our drone pilots will reach out to you individually as soon as possible with next steps and quotes.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className={controlGap} data-no-legacy-bridge="true">

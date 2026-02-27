@@ -52,19 +52,32 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       }
 
       const pilotResult = await client.query<PilotRow>(
-        `SELECT id, email, name
-         FROM pilots
-         WHERE active = true
+        `SELECT p.id, p.email, p.name
+         FROM pilots p
+         WHERE p.active = true
            AND (
-             cardinality($1::uuid[]) = 0
-             OR id = ANY($1::uuid[])
+             ($2::text = 'ALL_ACTIVE')
+             OR ($2::text = 'INTEGRATED_ONLY' AND p.tier = 'INTEGRATED_OPERATOR'::pilot_tier_v2)
+             OR ($2::text = 'MANUAL' AND p.id = ANY($3::uuid[]))
            )
+           AND (cardinality($4::uuid[]) = 0 OR NOT (p.id = ANY($4::uuid[])))
            AND (
-             cardinality($2::uuid[]) = 0
-             OR NOT (id = ANY($2::uuid[]))
+             $5::boolean = true
+             OR NOT EXISTS (
+               SELECT 1
+               FROM pilot_invitations pi
+               WHERE pi.enquiry_id = $1
+                 AND pi.pilot_id = p.id
+             )
            )
-         ORDER BY created_at DESC`,
-        [selection.include_pilot_ids, selection.exclude_pilot_ids],
+         ORDER BY p.created_at DESC`,
+        [
+          id,
+          selection.selection_mode,
+          selection.include_pilot_ids,
+          selection.exclude_pilot_ids,
+          selection.allow_reinvite,
+        ],
       );
       const selected = pilotResult.rows;
 
@@ -128,6 +141,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         {
           invite_round: inviteRound,
           count: created.length,
+          selection_mode: selection.selection_mode,
+          allow_reinvite: selection.allow_reinvite,
           include_count: selection.include_pilot_ids.length,
           exclude_count: selection.exclude_pilot_ids.length,
         },

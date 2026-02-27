@@ -51,6 +51,10 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
         }
         return v;
       },
+      email: (v) => {
+        if (typeof v !== 'string' || !v.trim()) throw new Error('email must be a non-empty string');
+        return v.trim().toLowerCase();
+      },
       notes: (v) => (typeof v === 'string' ? v : null),
       name: (v) => {
         if (typeof v !== 'string' || !v.trim()) throw new Error('name must be a non-empty string');
@@ -111,7 +115,36 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     return NextResponse.json({ pilot: result.rows[0] });
   } catch (error) {
+    if (typeof error === 'object' && error && 'code' in error && (error as { code?: string }).code === '23505') {
+      return jsonError('Email is already in use', 400);
+    }
     const message = error instanceof Error ? error.message : 'Failed to update pilot';
+    const status = error instanceof AuthError ? 401 : error instanceof RequestOriginError ? 403 : 500;
+    return jsonError(message, status);
+  }
+}
+
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    assertTrustedOrigin(request);
+    await requireAdminAccess(request);
+    const { id } = await params;
+
+    const result = await query(
+      `UPDATE pilots
+       SET active = false, updated_at = now()
+       WHERE id = $1
+       RETURNING *`,
+      [id],
+    );
+
+    if (!result.rows[0]) {
+      return jsonError('Pilot not found', 404);
+    }
+
+    return NextResponse.json({ pilot: result.rows[0], deleted: true });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to delete pilot';
     const status = error instanceof AuthError ? 401 : error instanceof RequestOriginError ? 403 : 500;
     return jsonError(message, status);
   }

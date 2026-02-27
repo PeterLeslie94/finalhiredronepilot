@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
 import { assertTrustedOrigin, jsonError, parseBody, RequestOriginError } from '@/lib/server/http';
+import { validateAdminEnquiryUpdatePayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
 
@@ -53,29 +54,75 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     assertTrustedOrigin(request);
-    await requireAdminAccess(request);
+    const { adminId } = await requireAdminAccess(request);
     const { id } = await params;
     const payload = await parseBody(request);
 
-    if (payload.action !== 'close') {
-      return jsonError('Invalid action', 400);
+    if (payload.action === 'close') {
+      const result = await query(
+        `UPDATE enquiries
+         SET status = 'CLOSED', closed_at = now(), updated_at = now()
+         WHERE id = $1 AND status != 'CLOSED'
+         RETURNING id`,
+        [id],
+      );
+
+      if (result.rows.length === 0) {
+        return jsonError('Enquiry not found or already closed', 404);
+      }
+
+      return NextResponse.json({ ok: true, status: 'CLOSED' });
     }
 
-    const result = await query(
-      `UPDATE enquiries
-       SET status = 'CLOSED', closed_at = now(), updated_at = now()
-       WHERE id = $1 AND status != 'CLOSED'
-       RETURNING id`,
-      [id],
-    );
+    if (payload.action === 'update_details') {
+      const input = validateAdminEnquiryUpdatePayload(payload);
+      const result = await query(
+        `UPDATE enquiries
+         SET service_slug = $2,
+             date_needed = $3,
+             date_flexibility = $4::date_flexibility,
+             site_location_text = $5,
+             postcode = $6,
+             job_details = $7,
+             updated_at = now()
+         WHERE id = $1
+         RETURNING *`,
+        [
+          id,
+          input.service_slug,
+          input.date_needed,
+          input.date_flexibility,
+          input.site_location_text,
+          input.postcode,
+          input.job_details,
+        ],
+      );
+      if (!result.rows[0]) {
+        return jsonError('Enquiry not found', 404);
+      }
 
-    if (result.rows.length === 0) {
-      return jsonError('Enquiry not found or already closed', 404);
+      await query(
+        `INSERT INTO enquiry_events (enquiry_id, actor_type, actor_id, event_type, payload_json, created_at)
+         VALUES ($1, 'ADMIN', $2, 'ENQUIRY_UPDATED', $3::jsonb, now())`,
+        [
+          id,
+          adminId,
+          JSON.stringify({
+            service_slug: input.service_slug,
+            date_flexibility: input.date_flexibility,
+            date_needed: input.date_needed,
+            site_location_text: input.site_location_text,
+            postcode: input.postcode,
+          }),
+        ],
+      );
+
+      return NextResponse.json({ ok: true, enquiry: result.rows[0] });
     }
 
-    return NextResponse.json({ ok: true, status: 'CLOSED' });
+    return jsonError('Invalid action', 400);
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Failed to close enquiry';
+    const message = error instanceof Error ? error.message : 'Failed to update enquiry';
     const status = error instanceof AuthError ? 401 : error instanceof RequestOriginError ? 403 : 500;
     return jsonError(message, status);
   }

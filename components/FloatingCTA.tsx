@@ -149,10 +149,6 @@ export default function FloatingCTA() {
               sourceForm="multistep-modal"
               compact
               submitLabel="Send Enquiry"
-              onSuccess={() => {
-                setIsModalOpen(false);
-                window.location.href = '/thank-you';
-              }}
             />
           </div>
         </div>

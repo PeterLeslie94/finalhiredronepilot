@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { X, ExternalLink } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
@@ -46,6 +47,7 @@ function formatDate(dateStr: string | null): string {
 }
 
 export default function AdminPilotApplicationsPage() {
+  const searchParams = useSearchParams();
   const [items, setItems] = useState<PilotApplication[]>([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -53,6 +55,9 @@ export default function AdminPilotApplicationsPage() {
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [confirmRejectId, setConfirmRejectId] = useState<string | null>(null);
+  const [queueView, setQueueView] = useState<'default' | 'upgrade'>(
+    searchParams.get('view') === 'upgrade' ? 'upgrade' : 'default',
+  );
 
   const selected = items.find((i) => i.id === selectedId) ?? null;
 
@@ -72,6 +77,7 @@ export default function AdminPilotApplicationsPage() {
 
     try {
       const params = new URLSearchParams({ limit: '100' });
+      if (queueView === 'upgrade') params.set('upgrade_ready', 'true');
       if (cursor) params.set('cursor', cursor);
 
       const response = await fetch(`/api/admin/pilot-applications?${params.toString()}`);
@@ -97,7 +103,17 @@ export default function AdminPilotApplicationsPage() {
 
   useEffect(() => {
     void load();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queueView]);
+
+  useEffect(() => {
+    const selectedFromQuery = searchParams.get('selected');
+    if (selectedFromQuery) {
+      setSelectedId(selectedFromQuery);
+    }
+    const view = searchParams.get('view');
+    setQueueView(view === 'upgrade' ? 'upgrade' : 'default');
+  }, [searchParams]);
 
   const updateStatus = async (id: string, action: 'approve' | 'reject' | 'request-info') => {
     try {
@@ -134,13 +150,37 @@ export default function AdminPilotApplicationsPage() {
           <h1 className="text-2xl font-bold text-gray-900">Pilot Applications</h1>
           <p className="text-sm text-gray-500">Click a row to view full details and take action.</p>
         </div>
-        <button
-          className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
-          onClick={() => void load()}
-          disabled={loading || loadingMore}
-        >
-          {loading ? 'Loading...' : 'Refresh'}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setQueueView('default')}
+            className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
+              queueView === 'default'
+                ? 'bg-[#f97316] text-white border-[#f97316]'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            All Applications
+          </button>
+          <button
+            type="button"
+            onClick={() => setQueueView('upgrade')}
+            className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
+              queueView === 'upgrade'
+                ? 'bg-[#f97316] text-white border-[#f97316]'
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            Badge Upgrades
+          </button>
+          <button
+            className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
+            onClick={() => void load()}
+            disabled={loading || loadingMore}
+          >
+            {loading ? 'Loading...' : 'Refresh'}
+          </button>
+        </div>
       </div>
 
       {error ? (

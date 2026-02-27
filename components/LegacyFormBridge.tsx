@@ -45,6 +45,26 @@ export default function LegacyFormBridge() {
     form.appendChild(wrapper);
   };
 
+  const showSuccessState = (form: HTMLFormElement) => {
+    form.style.display = 'none';
+
+    const existing = form.nextElementSibling;
+    if (existing && existing instanceof HTMLElement && existing.dataset.legacyFormSuccess === 'true') {
+      return;
+    }
+
+    const success = document.createElement('div');
+    success.dataset.legacyFormSuccess = 'true';
+    success.className = 'rounded-xl border border-emerald-300/40 bg-emerald-50 p-4 text-emerald-900 mt-3';
+    success.innerHTML = `
+      <p style="font-size:14px;font-weight:600;margin:0;">We are reviewing your enquiry.</p>
+      <p style="font-size:14px;line-height:1.45;margin:8px 0 0;">
+        Our drone pilots will reach out to you individually as soon as possible with next steps and quotes.
+      </p>
+    `;
+    form.insertAdjacentElement('afterend', success);
+  };
+
   useEffect(() => {
     document.querySelectorAll('form').forEach((node) => {
       if (!(node instanceof HTMLFormElement)) return;
@@ -96,7 +116,7 @@ export default function LegacyFormBridge() {
         if (!response.ok) {
           throw new Error('Failed to submit enquiry');
         }
-        window.location.href = '/thank-you';
+        showSuccessState(form);
       } catch (error) {
         // This keeps behavior visible for operators while we transition legacy forms.
         // eslint-disable-next-line no-console

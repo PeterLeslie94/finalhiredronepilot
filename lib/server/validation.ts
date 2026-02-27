@@ -36,8 +36,19 @@ export type PilotApplicationInput = {
 };
 
 export type InviteSelectionInput = {
+  selection_mode: 'ALL_ACTIVE' | 'INTEGRATED_ONLY' | 'MANUAL';
   include_pilot_ids: string[];
   exclude_pilot_ids: string[];
+  allow_reinvite: boolean;
+};
+
+export type AdminEnquiryUpdateInput = {
+  service_slug: string;
+  date_needed: string | null;
+  date_flexibility: DateFlexibility;
+  site_location_text: string;
+  postcode: string;
+  job_details: string;
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -204,9 +215,58 @@ export function validateInviteSelectionPayload(payload: Record<string, unknown>)
     ? payload.exclude_pilot_ids.map((id) => asTrimmedString(id, 64)).filter(Boolean)
     : [];
 
+  const rawSelectionMode = asTrimmedString(payload.selection_mode, 24).toUpperCase();
+  const selectionMode =
+    rawSelectionMode === 'ALL_ACTIVE' ||
+    rawSelectionMode === 'INTEGRATED_ONLY' ||
+    rawSelectionMode === 'MANUAL'
+      ? rawSelectionMode
+      : includePilotIds.length > 0
+        ? 'MANUAL'
+        : 'ALL_ACTIVE';
+
+  if (selectionMode === 'MANUAL' && includePilotIds.length === 0) {
+    throw new Error('At least one pilot must be selected in manual mode');
+  }
+
+  const allowReinvite = payload.allow_reinvite === true;
+
   return {
+    selection_mode: selectionMode,
     include_pilot_ids: includePilotIds,
     exclude_pilot_ids: excludePilotIds,
+    allow_reinvite: allowReinvite,
+  };
+}
+
+export function validateAdminEnquiryUpdatePayload(payload: Record<string, unknown>): AdminEnquiryUpdateInput {
+  const serviceSlug = asTrimmedString(payload.service_slug, 120) || 'drone-survey';
+  const rawFlex = asTrimmedString(payload.date_flexibility, 20).toUpperCase() || 'ASAP';
+  if (!isInSet(rawFlex, DATE_FLEXIBILITY)) {
+    throw new Error('Invalid date flexibility');
+  }
+  const dateFlexibility = rawFlex;
+  const dateNeeded = parseDate(payload.date_needed);
+  if (dateFlexibility === 'FIXED' && !dateNeeded) {
+    throw new Error('Date is required when date flexibility is FIXED');
+  }
+  const siteLocationText = asTrimmedString(payload.site_location_text, 240);
+  if (!siteLocationText) {
+    throw new Error('Location is required');
+  }
+  const postcode = normalizePostcode(asTrimmedString(payload.postcode, 20));
+  const jobDetails = asTrimmedString(payload.job_details, 4000);
+  if (jobDetails.length < 10) {
+    throw new Error('Job details must be at least 10 characters');
+  }
+
+  return {
+    service_slug: serviceSlug,
+    date_needed: dateFlexibility === 'FIXED' ? dateNeeded : null,
+    date_flexibility: dateFlexibility,
+    site_location_text: siteLocationText,
+    postcode,
+    job_details: jobDetails,
   };
 }
 

@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
-import { FileText, AlertCircle, CheckCircle, Clock } from 'lucide-react';
-import KpiCard from '@/components/admin/KpiCard';
-import StatusBadge from '@/components/admin/StatusBadge';
+import { Bell, FileText, RefreshCw, UserPlus, BadgeCheck } from 'lucide-react';
 
 type EnquiryRow = {
   id: string;
@@ -16,13 +15,14 @@ type EnquiryRow = {
   created_at: string;
 };
 
-const STATUSES: Array<{ value: string; label: string }> = [
-  { value: '', label: 'All statuses' },
-  { value: 'NEW', label: 'New' },
-  { value: 'ACK_SENT', label: 'Ack sent' },
-  { value: 'INVITES_SENT', label: 'Invites sent' },
-  { value: 'CLOSED', label: 'Closed' },
-];
+type PilotApplicationRow = {
+  id: string;
+  pilot_name: string;
+  business_name: string;
+  status: string;
+  backlink_confirmed_at: string | null;
+  created_at: string;
+};
 
 function toLocalDateTime(value: string) {
   const parsed = new Date(value);
@@ -33,226 +33,189 @@ function toLocalDateTime(value: string) {
 function formatServiceSlug(slug: string) {
   return slug
     .replace(/-/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+type QueueCardProps = {
+  title: string;
+  subtitle: string;
+  count: number;
+  icon: ReactNode;
+  children: ReactNode;
+};
+
+function QueueCard({ title, subtitle, count, icon, children }: QueueCardProps) {
+  return (
+    <section className="bg-white rounded-lg border border-gray-200 p-4 md:p-5">
+      <div className="flex items-start justify-between gap-3 mb-4">
+        <div>
+          <h2 className="text-base font-semibold text-gray-900">{title}</h2>
+          <p className="text-xs text-gray-500">{subtitle}</p>
+        </div>
+        <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+          {icon}
+          {count}
+        </div>
+      </div>
+      {children}
+    </section>
+  );
 }
 
 export default function AdminDashboardPage() {
-  const [items, setItems] = useState<EnquiryRow[]>([]);
-  const [error, setError] = useState('');
+  const [enquiries, setEnquiries] = useState<EnquiryRow[]>([]);
+  const [newApplications, setNewApplications] = useState<PilotApplicationRow[]>([]);
+  const [upgradeReady, setUpgradeReady] = useState<PilotApplicationRow[]>([]);
   const [loading, setLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
-  const [statusFilter, setStatusFilter] = useState('');
-  const [searchText, setSearchText] = useState('');
+  const [error, setError] = useState('');
 
-  const load = async ({
-    cursor = null,
-    append = false,
-  }: {
-    cursor?: string | null;
-    append?: boolean;
-  } = {}) => {
-    if (append) {
-      setLoadingMore(true);
-    } else {
-      setLoading(true);
-      setError('');
-    }
-
+  const load = async () => {
+    setLoading(true);
+    setError('');
     try {
-      const url = new URL('/api/admin/enquiries', window.location.origin);
-      url.searchParams.set('limit', '100');
-      if (statusFilter) url.searchParams.set('status', statusFilter);
-      if (cursor) url.searchParams.set('cursor', cursor);
+      const [enquiriesRes, appsRes, upgradesRes] = await Promise.all([
+        fetch('/api/admin/enquiries?status=ACK_SENT&limit=25'),
+        fetch('/api/admin/pilot-applications?status=SUBMITTED&limit=25'),
+        fetch('/api/admin/pilot-applications?upgrade_ready=true&limit=25'),
+      ]);
 
-      const response = await fetch(url.toString());
-      const body = (await response.json()) as {
+      const enquiriesBody = (await enquiriesRes.json()) as {
         items?: EnquiryRow[];
-        next_cursor?: string | null;
         error?: string;
       };
-      if (!response.ok) {
-        throw new Error(body.error || 'Failed to load enquiries');
-      }
-      const incoming = body.items || [];
-      setItems((current) => (append ? [...current, ...incoming] : incoming));
-      setNextCursor(body.next_cursor ?? null);
+      const appsBody = (await appsRes.json()) as {
+        items?: PilotApplicationRow[];
+        error?: string;
+      };
+      const upgradesBody = (await upgradesRes.json()) as {
+        items?: PilotApplicationRow[];
+        error?: string;
+      };
+
+      if (!enquiriesRes.ok) throw new Error(enquiriesBody.error || 'Failed to load enquiries');
+      if (!appsRes.ok) throw new Error(appsBody.error || 'Failed to load pilot applications');
+      if (!upgradesRes.ok) throw new Error(upgradesBody.error || 'Failed to load upgrade queue');
+
+      setEnquiries(enquiriesBody.items || []);
+      setNewApplications(appsBody.items || []);
+      setUpgradeReady(upgradesBody.items || []);
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : 'Failed to load enquiries');
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load dashboard');
     } finally {
-      if (append) {
-        setLoadingMore(false);
-      } else {
-        setLoading(false);
-      }
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusFilter]);
-
-  const normalizedQuery = searchText.trim().toLowerCase();
-  const visibleItems = normalizedQuery
-    ? items.filter((item) => {
-        const haystack = [
-          item.name,
-          item.email,
-          item.service_slug,
-          item.status,
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .toLowerCase();
-        return haystack.includes(normalizedQuery);
-      })
-    : items;
-
-  const total = items.length;
-  const newCount = items.filter((item) => item.status === 'NEW').length;
-  const ackSent = items.filter((item) => item.status === 'ACK_SENT').length;
-  const invitesSent = items.filter((item) => item.status === 'INVITES_SENT').length;
+  }, []);
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-sm text-gray-500">
-          Manage enquiries, review details, and send invites to pilots.
-        </p>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-        <KpiCard
-          label="Total Enquiries"
-          value={total}
-          icon={<FileText className="w-5 h-5" />}
-        />
-        <KpiCard
-          label="New"
-          value={newCount}
-          icon={<AlertCircle className="w-5 h-5" />}
-          highlight={newCount > 0}
-        />
-        <KpiCard
-          label="Acknowledged"
-          value={ackSent}
-          icon={<CheckCircle className="w-5 h-5" />}
-        />
-        <KpiCard
-          label="Invites Sent"
-          value={invitesSent}
-          icon={<Clock className="w-5 h-5" />}
-        />
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-wrap items-end gap-3">
-          <div className="flex-1 min-w-[220px]">
-            <label className="text-xs text-gray-500 font-medium">Search</label>
-            <input
-              className="mt-1 block w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316]"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              placeholder="Name, email, service, status..."
-            />
-          </div>
-
-          <div className="min-w-[220px]">
-            <label className="text-xs text-gray-500 font-medium">Status</label>
-            <select
-              className="mt-1 block w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316]"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              {STATUSES.map((option) => (
-                <option key={option.value || 'all'} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            onClick={() => void load()}
-            className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
-            disabled={loading || loadingMore}
-          >
-            {loading ? 'Loading...' : 'Refresh'}
-          </button>
+      <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+          <p className="text-sm text-gray-500">Simple action queues for daily operations.</p>
         </div>
-
-        <div className="mt-3 text-xs text-gray-500 flex flex-wrap gap-4">
-          <span>
-            Showing <strong className="text-gray-900">{visibleItems.length}</strong> of{' '}
-            <strong className="text-gray-900">{items.length}</strong>
-          </span>
-        </div>
-
-        {error ? <p className="mt-2 text-red-600 text-sm">{error}</p> : null}
+        <button
+          type="button"
+          onClick={() => void load()}
+          disabled={loading}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors disabled:opacity-60"
+        >
+          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+          {loading ? 'Loading...' : 'Refresh'}
+        </button>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Client</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Service</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Status</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Invites</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Created</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide"></th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {visibleItems.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                <td className="p-3">
-                  <div className="font-medium text-gray-900">{item.name}</div>
-                  <div className="text-gray-500 text-xs">{item.email}</div>
-                </td>
-                <td className="p-3 text-gray-700">{formatServiceSlug(item.service_slug)}</td>
-                <td className="p-3">
-                  <StatusBadge status={item.status} type="enquiry" />
-                </td>
-                <td className="p-3 text-gray-700">
-                  {item.invite_count}
-                </td>
-                <td className="p-3 text-gray-500 text-xs">{toLocalDateTime(item.created_at)}</td>
-                <td className="p-3">
-                  <Link
-                    href={`/admin/enquiries/${item.id}`}
-                    className="px-3 py-1.5 bg-[#f97316] text-white rounded-lg font-medium text-xs hover:bg-[#e8650d] transition-colors"
-                  >
-                    View
-                  </Link>
-                </td>
-              </tr>
-            ))}
-            {visibleItems.length === 0 ? (
-              <tr>
-                <td className="p-6 text-gray-500 text-center" colSpan={6}>
-                  No enquiries loaded.
-                </td>
-              </tr>
-            ) : null}
-          </tbody>
-        </table>
-      </div>
-
-      {nextCursor ? (
-        <div className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={() => void load({ cursor: nextCursor, append: true })}
-            disabled={loading || loadingMore}
-            className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {loadingMore ? 'Loading...' : 'Load More'}
-          </button>
+      {error ? (
+        <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3 mb-4">
+          {error}
         </div>
       ) : null}
+
+      <div className="grid gap-4 md:grid-cols-3 mb-6">
+        <QueueCard
+          title="New Enquiries"
+          subtitle="Client submissions awaiting review"
+          count={enquiries.length}
+          icon={<FileText className="w-3.5 h-3.5" />}
+        >
+          <div className="space-y-2 max-h-[26rem] overflow-y-auto pr-1">
+            {enquiries.length === 0 ? (
+              <p className="text-sm text-gray-500">No new enquiries.</p>
+            ) : (
+              enquiries.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/admin/enquiries/${item.id}`}
+                  className="block rounded-lg border border-gray-200 px-3 py-2 hover:border-[#f97316]/40 hover:bg-orange-50 transition-colors"
+                >
+                  <p className="text-sm font-medium text-gray-900">{item.name}</p>
+                  <p className="text-xs text-gray-500 truncate">{formatServiceSlug(item.service_slug)}</p>
+                  <p className="text-xs text-gray-400 mt-1">{toLocalDateTime(item.created_at)}</p>
+                </Link>
+              ))
+            )}
+          </div>
+        </QueueCard>
+
+        <QueueCard
+          title="New Pilot Applications"
+          subtitle="Fresh applicants to review"
+          count={newApplications.length}
+          icon={<UserPlus className="w-3.5 h-3.5" />}
+        >
+          <div className="space-y-2 max-h-[26rem] overflow-y-auto pr-1">
+            {newApplications.length === 0 ? (
+              <p className="text-sm text-gray-500">No new applications.</p>
+            ) : (
+              newApplications.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/admin/pilot-applications?selected=${item.id}`}
+                  className="block rounded-lg border border-gray-200 px-3 py-2 hover:border-[#f97316]/40 hover:bg-orange-50 transition-colors"
+                >
+                  <p className="text-sm font-medium text-gray-900">{item.pilot_name}</p>
+                  <p className="text-xs text-gray-500 truncate">{item.business_name || 'No business name'}</p>
+                  <p className="text-xs text-gray-400 mt-1">{toLocalDateTime(item.created_at)}</p>
+                </Link>
+              ))
+            )}
+          </div>
+        </QueueCard>
+
+        <QueueCard
+          title="Badge Upgrades"
+          subtitle="Pilots who confirmed backlink/badge"
+          count={upgradeReady.length}
+          icon={<BadgeCheck className="w-3.5 h-3.5" />}
+        >
+          <div className="space-y-2 max-h-[26rem] overflow-y-auto pr-1">
+            {upgradeReady.length === 0 ? (
+              <p className="text-sm text-gray-500">No upgrade-ready pilots.</p>
+            ) : (
+              upgradeReady.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/admin/pilot-applications?selected=${item.id}&view=upgrade`}
+                  className="block rounded-lg border border-gray-200 px-3 py-2 hover:border-[#f97316]/40 hover:bg-orange-50 transition-colors"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-sm font-medium text-gray-900 truncate">{item.pilot_name}</p>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-medium text-green-700">
+                      <Bell className="w-3 h-3" />
+                      Ready
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 truncate">{item.business_name || 'No business name'}</p>
+                  <p className="text-xs text-gray-400 mt-1">{toLocalDateTime(item.created_at)}</p>
+                </Link>
+              ))
+            )}
+          </div>
+        </QueueCard>
+      </div>
     </div>
   );
 }
