@@ -6,6 +6,7 @@ import { X, ExternalLink } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
+import { PILOT_SKILL_CATEGORIES, titleFromServiceSlug } from '@/lib/pilot-profile';
 
 type PilotApplication = {
   id: string;
@@ -20,6 +21,34 @@ type PilotApplication = {
   operator_id: string | null;
   website_url: string | null;
   two_sentence_summary: string | null;
+  base_city: string | null;
+  coverage_uk_wide: boolean;
+  coverage_regions: string[] | null;
+  coverage_notes: string | null;
+  availability_status: string | null;
+  google_business_profile_url: string | null;
+  linkedin_url: string | null;
+  instagram_url: string | null;
+  youtube_url: string | null;
+  facebook_url: string | null;
+  total_projects_completed: number | null;
+  years_experience: number | null;
+  avg_response_hours: number | null;
+  avg_quote_turnaround_hours: number | null;
+  data_delivery_min_days: number | null;
+  data_delivery_max_days: number | null;
+  repeat_hire_rate_pct: number | null;
+  member_since_year: number | null;
+  top_service_slugs: string[] | null;
+  additional_services_note: string | null;
+  equipment_items_json: Array<{ name: string; details?: string | null }> | null;
+  portfolio_items_json: Array<{ image_url: string; caption?: string | null }> | null;
+  skills_levels_json: Record<string, string> | null;
+  faq_coverage_answer: string | null;
+  faq_qualifications_answer: string | null;
+  faq_turnaround_answer: string | null;
+  faq_formats_answer: string | null;
+  faq_permissions_answer: string | null;
   review_notes: string | null;
   status: string;
   backlink_confirmed_at: string | null;
@@ -365,6 +394,167 @@ export default function AdminPilotApplicationsPage() {
                   </p>
                 </AdminCard>
               )}
+
+              <AdminCard title="Profile Details">
+                <dl className="space-y-2.5 text-sm">
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Base City</dt>
+                    <dd className="text-gray-900">{selected.base_city || 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Availability</dt>
+                    <dd className="text-gray-900">{selected.availability_status || 'N/A'}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">Coverage</dt>
+                    <dd className="text-gray-900">
+                      {selected.coverage_uk_wide
+                        ? 'United Kingdom'
+                        : (selected.coverage_regions || []).join(', ') || 'N/A'}
+                      {selected.coverage_notes ? (
+                        <span className="block text-xs text-gray-600 mt-1">{selected.coverage_notes}</span>
+                      ) : null}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">Top Services</dt>
+                    <dd className="flex flex-wrap gap-1.5">
+                      {(selected.top_service_slugs || []).length === 0 ? (
+                        <span className="text-gray-900">N/A</span>
+                      ) : (
+                        (selected.top_service_slugs || []).map((slug) => (
+                          <span key={slug} className="inline-flex rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700">
+                            {titleFromServiceSlug(slug)}
+                          </span>
+                        ))
+                      )}
+                    </dd>
+                  </div>
+                  {selected.additional_services_note ? (
+                    <div>
+                      <dt className="text-gray-500 mb-1">Additional Service Notes</dt>
+                      <dd className="text-gray-700 text-xs bg-gray-50 rounded p-2 whitespace-pre-wrap">
+                        {selected.additional_services_note}
+                      </dd>
+                    </div>
+                  ) : null}
+                  {selected.google_business_profile_url ? (
+                    <div className="flex justify-between">
+                      <dt className="text-gray-500">Google Profile</dt>
+                      <dd>
+                        <a
+                          href={selected.google_business_profile_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#f97316] hover:underline inline-flex items-center gap-1 text-sm"
+                        >
+                          Open Link
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </dd>
+                    </div>
+                  ) : null}
+                </dl>
+              </AdminCard>
+
+              <AdminCard title="Pilot Metrics">
+                <dl className="space-y-2.5 text-sm">
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Total Projects</dt>
+                    <dd className="text-gray-900">{selected.total_projects_completed ?? 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Years Experience</dt>
+                    <dd className="text-gray-900">{selected.years_experience ?? 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Avg Response Hours</dt>
+                    <dd className="text-gray-900">{selected.avg_response_hours ?? 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Avg Quote Turnaround</dt>
+                    <dd className="text-gray-900">{selected.avg_quote_turnaround_hours ?? 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Data Delivery Window</dt>
+                    <dd className="text-gray-900">
+                      {selected.data_delivery_min_days !== null && selected.data_delivery_max_days !== null
+                        ? `${selected.data_delivery_min_days}-${selected.data_delivery_max_days} days`
+                        : 'N/A'}
+                    </dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Repeat Hire Rate</dt>
+                    <dd className="text-gray-900">{selected.repeat_hire_rate_pct !== null ? `${selected.repeat_hire_rate_pct}%` : 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Member Since</dt>
+                    <dd className="text-gray-900">{selected.member_since_year ?? 'N/A'}</dd>
+                  </div>
+                </dl>
+              </AdminCard>
+
+              <AdminCard title="Equipment, Portfolio, Skills">
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <p className="text-gray-500 mb-1">Equipment</p>
+                    {(selected.equipment_items_json || []).length === 0 ? (
+                      <p className="text-gray-900">N/A</p>
+                    ) : (
+                      <ul className="space-y-1">
+                        {(selected.equipment_items_json || []).map((item, index) => (
+                          <li key={`${item.name}-${index}`} className="text-gray-800">
+                            <span className="font-medium">{item.name}</span>
+                            {item.details ? <span className="text-gray-600"> — {item.details}</span> : null}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-gray-500 mb-1">Portfolio Images</p>
+                    <p className="text-gray-900">{selected.portfolio_items_json?.length || 0} uploaded</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-500 mb-1">Skill Levels</p>
+                    <ul className="space-y-1">
+                      {PILOT_SKILL_CATEGORIES.map((category) => (
+                        <li key={category.key} className="text-gray-800">
+                          {category.label}:{' '}
+                          <span className="font-medium">
+                            {selected.skills_levels_json?.[category.key] || 'N/A'}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </AdminCard>
+
+              <AdminCard title="FAQ Answers">
+                <dl className="space-y-3 text-sm">
+                  <div>
+                    <dt className="text-gray-500">Coverage</dt>
+                    <dd className="text-gray-900">{selected.faq_coverage_answer || 'N/A'}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Qualifications</dt>
+                    <dd className="text-gray-900">{selected.faq_qualifications_answer || 'N/A'}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Turnaround</dt>
+                    <dd className="text-gray-900">{selected.faq_turnaround_answer || 'N/A'}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">File Formats</dt>
+                    <dd className="text-gray-900">{selected.faq_formats_answer || 'N/A'}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500">Permissions</dt>
+                    <dd className="text-gray-900">{selected.faq_permissions_answer || 'N/A'}</dd>
+                  </div>
+                </dl>
+              </AdminCard>
 
               {/* Dates & review */}
               <AdminCard title="Application Timeline">

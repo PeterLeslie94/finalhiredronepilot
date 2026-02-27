@@ -25,6 +25,34 @@ type PilotApplicationRow = {
   flyer_id: string;
   operator_id: string;
   licence_level: string;
+  base_city: string | null;
+  coverage_uk_wide: boolean;
+  coverage_regions: string[] | null;
+  coverage_notes: string | null;
+  availability_status: string | null;
+  google_business_profile_url: string | null;
+  linkedin_url: string | null;
+  instagram_url: string | null;
+  youtube_url: string | null;
+  facebook_url: string | null;
+  total_projects_completed: number | null;
+  years_experience: number | null;
+  avg_response_hours: number | null;
+  avg_quote_turnaround_hours: number | null;
+  data_delivery_min_days: number | null;
+  data_delivery_max_days: number | null;
+  repeat_hire_rate_pct: number | null;
+  member_since_year: number | null;
+  top_service_slugs: string[] | null;
+  additional_services_note: string | null;
+  equipment_items_json: unknown;
+  portfolio_items_json: unknown;
+  skills_levels_json: unknown;
+  faq_coverage_answer: string | null;
+  faq_qualifications_answer: string | null;
+  faq_turnaround_answer: string | null;
+  faq_formats_answer: string | null;
+  faq_permissions_answer: string | null;
   status: string;
   created_pilot_id: string | null;
 };
@@ -79,11 +107,43 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
             insurance_expiry,
             flyer_id,
             operator_id,
+            base_city,
+            coverage_uk_wide,
+            coverage_regions,
+            coverage_notes,
+            availability_status,
+            google_business_profile_url,
+            linkedin_url,
+            instagram_url,
+            youtube_url,
+            facebook_url,
+            total_projects_completed,
+            years_experience,
+            avg_response_hours,
+            avg_quote_turnaround_hours,
+            data_delivery_min_days,
+            data_delivery_max_days,
+            repeat_hire_rate_pct,
+            member_since_year,
+            top_service_slugs,
+            additional_services_note,
+            equipment_items_json,
+            portfolio_items_json,
+            skills_levels_json,
+            faq_coverage_answer,
+            faq_qualifications_answer,
+            faq_turnaround_answer,
+            faq_formats_answer,
+            faq_permissions_answer,
             slug,
             backlink_token_hash,
             backlink_token_expires_at
           )
-          VALUES ($1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,$13,$14,$15)
+          VALUES (
+            $1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,
+            $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,
+            $41,$42,$43
+          )
           RETURNING id`,
         [
           app.pilot_name,
@@ -98,6 +158,34 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           app.insurance_expiry,
           app.flyer_id,
           app.operator_id,
+          app.base_city,
+          app.coverage_uk_wide,
+          app.coverage_regions,
+          app.coverage_notes,
+          app.availability_status,
+          app.google_business_profile_url,
+          app.linkedin_url,
+          app.instagram_url,
+          app.youtube_url,
+          app.facebook_url,
+          app.total_projects_completed,
+          app.years_experience,
+          app.avg_response_hours,
+          app.avg_quote_turnaround_hours,
+          app.data_delivery_min_days,
+          app.data_delivery_max_days,
+          app.repeat_hire_rate_pct,
+          app.member_since_year,
+          app.top_service_slugs,
+          app.additional_services_note,
+          app.equipment_items_json,
+          app.portfolio_items_json,
+          app.skills_levels_json,
+          app.faq_coverage_answer,
+          app.faq_qualifications_answer,
+          app.faq_turnaround_answer,
+          app.faq_formats_answer,
+          app.faq_permissions_answer,
           slug,
           tokenHash,
           backlinkTokenExpiresAt.toISOString(),

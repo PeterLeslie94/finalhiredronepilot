@@ -5,6 +5,7 @@ import { X, ExternalLink, Search } from 'lucide-react';
 
 import AdminCard from '@/components/admin/AdminCard';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
+import { PILOT_AVAILABILITY_OPTIONS } from '@/lib/pilot-profile';
 
 type PilotRow = {
   id: string;
@@ -30,6 +31,34 @@ type PilotDetail = PilotRow & {
   website_url: string | null;
   flyer_id: string | null;
   operator_id: string | null;
+  base_city: string | null;
+  coverage_uk_wide: boolean;
+  coverage_regions: string[] | null;
+  coverage_notes: string | null;
+  availability_status: string | null;
+  google_business_profile_url: string | null;
+  linkedin_url: string | null;
+  instagram_url: string | null;
+  youtube_url: string | null;
+  facebook_url: string | null;
+  total_projects_completed: number | null;
+  years_experience: number | null;
+  avg_response_hours: number | null;
+  avg_quote_turnaround_hours: number | null;
+  data_delivery_min_days: number | null;
+  data_delivery_max_days: number | null;
+  repeat_hire_rate_pct: number | null;
+  member_since_year: number | null;
+  top_service_slugs: string[] | null;
+  additional_services_note: string | null;
+  equipment_items_json: unknown;
+  portfolio_items_json: unknown;
+  skills_levels_json: unknown;
+  faq_coverage_answer: string | null;
+  faq_qualifications_answer: string | null;
+  faq_turnaround_answer: string | null;
+  faq_formats_answer: string | null;
+  faq_permissions_answer: string | null;
   backlink_token_hash: string | null;
 };
 
@@ -46,10 +75,47 @@ type PilotEditForm = {
   insurance_expiry: string;
   flyer_id: string;
   operator_id: string;
+  base_city: string;
+  coverage_uk_wide: boolean;
+  coverage_regions: string;
+  coverage_notes: string;
+  availability_status: string;
+  google_business_profile_url: string;
+  linkedin_url: string;
+  instagram_url: string;
+  youtube_url: string;
+  facebook_url: string;
+  total_projects_completed: string;
+  years_experience: string;
+  avg_response_hours: string;
+  avg_quote_turnaround_hours: string;
+  data_delivery_min_days: string;
+  data_delivery_max_days: string;
+  repeat_hire_rate_pct: string;
+  member_since_year: string;
+  top_service_slugs: string;
+  additional_services_note: string;
+  equipment_items_json: string;
+  portfolio_items_json: string;
+  skills_levels_json: string;
+  faq_coverage_answer: string;
+  faq_qualifications_answer: string;
+  faq_turnaround_answer: string;
+  faq_formats_answer: string;
+  faq_permissions_answer: string;
   notes: string;
   tier: string;
   active: boolean;
 };
+
+function toPrettyJson(value: unknown, fallback: string): string {
+  if (value === null || value === undefined) return fallback;
+  try {
+    return JSON.stringify(value, null, 2);
+  } catch {
+    return fallback;
+  }
+}
 
 function toLocalDateTime(value: string) {
   const parsed = new Date(value);
@@ -89,6 +155,34 @@ function toEditForm(detail: PilotDetail): PilotEditForm {
     insurance_expiry: detail.insurance_expiry || '',
     flyer_id: detail.flyer_id || '',
     operator_id: detail.operator_id || '',
+    base_city: detail.base_city || '',
+    coverage_uk_wide: detail.coverage_uk_wide ?? false,
+    coverage_regions: toPrettyJson(detail.coverage_regions || [], '[]'),
+    coverage_notes: detail.coverage_notes || '',
+    availability_status: detail.availability_status || 'AVAILABLE',
+    google_business_profile_url: detail.google_business_profile_url || '',
+    linkedin_url: detail.linkedin_url || '',
+    instagram_url: detail.instagram_url || '',
+    youtube_url: detail.youtube_url || '',
+    facebook_url: detail.facebook_url || '',
+    total_projects_completed: detail.total_projects_completed?.toString() || '',
+    years_experience: detail.years_experience?.toString() || '',
+    avg_response_hours: detail.avg_response_hours?.toString() || '',
+    avg_quote_turnaround_hours: detail.avg_quote_turnaround_hours?.toString() || '',
+    data_delivery_min_days: detail.data_delivery_min_days?.toString() || '',
+    data_delivery_max_days: detail.data_delivery_max_days?.toString() || '',
+    repeat_hire_rate_pct: detail.repeat_hire_rate_pct?.toString() || '',
+    member_since_year: detail.member_since_year?.toString() || '',
+    top_service_slugs: toPrettyJson(detail.top_service_slugs || [], '[]'),
+    additional_services_note: detail.additional_services_note || '',
+    equipment_items_json: toPrettyJson(detail.equipment_items_json ?? [], '[]'),
+    portfolio_items_json: toPrettyJson(detail.portfolio_items_json ?? [], '[]'),
+    skills_levels_json: toPrettyJson(detail.skills_levels_json ?? {}, '{}'),
+    faq_coverage_answer: detail.faq_coverage_answer || '',
+    faq_qualifications_answer: detail.faq_qualifications_answer || '',
+    faq_turnaround_answer: detail.faq_turnaround_answer || '',
+    faq_formats_answer: detail.faq_formats_answer || '',
+    faq_permissions_answer: detail.faq_permissions_answer || '',
     notes: detail.notes || '',
     tier: detail.tier || 'VERIFIED_OPERATOR',
     active: detail.active,
@@ -187,6 +281,28 @@ export default function AdminPilotsPage() {
     setSaving(true);
     setSaveMsg('');
     try {
+      const parseJsonInput = (value: string, fallback: unknown) => {
+        const trimmed = value.trim();
+        if (!trimmed) return fallback;
+        return JSON.parse(trimmed);
+      };
+
+      let parsedCoverageRegions: unknown = null;
+      let parsedTopServices: unknown = null;
+      let parsedEquipment: unknown = [];
+      let parsedPortfolio: unknown = [];
+      let parsedSkills: unknown = {};
+
+      try {
+        parsedCoverageRegions = parseJsonInput(editForm.coverage_regions, null);
+        parsedTopServices = parseJsonInput(editForm.top_service_slugs, null);
+        parsedEquipment = parseJsonInput(editForm.equipment_items_json, []);
+        parsedPortfolio = parseJsonInput(editForm.portfolio_items_json, []);
+        parsedSkills = parseJsonInput(editForm.skills_levels_json, {});
+      } catch {
+        throw new Error('One or more JSON fields are invalid. Please check coverage/services/equipment/portfolio/skills.');
+      }
+
       const response = await fetch(`/api/admin/pilots/${detail.id}/`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -202,6 +318,34 @@ export default function AdminPilotsPage() {
           insurance_expiry: editForm.insurance_expiry || null,
           flyer_id: editForm.flyer_id || null,
           operator_id: editForm.operator_id || null,
+          base_city: editForm.base_city || null,
+          coverage_uk_wide: editForm.coverage_uk_wide,
+          coverage_regions: parsedCoverageRegions,
+          coverage_notes: editForm.coverage_notes || null,
+          availability_status: editForm.availability_status || null,
+          google_business_profile_url: editForm.google_business_profile_url || null,
+          linkedin_url: editForm.linkedin_url || null,
+          instagram_url: editForm.instagram_url || null,
+          youtube_url: editForm.youtube_url || null,
+          facebook_url: editForm.facebook_url || null,
+          total_projects_completed: editForm.total_projects_completed || null,
+          years_experience: editForm.years_experience || null,
+          avg_response_hours: editForm.avg_response_hours || null,
+          avg_quote_turnaround_hours: editForm.avg_quote_turnaround_hours || null,
+          data_delivery_min_days: editForm.data_delivery_min_days || null,
+          data_delivery_max_days: editForm.data_delivery_max_days || null,
+          repeat_hire_rate_pct: editForm.repeat_hire_rate_pct || null,
+          member_since_year: editForm.member_since_year || null,
+          top_service_slugs: parsedTopServices,
+          additional_services_note: editForm.additional_services_note || null,
+          equipment_items_json: parsedEquipment,
+          portfolio_items_json: parsedPortfolio,
+          skills_levels_json: parsedSkills,
+          faq_coverage_answer: editForm.faq_coverage_answer || null,
+          faq_qualifications_answer: editForm.faq_qualifications_answer || null,
+          faq_turnaround_answer: editForm.faq_turnaround_answer || null,
+          faq_formats_answer: editForm.faq_formats_answer || null,
+          faq_permissions_answer: editForm.faq_permissions_answer || null,
           notes: editForm.notes || null,
         }),
       });

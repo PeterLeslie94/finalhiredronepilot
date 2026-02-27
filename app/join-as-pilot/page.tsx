@@ -1,11 +1,30 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+
 import PhotoUploader from '@/components/PhotoUploader';
+import PortfolioUploader, { PortfolioDraftItem } from '@/components/PortfolioUploader';
 import HoneypotField from '@/components/HoneypotField';
 import { HONEYPOT_FIELD_NAME } from '@/lib/honeypot';
+import {
+  PILOT_AVAILABILITY_OPTIONS,
+  PILOT_COVERAGE_LABELS,
+  PILOT_COVERAGE_REGIONS,
+  PILOT_FAQ_QUESTIONS,
+  PILOT_SERVICE_OPTIONS,
+  PILOT_SKILL_CATEGORIES,
+  PILOT_SKILL_LEVELS,
+  PilotCoverageRegion,
+  PilotSkillKey,
+  PilotSkillLevel,
+} from '@/lib/pilot-profile';
 
-type Step = 1 | 2 | 3;
+type Step = 1 | 2 | 3 | 4 | 5;
+
+type EquipmentDraftItem = {
+  name: string;
+  details: string;
+};
 
 type PilotFormValues = {
   pilot_name: string;
@@ -13,13 +32,46 @@ type PilotFormValues = {
   email: string;
   phone: string;
   website_url: string;
-  profile_photo_url: string;
-  two_sentence_summary: string;
+  base_city: string;
+
   insurance_provider: string;
   insurance_expiry: string;
   flyer_id: string;
   operator_id: string;
   licence_level: string;
+
+  top_service_slugs: string[];
+  additional_services_note: string;
+  availability_status: string;
+  coverage_uk_wide: boolean;
+  coverage_regions: PilotCoverageRegion[];
+  coverage_notes: string;
+  total_projects_completed: string;
+  years_experience: string;
+  avg_response_hours: string;
+  avg_quote_turnaround_hours: string;
+  data_delivery_min_days: string;
+  data_delivery_max_days: string;
+  repeat_hire_rate_pct: string;
+  member_since_year: string;
+
+  profile_photo_url: string;
+  equipment_items_json: EquipmentDraftItem[];
+  portfolio_items_json: PortfolioDraftItem[];
+
+  two_sentence_summary: string;
+  skills_levels_json: Record<PilotSkillKey, PilotSkillLevel | ''>;
+  faq_coverage_answer: string;
+  faq_qualifications_answer: string;
+  faq_turnaround_answer: string;
+  faq_formats_answer: string;
+  faq_permissions_answer: string;
+  google_business_profile_url: string;
+  linkedin_url: string;
+  instagram_url: string;
+  youtube_url: string;
+  facebook_url: string;
+
   consent_to_pilot_terms: boolean;
   pilot_terms_version: string;
   consent_source_page: string;
@@ -30,28 +82,94 @@ type PilotFormField = keyof PilotFormValues;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LICENCE_OPTIONS = ['A2 CofC', 'GVC'] as const;
 const PILOT_TERMS_VERSION = 'pilot-terms-v1';
+
+const CURRENT_YEAR = new Date().getUTCFullYear();
+
 const INITIAL_VALUES: PilotFormValues = {
   pilot_name: '',
   business_name: '',
   email: '',
   phone: '',
   website_url: '',
-  profile_photo_url: '',
-  two_sentence_summary: '',
+  base_city: '',
+
   insurance_provider: '',
   insurance_expiry: '',
   flyer_id: '',
   operator_id: '',
   licence_level: '',
+
+  top_service_slugs: [],
+  additional_services_note: '',
+  availability_status: 'AVAILABLE',
+  coverage_uk_wide: true,
+  coverage_regions: [],
+  coverage_notes: '',
+  total_projects_completed: '',
+  years_experience: '',
+  avg_response_hours: '',
+  avg_quote_turnaround_hours: '',
+  data_delivery_min_days: '',
+  data_delivery_max_days: '',
+  repeat_hire_rate_pct: '',
+  member_since_year: String(CURRENT_YEAR),
+
+  profile_photo_url: '',
+  equipment_items_json: [{ name: '', details: '' }],
+  portfolio_items_json: [],
+
+  two_sentence_summary: '',
+  skills_levels_json: {
+    surveying: '',
+    lidar: '',
+    inspection: '',
+    thermal: '',
+    construction: '',
+    processing: '',
+  },
+  faq_coverage_answer: '',
+  faq_qualifications_answer: '',
+  faq_turnaround_answer: '',
+  faq_formats_answer: '',
+  faq_permissions_answer: '',
+  google_business_profile_url: '',
+  linkedin_url: '',
+  instagram_url: '',
+  youtube_url: '',
+  facebook_url: '',
+
   consent_to_pilot_terms: false,
   pilot_terms_version: PILOT_TERMS_VERSION,
   consent_source_page: '/join-as-pilot',
 };
 
 const STEP_FIELDS: Record<Step, PilotFormField[]> = {
-  1: ['pilot_name', 'business_name', 'email', 'phone', 'website_url'],
+  1: ['pilot_name', 'business_name', 'email', 'phone', 'website_url', 'base_city'],
   2: ['insurance_provider', 'flyer_id', 'operator_id', 'licence_level'],
-  3: ['profile_photo_url', 'two_sentence_summary', 'consent_to_pilot_terms'],
+  3: [
+    'top_service_slugs',
+    'availability_status',
+    'coverage_regions',
+    'total_projects_completed',
+    'years_experience',
+    'avg_response_hours',
+    'avg_quote_turnaround_hours',
+    'data_delivery_min_days',
+    'data_delivery_max_days',
+    'repeat_hire_rate_pct',
+    'member_since_year',
+  ],
+  4: ['profile_photo_url', 'equipment_items_json', 'portfolio_items_json'],
+  5: [
+    'two_sentence_summary',
+    'skills_levels_json',
+    'faq_coverage_answer',
+    'faq_qualifications_answer',
+    'faq_turnaround_answer',
+    'faq_formats_answer',
+    'faq_permissions_answer',
+    'consent_to_pilot_terms',
+  ],
 };
 
 function normalizeWebsiteInput(raw: string): string {
@@ -71,6 +189,15 @@ function isValidWebsite(raw: string): boolean {
   }
 }
 
+function validateNumberField(value: string, min: number, max: number, label: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return `${label} is required.`;
+  if (!/^-?\d+$/.test(trimmed)) return `${label} must be a whole number.`;
+  const parsed = Number(trimmed);
+  if (parsed < min || parsed > max) return `${label} must be between ${min} and ${max}.`;
+  return '';
+}
+
 function validateField(field: PilotFormField, values: PilotFormValues): string {
   switch (field) {
     case 'pilot_name':
@@ -84,6 +211,8 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
     case 'website_url':
       if (!values.website_url.trim()) return 'Website URL is required.';
       return isValidWebsite(values.website_url) ? '' : 'Enter a valid website URL.';
+    case 'base_city':
+      return values.base_city.trim().length >= 2 ? '' : 'Base city is required.';
     case 'insurance_provider':
       return values.insurance_provider.trim() ? '' : 'Insurance provider is required.';
     case 'insurance_expiry':
@@ -95,12 +224,69 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       return values.operator_id.trim() ? '' : 'Operator ID is required.';
     case 'licence_level':
       return values.licence_level.trim() ? '' : 'Select at least one licence level.';
+    case 'top_service_slugs':
+      return values.top_service_slugs.length === 6
+        ? ''
+        : 'Select exactly 6 top services to feature on your profile.';
+    case 'availability_status':
+      return values.availability_status ? '' : 'Availability status is required.';
+    case 'coverage_regions':
+      if (values.coverage_uk_wide) return '';
+      return values.coverage_regions.length > 0
+        ? ''
+        : 'Select at least one coverage region or enable UK-wide coverage.';
+    case 'total_projects_completed':
+      return validateNumberField(values.total_projects_completed, 0, 500000, 'Total projects completed');
+    case 'years_experience':
+      return validateNumberField(values.years_experience, 0, 80, 'Years experience');
+    case 'avg_response_hours':
+      return validateNumberField(values.avg_response_hours, 1, 720, 'Average response hours');
+    case 'avg_quote_turnaround_hours':
+      return validateNumberField(values.avg_quote_turnaround_hours, 1, 720, 'Average quote turnaround hours');
+    case 'data_delivery_min_days':
+      return validateNumberField(values.data_delivery_min_days, 1, 365, 'Minimum data delivery days');
+    case 'data_delivery_max_days': {
+      const err = validateNumberField(values.data_delivery_max_days, 1, 365, 'Maximum data delivery days');
+      if (err) return err;
+      const min = Number(values.data_delivery_min_days || 0);
+      const max = Number(values.data_delivery_max_days || 0);
+      return max >= min ? '' : 'Maximum data delivery days cannot be lower than minimum data delivery days.';
+    }
+    case 'repeat_hire_rate_pct':
+      return validateNumberField(values.repeat_hire_rate_pct, 0, 100, 'Repeat hire rate %');
+    case 'member_since_year':
+      return validateNumberField(values.member_since_year, 2000, CURRENT_YEAR, 'Member since year');
     case 'profile_photo_url':
       return values.profile_photo_url.trim() ? '' : 'Please upload a square 1:1 headshot.';
+    case 'equipment_items_json': {
+      const validRows = values.equipment_items_json.filter((item) => item.name.trim().length > 0);
+      return validRows.length > 0 ? '' : 'Add at least one equipment or drone entry.';
+    }
+    case 'portfolio_items_json':
+      if (values.portfolio_items_json.length === 0) return 'Add at least one portfolio image.';
+      if (values.portfolio_items_json.length > 3) return 'You can upload up to 3 portfolio images.';
+      return '';
     case 'two_sentence_summary':
       return values.two_sentence_summary.trim().length >= 20
         ? ''
         : 'Profile summary must be at least 20 characters.';
+    case 'skills_levels_json': {
+      const missingSkill = PILOT_SKILL_CATEGORIES.find((skill) => !values.skills_levels_json[skill.key]);
+      return missingSkill ? `Select a skill level for ${missingSkill.label}.` : '';
+    }
+    case 'faq_coverage_answer':
+    case 'faq_qualifications_answer':
+    case 'faq_turnaround_answer':
+    case 'faq_formats_answer':
+    case 'faq_permissions_answer':
+      return values[field].trim().length >= 12 ? '' : 'Each FAQ answer should be at least 12 characters.';
+    case 'google_business_profile_url':
+    case 'linkedin_url':
+    case 'instagram_url':
+    case 'youtube_url':
+    case 'facebook_url':
+      if (!values[field].trim()) return '';
+      return isValidWebsite(values[field]) ? '' : 'Enter a valid URL.';
     case 'consent_to_pilot_terms':
       return values.consent_to_pilot_terms
         ? ''
@@ -108,6 +294,8 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
     case 'pilot_terms_version':
       return values.pilot_terms_version.trim() ? '' : 'Drone pilot terms version is required.';
     case 'consent_source_page':
+    case 'additional_services_note':
+    case 'coverage_notes':
       return '';
     default:
       return '';
@@ -117,7 +305,9 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
 function stepForField(field: PilotFormField): Step {
   if (STEP_FIELDS[1].includes(field)) return 1;
   if (STEP_FIELDS[2].includes(field)) return 2;
-  return 3;
+  if (STEP_FIELDS[3].includes(field)) return 3;
+  if (STEP_FIELDS[4].includes(field)) return 4;
+  return 5;
 }
 
 export default function PilotApplyPage() {
@@ -133,7 +323,7 @@ export default function PilotApplyPage() {
 
   const inputClass = 'form-input';
 
-  const setFieldValue = (field: PilotFormField, value: string | boolean) => {
+  const setFieldValue = <K extends PilotFormField>(field: K, value: PilotFormValues[K]) => {
     setValues((prev) => ({ ...prev, [field]: value }));
     setFormError('');
     setSuccessMessage('');
@@ -184,7 +374,7 @@ export default function PilotApplyPage() {
       focusField(firstInvalid);
       return;
     }
-    if (step < 3) setStep((prev) => (prev + 1) as Step);
+    if (step < 5) setStep((prev) => (prev + 1) as Step);
   };
 
   const goPrevStep = () => {
@@ -200,6 +390,49 @@ export default function PilotApplyPage() {
     setFieldValue('licence_level', nextSelection.join(', '));
   };
 
+  const toggleServiceSlug = (slug: string) => {
+    const hasSlug = values.top_service_slugs.includes(slug);
+    const next = hasSlug
+      ? values.top_service_slugs.filter((item) => item !== slug)
+      : values.top_service_slugs.length < 6
+        ? [...values.top_service_slugs, slug]
+        : values.top_service_slugs;
+    setFieldValue('top_service_slugs', next);
+  };
+
+  const toggleCoverageRegion = (region: PilotCoverageRegion) => {
+    const hasRegion = values.coverage_regions.includes(region);
+    const next = hasRegion
+      ? values.coverage_regions.filter((item) => item !== region)
+      : [...values.coverage_regions, region];
+    setFieldValue('coverage_regions', next as PilotCoverageRegion[]);
+  };
+
+  const equipmentRows = useMemo(
+    () => values.equipment_items_json,
+    [values.equipment_items_json],
+  );
+
+  const setEquipmentRow = (index: number, key: keyof EquipmentDraftItem, nextValue: string) => {
+    const nextRows = equipmentRows.map((row, rowIndex) =>
+      rowIndex === index ? { ...row, [key]: nextValue } : row,
+    );
+    setFieldValue('equipment_items_json', nextRows);
+  };
+
+  const addEquipmentRow = () => {
+    if (equipmentRows.length >= 12) return;
+    setFieldValue('equipment_items_json', [...equipmentRows, { name: '', details: '' }]);
+  };
+
+  const removeEquipmentRow = (index: number) => {
+    if (equipmentRows.length === 1) {
+      setFieldValue('equipment_items_json', [{ name: '', details: '' }]);
+      return;
+    }
+    setFieldValue('equipment_items_json', equipmentRows.filter((_, rowIndex) => rowIndex !== index));
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError('');
@@ -209,12 +442,35 @@ export default function PilotApplyPage() {
     const honeypotRaw = submitFormData.get(HONEYPOT_FIELD_NAME);
     const honeypot = typeof honeypotRaw === 'string' ? honeypotRaw : '';
 
-    const allFields = [...STEP_FIELDS[1], ...STEP_FIELDS[2], ...STEP_FIELDS[3]];
+    const allFields = [
+      ...STEP_FIELDS[1],
+      ...STEP_FIELDS[2],
+      ...STEP_FIELDS[3],
+      ...STEP_FIELDS[4],
+      ...STEP_FIELDS[5],
+    ];
+
+    const cleanedEquipment = values.equipment_items_json
+      .map((item) => ({
+        name: item.name.trim(),
+        details: item.details.trim(),
+      }))
+      .filter((item) => item.name.length > 0);
+
     const payload: PilotFormValues = {
       ...values,
+      website_url: normalizeWebsiteInput(values.website_url),
+      google_business_profile_url: normalizeWebsiteInput(values.google_business_profile_url),
+      linkedin_url: normalizeWebsiteInput(values.linkedin_url),
+      instagram_url: normalizeWebsiteInput(values.instagram_url),
+      youtube_url: normalizeWebsiteInput(values.youtube_url),
+      facebook_url: normalizeWebsiteInput(values.facebook_url),
+      equipment_items_json: cleanedEquipment,
+      portfolio_items_json: values.portfolio_items_json,
       consent_source_page: typeof window !== 'undefined' ? window.location.pathname : values.consent_source_page,
       pilot_terms_version: values.pilot_terms_version || PILOT_TERMS_VERSION,
     };
+
     const submissionPayload = {
       ...payload,
       [HONEYPOT_FIELD_NAME]: honeypot,
@@ -259,19 +515,23 @@ export default function PilotApplyPage() {
       ? 'Business Details'
       : step === 2
         ? 'Compliance Details'
-        : 'Profile & Headshot';
+        : step === 3
+          ? 'Profile Metrics & Services'
+          : step === 4
+            ? 'Media & Equipment'
+            : 'Skills, FAQ & Consent';
 
   return (
     <section className="-mt-[104px] bg-teal pt-[152px] pb-20 md:pt-[176px] md:pb-24">
-      <div className="container max-w-4xl">
+      <div className="container max-w-5xl">
         <div className="grid gap-3 sm:grid-cols-3 mb-6">
           <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3">
             <p className="text-xs uppercase tracking-wide text-white/60">Application time</p>
-            <p className="text-white font-semibold">~3 minutes</p>
+            <p className="text-white font-semibold">~8 minutes</p>
           </div>
           <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3">
-            <p className="text-xs uppercase tracking-wide text-white/60">Cost</p>
-            <p className="text-white font-semibold">No payment required</p>
+            <p className="text-xs uppercase tracking-wide text-white/60">Profile depth</p>
+            <p className="text-white font-semibold">Structured pilot profile</p>
           </div>
           <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-3">
             <p className="text-xs uppercase tracking-wide text-white/60">Review process</p>
@@ -290,11 +550,11 @@ export default function PilotApplyPage() {
             <div className="flex items-center justify-between text-sm text-white/80 mb-2">
               <span>{stepTitle}</span>
               <span>
-                Step {step} of 3
+                Step {step} of 5
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3].map((value) => (
+            <div className="grid grid-cols-5 gap-2">
+              {[1, 2, 3, 4, 5].map((value) => (
                 <div key={value} className={`h-1.5 rounded-full ${value <= step ? 'bg-gold' : 'bg-white/20'}`} />
               ))}
             </div>
@@ -302,6 +562,7 @@ export default function PilotApplyPage() {
 
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
             <HoneypotField />
+
             {step === 1 ? (
               <div className="space-y-4">
                 <div>
@@ -332,31 +593,33 @@ export default function PilotApplyPage() {
                   ) : null}
                 </div>
 
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    className={inputClass}
-                    placeholder="Email *"
-                    value={values.email}
-                    onChange={(event) => setFieldValue('email', event.target.value)}
-                    onBlur={() => setFieldError('email', validateField('email', values))}
-                    required
-                  />
-                  {fieldErrors.email ? <p className="text-red-200 text-sm mt-1">{fieldErrors.email}</p> : null}
-                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      className={inputClass}
+                      placeholder="Email *"
+                      value={values.email}
+                      onChange={(event) => setFieldValue('email', event.target.value)}
+                      onBlur={() => setFieldError('email', validateField('email', values))}
+                      required
+                    />
+                    {fieldErrors.email ? <p className="text-red-200 text-sm mt-1">{fieldErrors.email}</p> : null}
+                  </div>
 
-                <div>
-                  <input
-                    name="phone"
-                    className={inputClass}
-                    placeholder="Phone *"
-                    value={values.phone}
-                    onChange={(event) => setFieldValue('phone', event.target.value)}
-                    onBlur={() => setFieldError('phone', validateField('phone', values))}
-                    required
-                  />
-                  {fieldErrors.phone ? <p className="text-red-200 text-sm mt-1">{fieldErrors.phone}</p> : null}
+                  <div>
+                    <input
+                      name="phone"
+                      className={inputClass}
+                      placeholder="Phone *"
+                      value={values.phone}
+                      onChange={(event) => setFieldValue('phone', event.target.value)}
+                      onBlur={() => setFieldError('phone', validateField('phone', values))}
+                      required
+                    />
+                    {fieldErrors.phone ? <p className="text-red-200 text-sm mt-1">{fieldErrors.phone}</p> : null}
+                  </div>
                 </div>
 
                 <div>
@@ -377,6 +640,19 @@ export default function PilotApplyPage() {
                   <p className="text-white/60 text-xs mt-1">Use your business website (we accept URLs without https).</p>
                   {fieldErrors.website_url ? <p className="text-red-200 text-sm mt-1">{fieldErrors.website_url}</p> : null}
                 </div>
+
+                <div>
+                  <input
+                    name="base_city"
+                    className={inputClass}
+                    placeholder="Base City / Area *"
+                    value={values.base_city}
+                    onChange={(event) => setFieldValue('base_city', event.target.value)}
+                    onBlur={() => setFieldError('base_city', validateField('base_city', values))}
+                    required
+                  />
+                  {fieldErrors.base_city ? <p className="text-red-200 text-sm mt-1">{fieldErrors.base_city}</p> : null}
+                </div>
               </div>
             ) : null}
 
@@ -395,6 +671,17 @@ export default function PilotApplyPage() {
                   {fieldErrors.insurance_provider ? (
                     <p className="text-red-200 text-sm mt-1">{fieldErrors.insurance_provider}</p>
                   ) : null}
+                </div>
+
+                <div>
+                  <input
+                    type="date"
+                    name="insurance_expiry"
+                    className={inputClass}
+                    value={values.insurance_expiry}
+                    onChange={(event) => setFieldValue('insurance_expiry', event.target.value)}
+                  />
+                  <p className="text-white/60 text-xs mt-1">Optional: insurance expiry date.</p>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -454,7 +741,208 @@ export default function PilotApplyPage() {
             ) : null}
 
             {step === 3 ? (
-              <div className="space-y-4">
+              <div className="space-y-5">
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-white font-semibold">Top Services (select exactly 6) *</p>
+                    <span className="text-xs text-white/60">{values.top_service_slugs.length}/6 selected</span>
+                  </div>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {PILOT_SERVICE_OPTIONS.map((service) => {
+                      const checked = values.top_service_slugs.includes(service.slug);
+                      const disabled = !checked && values.top_service_slugs.length >= 6;
+                      return (
+                        <label
+                          key={service.slug}
+                          className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-colors ${
+                            checked
+                              ? 'border-gold/70 bg-gold/10 text-white'
+                              : 'border-white/20 bg-white/5 text-white/90'
+                          } ${disabled ? 'opacity-60' : ''}`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            disabled={disabled}
+                            onChange={() => toggleServiceSlug(service.slug)}
+                          />
+                          <span>{service.title}</span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                  {fieldErrors.top_service_slugs ? <p className="text-red-200 text-sm">{fieldErrors.top_service_slugs}</p> : null}
+                </div>
+
+                <div>
+                  <textarea
+                    name="additional_services_note"
+                    className={`${inputClass} resize-none`}
+                    rows={3}
+                    placeholder="Optional: additional service capabilities"
+                    value={values.additional_services_note}
+                    onChange={(event) => setFieldValue('additional_services_note', event.target.value)}
+                  />
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm text-white mb-1">Availability *</label>
+                    <select
+                      name="availability_status"
+                      className={inputClass}
+                      value={values.availability_status}
+                      onChange={(event) => setFieldValue('availability_status', event.target.value)}
+                    >
+                      {PILOT_AVAILABILITY_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value} className="text-gray-900">
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    {fieldErrors.availability_status ? <p className="text-red-200 text-sm mt-1">{fieldErrors.availability_status}</p> : null}
+                  </div>
+
+                  <div className="rounded-lg border border-white/20 bg-white/5 px-3 py-2 flex items-center gap-2">
+                    <input
+                      id="coverage-uk-wide"
+                      type="checkbox"
+                      checked={values.coverage_uk_wide}
+                      onChange={(event) => setFieldValue('coverage_uk_wide', event.target.checked)}
+                    />
+                    <label htmlFor="coverage-uk-wide" className="text-sm text-white/90">UK-wide coverage</label>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                  <p className="text-white font-semibold">Coverage Regions</p>
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    {PILOT_COVERAGE_REGIONS.map((region) => (
+                      <label key={region} className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-3 py-2 text-white/90">
+                        <input
+                          type="checkbox"
+                          checked={values.coverage_regions.includes(region)}
+                          disabled={values.coverage_uk_wide}
+                          onChange={() => toggleCoverageRegion(region)}
+                        />
+                        <span>{PILOT_COVERAGE_LABELS[region]}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <textarea
+                    name="coverage_notes"
+                    className={`${inputClass} resize-none`}
+                    rows={2}
+                    placeholder="Optional: travel notes / primary areas"
+                    value={values.coverage_notes}
+                    onChange={(event) => setFieldValue('coverage_notes', event.target.value)}
+                  />
+                  {fieldErrors.coverage_regions ? <p className="text-red-200 text-sm">{fieldErrors.coverage_regions}</p> : null}
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <input
+                      type="number"
+                      name="total_projects_completed"
+                      className={inputClass}
+                      placeholder="Total Career Projects *"
+                      value={values.total_projects_completed}
+                      onChange={(event) => setFieldValue('total_projects_completed', event.target.value)}
+                      onBlur={() => setFieldError('total_projects_completed', validateField('total_projects_completed', values))}
+                    />
+                    {fieldErrors.total_projects_completed ? <p className="text-red-200 text-sm mt-1">{fieldErrors.total_projects_completed}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="years_experience"
+                      className={inputClass}
+                      placeholder="Years Experience *"
+                      value={values.years_experience}
+                      onChange={(event) => setFieldValue('years_experience', event.target.value)}
+                      onBlur={() => setFieldError('years_experience', validateField('years_experience', values))}
+                    />
+                    {fieldErrors.years_experience ? <p className="text-red-200 text-sm mt-1">{fieldErrors.years_experience}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="avg_response_hours"
+                      className={inputClass}
+                      placeholder="Average Response Hours *"
+                      value={values.avg_response_hours}
+                      onChange={(event) => setFieldValue('avg_response_hours', event.target.value)}
+                      onBlur={() => setFieldError('avg_response_hours', validateField('avg_response_hours', values))}
+                    />
+                    {fieldErrors.avg_response_hours ? <p className="text-red-200 text-sm mt-1">{fieldErrors.avg_response_hours}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="avg_quote_turnaround_hours"
+                      className={inputClass}
+                      placeholder="Average Quote Turnaround (Hours) *"
+                      value={values.avg_quote_turnaround_hours}
+                      onChange={(event) => setFieldValue('avg_quote_turnaround_hours', event.target.value)}
+                      onBlur={() => setFieldError('avg_quote_turnaround_hours', validateField('avg_quote_turnaround_hours', values))}
+                    />
+                    {fieldErrors.avg_quote_turnaround_hours ? <p className="text-red-200 text-sm mt-1">{fieldErrors.avg_quote_turnaround_hours}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="data_delivery_min_days"
+                      className={inputClass}
+                      placeholder="Data Delivery Min Days *"
+                      value={values.data_delivery_min_days}
+                      onChange={(event) => setFieldValue('data_delivery_min_days', event.target.value)}
+                      onBlur={() => setFieldError('data_delivery_min_days', validateField('data_delivery_min_days', values))}
+                    />
+                    {fieldErrors.data_delivery_min_days ? <p className="text-red-200 text-sm mt-1">{fieldErrors.data_delivery_min_days}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="data_delivery_max_days"
+                      className={inputClass}
+                      placeholder="Data Delivery Max Days *"
+                      value={values.data_delivery_max_days}
+                      onChange={(event) => setFieldValue('data_delivery_max_days', event.target.value)}
+                      onBlur={() => setFieldError('data_delivery_max_days', validateField('data_delivery_max_days', values))}
+                    />
+                    {fieldErrors.data_delivery_max_days ? <p className="text-red-200 text-sm mt-1">{fieldErrors.data_delivery_max_days}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="repeat_hire_rate_pct"
+                      className={inputClass}
+                      placeholder="Repeat Hire Rate % *"
+                      value={values.repeat_hire_rate_pct}
+                      onChange={(event) => setFieldValue('repeat_hire_rate_pct', event.target.value)}
+                      onBlur={() => setFieldError('repeat_hire_rate_pct', validateField('repeat_hire_rate_pct', values))}
+                    />
+                    {fieldErrors.repeat_hire_rate_pct ? <p className="text-red-200 text-sm mt-1">{fieldErrors.repeat_hire_rate_pct}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="member_since_year"
+                      className={inputClass}
+                      placeholder="Member Since Year *"
+                      value={values.member_since_year}
+                      onChange={(event) => setFieldValue('member_since_year', event.target.value)}
+                      onBlur={() => setFieldError('member_since_year', validateField('member_since_year', values))}
+                    />
+                    {fieldErrors.member_since_year ? <p className="text-red-200 text-sm mt-1">{fieldErrors.member_since_year}</p> : null}
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
+            {step === 4 ? (
+              <div className="space-y-5">
                 <div ref={photoDropzoneRef} className="space-y-3">
                   <p className="text-white font-semibold text-sm">Drone Pilot Headshot (1:1 square) *</p>
                   <PhotoUploader
@@ -465,6 +953,53 @@ export default function PilotApplyPage() {
                   />
                 </div>
 
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-white font-semibold">Equipment & Drones *</p>
+                    <button type="button" className="text-xs text-gold hover:text-gold-light" onClick={addEquipmentRow}>
+                      + Add Row
+                    </button>
+                  </div>
+                  {equipmentRows.map((item, index) => (
+                    <div key={`equipment-${index}`} className="grid gap-2 sm:grid-cols-[1.2fr,1fr,auto]">
+                      <input
+                        className={inputClass}
+                        placeholder="Equipment name (e.g. DJI Mavic 3 Enterprise)"
+                        value={item.name}
+                        onChange={(event) => setEquipmentRow(index, 'name', event.target.value)}
+                      />
+                      <input
+                        className={inputClass}
+                        placeholder="Optional details"
+                        value={item.details}
+                        onChange={(event) => setEquipmentRow(index, 'details', event.target.value)}
+                      />
+                      <button
+                        type="button"
+                        className="rounded-lg border border-white/20 px-3 py-2 text-xs text-white/80 hover:bg-white/10"
+                        onClick={() => removeEquipmentRow(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                  {fieldErrors.equipment_items_json ? <p className="text-red-200 text-sm">{fieldErrors.equipment_items_json}</p> : null}
+                </div>
+
+                <div>
+                  <p className="text-white font-semibold text-sm mb-2">Portfolio Images (up to 3) *</p>
+                  <PortfolioUploader
+                    value={values.portfolio_items_json}
+                    onChange={(items) => setFieldValue('portfolio_items_json', items)}
+                    maxItems={3}
+                    error={fieldErrors.portfolio_items_json}
+                  />
+                </div>
+              </div>
+            ) : null}
+
+            {step === 5 ? (
+              <div className="space-y-5">
                 <div>
                   <textarea
                     name="two_sentence_summary"
@@ -484,11 +1019,105 @@ export default function PilotApplyPage() {
                   ) : null}
                 </div>
 
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4">
-                  <p className="text-white/80 text-sm">
-                    We assess applications for marketplace fit. We may approve, request more
-                    information, or decline an application.
-                  </p>
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                  <p className="text-white font-semibold">Skill Levels *</p>
+                  {PILOT_SKILL_CATEGORIES.map((skill) => (
+                    <div key={skill.key} className="grid gap-2 sm:grid-cols-[1fr,220px] sm:items-center">
+                      <label className="text-sm text-white/90">{skill.label}</label>
+                      <select
+                        name={`skill-${skill.key}`}
+                        className={inputClass}
+                        value={values.skills_levels_json[skill.key]}
+                        onChange={(event) => {
+                          const nextSkills = {
+                            ...values.skills_levels_json,
+                            [skill.key]: event.target.value as PilotSkillLevel | '',
+                          };
+                          setFieldValue('skills_levels_json', nextSkills);
+                        }}
+                      >
+                        <option value="" className="text-gray-900">Select level</option>
+                        {PILOT_SKILL_LEVELS.map((level) => (
+                          <option key={level} value={level} className="text-gray-900">{level}</option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+                  {fieldErrors.skills_levels_json ? <p className="text-red-200 text-sm">{fieldErrors.skills_levels_json}</p> : null}
+                </div>
+
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-4">
+                  <p className="text-white font-semibold">Profile FAQ Answers *</p>
+                  {PILOT_FAQ_QUESTIONS.map((faq) => {
+                    const fieldKey = (`faq_${faq.key}_answer`) as PilotFormField;
+                    return (
+                      <div key={faq.key}>
+                        <label className="block text-sm text-white/90 mb-1">{faq.question}</label>
+                        <textarea
+                          name={fieldKey}
+                          className={`${inputClass} resize-none`}
+                          rows={2}
+                          value={values[fieldKey] as string}
+                          onChange={(event) => setFieldValue(fieldKey, event.target.value as never)}
+                          onBlur={() => setFieldError(fieldKey, validateField(fieldKey, values))}
+                          placeholder="1-2 sentence answer"
+                        />
+                        {fieldErrors[fieldKey] ? <p className="text-red-200 text-sm mt-1">{fieldErrors[fieldKey]}</p> : null}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
+                  <p className="text-white font-semibold">Links & Social Profiles</p>
+                  <input
+                    name="google_business_profile_url"
+                    className={inputClass}
+                    placeholder="Google Business profile/reviews URL (optional)"
+                    value={values.google_business_profile_url}
+                    onChange={(event) => setFieldValue('google_business_profile_url', event.target.value)}
+                    onBlur={() => setFieldError('google_business_profile_url', validateField('google_business_profile_url', values))}
+                  />
+                  <p className="text-white/60 text-xs">Add your Google profile link. We will import your reviews to your profile.</p>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <input
+                      name="linkedin_url"
+                      className={inputClass}
+                      placeholder="LinkedIn URL (optional)"
+                      value={values.linkedin_url}
+                      onChange={(event) => setFieldValue('linkedin_url', event.target.value)}
+                      onBlur={() => setFieldError('linkedin_url', validateField('linkedin_url', values))}
+                    />
+                    <input
+                      name="instagram_url"
+                      className={inputClass}
+                      placeholder="Instagram URL (optional)"
+                      value={values.instagram_url}
+                      onChange={(event) => setFieldValue('instagram_url', event.target.value)}
+                      onBlur={() => setFieldError('instagram_url', validateField('instagram_url', values))}
+                    />
+                    <input
+                      name="youtube_url"
+                      className={inputClass}
+                      placeholder="YouTube URL (optional)"
+                      value={values.youtube_url}
+                      onChange={(event) => setFieldValue('youtube_url', event.target.value)}
+                      onBlur={() => setFieldError('youtube_url', validateField('youtube_url', values))}
+                    />
+                    <input
+                      name="facebook_url"
+                      className={inputClass}
+                      placeholder="Facebook URL (optional)"
+                      value={values.facebook_url}
+                      onChange={(event) => setFieldValue('facebook_url', event.target.value)}
+                      onBlur={() => setFieldError('facebook_url', validateField('facebook_url', values))}
+                    />
+                  </div>
+                  {fieldErrors.google_business_profile_url ? <p className="text-red-200 text-sm">{fieldErrors.google_business_profile_url}</p> : null}
+                  {fieldErrors.linkedin_url ? <p className="text-red-200 text-sm">{fieldErrors.linkedin_url}</p> : null}
+                  {fieldErrors.instagram_url ? <p className="text-red-200 text-sm">{fieldErrors.instagram_url}</p> : null}
+                  {fieldErrors.youtube_url ? <p className="text-red-200 text-sm">{fieldErrors.youtube_url}</p> : null}
+                  {fieldErrors.facebook_url ? <p className="text-red-200 text-sm">{fieldErrors.facebook_url}</p> : null}
                 </div>
 
                 <label className="rounded-xl border border-white/20 bg-white/5 p-4 flex items-start gap-3 text-white/85 text-sm">
@@ -539,7 +1168,7 @@ export default function PilotApplyPage() {
                   </button>
                 ) : null}
 
-                {step < 3 ? (
+                {step < 5 ? (
                   <button
                     type="button"
                     onClick={goNextStep}
