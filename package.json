@@ -11,7 +11,8 @@
     "content:sync": "node scripts/sync-contentful-blog.mjs",
     "migrate": "node scripts/run-migrations.mjs",
     "seed:demo": "node scripts/seed-demo.mjs --confirm",
-    "seed:demo:reset": "node scripts/seed-demo.mjs --confirm --reset"
+    "seed:demo:reset": "node scripts/seed-demo.mjs --confirm --reset",
+    "reseed:james": "node scripts/reseed-james-leslie.mjs"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.6",
