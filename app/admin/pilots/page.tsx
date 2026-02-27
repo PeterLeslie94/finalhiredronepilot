@@ -43,17 +43,17 @@ type PilotDetail = PilotRow & {
   facebook_url: string | null;
   total_projects_completed: number | null;
   years_experience: number | null;
-  avg_response_hours: number | null;
+  drone_flight_hours_total: number | null;
+  drones_owned_total: number | null;
   avg_quote_turnaround_hours: number | null;
   data_delivery_min_days: number | null;
   data_delivery_max_days: number | null;
-  repeat_hire_rate_pct: number | null;
   member_since_year: number | null;
   top_service_slugs: string[] | null;
+  top_service_ratings_json: unknown;
   additional_services_note: string | null;
   equipment_items_json: unknown;
   portfolio_items_json: unknown;
-  skills_levels_json: unknown;
   faq_coverage_answer: string | null;
   faq_qualifications_answer: string | null;
   faq_turnaround_answer: string | null;
@@ -87,17 +87,17 @@ type PilotEditForm = {
   facebook_url: string;
   total_projects_completed: string;
   years_experience: string;
-  avg_response_hours: string;
+  drone_flight_hours_total: string;
+  drones_owned_total: string;
   avg_quote_turnaround_hours: string;
   data_delivery_min_days: string;
   data_delivery_max_days: string;
-  repeat_hire_rate_pct: string;
   member_since_year: string;
   top_service_slugs: string;
+  top_service_ratings_json: string;
   additional_services_note: string;
   equipment_items_json: string;
   portfolio_items_json: string;
-  skills_levels_json: string;
   faq_coverage_answer: string;
   faq_qualifications_answer: string;
   faq_turnaround_answer: string;
@@ -167,17 +167,17 @@ function toEditForm(detail: PilotDetail): PilotEditForm {
     facebook_url: detail.facebook_url || '',
     total_projects_completed: detail.total_projects_completed?.toString() || '',
     years_experience: detail.years_experience?.toString() || '',
-    avg_response_hours: detail.avg_response_hours?.toString() || '',
+    drone_flight_hours_total: detail.drone_flight_hours_total?.toString() || '',
+    drones_owned_total: detail.drones_owned_total?.toString() || '',
     avg_quote_turnaround_hours: detail.avg_quote_turnaround_hours?.toString() || '',
     data_delivery_min_days: detail.data_delivery_min_days?.toString() || '',
     data_delivery_max_days: detail.data_delivery_max_days?.toString() || '',
-    repeat_hire_rate_pct: detail.repeat_hire_rate_pct?.toString() || '',
     member_since_year: detail.member_since_year?.toString() || '',
     top_service_slugs: toPrettyJson(detail.top_service_slugs || [], '[]'),
+    top_service_ratings_json: toPrettyJson(detail.top_service_ratings_json ?? {}, '{}'),
     additional_services_note: detail.additional_services_note || '',
     equipment_items_json: toPrettyJson(detail.equipment_items_json ?? [], '[]'),
     portfolio_items_json: toPrettyJson(detail.portfolio_items_json ?? [], '[]'),
-    skills_levels_json: toPrettyJson(detail.skills_levels_json ?? {}, '{}'),
     faq_coverage_answer: detail.faq_coverage_answer || '',
     faq_qualifications_answer: detail.faq_qualifications_answer || '',
     faq_turnaround_answer: detail.faq_turnaround_answer || '',
@@ -289,18 +289,18 @@ export default function AdminPilotsPage() {
 
       let parsedCoverageRegions: unknown = null;
       let parsedTopServices: unknown = null;
+      let parsedTopServiceRatings: unknown = {};
       let parsedEquipment: unknown = [];
       let parsedPortfolio: unknown = [];
-      let parsedSkills: unknown = {};
 
       try {
         parsedCoverageRegions = parseJsonInput(editForm.coverage_regions, null);
         parsedTopServices = parseJsonInput(editForm.top_service_slugs, null);
+        parsedTopServiceRatings = parseJsonInput(editForm.top_service_ratings_json, {});
         parsedEquipment = parseJsonInput(editForm.equipment_items_json, []);
         parsedPortfolio = parseJsonInput(editForm.portfolio_items_json, []);
-        parsedSkills = parseJsonInput(editForm.skills_levels_json, {});
       } catch {
-        throw new Error('One or more JSON fields are invalid. Please check coverage/services/equipment/portfolio/skills.');
+        throw new Error('One or more JSON fields are invalid. Please check coverage/services/ratings/equipment/portfolio.');
       }
 
       const response = await fetch(`/api/admin/pilots/${detail.id}/`, {
@@ -330,17 +330,17 @@ export default function AdminPilotsPage() {
           facebook_url: editForm.facebook_url || null,
           total_projects_completed: editForm.total_projects_completed || null,
           years_experience: editForm.years_experience || null,
-          avg_response_hours: editForm.avg_response_hours || null,
+          drone_flight_hours_total: editForm.drone_flight_hours_total || null,
+          drones_owned_total: editForm.drones_owned_total || null,
           avg_quote_turnaround_hours: editForm.avg_quote_turnaround_hours || null,
           data_delivery_min_days: editForm.data_delivery_min_days || null,
           data_delivery_max_days: editForm.data_delivery_max_days || null,
-          repeat_hire_rate_pct: editForm.repeat_hire_rate_pct || null,
           member_since_year: editForm.member_since_year || null,
           top_service_slugs: parsedTopServices,
+          top_service_ratings_json: parsedTopServiceRatings,
           additional_services_note: editForm.additional_services_note || null,
           equipment_items_json: parsedEquipment,
           portfolio_items_json: parsedPortfolio,
-          skills_levels_json: parsedSkills,
           faq_coverage_answer: editForm.faq_coverage_answer || null,
           faq_qualifications_answer: editForm.faq_qualifications_answer || null,
           faq_turnaround_answer: editForm.faq_turnaround_answer || null,

@@ -26,6 +26,10 @@ export type PilotSkillLevel = 'Intermediate' | 'Advanced' | 'Expert';
 
 export const PILOT_SKILL_LEVELS: readonly PilotSkillLevel[] = ['Intermediate', 'Advanced', 'Expert'] as const;
 
+export type PilotServiceLevel = PilotSkillLevel;
+
+export const PILOT_SERVICE_LEVELS: readonly PilotServiceLevel[] = PILOT_SKILL_LEVELS;
+
 export const PILOT_SKILL_CATEGORIES = [
   { key: 'surveying', label: 'Topographical Surveying' },
   { key: 'lidar', label: 'LiDAR Mapping & Point Clouds' },

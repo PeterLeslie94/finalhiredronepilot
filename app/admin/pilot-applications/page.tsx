@@ -5,7 +5,7 @@ import { X, ExternalLink } from 'lucide-react';
 import StatusBadge from '@/components/admin/StatusBadge';
 import AdminCard from '@/components/admin/AdminCard';
 import ConfirmDialog from '@/components/admin/ConfirmDialog';
-import { PILOT_SKILL_CATEGORIES, titleFromServiceSlug } from '@/lib/pilot-profile';
+import { titleFromServiceSlug } from '@/lib/pilot-profile';
 
 type PilotApplication = {
   id: string;
@@ -32,17 +32,17 @@ type PilotApplication = {
   facebook_url: string | null;
   total_projects_completed: number | null;
   years_experience: number | null;
-  avg_response_hours: number | null;
+  drone_flight_hours_total: number | null;
+  drones_owned_total: number | null;
   avg_quote_turnaround_hours: number | null;
   data_delivery_min_days: number | null;
   data_delivery_max_days: number | null;
-  repeat_hire_rate_pct: number | null;
   member_since_year: number | null;
   top_service_slugs: string[] | null;
+  top_service_ratings_json: Record<string, string> | null;
   additional_services_note: string | null;
   equipment_items_json: Array<{ name: string; details?: string | null }> | null;
-  portfolio_items_json: Array<{ image_url: string; caption?: string | null }> | null;
-  skills_levels_json: Record<string, string> | null;
+  portfolio_items_json: Array<{ image_url: string }> | null;
   faq_coverage_answer: string | null;
   faq_qualifications_answer: string | null;
   faq_turnaround_answer: string | null;
@@ -430,6 +430,7 @@ export default function AdminPilotApplicationsPage() {
                         (selected.top_service_slugs || []).map((slug) => (
                           <span key={slug} className="inline-flex rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700">
                             {titleFromServiceSlug(slug)}
+                            {selected.top_service_ratings_json?.[slug] ? ` · ${selected.top_service_ratings_json[slug]}` : ''}
                           </span>
                         ))
                       )}
@@ -473,8 +474,12 @@ export default function AdminPilotApplicationsPage() {
                     <dd className="text-gray-900">{selected.years_experience ?? 'N/A'}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-gray-500">Avg Response Hours</dt>
-                    <dd className="text-gray-900">{selected.avg_response_hours ?? 'N/A'}</dd>
+                    <dt className="text-gray-500">Drone Flight Hours</dt>
+                    <dd className="text-gray-900">{selected.drone_flight_hours_total ?? 'N/A'}</dd>
+                  </div>
+                  <div className="flex justify-between">
+                    <dt className="text-gray-500">Drones Owned</dt>
+                    <dd className="text-gray-900">{selected.drones_owned_total ?? 'N/A'}</dd>
                   </div>
                   <div className="flex justify-between">
                     <dt className="text-gray-500">Avg Quote Turnaround</dt>
@@ -489,17 +494,13 @@ export default function AdminPilotApplicationsPage() {
                     </dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-gray-500">Repeat Hire Rate</dt>
-                    <dd className="text-gray-900">{selected.repeat_hire_rate_pct !== null ? `${selected.repeat_hire_rate_pct}%` : 'N/A'}</dd>
-                  </div>
-                  <div className="flex justify-between">
                     <dt className="text-gray-500">Member Since</dt>
                     <dd className="text-gray-900">{selected.member_since_year ?? 'N/A'}</dd>
                   </div>
                 </dl>
               </AdminCard>
 
-              <AdminCard title="Equipment, Portfolio, Skills">
+              <AdminCard title="Drones & Portfolio">
                 <div className="space-y-3 text-sm">
                   <div>
                     <p className="text-gray-500 mb-1">Equipment</p>
@@ -519,19 +520,6 @@ export default function AdminPilotApplicationsPage() {
                   <div>
                     <p className="text-gray-500 mb-1">Portfolio Images</p>
                     <p className="text-gray-900">{selected.portfolio_items_json?.length || 0} uploaded</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-500 mb-1">Skill Levels</p>
-                    <ul className="space-y-1">
-                      {PILOT_SKILL_CATEGORIES.map((category) => (
-                        <li key={category.key} className="text-gray-800">
-                          {category.label}:{' '}
-                          <span className="font-medium">
-                            {selected.skills_levels_json?.[category.key] || 'N/A'}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </AdminCard>

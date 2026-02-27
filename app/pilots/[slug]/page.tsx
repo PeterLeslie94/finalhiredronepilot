@@ -18,11 +18,11 @@ import {
   Youtube,
 } from 'lucide-react';
 
+import FloatingCTA from '@/components/FloatingCTA';
 import {
   hrefFromServiceSlug,
   PILOT_COVERAGE_LABELS,
   PILOT_FAQ_QUESTIONS,
-  PILOT_SKILL_CATEGORIES,
   titleFromServiceSlug,
 } from '@/lib/pilot-profile';
 import { canonicalUrl } from '@/lib/seo/metadata';
@@ -37,7 +37,6 @@ type EquipmentItem = {
 
 type PortfolioItem = {
   image_url: string;
-  caption: string | null;
 };
 
 type PilotProfile = {
@@ -64,17 +63,17 @@ type PilotProfile = {
   facebook_url: string | null;
   total_projects_completed: number | null;
   years_experience: number | null;
-  avg_response_hours: number | null;
+  drone_flight_hours_total: number | null;
+  drones_owned_total: number | null;
   avg_quote_turnaround_hours: number | null;
   data_delivery_min_days: number | null;
   data_delivery_max_days: number | null;
-  repeat_hire_rate_pct: number | null;
   member_since_year: number | null;
   top_service_slugs: string[] | null;
+  top_service_ratings_json: unknown;
   additional_services_note: string | null;
   equipment_items_json: unknown;
   portfolio_items_json: unknown;
-  skills_levels_json: unknown;
   faq_coverage_answer: string | null;
   faq_qualifications_answer: string | null;
   faq_turnaround_answer: string | null;
@@ -95,17 +94,17 @@ const PILOT_RICH_PROFILE_COLUMNS = [
   'facebook_url',
   'total_projects_completed',
   'years_experience',
-  'avg_response_hours',
+  'drone_flight_hours_total',
+  'drones_owned_total',
   'avg_quote_turnaround_hours',
   'data_delivery_min_days',
   'data_delivery_max_days',
-  'repeat_hire_rate_pct',
   'member_since_year',
   'top_service_slugs',
+  'top_service_ratings_json',
   'additional_services_note',
   'equipment_items_json',
   'portfolio_items_json',
-  'skills_levels_json',
   'faq_coverage_answer',
   'faq_qualifications_answer',
   'faq_turnaround_answer',
@@ -181,17 +180,17 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       facebook_url,
       total_projects_completed,
       years_experience,
-      avg_response_hours,
+      drone_flight_hours_total,
+      drones_owned_total,
       avg_quote_turnaround_hours,
       data_delivery_min_days,
       data_delivery_max_days,
-      repeat_hire_rate_pct,
       member_since_year,
       top_service_slugs,
+      top_service_ratings_json,
       additional_services_note,
       equipment_items_json,
       portfolio_items_json,
-      skills_levels_json,
       faq_coverage_answer,
       faq_qualifications_answer,
       faq_turnaround_answer,
@@ -209,17 +208,17 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       NULL::text AS facebook_url,
       NULL::int AS total_projects_completed,
       NULL::int AS years_experience,
-      NULL::int AS avg_response_hours,
+      NULL::int AS drone_flight_hours_total,
+      NULL::int AS drones_owned_total,
       NULL::int AS avg_quote_turnaround_hours,
       NULL::int AS data_delivery_min_days,
       NULL::int AS data_delivery_max_days,
-      NULL::int AS repeat_hire_rate_pct,
       NULL::int AS member_since_year,
       NULL::text[] AS top_service_slugs,
+      '{}'::jsonb AS top_service_ratings_json,
       NULL::text AS additional_services_note,
       '[]'::jsonb AS equipment_items_json,
       '[]'::jsonb AS portfolio_items_json,
-      '{}'::jsonb AS skills_levels_json,
       NULL::text AS faq_coverage_answer,
       NULL::text AS faq_qualifications_answer,
       NULL::text AS faq_turnaround_answer,
@@ -318,9 +317,9 @@ export default async function PilotProfilePage({
   if (!pilot) notFound();
 
   const topServices = pilot.top_service_slugs ?? [];
+  const topServiceRatings = toRecord(pilot.top_service_ratings_json);
   const equipment = toArray<EquipmentItem>(pilot.equipment_items_json, []).filter((item) => item?.name);
   const portfolio = toArray<PortfolioItem>(pilot.portfolio_items_json, []).filter((item) => item?.image_url);
-  const skills = toRecord(pilot.skills_levels_json);
 
   const faqAnswers: Array<{ question: string; answer: string }> = [
     { question: PILOT_FAQ_QUESTIONS[0].question, answer: pilot.faq_coverage_answer || '' },
@@ -344,8 +343,8 @@ export default async function PilotProfilePage({
   const hasStats = [
     pilot.total_projects_completed,
     pilot.years_experience,
-    pilot.avg_response_hours,
-    pilot.repeat_hire_rate_pct,
+    pilot.drone_flight_hours_total,
+    pilot.drones_owned_total,
   ].some((value) => value !== null);
 
   const hasSocials = [pilot.linkedin_url, pilot.instagram_url, pilot.youtube_url, pilot.facebook_url].some(Boolean);
@@ -362,7 +361,7 @@ export default async function PilotProfilePage({
             <span className="text-white">{pilot.name}</span>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr),320px] lg:items-center">
+          <div className="grid gap-8 lg:grid-cols-1 lg:items-center">
             <div className="flex items-start gap-4 md:gap-6">
               <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden bg-white/10 border border-white/15 shrink-0">
                 {pilot.profile_photo_url ? (
@@ -406,14 +405,6 @@ export default async function PilotProfilePage({
                 </div>
               </div>
             </div>
-
-            <div className="rounded-2xl border border-white/15 bg-white/5 p-5">
-              <p className="text-xs uppercase tracking-wide text-white/60">Ready to hire?</p>
-              <p className="text-white font-semibold mt-1">Request matched quotes in one brief.</p>
-              <Link href="/contact" className="btn btn-primary btn-shimmer w-full mt-4 text-center">
-                Request a Quote
-              </Link>
-            </div>
           </div>
         </div>
       </section>
@@ -432,14 +423,14 @@ export default async function PilotProfilePage({
                   <p className="text-xs text-gray-500 uppercase tracking-wide mt-1">Years in operation</p>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4">
-                  <p className="text-2xl font-bold text-gold">{pilot.avg_response_hours ? `< ${pilot.avg_response_hours}h` : '—'}</p>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide mt-1">Avg first response time</p>
+                  <p className="text-2xl font-bold text-gold">{pilot.drone_flight_hours_total ?? '—'}</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wide mt-1">Drone Flight Hours</p>
                 </div>
                 <div className="rounded-2xl border border-gray-200 bg-white p-4">
                   <p className="text-2xl font-bold text-gold">
-                    {pilot.repeat_hire_rate_pct !== null ? `${pilot.repeat_hire_rate_pct}%` : '—'}
+                    {pilot.drones_owned_total ?? '—'}
                   </p>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide mt-1">Repeat hire rate</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wide mt-1">Drones Owned</p>
                 </div>
               </section>
             ) : null}
@@ -447,7 +438,6 @@ export default async function PilotProfilePage({
             {topServices.length > 0 ? (
               <section className="rounded-2xl border border-gray-200 bg-white p-6">
                 <h2 className="text-xl font-bold text-gray-900">Top Services</h2>
-                <p className="text-sm text-gray-500 mt-1">Internal service pages linked for direct scope review.</p>
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
                   {topServices.map((slugItem) => (
                     <Link
@@ -455,7 +445,15 @@ export default async function PilotProfilePage({
                       href={hrefFromServiceSlug(slugItem)}
                       className="inline-flex items-center justify-between rounded-lg border border-gray-200 px-3 py-2 text-sm text-gray-700 hover:border-orange-300 hover:bg-orange-50"
                     >
-                      <span>{titleFromServiceSlug(slugItem)}</span>
+                      <span className="inline-flex items-center gap-2">
+                        <span>{titleFromServiceSlug(slugItem)}</span>
+                        {topServiceRatings[slugItem] ? (
+                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-0.5 text-[11px] font-medium text-orange-700">
+                            <Sparkles className="w-3 h-3" />
+                            {topServiceRatings[slugItem]}
+                          </span>
+                        ) : null}
+                      </span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
                   ))}
@@ -468,7 +466,7 @@ export default async function PilotProfilePage({
 
             {equipment.length > 0 ? (
               <section className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h2 className="text-xl font-bold text-gray-900">Equipment & Drones</h2>
+                <h2 className="text-xl font-bold text-gray-900">Drones</h2>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {equipment.map((item, index) => (
                     <div key={`${item.name}-${index}`} className="rounded-xl border border-gray-200 bg-gray-50 p-4">
@@ -495,33 +493,11 @@ export default async function PilotProfilePage({
                     <figure key={`${item.image_url.slice(0, 48)}-${index}`} className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50">
                       <img
                         src={item.image_url}
-                        alt={item.caption || `${pilot.name} portfolio image ${index + 1}`}
+                        alt={`${pilot.name} portfolio image ${index + 1}`}
                         className="h-36 w-full object-cover"
                       />
-                      {item.caption ? <figcaption className="text-xs text-gray-600 p-2">{item.caption}</figcaption> : null}
                     </figure>
                   ))}
-                </div>
-              </section>
-            ) : null}
-
-            {Object.keys(skills).length > 0 ? (
-              <section className="rounded-2xl border border-gray-200 bg-white p-6">
-                <h2 className="text-xl font-bold text-gray-900">Expertise & Skills</h2>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {PILOT_SKILL_CATEGORIES.map((category) => {
-                    const level = skills[category.key];
-                    if (!level) return null;
-                    return (
-                      <div key={category.key} className="flex items-center justify-between rounded-lg border border-gray-200 px-3 py-2">
-                        <span className="text-sm text-gray-700">{category.label}</span>
-                        <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-700">
-                          <Sparkles className="w-3 h-3" />
-                          {level}
-                        </span>
-                      </div>
-                    );
-                  })}
                 </div>
               </section>
             ) : null}
@@ -542,8 +518,7 @@ export default async function PilotProfilePage({
 
             {pilot.google_business_profile_url ? (
               <section className="rounded-2xl border border-blue-200 bg-blue-50 p-6">
-                <h2 className="text-lg font-bold text-blue-900">Google Reviews</h2>
-                <p className="text-sm text-blue-800 mt-1">We will import your reviews to this profile.</p>
+                <h2 className="text-lg font-bold text-blue-900">Verified Business</h2>
                 <a
                   href={pilot.google_business_profile_url}
                   target="_blank"
@@ -567,10 +542,16 @@ export default async function PilotProfilePage({
 
             <div className="rounded-2xl border border-gray-200 bg-white p-5 space-y-3">
               <h3 className="text-sm font-semibold text-gray-900">Pilot Quick Facts</h3>
-              {pilot.avg_response_hours !== null ? (
+              {pilot.drone_flight_hours_total !== null ? (
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">Response Time</span>
-                  <span className="font-medium text-gray-900">Under {pilot.avg_response_hours}h</span>
+                  <span className="text-gray-500">Flight Hours</span>
+                  <span className="font-medium text-gray-900">{pilot.drone_flight_hours_total}</span>
+                </div>
+              ) : null}
+              {pilot.drones_owned_total !== null ? (
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-500">Drones Owned</span>
+                  <span className="font-medium text-gray-900">{pilot.drones_owned_total}</span>
                 </div>
               ) : null}
               {pilot.avg_quote_turnaround_hours !== null ? (
@@ -658,17 +639,7 @@ export default async function PilotProfilePage({
         </div>
       </section>
 
-      <div className="fixed bottom-0 inset-x-0 z-50 border-t border-gray-200 bg-white/95 backdrop-blur">
-        <div className="container max-w-6xl flex items-center gap-3 py-3">
-          <div className="text-sm">
-            <p className="font-semibold text-gray-900">{pilot.name}</p>
-            <p className="text-xs text-gray-500">{pilot.business_name || 'Verified Drone Pilot'}</p>
-          </div>
-          <Link href="/contact" className="btn btn-primary btn-shimmer ml-auto">
-            Request a Quote
-          </Link>
-        </div>
-      </div>
+      <FloatingCTA />
     </main>
   );
 }

@@ -37,17 +37,17 @@ type PilotApplicationRow = {
   facebook_url: string | null;
   total_projects_completed: number | null;
   years_experience: number | null;
-  avg_response_hours: number | null;
+  drone_flight_hours_total: number | null;
+  drones_owned_total: number | null;
   avg_quote_turnaround_hours: number | null;
   data_delivery_min_days: number | null;
   data_delivery_max_days: number | null;
-  repeat_hire_rate_pct: number | null;
   member_since_year: number | null;
   top_service_slugs: string[] | null;
+  top_service_ratings_json: unknown;
   additional_services_note: string | null;
   equipment_items_json: unknown;
   portfolio_items_json: unknown;
-  skills_levels_json: unknown;
   faq_coverage_answer: string | null;
   faq_qualifications_answer: string | null;
   faq_turnaround_answer: string | null;
@@ -119,17 +119,17 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
             facebook_url,
             total_projects_completed,
             years_experience,
-            avg_response_hours,
+            drone_flight_hours_total,
+            drones_owned_total,
             avg_quote_turnaround_hours,
             data_delivery_min_days,
             data_delivery_max_days,
-            repeat_hire_rate_pct,
             member_since_year,
             top_service_slugs,
+            top_service_ratings_json,
             additional_services_note,
             equipment_items_json,
             portfolio_items_json,
-            skills_levels_json,
             faq_coverage_answer,
             faq_qualifications_answer,
             faq_turnaround_answer,
@@ -170,17 +170,17 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           app.facebook_url,
           app.total_projects_completed,
           app.years_experience,
-          app.avg_response_hours,
+          app.drone_flight_hours_total,
+          app.drones_owned_total,
           app.avg_quote_turnaround_hours,
           app.data_delivery_min_days,
           app.data_delivery_max_days,
-          app.repeat_hire_rate_pct,
           app.member_since_year,
           app.top_service_slugs,
+          app.top_service_ratings_json,
           app.additional_services_note,
           app.equipment_items_json,
           app.portfolio_items_json,
-          app.skills_levels_json,
           app.faq_coverage_answer,
           app.faq_qualifications_answer,
           app.faq_turnaround_answer,

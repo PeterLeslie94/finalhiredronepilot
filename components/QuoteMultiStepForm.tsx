@@ -114,7 +114,8 @@ export default function QuoteMultiStepForm({
 
   const canMoveStep2 =
     formData.service_slug &&
-    (formData.date_flexibility !== 'FIXED' || Boolean(formData.date_needed));
+    (formData.date_flexibility !== 'FIXED' || Boolean(formData.date_needed)) &&
+    formData.site_location_text.trim().length >= 3;
 
   const canSubmit =
     formData.job_details.trim().length >= 10 &&
@@ -285,8 +286,10 @@ export default function QuoteMultiStepForm({
             name="site_location_text"
             value={formData.site_location_text}
             onChange={(event) => update('site_location_text', event.target.value)}
-            placeholder="Location / Site Address (optional)"
+            placeholder="Location / Site Address *"
             className={inputClass}
+            minLength={3}
+            required
           />
 
           <input
@@ -316,18 +319,6 @@ export default function QuoteMultiStepForm({
 
       {step === 3 && (
         <>
-          <div className="rounded-xl border border-white/20 bg-white/5 p-4 text-white/85 text-sm space-y-2">
-            <p className="font-semibold text-white">Data sharing summary</p>
-            <p>
-              We share enquiry data with selected independent drone pilots after admin review and
-              approval of your enquiry.
-            </p>
-            <p>
-              Shared fields: name, email, phone, selected service, timing details, location/postcode,
-              and job details.
-            </p>
-          </div>
-
           <textarea
             name="job_details"
             rows={5}

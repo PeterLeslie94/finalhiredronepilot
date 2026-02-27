@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 
 export type PortfolioDraftItem = {
   image_url: string;
-  caption: string;
 };
 
 type PortfolioUploaderProps = {
@@ -110,7 +109,7 @@ export default function PortfolioUploader({
       const compressedItems: PortfolioDraftItem[] = [];
       for (const file of incoming) {
         const image_url = await compressImageToDataUrl(file);
-        compressedItems.push({ image_url, caption: '' });
+        compressedItems.push({ image_url });
       }
       onChange([...value, ...compressedItems]);
     } catch (uploadError) {
@@ -118,13 +117,6 @@ export default function PortfolioUploader({
     } finally {
       setIsCompressing(false);
     }
-  };
-
-  const updateCaption = (index: number, caption: string) => {
-    const next = value.map((item, itemIndex) =>
-      itemIndex === index ? { ...item, caption } : item,
-    );
-    onChange(next);
   };
 
   const removeItem = (index: number) => {
@@ -170,12 +162,6 @@ export default function PortfolioUploader({
                   className="h-32 w-full object-cover"
                 />
               </div>
-              <input
-                className="form-input mt-2 text-sm"
-                placeholder="Optional caption"
-                value={item.caption}
-                onChange={(event) => updateCaption(index, event.target.value)}
-              />
               <button
                 type="button"
                 className="mt-2 text-xs font-semibold text-red-200 hover:text-red-100"

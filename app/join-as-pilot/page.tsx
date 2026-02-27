@@ -11,12 +11,10 @@ import {
   PILOT_COVERAGE_LABELS,
   PILOT_COVERAGE_REGIONS,
   PILOT_FAQ_QUESTIONS,
+  PILOT_SERVICE_LEVELS,
   PILOT_SERVICE_OPTIONS,
-  PILOT_SKILL_CATEGORIES,
-  PILOT_SKILL_LEVELS,
   PilotCoverageRegion,
-  PilotSkillKey,
-  PilotSkillLevel,
+  PilotServiceLevel,
 } from '@/lib/pilot-profile';
 
 type Step = 1 | 2 | 3 | 4 | 5;
@@ -48,19 +46,19 @@ type PilotFormValues = {
   coverage_notes: string;
   total_projects_completed: string;
   years_experience: string;
-  avg_response_hours: string;
+  drone_flight_hours_total: string;
+  drones_owned_total: string;
   avg_quote_turnaround_hours: string;
   data_delivery_min_days: string;
   data_delivery_max_days: string;
-  repeat_hire_rate_pct: string;
   member_since_year: string;
+  top_service_ratings_json: Record<string, PilotServiceLevel | ''>;
 
   profile_photo_url: string;
   equipment_items_json: EquipmentDraftItem[];
   portfolio_items_json: PortfolioDraftItem[];
 
   two_sentence_summary: string;
-  skills_levels_json: Record<PilotSkillKey, PilotSkillLevel | ''>;
   faq_coverage_answer: string;
   faq_qualifications_answer: string;
   faq_turnaround_answer: string;
@@ -107,26 +105,19 @@ const INITIAL_VALUES: PilotFormValues = {
   coverage_notes: '',
   total_projects_completed: '',
   years_experience: '',
-  avg_response_hours: '',
+  drone_flight_hours_total: '',
+  drones_owned_total: '',
   avg_quote_turnaround_hours: '',
   data_delivery_min_days: '',
   data_delivery_max_days: '',
-  repeat_hire_rate_pct: '',
   member_since_year: String(CURRENT_YEAR),
+  top_service_ratings_json: {},
 
   profile_photo_url: '',
   equipment_items_json: [{ name: '', details: '' }],
   portfolio_items_json: [],
 
   two_sentence_summary: '',
-  skills_levels_json: {
-    surveying: '',
-    lidar: '',
-    inspection: '',
-    thermal: '',
-    construction: '',
-    processing: '',
-  },
   faq_coverage_answer: '',
   faq_qualifications_answer: '',
   faq_turnaround_answer: '',
@@ -148,21 +139,21 @@ const STEP_FIELDS: Record<Step, PilotFormField[]> = {
   2: ['insurance_provider', 'flyer_id', 'operator_id', 'licence_level'],
   3: [
     'top_service_slugs',
+    'top_service_ratings_json',
     'availability_status',
     'coverage_regions',
     'total_projects_completed',
     'years_experience',
-    'avg_response_hours',
+    'drone_flight_hours_total',
+    'drones_owned_total',
     'avg_quote_turnaround_hours',
     'data_delivery_min_days',
     'data_delivery_max_days',
-    'repeat_hire_rate_pct',
     'member_since_year',
   ],
   4: ['profile_photo_url', 'equipment_items_json', 'portfolio_items_json'],
   5: [
     'two_sentence_summary',
-    'skills_levels_json',
     'faq_coverage_answer',
     'faq_qualifications_answer',
     'faq_turnaround_answer',
@@ -228,6 +219,13 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       return values.top_service_slugs.length === 6
         ? ''
         : 'Select exactly 6 top services to feature on your profile.';
+    case 'top_service_ratings_json': {
+      if (values.top_service_slugs.length !== 6) return '';
+      const missingRating = values.top_service_slugs.find(
+        (slug) => !values.top_service_ratings_json[slug],
+      );
+      return missingRating ? 'Set a rating for each selected top service.' : '';
+    }
     case 'availability_status':
       return values.availability_status ? '' : 'Availability status is required.';
     case 'coverage_regions':
@@ -239,8 +237,10 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       return validateNumberField(values.total_projects_completed, 0, 500000, 'Total projects completed');
     case 'years_experience':
       return validateNumberField(values.years_experience, 0, 80, 'Years experience');
-    case 'avg_response_hours':
-      return validateNumberField(values.avg_response_hours, 1, 720, 'Average response hours');
+    case 'drone_flight_hours_total':
+      return validateNumberField(values.drone_flight_hours_total, 0, 500000, 'Drone flight hours');
+    case 'drones_owned_total':
+      return validateNumberField(values.drones_owned_total, 0, 200, 'Drones owned');
     case 'avg_quote_turnaround_hours':
       return validateNumberField(values.avg_quote_turnaround_hours, 1, 720, 'Average quote turnaround hours');
     case 'data_delivery_min_days':
@@ -252,8 +252,6 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       const max = Number(values.data_delivery_max_days || 0);
       return max >= min ? '' : 'Maximum data delivery days cannot be lower than minimum data delivery days.';
     }
-    case 'repeat_hire_rate_pct':
-      return validateNumberField(values.repeat_hire_rate_pct, 0, 100, 'Repeat hire rate %');
     case 'member_since_year':
       return validateNumberField(values.member_since_year, 2000, CURRENT_YEAR, 'Member since year');
     case 'profile_photo_url':
@@ -270,10 +268,6 @@ function validateField(field: PilotFormField, values: PilotFormValues): string {
       return values.two_sentence_summary.trim().length >= 20
         ? ''
         : 'Profile summary must be at least 20 characters.';
-    case 'skills_levels_json': {
-      const missingSkill = PILOT_SKILL_CATEGORIES.find((skill) => !values.skills_levels_json[skill.key]);
-      return missingSkill ? `Select a skill level for ${missingSkill.label}.` : '';
-    }
     case 'faq_coverage_answer':
     case 'faq_qualifications_answer':
     case 'faq_turnaround_answer':
@@ -398,6 +392,18 @@ export default function PilotApplyPage() {
         ? [...values.top_service_slugs, slug]
         : values.top_service_slugs;
     setFieldValue('top_service_slugs', next);
+    const nextRatings: Record<string, PilotServiceLevel | ''> = {};
+    for (const selectedSlug of next) {
+      nextRatings[selectedSlug] = values.top_service_ratings_json[selectedSlug] || '';
+    }
+    setFieldValue('top_service_ratings_json', nextRatings);
+  };
+
+  const setServiceRating = (slug: string, level: PilotServiceLevel | '') => {
+    setFieldValue('top_service_ratings_json', {
+      ...values.top_service_ratings_json,
+      [slug]: level,
+    });
   };
 
   const toggleCoverageRegion = (region: PilotCoverageRegion) => {
@@ -457,6 +463,12 @@ export default function PilotApplyPage() {
       }))
       .filter((item) => item.name.length > 0);
 
+    const cleanedServiceRatings = Object.fromEntries(
+      values.top_service_slugs
+        .map((slug) => [slug, values.top_service_ratings_json[slug]])
+        .filter((entry): entry is [string, PilotServiceLevel] => Boolean(entry[1])),
+    );
+
     const payload: PilotFormValues = {
       ...values,
       website_url: normalizeWebsiteInput(values.website_url),
@@ -467,6 +479,7 @@ export default function PilotApplyPage() {
       facebook_url: normalizeWebsiteInput(values.facebook_url),
       equipment_items_json: cleanedEquipment,
       portfolio_items_json: values.portfolio_items_json,
+      top_service_ratings_json: cleanedServiceRatings,
       consent_source_page: typeof window !== 'undefined' ? window.location.pathname : values.consent_source_page,
       pilot_terms_version: values.pilot_terms_version || PILOT_TERMS_VERSION,
     };
@@ -519,7 +532,7 @@ export default function PilotApplyPage() {
           ? 'Profile Metrics & Services'
           : step === 4
             ? 'Media & Equipment'
-            : 'Skills, FAQ & Consent';
+            : 'FAQ, Links & Consent';
 
   return (
     <section className="-mt-[104px] bg-teal pt-[152px] pb-20 md:pt-[176px] md:pb-24">
@@ -772,6 +785,31 @@ export default function PilotApplyPage() {
                     })}
                   </div>
                   {fieldErrors.top_service_slugs ? <p className="text-red-200 text-sm">{fieldErrors.top_service_slugs}</p> : null}
+                  {values.top_service_slugs.length > 0 ? (
+                    <div className="mt-3 grid gap-2">
+                      {values.top_service_slugs.map((slug) => {
+                        const service = PILOT_SERVICE_OPTIONS.find((item) => item.slug === slug);
+                        return (
+                          <div key={`rating-${slug}`} className="grid gap-2 sm:grid-cols-[1fr,220px] sm:items-center">
+                            <label className="text-sm text-white/90">{service?.title || slug}</label>
+                            <select
+                              className={inputClass}
+                              value={values.top_service_ratings_json[slug] || ''}
+                              onChange={(event) => setServiceRating(slug, event.target.value as PilotServiceLevel | '')}
+                            >
+                              <option value="" className="text-gray-900">Select rating</option>
+                              {PILOT_SERVICE_LEVELS.map((level) => (
+                                <option key={`${slug}-${level}`} value={level} className="text-gray-900">
+                                  {level}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                  {fieldErrors.top_service_ratings_json ? <p className="text-red-200 text-sm">{fieldErrors.top_service_ratings_json}</p> : null}
                 </div>
 
                 <div>
@@ -868,14 +906,26 @@ export default function PilotApplyPage() {
                   <div>
                     <input
                       type="number"
-                      name="avg_response_hours"
+                      name="drone_flight_hours_total"
                       className={inputClass}
-                      placeholder="Average Response Hours *"
-                      value={values.avg_response_hours}
-                      onChange={(event) => setFieldValue('avg_response_hours', event.target.value)}
-                      onBlur={() => setFieldError('avg_response_hours', validateField('avg_response_hours', values))}
+                      placeholder="Drone Flight Hours *"
+                      value={values.drone_flight_hours_total}
+                      onChange={(event) => setFieldValue('drone_flight_hours_total', event.target.value)}
+                      onBlur={() => setFieldError('drone_flight_hours_total', validateField('drone_flight_hours_total', values))}
                     />
-                    {fieldErrors.avg_response_hours ? <p className="text-red-200 text-sm mt-1">{fieldErrors.avg_response_hours}</p> : null}
+                    {fieldErrors.drone_flight_hours_total ? <p className="text-red-200 text-sm mt-1">{fieldErrors.drone_flight_hours_total}</p> : null}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      name="drones_owned_total"
+                      className={inputClass}
+                      placeholder="Drones Owned *"
+                      value={values.drones_owned_total}
+                      onChange={(event) => setFieldValue('drones_owned_total', event.target.value)}
+                      onBlur={() => setFieldError('drones_owned_total', validateField('drones_owned_total', values))}
+                    />
+                    {fieldErrors.drones_owned_total ? <p className="text-red-200 text-sm mt-1">{fieldErrors.drones_owned_total}</p> : null}
                   </div>
                   <div>
                     <input
@@ -912,18 +962,6 @@ export default function PilotApplyPage() {
                       onBlur={() => setFieldError('data_delivery_max_days', validateField('data_delivery_max_days', values))}
                     />
                     {fieldErrors.data_delivery_max_days ? <p className="text-red-200 text-sm mt-1">{fieldErrors.data_delivery_max_days}</p> : null}
-                  </div>
-                  <div>
-                    <input
-                      type="number"
-                      name="repeat_hire_rate_pct"
-                      className={inputClass}
-                      placeholder="Repeat Hire Rate % *"
-                      value={values.repeat_hire_rate_pct}
-                      onChange={(event) => setFieldValue('repeat_hire_rate_pct', event.target.value)}
-                      onBlur={() => setFieldError('repeat_hire_rate_pct', validateField('repeat_hire_rate_pct', values))}
-                    />
-                    {fieldErrors.repeat_hire_rate_pct ? <p className="text-red-200 text-sm mt-1">{fieldErrors.repeat_hire_rate_pct}</p> : null}
                   </div>
                   <div>
                     <input
@@ -1019,33 +1057,6 @@ export default function PilotApplyPage() {
                   ) : null}
                 </div>
 
-                <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-3">
-                  <p className="text-white font-semibold">Skill Levels *</p>
-                  {PILOT_SKILL_CATEGORIES.map((skill) => (
-                    <div key={skill.key} className="grid gap-2 sm:grid-cols-[1fr,220px] sm:items-center">
-                      <label className="text-sm text-white/90">{skill.label}</label>
-                      <select
-                        name={`skill-${skill.key}`}
-                        className={inputClass}
-                        value={values.skills_levels_json[skill.key]}
-                        onChange={(event) => {
-                          const nextSkills = {
-                            ...values.skills_levels_json,
-                            [skill.key]: event.target.value as PilotSkillLevel | '',
-                          };
-                          setFieldValue('skills_levels_json', nextSkills);
-                        }}
-                      >
-                        <option value="" className="text-gray-900">Select level</option>
-                        {PILOT_SKILL_LEVELS.map((level) => (
-                          <option key={level} value={level} className="text-gray-900">{level}</option>
-                        ))}
-                      </select>
-                    </div>
-                  ))}
-                  {fieldErrors.skills_levels_json ? <p className="text-red-200 text-sm">{fieldErrors.skills_levels_json}</p> : null}
-                </div>
-
                 <div className="rounded-xl border border-white/20 bg-white/5 p-4 space-y-4">
                   <p className="text-white font-semibold">Profile FAQ Answers *</p>
                   {PILOT_FAQ_QUESTIONS.map((faq) => {
@@ -1078,7 +1089,7 @@ export default function PilotApplyPage() {
                     onChange={(event) => setFieldValue('google_business_profile_url', event.target.value)}
                     onBlur={() => setFieldError('google_business_profile_url', validateField('google_business_profile_url', values))}
                   />
-                  <p className="text-white/60 text-xs">Add your Google profile link. We will import your reviews to your profile.</p>
+                  <p className="text-white/60 text-xs">Add your Google profile link to show a verified business badge on your profile.</p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input
                       name="linkedin_url"

@@ -3,12 +3,10 @@ import {
   PILOT_COVERAGE_REGIONS,
   PILOT_FAQ_QUESTIONS,
   PILOT_SERVICE_SLUGS,
-  PILOT_SKILL_CATEGORIES,
-  PILOT_SKILL_LEVELS,
+  PILOT_SERVICE_LEVELS,
   PilotAvailabilityStatus,
   PilotCoverageRegion,
-  PilotSkillKey,
-  PilotSkillLevel,
+  PilotServiceLevel,
 } from '@/lib/pilot-profile';
 import { DATE_FLEXIBILITY, DateFlexibility, isInSet } from '@/lib/server/enums';
 
@@ -36,10 +34,9 @@ export type PilotEquipmentItemInput = {
 
 export type PilotPortfolioItemInput = {
   image_url: string;
-  caption: string | null;
 };
 
-export type PilotSkillsLevelsInput = Record<PilotSkillKey, PilotSkillLevel>;
+export type PilotServiceRatingsInput = Record<string, PilotServiceLevel>;
 
 export type PilotApplicationInput = {
   pilot_name: string;
@@ -66,17 +63,17 @@ export type PilotApplicationInput = {
   facebook_url: string | null;
   total_projects_completed: number;
   years_experience: number;
-  avg_response_hours: number;
+  drone_flight_hours_total: number;
+  drones_owned_total: number;
   avg_quote_turnaround_hours: number;
   data_delivery_min_days: number;
   data_delivery_max_days: number;
-  repeat_hire_rate_pct: number;
   member_since_year: number;
   top_service_slugs: string[];
+  top_service_ratings_json: PilotServiceRatingsInput;
   additional_services_note: string | null;
   equipment_items_json: PilotEquipmentItemInput[];
   portfolio_items_json: PilotPortfolioItemInput[];
-  skills_levels_json: PilotSkillsLevelsInput;
   faq_coverage_answer: string;
   faq_qualifications_answer: string;
   faq_turnaround_answer: string;
@@ -107,7 +104,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const COVERAGE_REGION_SET = new Set<string>(PILOT_COVERAGE_REGIONS);
 const AVAILABILITY_SET = new Set<string>(PILOT_AVAILABILITY_OPTIONS.map((item) => item.value));
 const SERVICE_SLUG_SET = new Set<string>(PILOT_SERVICE_SLUGS);
-const SKILL_LEVEL_SET = new Set<string>(PILOT_SKILL_LEVELS);
+const SERVICE_LEVEL_SET = new Set<string>(PILOT_SERVICE_LEVELS);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -271,7 +268,7 @@ function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioI
       if (!isDataImageUrl(imageUrl) && !normalizeWebsiteUrl(imageUrl)) {
         throw new Error('Portfolio images must be uploaded files or valid URLs');
       }
-      items.push({ image_url: imageUrl, caption: null });
+      items.push({ image_url: imageUrl });
       continue;
     }
 
@@ -285,8 +282,7 @@ function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioI
       throw new Error('Portfolio images must be uploaded files or valid URLs');
     }
 
-    const caption = asTrimmedString(rawItem.caption, 220) || null;
-    items.push({ image_url: normalizedUrl, caption });
+    items.push({ image_url: normalizedUrl });
   }
 
   if (items.length > 3) {
@@ -300,32 +296,50 @@ function parsePortfolioItems(value: unknown, required: boolean): PilotPortfolioI
   return items;
 }
 
-function parseSkillsLevels(value: unknown, required: boolean): PilotSkillsLevelsInput {
+function parseServiceRatings(
+  value: unknown,
+  required: boolean,
+  selectedSlugs: string[],
+): PilotServiceRatingsInput {
   const source = parseJsonLike(value);
   if (!isRecord(source)) {
-    if (required) throw new Error('Skill levels are required');
-    return {} as PilotSkillsLevelsInput;
+    if (required) throw new Error('Service ratings are required');
+    return {};
   }
 
-  const next = {} as PilotSkillsLevelsInput;
+  const next: PilotServiceRatingsInput = {};
+  const selectedSet = new Set(selectedSlugs);
+  for (const [rawSlug, rawValue] of Object.entries(source)) {
+    const slug = asTrimmedString(rawSlug, 120).toLowerCase();
+    if (!slug) continue;
+    if (!SERVICE_SLUG_SET.has(slug)) {
+      throw new Error(`Invalid service selection: ${slug}`);
+    }
+    if (selectedSet.size > 0 && !selectedSet.has(slug)) {
+      throw new Error(`Service rating provided for non-selected service: ${slug}`);
+    }
 
-  for (const category of PILOT_SKILL_CATEGORIES) {
-    const rawLevel = asTrimmedString(source[category.key], 32);
-    if (!rawLevel) {
-      if (required) throw new Error(`Skill level is required for ${category.label}`);
+    const level = asTrimmedString(rawValue, 32);
+    if (!level) {
       continue;
     }
-    if (!SKILL_LEVEL_SET.has(rawLevel)) {
-      throw new Error(`Invalid skill level for ${category.label}`);
+    if (!SERVICE_LEVEL_SET.has(level)) {
+      throw new Error(`Invalid service rating for ${slug}`);
     }
-    next[category.key] = rawLevel as PilotSkillLevel;
+    next[slug] = level as PilotServiceLevel;
   }
 
   if (required) {
-    for (const category of PILOT_SKILL_CATEGORIES) {
-      if (!next[category.key]) {
-        throw new Error(`Skill level is required for ${category.label}`);
+    if (selectedSlugs.length !== 6) {
+      throw new Error('Exactly 6 top services are required before setting service ratings');
+    }
+    for (const slug of selectedSlugs) {
+      if (!next[slug]) {
+        throw new Error(`Service rating is required for ${slug}`);
       }
+    }
+    if (Object.keys(next).length !== selectedSlugs.length) {
+      throw new Error('Service ratings must match selected top services');
     }
   }
 
@@ -415,7 +429,10 @@ export function validateEnquiryPayload(payload: Record<string, unknown>): Enquir
     throw new Error('Date is required when date flexibility is FIXED');
   }
 
-  const siteLocationText = asTrimmedString(payload.site_location_text, 240) || 'Not provided';
+  const siteLocationText = asTrimmedString(payload.site_location_text, 240);
+  if (siteLocationText.length < 3) {
+    throw new Error('Location / site address is required');
+  }
   const postcode = normalizePostcode(asTrimmedString(payload.postcode, 20) || 'UNKNOWN');
 
   const jobDetails = asTrimmedString(payload.job_details || payload.message, 4000) || 'No details provided';
@@ -501,10 +518,15 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
     min: 0,
     max: 80,
   })!;
-  const avgResponseHours = parseIntegerInRange(payload.avg_response_hours, {
-    field: 'Average response hours',
-    min: 1,
-    max: 720,
+  const droneFlightHoursTotal = parseIntegerInRange(payload.drone_flight_hours_total, {
+    field: 'Drone flight hours',
+    min: 0,
+    max: 500000,
+  })!;
+  const dronesOwnedTotal = parseIntegerInRange(payload.drones_owned_total, {
+    field: 'Drones owned',
+    min: 0,
+    max: 200,
   })!;
   const avgQuoteTurnaroundHours = parseIntegerInRange(payload.avg_quote_turnaround_hours, {
     field: 'Average quote turnaround hours',
@@ -524,11 +546,6 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
   if (dataDeliveryMaxDays < dataDeliveryMinDays) {
     throw new Error('Maximum data delivery days cannot be lower than minimum data delivery days');
   }
-  const repeatHireRatePct = parseIntegerInRange(payload.repeat_hire_rate_pct, {
-    field: 'Repeat hire rate',
-    min: 0,
-    max: 100,
-  })!;
 
   const currentYear = new Date().getUTCFullYear();
   const memberSinceYear = parseIntegerInRange(payload.member_since_year, {
@@ -538,10 +555,14 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
   })!;
 
   const topServiceSlugs = parseTopServiceSlugs(payload.top_service_slugs, true);
+  const topServiceRatingsJson = parseServiceRatings(
+    payload.top_service_ratings_json,
+    true,
+    topServiceSlugs,
+  );
   const additionalServicesNote = asTrimmedString(payload.additional_services_note, 600) || null;
   const equipmentItemsJson = parseEquipmentItems(payload.equipment_items_json, true);
   const portfolioItemsJson = parsePortfolioItems(payload.portfolio_items_json, true);
-  const skillsLevelsJson = parseSkillsLevels(payload.skills_levels_json, true);
 
   const faqCoverageAnswer = parseFaqAnswer(payload.faq_coverage_answer, 'Coverage', true)!;
   const faqQualificationsAnswer = parseFaqAnswer(payload.faq_qualifications_answer, 'Qualifications', true)!;
@@ -574,17 +595,17 @@ export function validatePilotApplicationPayload(payload: Record<string, unknown>
     facebook_url: parseOptionalUrl(payload.facebook_url, 'Facebook URL'),
     total_projects_completed: totalProjectsCompleted,
     years_experience: yearsExperience,
-    avg_response_hours: avgResponseHours,
+    drone_flight_hours_total: droneFlightHoursTotal,
+    drones_owned_total: dronesOwnedTotal,
     avg_quote_turnaround_hours: avgQuoteTurnaroundHours,
     data_delivery_min_days: dataDeliveryMinDays,
     data_delivery_max_days: dataDeliveryMaxDays,
-    repeat_hire_rate_pct: repeatHireRatePct,
     member_since_year: memberSinceYear,
     top_service_slugs: topServiceSlugs,
+    top_service_ratings_json: topServiceRatingsJson,
     additional_services_note: additionalServicesNote,
     equipment_items_json: equipmentItemsJson,
     portfolio_items_json: portfolioItemsJson,
-    skills_levels_json: skillsLevelsJson,
     faq_coverage_answer: faqCoverageAnswer,
     faq_qualifications_answer: faqQualificationsAnswer,
     faq_turnaround_answer: faqTurnaroundAnswer,
@@ -682,17 +703,17 @@ export type PilotProfileInput = {
   facebook_url: string | null;
   total_projects_completed: number | null;
   years_experience: number | null;
-  avg_response_hours: number | null;
+  drone_flight_hours_total: number | null;
+  drones_owned_total: number | null;
   avg_quote_turnaround_hours: number | null;
   data_delivery_min_days: number | null;
   data_delivery_max_days: number | null;
-  repeat_hire_rate_pct: number | null;
   member_since_year: number | null;
   top_service_slugs: string[];
+  top_service_ratings_json: PilotServiceRatingsInput;
   additional_services_note: string | null;
   equipment_items_json: PilotEquipmentItemInput[];
   portfolio_items_json: PilotPortfolioItemInput[];
-  skills_levels_json: Partial<PilotSkillsLevelsInput>;
   faq_coverage_answer: string | null;
   faq_qualifications_answer: string | null;
   faq_turnaround_answer: string | null;
@@ -749,7 +770,12 @@ export function validatePilotProfilePayload(payload: Record<string, unknown>): P
     throw new Error('Maximum data delivery days cannot be lower than minimum data delivery days');
   }
 
-  const skills = parseSkillsLevels(payload.skills_levels_json, false);
+  const topServiceSlugs = parseTopServiceSlugs(payload.top_service_slugs, false);
+  const topServiceRatings = parseServiceRatings(
+    payload.top_service_ratings_json,
+    false,
+    topServiceSlugs,
+  );
 
   return {
     name,
@@ -784,10 +810,16 @@ export function validatePilotProfilePayload(payload: Record<string, unknown>): P
       max: 80,
       required: false,
     }),
-    avg_response_hours: parseIntegerInRange(payload.avg_response_hours, {
-      field: 'Average response hours',
-      min: 1,
-      max: 720,
+    drone_flight_hours_total: parseIntegerInRange(payload.drone_flight_hours_total, {
+      field: 'Drone flight hours',
+      min: 0,
+      max: 500000,
+      required: false,
+    }),
+    drones_owned_total: parseIntegerInRange(payload.drones_owned_total, {
+      field: 'Drones owned',
+      min: 0,
+      max: 200,
       required: false,
     }),
     avg_quote_turnaround_hours: parseIntegerInRange(payload.avg_quote_turnaround_hours, {
@@ -798,23 +830,17 @@ export function validatePilotProfilePayload(payload: Record<string, unknown>): P
     }),
     data_delivery_min_days: dataDeliveryMinDays,
     data_delivery_max_days: dataDeliveryMaxDays,
-    repeat_hire_rate_pct: parseIntegerInRange(payload.repeat_hire_rate_pct, {
-      field: 'Repeat hire rate',
-      min: 0,
-      max: 100,
-      required: false,
-    }),
     member_since_year: parseIntegerInRange(payload.member_since_year, {
       field: 'Member since year',
       min: 2000,
       max: new Date().getUTCFullYear(),
       required: false,
     }),
-    top_service_slugs: parseTopServiceSlugs(payload.top_service_slugs, false),
+    top_service_slugs: topServiceSlugs,
+    top_service_ratings_json: topServiceRatings,
     additional_services_note: asTrimmedString(payload.additional_services_note, 600) || null,
     equipment_items_json: parseEquipmentItems(payload.equipment_items_json, false),
     portfolio_items_json: parsePortfolioItems(payload.portfolio_items_json, false),
-    skills_levels_json: skills,
     faq_coverage_answer: parseFaqAnswer(payload.faq_coverage_answer, PILOT_FAQ_QUESTIONS[0].question, false),
     faq_qualifications_answer: parseFaqAnswer(payload.faq_qualifications_answer, PILOT_FAQ_QUESTIONS[1].question, false),
     faq_turnaround_answer: parseFaqAnswer(payload.faq_turnaround_answer, PILOT_FAQ_QUESTIONS[2].question, false),
