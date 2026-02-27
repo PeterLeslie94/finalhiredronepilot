@@ -362,43 +362,47 @@ export default async function PilotProfilePage({
             <span className="text-white">{pilot.name}</span>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-[auto,1fr,320px] md:items-center">
-            <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden bg-white/10 border border-white/15">
-              {pilot.profile_photo_url ? (
-                <Image
-                  src={pilot.profile_photo_url}
-                  alt={pilot.name}
-                  fill
-                  className="object-cover"
-                  sizes="176px"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-5xl font-bold text-white/40">{pilot.name.charAt(0).toUpperCase()}</span>
-                </div>
-              )}
-            </div>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr),320px] lg:items-center">
+            <div className="flex items-start gap-4 md:gap-6">
+              <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden bg-white/10 border border-white/15 shrink-0">
+                {pilot.profile_photo_url ? (
+                  <Image
+                    src={pilot.profile_photo_url}
+                    alt={pilot.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/40">
+                      {pilot.name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+              </div>
 
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white">{pilot.name}</h1>
-              {pilot.business_name ? <p className="text-white/75 mt-1">{pilot.business_name}</p> : null}
-              {pilot.two_sentence_summary ? (
-                <p className="text-white/80 mt-4 max-w-2xl leading-relaxed">{pilot.two_sentence_summary}</p>
-              ) : null}
+              <div className="min-w-0">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">{pilot.name}</h1>
+                {pilot.business_name ? <p className="text-white/75 mt-1">{pilot.business_name}</p> : null}
+                {pilot.two_sentence_summary ? (
+                  <p className="text-white/80 mt-3 max-w-2xl leading-relaxed">{pilot.two_sentence_summary}</p>
+                ) : null}
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
-                  <BadgeCheck className="w-3.5 h-3.5" />
-                  Verified Operator
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
-                  <Shield className="w-3.5 h-3.5" />
-                  {pilot.insurance_provider ? 'Insured' : 'Insurance status on file'}
-                </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  {licenceLevelLabel(pilot.licence_level)}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
+                    <BadgeCheck className="w-3.5 h-3.5" />
+                    Verified Operator
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
+                    <Shield className="w-3.5 h-3.5" />
+                    {pilot.insurance_provider ? 'Insured' : 'Insurance status on file'}
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    {licenceLevelLabel(pilot.licence_level)}
+                  </div>
                 </div>
               </div>
             </div>
