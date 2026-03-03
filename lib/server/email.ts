@@ -269,7 +269,6 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
 
     case 'pilot_approved': {
       const profileUrl = `${BASE_URL}/pilots/${data.slug}`;
-      const confirmIntegrationUrl = `${BASE_URL}/api/pilots/${data.pilotId}/confirm-integration?token=${data.backlinkToken}`;
       const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Vetted and verified drone pilot badge (Active)&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
 
       return {
@@ -281,13 +280,13 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
           </p>
           ${ctaButton(profileUrl, 'View Your Profile')}
           <p style="margin:0 0 24px;color:#2d3748;font-size:15px;line-height:1.6;">
-            You are listed as a <strong>Verified Operator</strong> within the directory.
+            You are currently listed as a <strong>Tier 2 Operator</strong>. This means you are in our internal database and we may contact you when a suitable job is available. You will not automatically receive every enquiry, and you do not currently have a public listing on the UK's highest-traffic drone site.
           </p>
 
-          <!-- Integrated Operator benefits -->
+          <!-- Tier 1 benefits -->
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
             <tr><td style="background-color:#f3f4f6;padding:10px 12px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;">
-              Upgrade to Integrated Operator
+              Upgrade to Tier 1
             </td></tr>
             <tr><td style="padding:16px 12px;">
               <p style="margin:0 0 12px;color:#2d3748;font-size:15px;line-height:1.6;">
@@ -305,7 +304,7 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
                 </td></tr>
               </table>
               <p style="margin:0 0 16px;color:#718096;font-size:14px;line-height:1.6;">
-                There's no obligation to upgrade &mdash; but fully integrated profiles typically perform better within the platform.
+                There's no obligation to upgrade &mdash; but Tier 1 profiles typically perform better within the platform.
               </p>
 
               <p style="margin:0 0 8px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Badge Embed Code</p>
@@ -318,9 +317,8 @@ function renderTemplate(data: EmailTemplateData): { subject: string; html: strin
           </table>
 
           <p style="margin:0 0 8px;color:#2d3748;font-size:14px;line-height:1.6;">
-            Once you've added the badge or link to your site, confirm it here:
+            We will upgrade you within 7 days.
           </p>
-          ${ctaButton(confirmIntegrationUrl, "I've Added My Badge")}
 
           <p style="margin:0;color:#718096;font-size:13px;">
             Best,<br>HireDronePilot

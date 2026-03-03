@@ -3,11 +3,13 @@
  * Send all transactional email templates with sample data to a test address.
  *
  * Usage:
- *   RESEND_API_KEY=re_xxx node scripts/send-test-emails.mjs [recipient]
+ *   RESEND_API_KEY=re_xxx node scripts/send-test-emails.mjs [recipient] [--template <key>] [--list-templates]
+ *   RESEND_API_KEY=re_xxx node scripts/send-test-emails.mjs --template pilot_approved
  *
  * If recipient is omitted it defaults to peterlesliepay@gmail.com
  */
 import process from 'node:process';
+import { writeFileSync } from 'node:fs';
 import { Resend } from 'resend';
 
 const API_KEY = process.env.RESEND_API_KEY;
@@ -19,7 +21,59 @@ if (!API_KEY) {
 const resend = new Resend(API_KEY);
 const FROM = process.env.RESEND_FROM_EMAIL || 'HireDronePilot <noreply@hiredronepilot.uk>';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://hiredronepilot.uk';
-const RECIPIENT = process.argv[2] || 'peterlesliepay@gmail.com';
+const DEFAULT_RECIPIENT = 'peterlesliepay@gmail.com';
+
+const args = process.argv.slice(2);
+let RECIPIENT = DEFAULT_RECIPIENT;
+let templateFilter = null;
+let listTemplates = false;
+let previewMode = false;
+
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+
+  if (arg === '--list-templates') {
+    listTemplates = true;
+    continue;
+  }
+
+  if (arg === '--preview') {
+    previewMode = true;
+    continue;
+  }
+
+  if (arg === '--template') {
+    const next = args[i + 1];
+    if (!next || next.startsWith('--')) {
+      console.error('Missing value for --template');
+      process.exit(1);
+    }
+    templateFilter = next;
+    i++;
+    continue;
+  }
+
+  if (arg.startsWith('--template=')) {
+    const value = arg.slice('--template='.length);
+    if (!value) {
+      console.error('Missing value for --template');
+      process.exit(1);
+    }
+    templateFilter = value;
+    continue;
+  }
+
+  if (arg.startsWith('--')) {
+    console.error(`Unknown option: ${arg}`);
+    process.exit(1);
+  }
+
+  if (RECIPIENT !== DEFAULT_RECIPIENT) {
+    console.error(`Unexpected extra argument: ${arg}`);
+    process.exit(1);
+  }
+  RECIPIENT = arg;
+}
 
 // ── Shared helpers (mirrored from lib/server/email.ts) ──────────────────────
 
@@ -235,11 +289,8 @@ const templates = [
   },
   (() => {
     const pilotName = 'Alex Thompson';
-    const pilotId = '00000000-0000-0000-0000-000000000001';
     const slug = 'alex-thompson';
-    const backlinkToken = 'sample-backlink-token-abc123';
     const profileUrl = `${BASE_URL}/pilots/${slug}`;
-    const confirmIntegrationUrl = `${BASE_URL}/api/pilots/${pilotId}/confirm-integration?token=${backlinkToken}`;
     const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Vetted and verified drone pilot badge (Active)&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
 
     return {
@@ -252,13 +303,13 @@ const templates = [
         </p>
         ${ctaButton(profileUrl, 'View Your Profile')}
         <p style="margin:0 0 24px;color:#2d3748;font-size:15px;line-height:1.6;">
-          You are listed as a <strong>Verified Operator</strong> within the directory.
+          You are currently listed as a <strong>Tier 2 Operator</strong>. This means you are in our internal database and we may contact you when a suitable job is available. You will not automatically receive every enquiry, and you do not currently have a public listing on the UK's highest-traffic drone site.
         </p>
 
-        <!-- Integrated Operator benefits -->
+        <!-- Tier 1 benefits -->
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
           <tr><td style="background-color:#f3f4f6;padding:10px 12px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;">
-            Upgrade to Integrated Operator
+            Upgrade to Tier 1
           </td></tr>
           <tr><td style="padding:16px 12px;">
             <p style="margin:0 0 12px;color:#2d3748;font-size:15px;line-height:1.6;">
@@ -276,7 +327,7 @@ const templates = [
               </td></tr>
             </table>
             <p style="margin:0 0 16px;color:#718096;font-size:14px;line-height:1.6;">
-              There's no obligation to upgrade &mdash; but fully integrated profiles typically perform better within the platform.
+              There's no obligation to upgrade &mdash; but Tier 1 profiles typically perform better within the platform.
             </p>
 
             <p style="margin:0 0 8px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Badge Embed Code</p>
@@ -289,9 +340,8 @@ const templates = [
         </table>
 
         <p style="margin:0 0 8px;color:#2d3748;font-size:14px;line-height:1.6;">
-          Once you've added the badge or link to your site, confirm it here:
+          We will upgrade you within 7 days.
         </p>
-        ${ctaButton(confirmIntegrationUrl, "I've Added My Badge")}
 
         <p style="margin:0;color:#718096;font-size:13px;">
           Best,<br>HireDronePilot
@@ -315,14 +365,41 @@ const templates = [
   },
 ];
 
+if (listTemplates) {
+  console.log(templates.map((t) => t.key).join('\n'));
+  process.exit(0);
+}
+
+const templatesToSend = templateFilter ? templates.filter((t) => t.key === templateFilter) : templates;
+
+if (templateFilter && templatesToSend.length === 0) {
+  const available = templates.map((t) => t.key).join(', ');
+  console.error(`Unknown template key: ${templateFilter}`);
+  console.error(`Available templates: ${available}`);
+  process.exit(1);
+}
+
+if (previewMode) {
+  if (templatesToSend.length !== 1) {
+    console.error('Preview mode requires exactly one template. Use --template <key>.');
+    process.exit(1);
+  }
+
+  const template = templatesToSend[0];
+  const previewPath = `/tmp/email-preview-${template.key}.html`;
+  writeFileSync(previewPath, template.html, 'utf8');
+  console.log(`Preview written to ${previewPath}`);
+  process.exit(0);
+}
+
 // ── Send ────────────────────────────────────────────────────────────────────
 
-console.log(`Sending ${templates.length} test emails to ${RECIPIENT}...\n`);
+console.log(`Sending ${templatesToSend.length} test email(s) to ${RECIPIENT}...\n`);
 
 let sent = 0;
 let failed = 0;
 
-for (const t of templates) {
+for (const t of templatesToSend) {
   try {
     const result = await resend.emails.send({
       from: FROM,
