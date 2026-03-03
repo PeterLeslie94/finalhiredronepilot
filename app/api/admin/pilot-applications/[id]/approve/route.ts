@@ -11,6 +11,15 @@ import { generateUniqueSlug } from '@/lib/server/slugify';
 export const runtime = 'nodejs';
 const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
 
+function toJsonbParam(value: unknown, fallback: unknown): string {
+  const source = value ?? fallback;
+  try {
+    return JSON.stringify(source);
+  } catch {
+    return JSON.stringify(fallback);
+  }
+}
+
 type PilotApplicationRow = {
   id: string;
   pilot_name: string;
@@ -141,7 +150,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           )
           VALUES (
             $1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,
-            $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,
+            $13,$14,$15::text[],$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31::text[],$32::jsonb,$33,$34::jsonb,$35::jsonb,$36,$37,$38,$39,$40,
             $41,$42,$43
           )
           RETURNING id`,
@@ -177,10 +186,10 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           app.data_delivery_max_days,
           app.member_since_year,
           app.top_service_slugs,
-          app.top_service_ratings_json,
+          toJsonbParam(app.top_service_ratings_json, {}),
           app.additional_services_note,
-          app.equipment_items_json,
-          app.portfolio_items_json,
+          toJsonbParam(app.equipment_items_json, []),
+          toJsonbParam(app.portfolio_items_json, []),
           app.faq_coverage_answer,
           app.faq_qualifications_answer,
           app.faq_turnaround_answer,

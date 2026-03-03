@@ -24,6 +24,30 @@ const MAX_COMPLETION_MS = Math.max(
   MIN_COMPLETION_MS,
   Number(process.env.PILOT_APPLICATION_MAX_COMPLETION_MS || 14 * 24 * 60 * 60 * 1000),
 );
+type PgErrorLike = {
+  code?: string;
+  message?: string;
+};
+
+function toJsonbParam(value: unknown, fallback: unknown): string {
+  const source = value ?? fallback;
+  try {
+    return JSON.stringify(source);
+  } catch {
+    return JSON.stringify(fallback);
+  }
+}
+
+function isJsonSyntaxDbError(error: unknown): boolean {
+  if (!error || typeof error !== 'object') return false;
+  const pgError = error as PgErrorLike;
+  if (pgError.code !== '22P02') return false;
+  const message = String(pgError.message || '').toLowerCase();
+  return (
+    message.includes('invalid input syntax for type json') ||
+    message.includes('invalid input syntax for type jsonb')
+  );
+}
 
 function maskedSubmissionResponse() {
   return NextResponse.json(
@@ -137,7 +161,7 @@ export async function POST(request: Request) {
           )
           VALUES (
             $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,
-            $13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$40,$41,$42,
+            $13,$14,$15::text[],$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31::text[],$32::jsonb,$33,$34::jsonb,$35::jsonb,$36,$37,$38,$39,$40,$41,$42,
             now(),$43,$44,$45,'SUBMITTED'
           )
           RETURNING id, status`,
@@ -173,10 +197,10 @@ export async function POST(request: Request) {
           input.data_delivery_max_days,
           input.member_since_year,
           input.top_service_slugs,
-          input.top_service_ratings_json,
+          toJsonbParam(input.top_service_ratings_json, {}),
           input.additional_services_note,
-          input.equipment_items_json,
-          input.portfolio_items_json,
+          toJsonbParam(input.equipment_items_json, []),
+          toJsonbParam(input.portfolio_items_json, []),
           input.faq_coverage_answer,
           input.faq_qualifications_answer,
           input.faq_turnaround_answer,
@@ -225,6 +249,13 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof RequestOriginError) {
       return jsonError(error.message, 403);
+    }
+    if (isJsonSyntaxDbError(error)) {
+      console.error('Pilot application submit JSONB serialization error', error);
+      return jsonError(
+        'Something went wrong while submitting your application. Please try again.',
+        400,
+      );
     }
     const message = error instanceof Error ? error.message : 'Failed to submit pilot application';
     return jsonError(message, 400);
