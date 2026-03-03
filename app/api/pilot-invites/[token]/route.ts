@@ -7,9 +7,21 @@ import { hashToken } from '@/lib/server/security';
 export const runtime = 'nodejs';
 const INVITE_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.PILOT_INVITE_TOKEN_TTL_DAYS || 30));
 
-function hasInviteExpired(sentAtRaw: string): boolean {
-  const sentAtMs = new Date(sentAtRaw).getTime();
-  if (!Number.isFinite(sentAtMs)) return true;
+function toTimestampMs(raw: string | null | undefined): number | null {
+  if (!raw) return null;
+  const ts = new Date(raw).getTime();
+  if (!Number.isFinite(ts)) return null;
+  return ts;
+}
+
+function hasInviteExpired(tokenExpiresAtRaw: string | null, sentAtRaw: string): boolean {
+  const tokenExpiresAtMs = toTimestampMs(tokenExpiresAtRaw);
+  if (tokenExpiresAtMs != null) {
+    return Date.now() > tokenExpiresAtMs;
+  }
+
+  const sentAtMs = toTimestampMs(sentAtRaw);
+  if (sentAtMs == null) return true;
   const ttlMs = INVITE_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000;
   return Date.now() > sentAtMs + ttlMs;
 }
@@ -24,6 +36,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       enquiry_id: string;
       invite_status: string;
       sent_at: string;
+      token_expires_at: string | null;
       pilot_id: string;
       pilot_name: string;
       pilot_email: string;
@@ -43,6 +56,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
         pi.enquiry_id,
         pi.status::text AS invite_status,
         pi.sent_at::text AS sent_at,
+        pi.token_expires_at::text AS token_expires_at,
         p.id AS pilot_id,
         p.name AS pilot_name,
         p.email AS pilot_email,
@@ -73,7 +87,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
       return jsonError('Invite not found', 404);
     }
 
-    if (hasInviteExpired(row.sent_at)) {
+    if (hasInviteExpired(row.token_expires_at, row.sent_at)) {
       await query(
         `UPDATE pilot_invitations
          SET status = 'EXPIRED'

@@ -158,6 +158,14 @@ export default function AdminDashboardPage() {
               ))
             )}
           </div>
+          <div className="mt-3 pt-3 border-t border-gray-100">
+            <Link
+              href="/admin/enquiries"
+              className="text-xs font-medium text-[#f97316] hover:underline"
+            >
+              View all enquiries
+            </Link>
+          </div>
         </QueueCard>
 
         <QueueCard

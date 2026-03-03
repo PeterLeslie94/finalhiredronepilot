@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Users, Contact, LogOut, X } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, Contact, LogOut, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/enquiries', label: 'Enquiries', icon: FileText },
   { href: '/admin/pilot-applications', label: 'Pilot Applications', icon: Users },
   { href: '/admin/pilots', label: 'Pilot Directory', icon: Contact },
 ];

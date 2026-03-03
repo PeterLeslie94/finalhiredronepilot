@@ -31,6 +31,7 @@ function loadEnvFile(filePath) {
 
 loadEnvFile(path.resolve(process.cwd(), '.env.local'));
 loadEnvFile(path.resolve(process.cwd(), '.env'));
+const INVITE_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.PILOT_INVITE_TOKEN_TTL_DAYS || 30));
 
 function hashToken(token) {
   return crypto.createHash('sha256').update(token).digest('hex');
@@ -622,6 +623,9 @@ async function seedDemo(client) {
       const rawToken = randomTokenHex(24);
       const tokenHash = hashToken(rawToken);
       const sentAt = toIso(-0.25 - idx * 0.5);
+      const tokenExpiresAt = new Date(
+        new Date(sentAt).getTime() + INVITE_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000,
+      ).toISOString();
 
       tokenLog.push({
         rawToken,
@@ -639,9 +643,9 @@ async function seedDemo(client) {
       await client.query(
         `
         INSERT INTO pilot_invitations
-          (enquiry_id, pilot_id, invite_round, token_hash, status, sent_at, opened_at)
+          (enquiry_id, pilot_id, invite_round, token_hash, token_expires_at, status, sent_at, opened_at)
         VALUES
-          ($1,$2,$3,$4,$5,$6,$7)
+          ($1,$2,$3,$4,$5,$6,$7,$8)
         RETURNING id
         `,
         [
@@ -649,6 +653,7 @@ async function seedDemo(client) {
           pilotId,
           inviteRound,
           tokenHash,
+          tokenExpiresAt,
           spec.status,
           sentAt,
           openedAt,

@@ -205,6 +205,7 @@ One row per invited pilot per enquiry.
 | pilot_id | uuid FK NOT NULL | references `pilots.id` |
 | invite_round | smallint NOT NULL | default `1` |
 | token_hash | text NOT NULL | never store raw token |
+| token_expires_at | timestamptz NOT NULL | timestamp when invite link expires |
 | status | text NOT NULL | `SENT`, `OPENED`, `EXPIRED`, `DECLINED` |
 | sent_at | timestamptz NOT NULL | |
 | opened_at | timestamptz NULL | first open |

@@ -9,6 +9,7 @@ import { createInvitationToken } from '@/lib/server/security';
 import { validateInviteSelectionPayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
+const INVITE_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.PILOT_INVITE_TOKEN_TTL_DAYS || 30));
 
 type PilotRow = {
   id: string;
@@ -109,19 +110,21 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           emailLogId: '',
         };
       });
+      const tokenExpiresAt = new Date(Date.now() + INVITE_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000).toISOString();
 
       await client.query(
         `INSERT INTO pilot_invitations
-          (enquiry_id, pilot_id, invite_round, token_hash, status, sent_at)
+          (enquiry_id, pilot_id, invite_round, token_hash, token_expires_at, status, sent_at)
          SELECT
            $1::uuid,
            invite.pilot_id,
            $2::smallint,
            invite.token_hash,
+           $3::timestamptz,
            'SENT'::invite_status,
            now()
-         FROM UNNEST($3::uuid[], $4::text[]) AS invite(pilot_id, token_hash)`,
-        [id, inviteRound, created.map((invite) => invite.pilot_id), created.map((invite) => invite.token_hash)],
+         FROM UNNEST($4::uuid[], $5::text[]) AS invite(pilot_id, token_hash)`,
+        [id, inviteRound, tokenExpiresAt, created.map((invite) => invite.pilot_id), created.map((invite) => invite.token_hash)],
       );
 
       for (const invite of created) {
