@@ -240,7 +240,9 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       insurance_expiry::text,
       ${richProfileSelect}
      FROM pilots
-     WHERE slug = $1 AND active = true`,
+     WHERE slug = $1
+       AND active = true
+       AND tier::text = 'INTEGRATED_OPERATOR'`,
     [slug],
   );
   return result.rows[0] ?? null;
@@ -248,7 +250,12 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
 
 export async function generateStaticParams() {
   try {
-    const result = await query<{ slug: string }>('SELECT slug FROM pilots WHERE active = true');
+    const result = await query<{ slug: string }>(
+      `SELECT slug
+       FROM pilots
+       WHERE active = true
+         AND tier::text = 'INTEGRATED_OPERATOR'`,
+    );
     return result.rows.map((p) => ({ slug: p.slug }));
   } catch {
     return [];

@@ -38,6 +38,7 @@ export default async function PilotsDirectoryPage() {
     `SELECT id, name, business_name, slug, tier, profile_photo_url, two_sentence_summary
      FROM pilots
      WHERE active = true
+       AND tier::text = 'INTEGRATED_OPERATOR'
      ORDER BY CASE tier WHEN 'INTEGRATED_OPERATOR' THEN 0 ELSE 1 END, created_at DESC`,
   );
   const pilots = result.rows;

@@ -114,6 +114,7 @@ async function getPilotLinks(): Promise<SiteLink[]> {
       `SELECT slug, name, business_name
        FROM pilots
        WHERE active = true
+         AND tier::text = 'INTEGRATED_OPERATOR'
        ORDER BY created_at DESC`,
     );
 

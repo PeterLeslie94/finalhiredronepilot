@@ -89,7 +89,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let pilotPages: MetadataRoute.Sitemap = [];
   try {
     const result = await query<{ slug: string; updated_at: string | Date }>(
-      'SELECT slug, updated_at FROM pilots WHERE active = true',
+      `SELECT slug, updated_at
+       FROM pilots
+       WHERE active = true
+         AND tier::text = 'INTEGRATED_OPERATOR'`,
     );
     pilotPages = result.rows.map((pilot) => ({
       url: toAbsoluteUrl(`/pilots/${pilot.slug}`),
