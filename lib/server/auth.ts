@@ -24,10 +24,15 @@ export type SessionIdentity = {
 };
 
 export const SESSION_COOKIE_NAME = 'hdp_session';
+export type AdminAccess = { adminId: string; identityId: string; email: string };
+
+function normalizeSessionToken(rawSessionToken: string | null | undefined): string | null {
+  const token = rawSessionToken?.trim() || '';
+  return token || null;
+}
 
 function getSessionTokenFromRequest(request: NextRequest): string | null {
-  const value = request.cookies.get(SESSION_COOKIE_NAME)?.value?.trim() || '';
-  return value || null;
+  return normalizeSessionToken(request.cookies.get(SESSION_COOKIE_NAME)?.value ?? null);
 }
 
 async function getSessionIdentityByToken(rawSessionToken: string): Promise<SessionIdentity | null> {
@@ -53,11 +58,13 @@ async function getSessionIdentityByToken(rawSessionToken: string): Promise<Sessi
   return result.rows[0] || null;
 }
 
-export async function getOptionalSessionIdentity(request: NextRequest): Promise<SessionIdentity | null> {
-  const rawSessionToken = getSessionTokenFromRequest(request);
-  if (!rawSessionToken) return null;
+export async function getOptionalSessionIdentityBySessionToken(
+  rawSessionToken: string | null,
+): Promise<SessionIdentity | null> {
+  const normalizedToken = normalizeSessionToken(rawSessionToken);
+  if (!normalizedToken) return null;
 
-  const identity = await getSessionIdentityByToken(rawSessionToken);
+  const identity = await getSessionIdentityByToken(normalizedToken);
   if (!identity) return null;
 
   if (identity.revoked_at) return null;
@@ -74,10 +81,12 @@ export async function getOptionalSessionIdentity(request: NextRequest): Promise<
   return identity;
 }
 
-export async function requireAdminAccess(
-  request: NextRequest,
-): Promise<{ adminId: string; identityId: string; email: string }> {
-  const identity = await getOptionalSessionIdentity(request);
+export async function getOptionalSessionIdentity(request: NextRequest): Promise<SessionIdentity | null> {
+  return getOptionalSessionIdentityBySessionToken(getSessionTokenFromRequest(request));
+}
+
+export async function requireAdminAccessFromSessionToken(rawSessionToken: string | null): Promise<AdminAccess> {
+  const identity = await getOptionalSessionIdentityBySessionToken(rawSessionToken);
   if (!identity) {
     throw new AuthError('Authentication required');
   }
@@ -85,4 +94,8 @@ export async function requireAdminAccess(
     throw new AuthError('Admin access required');
   }
   return { adminId: identity.admin_id, identityId: identity.identity_id, email: identity.email };
+}
+
+export async function requireAdminAccess(request: NextRequest): Promise<AdminAccess> {
+  return requireAdminAccessFromSessionToken(getSessionTokenFromRequest(request));
 }
