@@ -294,7 +294,7 @@ export function ProductReviewSchema({
     summary: string;
     featuredImage: string;
     manufacturer: string;
-    priceLabel: string;
+    priceLabel?: string;
     slug: string;
     overallScore: number;
     publishedDate: string;
@@ -326,16 +326,20 @@ export function ProductReviewSchema({
       },
       image: schemaImage,
       description: review.summary,
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'GBP',
-        priceSpecification: {
-          '@type': 'PriceSpecification',
-          description: review.priceLabel,
-        },
-        availability: 'https://schema.org/InStock',
-        url: `https://hiredronepilot.uk/drone-reviews/${review.slug}`,
-      },
+      ...(review.priceLabel
+        ? {
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'GBP',
+              priceSpecification: {
+                '@type': 'PriceSpecification',
+                description: review.priceLabel,
+              },
+              availability: 'https://schema.org/InStock',
+              url: `https://hiredronepilot.uk/drone-reviews/${review.slug}`,
+            },
+          }
+        : {}),
     },
     reviewRating: {
       '@type': 'Rating',

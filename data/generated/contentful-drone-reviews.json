@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T12:00:00.000Z",
+  "generated_at": "2026-03-11T16:32:34.386Z",
   "reviews": [
     {
       "slug": "dji-air-3-review",
@@ -45,29 +45,99 @@
         "Still needs care in low-light video to avoid noisy footage"
       ],
       "specs": [
-        { "label": "Weight", "value": "Approx. 720g" },
-        { "label": "Claimed Flight Time", "value": "Approx. 46 min" },
-        { "label": "Camera Setup", "value": "Dual-camera folding drone" },
-        { "label": "Obstacle Sensing", "value": "Omnidirectional" },
-        { "label": "Best Fit", "value": "All-round camera drone" },
-        { "label": "Launch Position", "value": "Best drones overall" }
+        {
+          "label": "Weight",
+          "value": "Approx. 720g"
+        },
+        {
+          "label": "Claimed Flight Time",
+          "value": "Approx. 46 min"
+        },
+        {
+          "label": "Camera Setup",
+          "value": "Dual-camera folding drone"
+        },
+        {
+          "label": "Obstacle Sensing",
+          "value": "Omnidirectional"
+        },
+        {
+          "label": "Best Fit",
+          "value": "All-round camera drone"
+        },
+        {
+          "label": "Launch Position",
+          "value": "Best drones overall"
+        }
       ],
       "benchmarkSummary": [
-        { "label": "Median Real Flight Time", "value": "31m 18s", "notes": "Three mixed-use battery runs to 15%" },
-        { "label": "Hover Drift In Moderate Wind", "value": "Low", "notes": "Held position well without nervous corrections" },
-        { "label": "Tracking Success", "value": "Strong", "notes": "Held walking and cycling subjects more reliably than the lighter drones" },
-        { "label": "Bag-To-Air Time", "value": "1m 46s", "notes": "Controller on, props unfolded, GPS lock acquired" }
+        {
+          "label": "Median Real Flight Time",
+          "value": "31m 18s",
+          "notes": "Three mixed-use battery runs to 15%"
+        },
+        {
+          "label": "Hover Drift In Moderate Wind",
+          "value": "Low",
+          "notes": "Held position well without nervous corrections"
+        },
+        {
+          "label": "Tracking Success",
+          "value": "Strong",
+          "notes": "Held walking and cycling subjects more reliably than the lighter drones"
+        },
+        {
+          "label": "Bag-To-Air Time",
+          "value": "1m 46s",
+          "notes": "Controller on, props unfolded, GPS lock acquired"
+        }
       ],
       "scoreBreakdown": [
-        { "categoryId": "camera-image-quality", "score": 9.4, "summary": "Consistently strong daylight output with more flexibility than the smaller options." },
-        { "categoryId": "flight-performance-wind-stability", "score": 9.2, "summary": "Strong braking, calm hover behaviour, and the best confidence in wind of the non-FPV sample set." },
-        { "categoryId": "battery-real-flight-time", "score": 9.0, "summary": "Delivered comfortably usable real-world endurance across all three runs." },
-        { "categoryId": "safety-obstacle-avoidance", "score": 8.8, "summary": "Predictable warnings and braking with a reassuring return-to-home profile." },
-        { "categoryId": "ease-of-use", "score": 8.7, "summary": "Straightforward to set up, though not as instantly beginner-friendly as the cheapest option." },
-        { "categoryId": "tracking-intelligent-features", "score": 8.8, "summary": "Tracking was dependable enough to trust on repeated test routes." },
-        { "categoryId": "controller-app-experience", "score": 8.9, "summary": "Polished controller and app experience with minimal friction outdoors." },
-        { "categoryId": "value-for-money", "score": 8.4, "summary": "Pricier than entry-level drones but justified by the jump in confidence and output." },
-        { "categoryId": "portability-setup-speed", "score": 8.0, "summary": "Portable enough for a shoulder bag, just not ultra-light." }
+        {
+          "categoryId": "camera-image-quality",
+          "score": 9.4,
+          "summary": "Consistently strong daylight output with more flexibility than the smaller options."
+        },
+        {
+          "categoryId": "flight-performance-wind-stability",
+          "score": 9.2,
+          "summary": "Strong braking, calm hover behaviour, and the best confidence in wind of the non-FPV sample set."
+        },
+        {
+          "categoryId": "battery-real-flight-time",
+          "score": 9,
+          "summary": "Delivered comfortably usable real-world endurance across all three runs."
+        },
+        {
+          "categoryId": "safety-obstacle-avoidance",
+          "score": 8.8,
+          "summary": "Predictable warnings and braking with a reassuring return-to-home profile."
+        },
+        {
+          "categoryId": "ease-of-use",
+          "score": 8.7,
+          "summary": "Straightforward to set up, though not as instantly beginner-friendly as the cheapest option."
+        },
+        {
+          "categoryId": "tracking-intelligent-features",
+          "score": 8.8,
+          "summary": "Tracking was dependable enough to trust on repeated test routes."
+        },
+        {
+          "categoryId": "controller-app-experience",
+          "score": 8.9,
+          "summary": "Polished controller and app experience with minimal friction outdoors."
+        },
+        {
+          "categoryId": "value-for-money",
+          "score": 8.4,
+          "summary": "Pricier than entry-level drones but justified by the jump in confidence and output."
+        },
+        {
+          "categoryId": "portability-setup-speed",
+          "score": 8,
+          "summary": "Portable enough for a shoulder bag, just not ultra-light."
+        }
       ],
       "testRun": {
         "firmware": "Latest public firmware tested March 2026",
@@ -125,7 +195,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Design and setup", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Design and setup",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -144,7 +219,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Camera tests", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Camera tests",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -163,7 +243,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Flight behaviour", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Flight behaviour",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -182,7 +267,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Verdict",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -254,29 +344,99 @@
         "Still expensive for a first drone"
       ],
       "specs": [
-        { "label": "Weight", "value": "Under 250g class" },
-        { "label": "Claimed Flight Time", "value": "Approx. 34 min" },
-        { "label": "Camera Setup", "value": "Compact folding travel drone" },
-        { "label": "Obstacle Sensing", "value": "Omnidirectional" },
-        { "label": "Best Fit", "value": "Travel and premium beginner use" },
-        { "label": "Launch Position", "value": "Best travel drone" }
+        {
+          "label": "Weight",
+          "value": "Under 250g class"
+        },
+        {
+          "label": "Claimed Flight Time",
+          "value": "Approx. 34 min"
+        },
+        {
+          "label": "Camera Setup",
+          "value": "Compact folding travel drone"
+        },
+        {
+          "label": "Obstacle Sensing",
+          "value": "Omnidirectional"
+        },
+        {
+          "label": "Best Fit",
+          "value": "Travel and premium beginner use"
+        },
+        {
+          "label": "Launch Position",
+          "value": "Best travel drone"
+        }
       ],
       "benchmarkSummary": [
-        { "label": "Median Real Flight Time", "value": "26m 12s", "notes": "Three mixed-use battery runs to 15%" },
-        { "label": "Hover Drift In Moderate Wind", "value": "Moderate", "notes": "Needed more correction than the Air 3 in exposed sections" },
-        { "label": "Tracking Success", "value": "Very good", "notes": "Held walkers well and reacquired quickly after partial occlusion" },
-        { "label": "Bag-To-Air Time", "value": "1m 19s", "notes": "Fastest premium setup in the sample set" }
+        {
+          "label": "Median Real Flight Time",
+          "value": "26m 12s",
+          "notes": "Three mixed-use battery runs to 15%"
+        },
+        {
+          "label": "Hover Drift In Moderate Wind",
+          "value": "Moderate",
+          "notes": "Needed more correction than the Air 3 in exposed sections"
+        },
+        {
+          "label": "Tracking Success",
+          "value": "Very good",
+          "notes": "Held walkers well and reacquired quickly after partial occlusion"
+        },
+        {
+          "label": "Bag-To-Air Time",
+          "value": "1m 19s",
+          "notes": "Fastest premium setup in the sample set"
+        }
       ],
       "scoreBreakdown": [
-        { "categoryId": "camera-image-quality", "score": 8.9, "summary": "Still produces impressively premium-looking files for such a small drone." },
-        { "categoryId": "flight-performance-wind-stability", "score": 8.5, "summary": "Stable in light wind but clearly less planted than the larger Air 3." },
-        { "categoryId": "battery-real-flight-time", "score": 8.4, "summary": "Good endurance, though not class-leading once you factor in real shooting use." },
-        { "categoryId": "safety-obstacle-avoidance", "score": 8.7, "summary": "Strong sensing and safe-feeling warnings for a compact travel drone." },
-        { "categoryId": "ease-of-use", "score": 9.1, "summary": "Fast to launch, easy to learn, and very low-friction for repeat casual flying." },
-        { "categoryId": "tracking-intelligent-features", "score": 8.8, "summary": "Smart features were useful and dependable enough to matter." },
-        { "categoryId": "controller-app-experience", "score": 9.0, "summary": "Clean, polished control experience with very little frustration." },
-        { "categoryId": "value-for-money", "score": 8.7, "summary": "Expensive for its size, but it earns the premium by being genuinely easy to own." },
-        { "categoryId": "portability-setup-speed", "score": 9.5, "summary": "The strongest portability score in the sample set by a clear margin." }
+        {
+          "categoryId": "camera-image-quality",
+          "score": 8.9,
+          "summary": "Still produces impressively premium-looking files for such a small drone."
+        },
+        {
+          "categoryId": "flight-performance-wind-stability",
+          "score": 8.5,
+          "summary": "Stable in light wind but clearly less planted than the larger Air 3."
+        },
+        {
+          "categoryId": "battery-real-flight-time",
+          "score": 8.4,
+          "summary": "Good endurance, though not class-leading once you factor in real shooting use."
+        },
+        {
+          "categoryId": "safety-obstacle-avoidance",
+          "score": 8.7,
+          "summary": "Strong sensing and safe-feeling warnings for a compact travel drone."
+        },
+        {
+          "categoryId": "ease-of-use",
+          "score": 9.1,
+          "summary": "Fast to launch, easy to learn, and very low-friction for repeat casual flying."
+        },
+        {
+          "categoryId": "tracking-intelligent-features",
+          "score": 8.8,
+          "summary": "Smart features were useful and dependable enough to matter."
+        },
+        {
+          "categoryId": "controller-app-experience",
+          "score": 9,
+          "summary": "Clean, polished control experience with very little frustration."
+        },
+        {
+          "categoryId": "value-for-money",
+          "score": 8.7,
+          "summary": "Expensive for its size, but it earns the premium by being genuinely easy to own."
+        },
+        {
+          "categoryId": "portability-setup-speed",
+          "score": 9.5,
+          "summary": "The strongest portability score in the sample set by a clear margin."
+        }
       ],
       "testRun": {
         "firmware": "Latest public firmware tested March 2026",
@@ -334,7 +494,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Setup and portability", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Setup and portability",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -353,7 +518,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Photo and video output", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Photo and video output",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -372,7 +542,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Flight confidence", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Flight confidence",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -391,7 +566,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Verdict",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -465,29 +645,99 @@
         "Tracking and smart features are limited by comparison"
       ],
       "specs": [
-        { "label": "Weight", "value": "Ultra-light compact class" },
-        { "label": "Claimed Flight Time", "value": "Approx. 18 min" },
-        { "label": "Camera Setup", "value": "Beginner-focused compact drone" },
-        { "label": "Obstacle Sensing", "value": "Basic" },
-        { "label": "Best Fit", "value": "First drone and easy travel use" },
-        { "label": "Launch Position", "value": "Best beginner value" }
+        {
+          "label": "Weight",
+          "value": "Ultra-light compact class"
+        },
+        {
+          "label": "Claimed Flight Time",
+          "value": "Approx. 18 min"
+        },
+        {
+          "label": "Camera Setup",
+          "value": "Beginner-focused compact drone"
+        },
+        {
+          "label": "Obstacle Sensing",
+          "value": "Basic"
+        },
+        {
+          "label": "Best Fit",
+          "value": "First drone and easy travel use"
+        },
+        {
+          "label": "Launch Position",
+          "value": "Best beginner value"
+        }
       ],
       "benchmarkSummary": [
-        { "label": "Median Real Flight Time", "value": "14m 08s", "notes": "Three mixed-use battery runs to 15%" },
-        { "label": "Hover Drift In Moderate Wind", "value": "High", "notes": "The least planted drone in the sample set" },
-        { "label": "Tracking Success", "value": "Acceptable", "notes": "Good enough for casual clips, not dependable enough for demanding use" },
-        { "label": "Bag-To-Air Time", "value": "0m 58s", "notes": "Fastest total setup in the entire sample set" }
+        {
+          "label": "Median Real Flight Time",
+          "value": "14m 08s",
+          "notes": "Three mixed-use battery runs to 15%"
+        },
+        {
+          "label": "Hover Drift In Moderate Wind",
+          "value": "High",
+          "notes": "The least planted drone in the sample set"
+        },
+        {
+          "label": "Tracking Success",
+          "value": "Acceptable",
+          "notes": "Good enough for casual clips, not dependable enough for demanding use"
+        },
+        {
+          "label": "Bag-To-Air Time",
+          "value": "0m 58s",
+          "notes": "Fastest total setup in the entire sample set"
+        }
       ],
       "scoreBreakdown": [
-        { "categoryId": "camera-image-quality", "score": 7.7, "summary": "Good enough for casual clips, but clearly behind the more capable drones." },
-        { "categoryId": "flight-performance-wind-stability", "score": 7.0, "summary": "Easy to fly in calm conditions, quickly less convincing in wind." },
-        { "categoryId": "battery-real-flight-time", "score": 6.3, "summary": "Usable for short casual sessions but not a long-flight machine." },
-        { "categoryId": "safety-obstacle-avoidance", "score": 7.1, "summary": "Beginner-friendly overall, but not as protective or confidence-inspiring as the premium drones." },
-        { "categoryId": "ease-of-use", "score": 9.4, "summary": "The easiest drone here to understand and start using immediately." },
-        { "categoryId": "tracking-intelligent-features", "score": 6.8, "summary": "Works for basic casual use, but not robust enough to trust like the better drones." },
-        { "categoryId": "controller-app-experience", "score": 8.4, "summary": "Simple and unintimidating, with less complexity than the larger models." },
-        { "categoryId": "value-for-money", "score": 9.2, "summary": "One of the clearest value stories in the launch sample set." },
-        { "categoryId": "portability-setup-speed", "score": 9.8, "summary": "Tiny kit burden and genuinely instant setup." }
+        {
+          "categoryId": "camera-image-quality",
+          "score": 7.7,
+          "summary": "Good enough for casual clips, but clearly behind the more capable drones."
+        },
+        {
+          "categoryId": "flight-performance-wind-stability",
+          "score": 7,
+          "summary": "Easy to fly in calm conditions, quickly less convincing in wind."
+        },
+        {
+          "categoryId": "battery-real-flight-time",
+          "score": 6.3,
+          "summary": "Usable for short casual sessions but not a long-flight machine."
+        },
+        {
+          "categoryId": "safety-obstacle-avoidance",
+          "score": 7.1,
+          "summary": "Beginner-friendly overall, but not as protective or confidence-inspiring as the premium drones."
+        },
+        {
+          "categoryId": "ease-of-use",
+          "score": 9.4,
+          "summary": "The easiest drone here to understand and start using immediately."
+        },
+        {
+          "categoryId": "tracking-intelligent-features",
+          "score": 6.8,
+          "summary": "Works for basic casual use, but not robust enough to trust like the better drones."
+        },
+        {
+          "categoryId": "controller-app-experience",
+          "score": 8.4,
+          "summary": "Simple and unintimidating, with less complexity than the larger models."
+        },
+        {
+          "categoryId": "value-for-money",
+          "score": 9.2,
+          "summary": "One of the clearest value stories in the launch sample set."
+        },
+        {
+          "categoryId": "portability-setup-speed",
+          "score": 9.8,
+          "summary": "Tiny kit burden and genuinely instant setup."
+        }
       ],
       "testRun": {
         "firmware": "Latest public firmware tested March 2026",
@@ -545,7 +795,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Why it feels easy", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Why it feels easy",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -564,7 +819,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Where it falls short", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Where it falls short",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -583,7 +843,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Verdict",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -655,29 +920,99 @@
         "More niche value proposition for most buyers"
       ],
       "specs": [
-        { "label": "Weight", "value": "Compact FPV-style class" },
-        { "label": "Claimed Flight Time", "value": "Approx. 23 min" },
-        { "label": "Camera Setup", "value": "Immersive FPV-focused system" },
-        { "label": "Obstacle Sensing", "value": "Limited vs all-round camera drones" },
-        { "label": "Best Fit", "value": "Action and immersive flying" },
-        { "label": "Launch Position", "value": "Specialist pick" }
+        {
+          "label": "Weight",
+          "value": "Compact FPV-style class"
+        },
+        {
+          "label": "Claimed Flight Time",
+          "value": "Approx. 23 min"
+        },
+        {
+          "label": "Camera Setup",
+          "value": "Immersive FPV-focused system"
+        },
+        {
+          "label": "Obstacle Sensing",
+          "value": "Limited vs all-round camera drones"
+        },
+        {
+          "label": "Best Fit",
+          "value": "Action and immersive flying"
+        },
+        {
+          "label": "Launch Position",
+          "value": "Specialist pick"
+        }
       ],
       "benchmarkSummary": [
-        { "label": "Median Real Flight Time", "value": "18m 44s", "notes": "Three mixed-use battery runs to 15%" },
-        { "label": "Dynamic Tracking Feel", "value": "Strong", "notes": "Most distinctive and kinetic footage style in the launch set" },
-        { "label": "Setup Complexity", "value": "Moderate", "notes": "Not difficult, but clearly more specialist than Neo or Mini" },
-        { "label": "Bag-To-Air Time", "value": "1m 51s", "notes": "More moving parts and decision friction than the simpler drones" }
+        {
+          "label": "Median Real Flight Time",
+          "value": "18m 44s",
+          "notes": "Three mixed-use battery runs to 15%"
+        },
+        {
+          "label": "Dynamic Tracking Feel",
+          "value": "Strong",
+          "notes": "Most distinctive and kinetic footage style in the launch set"
+        },
+        {
+          "label": "Setup Complexity",
+          "value": "Moderate",
+          "notes": "Not difficult, but clearly more specialist than Neo or Mini"
+        },
+        {
+          "label": "Bag-To-Air Time",
+          "value": "1m 51s",
+          "notes": "More moving parts and decision friction than the simpler drones"
+        }
       ],
       "scoreBreakdown": [
-        { "categoryId": "camera-image-quality", "score": 8.6, "summary": "Good-looking dynamic footage, though not the cleanest all-purpose output." },
-        { "categoryId": "flight-performance-wind-stability", "score": 9.0, "summary": "Confident and engaging in motion when used for its intended style." },
-        { "categoryId": "battery-real-flight-time", "score": 7.5, "summary": "Acceptable endurance, but not a long-session platform." },
-        { "categoryId": "safety-obstacle-avoidance", "score": 7.8, "summary": "Safe enough when treated as a specialist platform, less forgiving than the camera-first options." },
-        { "categoryId": "ease-of-use", "score": 7.2, "summary": "More specialised and less instantly approachable than the neutral flying drones." },
-        { "categoryId": "tracking-intelligent-features", "score": 7.9, "summary": "Delivers a distinctive motion-focused result but does not replace robust all-round subject tracking." },
-        { "categoryId": "controller-app-experience", "score": 8.5, "summary": "Strong specialist experience once you buy into the style." },
-        { "categoryId": "value-for-money", "score": 7.4, "summary": "Worth it if you specifically want FPV-style results, harder to justify otherwise." },
-        { "categoryId": "portability-setup-speed", "score": 7.0, "summary": "Portable enough, just less seamless than the best travel-first drones." }
+        {
+          "categoryId": "camera-image-quality",
+          "score": 8.6,
+          "summary": "Good-looking dynamic footage, though not the cleanest all-purpose output."
+        },
+        {
+          "categoryId": "flight-performance-wind-stability",
+          "score": 9,
+          "summary": "Confident and engaging in motion when used for its intended style."
+        },
+        {
+          "categoryId": "battery-real-flight-time",
+          "score": 7.5,
+          "summary": "Acceptable endurance, but not a long-session platform."
+        },
+        {
+          "categoryId": "safety-obstacle-avoidance",
+          "score": 7.8,
+          "summary": "Safe enough when treated as a specialist platform, less forgiving than the camera-first options."
+        },
+        {
+          "categoryId": "ease-of-use",
+          "score": 7.2,
+          "summary": "More specialised and less instantly approachable than the neutral flying drones."
+        },
+        {
+          "categoryId": "tracking-intelligent-features",
+          "score": 7.9,
+          "summary": "Delivers a distinctive motion-focused result but does not replace robust all-round subject tracking."
+        },
+        {
+          "categoryId": "controller-app-experience",
+          "score": 8.5,
+          "summary": "Strong specialist experience once you buy into the style."
+        },
+        {
+          "categoryId": "value-for-money",
+          "score": 7.4,
+          "summary": "Worth it if you specifically want FPV-style results, harder to justify otherwise."
+        },
+        {
+          "categoryId": "portability-setup-speed",
+          "score": 7,
+          "summary": "Portable enough, just less seamless than the best travel-first drones."
+        }
       ],
       "testRun": {
         "firmware": "Latest public firmware tested March 2026",
@@ -735,7 +1070,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "What makes it special", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "What makes it special",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -754,7 +1094,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Where it asks more of you", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Where it asks more of you",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -773,7 +1118,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Verdict",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -820,12 +1170,36 @@
       "rightBuyIf": "Buy the Mini 4 Pro if you want the easiest premium drone to travel with and launch quickly.",
       "priceNote": "The Mini 4 Pro usually wins on portability per pound, but the Air 3 justifies its extra cost if you value confidence and headroom.",
       "categoryResults": [
-        { "label": "Camera and image quality", "winner": "left", "summary": "The Air 3 delivered more consistent high-end output across the same daylight and low-light scenes." },
-        { "label": "Wind stability", "winner": "left", "summary": "The larger drone stayed calmer and needed fewer visible corrections in exposed wind." },
-        { "label": "Portability", "winner": "right", "summary": "The Mini 4 Pro is the easier drone to carry, unpack, and relaunch." },
-        { "label": "Ease of use", "winner": "right", "summary": "The Mini 4 Pro is slightly easier to recommend to a buyer who wants premium results with low friction." },
-        { "label": "Tracking and features", "winner": "tie", "summary": "Both were strong, with the Air 3 feeling more planted and the Mini feeling more casual and immediate." },
-        { "label": "Value", "winner": "tie", "summary": "The Mini gives you more convenience, the Air gives you more headroom." }
+        {
+          "label": "Camera and image quality",
+          "winner": "left",
+          "summary": "The Air 3 delivered more consistent high-end output across the same daylight and low-light scenes."
+        },
+        {
+          "label": "Wind stability",
+          "winner": "left",
+          "summary": "The larger drone stayed calmer and needed fewer visible corrections in exposed wind."
+        },
+        {
+          "label": "Portability",
+          "winner": "right",
+          "summary": "The Mini 4 Pro is the easier drone to carry, unpack, and relaunch."
+        },
+        {
+          "label": "Ease of use",
+          "winner": "right",
+          "summary": "The Mini 4 Pro is slightly easier to recommend to a buyer who wants premium results with low friction."
+        },
+        {
+          "label": "Tracking and features",
+          "winner": "tie",
+          "summary": "Both were strong, with the Air 3 feeling more planted and the Mini feeling more casual and immediate."
+        },
+        {
+          "label": "Value",
+          "winner": "tie",
+          "summary": "The Mini gives you more convenience, the Air gives you more headroom."
+        }
       ],
       "faq": [
         {
@@ -862,7 +1236,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Camera differences", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Camera differences",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -881,7 +1260,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Portability differences", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Portability differences",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -900,7 +1284,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Which should you buy", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Which should you buy",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -939,11 +1328,31 @@
       "rightBuyIf": "Buy the Mini 4 Pro if you want a premium beginner-friendly drone that you will not outgrow quickly.",
       "priceNote": "This is mostly a value and ambition decision: the Neo is cheaper and simpler, the Mini 4 Pro is far more complete.",
       "categoryResults": [
-        { "label": "Image quality", "winner": "right", "summary": "The Mini 4 Pro produces meaningfully better photo and video output." },
-        { "label": "Beginner friendliness", "winner": "left", "summary": "The Neo is cheaper, less intimidating, and even faster to get airborne." },
-        { "label": "Wind stability", "winner": "right", "summary": "The Mini 4 Pro holds up much better once conditions become exposed." },
-        { "label": "Value", "winner": "left", "summary": "The Neo is the clearest bargain if you only want a simple starter drone." },
-        { "label": "Long-term ownership", "winner": "right", "summary": "The Mini 4 Pro has far more room for a buyer to grow into." }
+        {
+          "label": "Image quality",
+          "winner": "right",
+          "summary": "The Mini 4 Pro produces meaningfully better photo and video output."
+        },
+        {
+          "label": "Beginner friendliness",
+          "winner": "left",
+          "summary": "The Neo is cheaper, less intimidating, and even faster to get airborne."
+        },
+        {
+          "label": "Wind stability",
+          "winner": "right",
+          "summary": "The Mini 4 Pro holds up much better once conditions become exposed."
+        },
+        {
+          "label": "Value",
+          "winner": "left",
+          "summary": "The Neo is the clearest bargain if you only want a simple starter drone."
+        },
+        {
+          "label": "Long-term ownership",
+          "winner": "right",
+          "summary": "The Mini 4 Pro has far more room for a buyer to grow into."
+        }
       ],
       "faq": [
         {
@@ -980,7 +1389,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "What the Neo gets right", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "What the Neo gets right",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -999,7 +1413,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "What the Mini 4 Pro adds", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "What the Mini 4 Pro adds",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -1037,10 +1456,26 @@
       "rightBuyIf": "Buy the Neo if you want a simple, casual, low-cost beginner drone.",
       "priceNote": "The Neo wins on simplicity and price. The Avata 2 wins if you actually want the experience it is built for.",
       "categoryResults": [
-        { "label": "Ease of use", "winner": "right", "summary": "The Neo is far easier for a hesitant beginner." },
-        { "label": "Action footage", "winner": "left", "summary": "The Avata 2 produces a more distinctive, immersive result." },
-        { "label": "Value for casual buyers", "winner": "right", "summary": "The Neo makes more sense if you do not need a specialist platform." },
-        { "label": "Specialist capability", "winner": "left", "summary": "The Avata 2 has a clear purpose and it executes it well." }
+        {
+          "label": "Ease of use",
+          "winner": "right",
+          "summary": "The Neo is far easier for a hesitant beginner."
+        },
+        {
+          "label": "Action footage",
+          "winner": "left",
+          "summary": "The Avata 2 produces a more distinctive, immersive result."
+        },
+        {
+          "label": "Value for casual buyers",
+          "winner": "right",
+          "summary": "The Neo makes more sense if you do not need a specialist platform."
+        },
+        {
+          "label": "Specialist capability",
+          "winner": "left",
+          "summary": "The Avata 2 has a clear purpose and it executes it well."
+        }
       ],
       "faq": [
         {
@@ -1077,7 +1512,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Who the Neo is for", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Who the Neo is for",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -1096,7 +1536,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "Who the Avata 2 is for", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "Who the Avata 2 is for",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -1199,7 +1644,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "How we ranked them", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "How we ranked them",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -1292,7 +1742,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "What matters most for beginners", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "What matters most for beginners",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {
@@ -1385,7 +1840,12 @@
             "nodeType": "heading-2",
             "data": {},
             "content": [
-              { "nodeType": "text", "value": "What this list rewards", "marks": [], "data": {} }
+              {
+                "nodeType": "text",
+                "value": "What this list rewards",
+                "marks": [],
+                "data": {}
+              }
             ]
           },
           {

@@ -52,7 +52,7 @@ export interface ScoreCategoryDefinition {
 export interface ReviewScoreBreakdown {
   categoryId: ScoreCategoryId;
   score: number;
-  summary: string;
+  summary?: string;
   sectionTitle?: string;
   body?: Document;
   dataSummaryTitle?: string;
@@ -60,6 +60,21 @@ export interface ReviewScoreBreakdown {
   media?: ReviewMediaItem[];
   explanationLinkUrl?: string;
   explanationLinkLabel?: string;
+}
+
+export interface DroneReviewAuthor {
+  name: string;
+  role?: string;
+  image?: string;
+  bio?: string;
+  linkedin?: string;
+}
+
+export interface DroneReviewEditorialCategory {
+  slug: string;
+  name: string;
+  description?: string;
+  color?: string;
 }
 
 export interface DroneSpecSheetItem {
@@ -106,6 +121,11 @@ export interface DroneReview {
   featuredImageAlt: string;
   publishedDate: string;
   updatedDate?: string;
+  author?: DroneReviewAuthor;
+  editorialCategory?: DroneReviewEditorialCategory;
+  seoTitle?: string;
+  seoDescription?: string;
+  readingTime?: number;
   priceLabel: string;
   priceValue: number;
   affiliateUrl: string;
@@ -356,3 +376,7 @@ export function getScoreCategoryDefinition(id: ScoreCategoryId): ScoreCategoryDe
   }
   return match;
 }
+
+export const reviewScoreCategoryOrder: ScoreCategoryId[] = scoreCategoryDefinitions.map(
+  (category) => category.id,
+);

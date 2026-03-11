@@ -7,9 +7,21 @@ import { createClient } from 'contentful';
 
 const CONTENTFUL_PAGE_LIMIT = 100;
 const SNAPSHOT_PATH = path.resolve(process.cwd(), 'data/generated/contentful-drone-reviews.json');
-const CONTENT_TYPE_REVIEW = 'droneReview';
+const CONTENT_TYPE_REVIEW = 'droneReviewArticle';
 const CONTENT_TYPE_COMPARISON = 'droneComparison';
 const CONTENT_TYPE_BEST_PAGE = 'droneBestPage';
+const EMPTY_DOCUMENT = { nodeType: 'document', data: {}, content: [] };
+const REVIEW_SECTION_FIELDS = [
+  ['cameraImageQualitySection', 'camera-image-quality'],
+  ['flightPerformanceWindStabilitySection', 'flight-performance-wind-stability'],
+  ['batteryRealFlightTimeSection', 'battery-real-flight-time'],
+  ['safetyObstacleAvoidanceSection', 'safety-obstacle-avoidance'],
+  ['easeOfUseSection', 'ease-of-use'],
+  ['trackingIntelligentFeaturesSection', 'tracking-intelligent-features'],
+  ['controllerAppExperienceSection', 'controller-app-experience'],
+  ['valueForMoneySection', 'value-for-money'],
+  ['portabilitySetupSpeedSection', 'portability-setup-speed'],
+];
 
 function loadEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return;
@@ -60,6 +72,16 @@ function transformAsset(asset, fallbackAlt) {
 
 function pickArray(value) {
   return Array.isArray(value) ? value : [];
+}
+
+function readExistingSnapshot() {
+  if (!hasSnapshotFile()) return null;
+
+  try {
+    return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
+  } catch {
+    return null;
+  }
 }
 
 function mapFaqItems(items) {
@@ -139,58 +161,144 @@ function mapSpecSheet(items) {
     .filter(Boolean);
 }
 
-function mapReview(entry) {
+function createSummaryDocument(text) {
+  if (!text) return EMPTY_DOCUMENT;
+
+  return {
+    nodeType: 'document',
+    data: {},
+    content: [
+      {
+        nodeType: 'paragraph',
+        data: {},
+        content: [
+          {
+            nodeType: 'text',
+            value: text,
+            marks: [],
+            data: {},
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function mapAuthor(entry) {
+  const fields = entry?.fields ?? {};
+  if (!fields.name) return undefined;
+
+  const avatar = transformAsset(fields.avatar, fields.name);
+
+  return {
+    name: fields.name,
+    role: fields.role,
+    image: avatar?.url,
+    bio: fields.bio,
+    linkedin: fields.linkedin,
+  };
+}
+
+function mapEditorialCategory(entry) {
+  const fields = entry?.fields ?? {};
+  if (!fields.name || !fields.slug) return undefined;
+
+  return {
+    name: fields.name,
+    slug: fields.slug,
+    description: fields.description,
+    color: fields.color,
+  };
+}
+
+function mapScoreSection(entry, categoryId) {
+  const fields = entry?.fields ?? {};
+  if (typeof fields.score !== 'number') return null;
+
+  return {
+    categoryId,
+    score: fields.score,
+    summary: undefined,
+    body: fields.body ?? createSummaryDocument(fields.summary ?? ''),
+  };
+}
+
+function mapReviewArticle(entry) {
   const fields = entry?.fields ?? {};
   const hero = transformAsset(fields.featuredImage, fields.title ?? 'Drone review image');
 
   if (!fields.slug || !fields.title || !hero) {
-    throw new Error(`Drone review entry is missing required fields (slug/title/featuredImage).`);
+    throw new Error(`Drone review article entry is missing required fields (slug/title/featuredImage).`);
   }
+
+  const scoreBreakdown = REVIEW_SECTION_FIELDS.map(([fieldId, categoryId]) =>
+    mapScoreSection(fields[fieldId], categoryId),
+  ).filter(Boolean);
 
   return {
     slug: fields.slug,
     title: fields.title,
     manufacturer: fields.manufacturer ?? 'Unknown',
-    category: fields.category ?? 'all-rounder',
-    summary: fields.summary ?? '',
+    category: 'all-rounder',
+    summary: fields.excerpt ?? '',
     featuredImage: hero.url,
     featuredImageAlt: fields.featuredImageAlt ?? hero.alt,
     publishedDate: fields.publishDate ?? new Date(0).toISOString(),
     updatedDate: fields.updatedDate,
-    priceLabel: fields.priceLabel ?? 'Price unavailable',
-    priceValue: fields.priceValue ?? 0,
+    author: mapAuthor(fields.author),
+    editorialCategory: mapEditorialCategory(fields.category),
+    seoTitle: fields.seoTitle,
+    seoDescription: fields.seoDescription,
+    readingTime: fields.readingTime,
+    priceLabel: '',
+    priceValue: 0,
     affiliateUrl: fields.affiliateUrl ?? 'https://www.amazon.co.uk/',
-    verdict: fields.verdict ?? '',
-    differenceSummary: fields.differenceSummary,
-    buyIf: pickArray(fields.buyIf).filter((item) => typeof item === 'string'),
-    avoidIf: pickArray(fields.avoidIf).filter((item) => typeof item === 'string'),
+    verdict: '',
+    differenceSummary: undefined,
+    buyIf: pickArray(fields.bestFor).filter((item) => typeof item === 'string'),
+    avoidIf: pickArray(fields.considerations).filter((item) => typeof item === 'string'),
     overallScore: fields.overallScore ?? 0,
     featured: Boolean(fields.featured),
-    useCaseTags: pickArray(fields.useCaseTags).filter((item) => typeof item === 'string'),
-    pros: pickArray(fields.pros).filter((item) => typeof item === 'string'),
-    neutralFactors: pickArray(fields.neutralFactors).filter((item) => typeof item === 'string'),
-    cons: pickArray(fields.cons).filter((item) => typeof item === 'string'),
-    specs: mapSpecSheet(fields.specs),
-    performanceTable: mapMetricSet(fields.performanceTable),
-    benchmarkSummary: mapMetricSet(fields.benchmarkSummary),
-    scoreBreakdown: mapScoreBreakdown(fields.scoreBreakdown),
+    useCaseTags: [],
+    pros: [],
+    neutralFactors: [],
+    cons: [],
+    specs: [],
+    performanceTable: [],
+    benchmarkSummary: [],
+    scoreBreakdown,
     testRun: {
-      firmware: fields.firmwareTested ?? 'Unknown',
-      location: fields.testLocation ?? 'Unknown',
-      testDate: fields.testDate ?? new Date(0).toISOString(),
-      wind: fields.windConditions ?? 'Unknown',
-      temperature: fields.temperature ?? 'Unknown',
-      light: fields.lightConditions ?? 'Unknown',
-      notes: fields.testNotes,
+      firmware: '',
+      location: '',
+      testDate: fields.publishDate ?? new Date(0).toISOString(),
+      wind: '',
+      temperature: '',
+      light: '',
+      notes: undefined,
     },
-    gallery: mapMediaGallery(fields.gallery),
+    gallery: [],
     faq: mapFaqItems(fields.faq),
-    keyTakeaways: pickArray(fields.keyTakeaways).filter((item) => typeof item === 'string'),
-    contentfulContent: fields.content ?? { nodeType: 'document', data: {}, content: [] },
+    keyTakeaways: [],
+    contentfulContent: EMPTY_DOCUMENT,
     relatedReviewSlugs: pickArray(fields.relatedReviews).map((item) => item?.fields?.slug).filter(Boolean),
-    relatedComparisonSlugs: pickArray(fields.relatedComparisons).map((item) => item?.fields?.slug).filter(Boolean),
-    relatedBestPageSlugs: pickArray(fields.relatedBestPages).map((item) => item?.fields?.slug).filter(Boolean),
+    relatedComparisonSlugs: [],
+    relatedBestPageSlugs: [],
   };
+}
+
+function mergeEntries(existingItems, fetchedItems) {
+  const merged = new Map(
+    pickArray(existingItems)
+      .filter((item) => item && typeof item.slug === 'string')
+      .map((item) => [item.slug, item]),
+  );
+
+  for (const item of pickArray(fetchedItems)) {
+    if (!item || typeof item.slug !== 'string') continue;
+    merged.set(item.slug, item);
+  }
+
+  return Array.from(merged.values());
 }
 
 function mapComparison(entry) {
@@ -318,15 +426,17 @@ async function fetchSnapshotData() {
     environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
   });
 
+  const existingSnapshot = readExistingSnapshot() ?? {};
+
   const [reviewEntries, comparisonEntries, bestPageEntries] = await Promise.all([
     fetchEntries(client, CONTENT_TYPE_REVIEW),
     fetchEntries(client, CONTENT_TYPE_COMPARISON),
     fetchEntries(client, CONTENT_TYPE_BEST_PAGE),
   ]);
 
-  const reviews = reviewEntries.map(mapReview);
-  const comparisons = comparisonEntries.map(mapComparison);
-  const bestPages = bestPageEntries.map(mapBestPage);
+  const reviews = mergeEntries(existingSnapshot.reviews, reviewEntries.map(mapReviewArticle));
+  const comparisons = mergeEntries(existingSnapshot.comparisons, comparisonEntries.map(mapComparison));
+  const bestPages = mergeEntries(existingSnapshot.bestPages, bestPageEntries.map(mapBestPage));
 
   return {
     generated_at: new Date().toISOString(),
