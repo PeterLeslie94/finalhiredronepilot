@@ -6,48 +6,41 @@ interface ReviewEditorialSummaryProps {
   review: DroneReview;
 }
 
-function renderList(items: string[]) {
-  return (
-    <ul className="space-y-3">
-      {items.map((item) => (
-        <li key={item} className="flex gap-3 text-sm leading-relaxed text-text-secondary">
-          <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
+function joinStatements(items: string[]) {
+  return items
+    .map((item) => item.trim().replace(/\.$/, ''))
+    .filter(Boolean)
+    .join('. ') + (items.length > 0 ? '.' : '');
 }
 
 export default function ReviewEditorialSummary({ review }: ReviewEditorialSummaryProps) {
   const neutralFactors = review.neutralFactors ?? [];
 
   return (
-    <section id="how-it-differs" className="border-t border-border pt-12">
-      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">How It&apos;s Different</p>
-      <h2 className="mt-3 text-3xl font-bold text-teal">
+    <section id="how-it-differs" className="pt-8">
+      <h2 className="text-[2rem] font-bold text-teal">
         How is the {review.title.replace(/\s+Review$/, '')} different?
       </h2>
-      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-text-primary">
+      <p className="mt-4 text-[1.1rem] leading-8 text-text-primary">
         {getReviewDifferenceSummary(review)}
       </p>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-3">
+      <div className="mt-8 space-y-7">
         <section>
-          <h3 className="text-lg font-bold text-teal">Advantages</h3>
-          <div className="mt-4">{renderList(review.pros)}</div>
+          <h3 className="text-[1.4rem] font-bold text-teal">Advantages</h3>
+          <p className="mt-3 text-[1.05rem] leading-8 text-text-secondary">{joinStatements(review.pros)}</p>
         </section>
 
         {neutralFactors.length > 0 ? (
           <section>
-            <h3 className="text-lg font-bold text-teal">Neutral Factors</h3>
-            <div className="mt-4">{renderList(neutralFactors)}</div>
+            <h3 className="text-[1.4rem] font-bold text-teal">Neutral Factors</h3>
+            <p className="mt-3 text-[1.05rem] leading-8 text-text-secondary">{joinStatements(neutralFactors)}</p>
           </section>
         ) : null}
 
         <section>
-          <h3 className="text-lg font-bold text-teal">Disadvantages</h3>
-          <div className="mt-4">{renderList(review.cons)}</div>
+          <h3 className="text-[1.4rem] font-bold text-teal">Disadvantages</h3>
+          <p className="mt-3 text-[1.05rem] leading-8 text-text-secondary">{joinStatements(review.cons)}</p>
         </section>
       </div>
     </section>

@@ -1,19 +1,21 @@
 import { ContentfulRichText } from '@/components/blog/ContentfulRichText';
-import EditorialMetricTable from '@/components/reviews/EditorialMetricTable';
 import InlineHelpTooltip from '@/components/reviews/InlineHelpTooltip';
 import { DroneComparisonCategoryResult, DroneReview } from '@/data/drone-review-types';
 import {
   getComparisonCategoryId,
   getComparisonMethodology,
   getMetricHelpText,
+  getScoreSummaryTitle,
   getReviewDataPoints,
   getReviewScoreByCategory,
+  ScoreCategoryStats,
 } from '@/lib/reviews/editorial';
 
 interface ComparisonTestSectionProps {
   result: DroneComparisonCategoryResult;
   leftReview: DroneReview;
   rightReview: DroneReview;
+  scoreStats?: ScoreCategoryStats | null;
 }
 
 function getWinnerLabel(result: DroneComparisonCategoryResult, leftReview: DroneReview, rightReview: DroneReview) {
@@ -26,6 +28,7 @@ export default function ComparisonTestSection({
   result,
   leftReview,
   rightReview,
+  scoreStats,
 }: ComparisonTestSectionProps) {
   const categoryId = getComparisonCategoryId(result);
   const methodology = getComparisonMethodology(result);
@@ -63,91 +66,92 @@ export default function ComparisonTestSection({
     });
   }
 
+  const summaryRows = scoreStats
+    ? [
+        { label: 'Average Score', value: scoreStats.average.toFixed(1), tone: 'average' as const },
+        { label: 'Best Score', value: scoreStats.best.toFixed(1), tone: 'best' as const },
+        { label: 'Worst Score', value: scoreStats.worst.toFixed(1), tone: 'worst' as const },
+      ]
+    : [];
+
   return (
     <section
       id={categoryId ?? result.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
-      className="border-t border-border pt-12"
+      className="pt-8"
     >
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Category Result</p>
-          <h3 className="mt-3 text-3xl font-bold text-teal">{methodology?.label ?? result.label}</h3>
-          <p className="mt-5 text-lg leading-relaxed text-text-primary">{result.summary}</p>
-        </div>
-        <div className="shrink-0">
-          <span className="inline-flex rounded-full bg-background-alt px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-text-secondary">
-            Winner: {getWinnerLabel(result, leftReview, rightReview)}
-          </span>
+      <div className="flex flex-wrap items-center gap-3">
+        <span className="inline-flex rounded-full border border-[#d9d9d9] bg-white px-3 py-1 text-[0.8rem] font-semibold uppercase tracking-[0.18em] text-text-secondary">
+          Winner: {getWinnerLabel(result, leftReview, rightReview)}
+        </span>
+        <div className="flex items-center gap-2">
+          <h3 className="text-[2rem] font-bold leading-tight text-text-primary">{methodology?.label ?? result.label}</h3>
+          {methodology ? (
+            <InlineHelpTooltip
+              label={`More about ${methodology.label}`}
+              text={methodology.dataSummaryHelpText}
+              whatIsThis={methodology.whatIsThis}
+              whyItMatters={methodology.whyItMatters}
+              summaryTitle={getScoreSummaryTitle(methodology.label)}
+              summaryRows={summaryRows}
+            />
+          ) : null}
         </div>
       </div>
 
+      <p className="mt-5 text-[1.15rem] leading-8 text-text-primary">{result.summary}</p>
+
       {(leftScore || rightScore) ? (
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-border bg-white p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="border border-[#d9d9d9] bg-white p-4">
+            <p className="text-[0.85rem] font-semibold uppercase tracking-[0.18em] text-gold">
               {leftReview.title.replace(/\s+Review$/, '')}
             </p>
-            <p className="mt-3 text-4xl font-bold text-teal">{leftScore?.score.toFixed(1) ?? '—'}</p>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.24em] text-text-secondary">out of 10</p>
+            <p className="mt-4 text-[2.4rem] font-bold leading-none text-text-primary">{leftScore?.score.toFixed(1) ?? '—'}</p>
             {leftScore ? (
-              <p className="mt-4 text-sm leading-relaxed text-text-secondary">{leftScore.summary}</p>
+              <p className="mt-3 text-[0.98rem] leading-6 text-text-secondary">{leftScore.summary}</p>
             ) : null}
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">
+          <div className="border border-[#d9d9d9] bg-white p-4">
+            <p className="text-[0.85rem] font-semibold uppercase tracking-[0.18em] text-gold">
               {rightReview.title.replace(/\s+Review$/, '')}
             </p>
-            <p className="mt-3 text-4xl font-bold text-teal">{rightScore?.score.toFixed(1) ?? '—'}</p>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.24em] text-text-secondary">out of 10</p>
+            <p className="mt-4 text-[2.4rem] font-bold leading-none text-text-primary">{rightScore?.score.toFixed(1) ?? '—'}</p>
             {rightScore ? (
-              <p className="mt-4 text-sm leading-relaxed text-text-secondary">{rightScore.summary}</p>
+              <p className="mt-3 text-[0.98rem] leading-6 text-text-secondary">{rightScore.summary}</p>
             ) : null}
           </div>
-        </div>
-      ) : null}
-
-      {methodology ? (
-        <div className="mt-8 grid gap-8 md:grid-cols-2">
-          <section>
-            <div className="flex items-center gap-2">
-              <h4 className="text-base font-bold text-teal">What is this?</h4>
-              <InlineHelpTooltip label={`More about ${methodology.label}`} text={methodology.whatIsThis} />
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-text-secondary">{methodology.whatIsThis}</p>
-          </section>
-          <section>
-            <div className="flex items-center gap-2">
-              <h4 className="text-base font-bold text-teal">Why does this matter?</h4>
-              <InlineHelpTooltip
-                label={`Why ${methodology.label} matters`}
-                text={methodology.whyItMatters}
-              />
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-text-secondary">{methodology.whyItMatters}</p>
-          </section>
         </div>
       ) : null}
 
       {comparisonRows.length > 0 ? (
-        <div className="mt-8">
-          <div className="mb-4 flex items-center gap-2">
-            <h4 className="text-base font-bold text-teal">Data Summary</h4>
-            {methodology ? (
-              <InlineHelpTooltip label={`How ${methodology.label} was tested`} text={methodology.dataSummaryHelpText} />
-            ) : null}
-          </div>
-          <EditorialMetricTable
-            columnHeaders={[
-              leftReview.title.replace(/\s+Review$/, ''),
-              rightReview.title.replace(/\s+Review$/, ''),
-            ]}
-            rows={comparisonRows}
-          />
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {comparisonRows.map((row) => (
+            <article key={row.id} className="border border-[#d9d9d9] bg-white p-4">
+              <p className="text-[1.05rem] font-bold text-text-primary">{row.label}</p>
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-text-secondary">
+                    {leftReview.title.replace(/\s+Review$/, '')}
+                  </p>
+                  <p className="mt-2 text-[1.2rem] font-semibold text-gold">{row.values[0]}</p>
+                </div>
+                <div>
+                  <p className="text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-text-secondary">
+                    {rightReview.title.replace(/\s+Review$/, '')}
+                  </p>
+                  <p className="mt-2 text-[1.2rem] font-semibold text-gold">{row.values[1]}</p>
+                </div>
+              </div>
+              {row.note ? (
+                <p className="mt-4 text-[0.95rem] leading-6 text-text-secondary">{row.note}</p>
+              ) : null}
+            </article>
+          ))}
         </div>
       ) : null}
 
       {result.body ? (
-        <div className="mt-8 max-w-3xl">
+        <div className="mt-8 max-w-none">
           <ContentfulRichText content={result.body} />
         </div>
       ) : null}

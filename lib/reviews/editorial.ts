@@ -25,6 +25,12 @@ export interface ComparisonPerformanceRow {
   notes?: string;
 }
 
+export interface ScoreCategoryStats {
+  average: number;
+  best: number;
+  worst: number;
+}
+
 const metricDefinitions: ReviewMetricDefinition[] = [
   {
     id: 'median-real-flight-time',
@@ -419,4 +425,29 @@ export function getComparisonMethodology(result: DroneComparisonCategoryResult) 
     whyItMatters: definition.whyItMatters,
     dataSummaryHelpText: definition.testSummary,
   };
+}
+
+export function getScoreCategoryStats(
+  reviews: DroneReview[],
+  categoryId: ScoreCategoryId,
+): ScoreCategoryStats | null {
+  const values = reviews
+    .map((review) => getReviewScoreByCategory(review, categoryId)?.score)
+    .filter((value): value is number => typeof value === 'number');
+
+  if (values.length === 0) return null;
+
+  const average = values.reduce((sum, value) => sum + value, 0) / values.length;
+  const best = Math.max(...values);
+  const worst = Math.min(...values);
+
+  return {
+    average: Number(average.toFixed(1)),
+    best: Number(best.toFixed(1)),
+    worst: Number(worst.toFixed(1)),
+  };
+}
+
+export function getScoreSummaryTitle(label: string): string {
+  return `${label} Score Summary`;
 }

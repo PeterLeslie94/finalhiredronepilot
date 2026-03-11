@@ -6,17 +6,19 @@ import { ContentfulRichText } from '@/components/blog/ContentfulRichText';
 import { BreadcrumbSchema, FAQSchema } from '@/components/SchemaMarkup';
 import ComparisonTestSection from '@/components/reviews/ComparisonTestSection';
 import EditorialMetricTable from '@/components/reviews/EditorialMetricTable';
-import BestPageCard from '@/components/reviews/BestPageCard';
-import ReviewCard from '@/components/reviews/ReviewCard';
-import SectionNav from '@/components/reviews/SectionNav';
 import {
   getAllDroneBestPages,
   getAllDroneComparisons,
+  getAllDroneReviews,
   getDroneComparisonBySlug,
   getDroneComparisonCanonicalSlug,
   getDroneReviewBySlug,
 } from '@/lib/contentful/reviews';
-import { getComparisonPerformanceRows } from '@/lib/reviews/editorial';
+import {
+  getComparisonCategoryId,
+  getComparisonPerformanceRows,
+  getScoreCategoryStats,
+} from '@/lib/reviews/editorial';
 import { canonicalUrl } from '@/lib/seo/metadata';
 
 interface Props {
@@ -31,6 +33,10 @@ function formatDate(value: string): string {
     month: 'long',
     year: 'numeric',
   });
+}
+
+function titleWithoutSuffix(title: string): string {
+  return title.replace(/\s+Review$/, '');
 }
 
 export async function generateStaticParams() {
@@ -75,10 +81,11 @@ export default async function DroneComparisonPage({ params }: Props) {
   const comparison = await getDroneComparisonBySlug(canonicalSlug);
   if (!comparison) notFound();
 
-  const [leftReview, rightReview, allBestPages] = await Promise.all([
+  const [leftReview, rightReview, allBestPages, allReviews] = await Promise.all([
     getDroneReviewBySlug(comparison.leftReviewSlug),
     getDroneReviewBySlug(comparison.rightReviewSlug),
     getAllDroneBestPages(),
+    getAllDroneReviews(),
   ]);
 
   if (!leftReview || !rightReview) notFound();
@@ -90,23 +97,20 @@ export default async function DroneComparisonPage({ params }: Props) {
         ? rightReview
         : null;
 
+  const performanceRows = getComparisonPerformanceRows(leftReview, rightReview);
+  const scoreStatsByCategory = new Map(
+    comparison.categoryResults.map((result) => {
+      const categoryId = getComparisonCategoryId(result);
+      return [
+        result.label,
+        categoryId ? getScoreCategoryStats(allReviews, categoryId) : null,
+      ] as const;
+    }),
+  );
+
   const relatedBestPages = (comparison.relatedBestPageSlugs ?? [])
     .map((slugValue) => allBestPages.find((page) => page.slug === slugValue))
     .filter((page): page is NonNullable<typeof page> => Boolean(page));
-
-  const pageSections = [
-    { id: 'winner-summary', label: 'Winner Summary' },
-    { id: 'compare-table', label: 'Performance Table' },
-    { id: 'buying-advice', label: 'Who Should Buy Which' },
-    ...comparison.categoryResults.map((result, index) => ({
-      id: result.categoryId || result.label.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `result-${index}`,
-      label: result.label,
-    })),
-    { id: 'full-analysis', label: 'Full Analysis' },
-    { id: 'faq', label: 'FAQ' },
-  ];
-
-  const performanceRows = getComparisonPerformanceRows(leftReview, rightReview);
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://hiredronepilot.uk' },
@@ -119,56 +123,82 @@ export default async function DroneComparisonPage({ params }: Props) {
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={comparison.faq} />
 
-      <section className="border-b border-border bg-white pt-[120px]">
-        <div className="container py-12 md:py-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Drone Comparison</p>
-          <h1 className="mt-4 max-w-5xl text-4xl font-bold leading-tight text-teal md:text-6xl">
-            {comparison.title}
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-secondary md:text-xl">
-            {comparison.excerpt}
-          </p>
-          <p className="mt-8 text-sm text-text-secondary">
-            Updated {formatDate(comparison.updatedDate ?? comparison.publishedDate)}
-          </p>
+      <section className="border-b border-[#d8d8d8] bg-[#efefef] pt-[88px]">
+        <div className="container py-8">
+          <div className="mx-auto max-w-[820px]">
+            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-gold">
+              Drone Comparison
+            </p>
+            <h1 className="mt-3 text-[3rem] font-bold leading-tight text-text-primary md:text-[3.6rem]">
+              {comparison.title}
+            </h1>
+            <p className="mt-4 max-w-[680px] text-[1.05rem] leading-8 text-text-secondary">
+              {comparison.excerpt}
+            </p>
+            <p className="mt-5 text-[0.95rem] text-text-secondary">
+              Updated {formatDate(comparison.updatedDate ?? comparison.publishedDate)}
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="container grid grid-cols-1 gap-12 py-10 xl:grid-cols-[minmax(0,1fr)_290px]">
-          <main className="min-w-0 space-y-12">
-            <section id="winner-summary" className="rounded-[2rem] border border-border bg-white p-6 md:p-8">
-              <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr_1fr]">
-                <article>
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Left Drone</p>
-                  <h2 className="mt-3 text-2xl font-bold text-teal">{leftReview.title.replace(/\s+Review$/, '')}</h2>
-                  <p className="mt-4 text-sm leading-relaxed text-text-secondary">{comparison.leftBuyIf}</p>
+      <section className="bg-[#efefef]">
+        <div className="container py-8">
+          <main className="mx-auto max-w-[820px] space-y-10">
+            <section id="winner-summary" className="border border-[#d8d8d8] bg-white">
+              <div className="grid gap-0 md:grid-cols-[1fr_1.2fr_1fr]">
+                <article className="border-b border-[#d8d8d8] p-5 md:border-b-0 md:border-r">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    Left Drone
+                  </p>
+                  <h2 className="mt-3 text-[1.45rem] font-bold leading-tight text-text-primary">
+                    {titleWithoutSuffix(leftReview.title)}
+                  </h2>
+                  <p className="mt-3 text-[0.98rem] leading-7 text-text-secondary">
+                    {comparison.leftBuyIf}
+                  </p>
+                  <p className="mt-4 text-[0.82rem] text-text-secondary">
+                    Overall score {leftReview.overallScore.toFixed(1)}
+                  </p>
                   <Link
                     href={`/drone-reviews/${leftReview.slug}`}
-                    className="mt-5 inline-flex text-sm font-semibold text-gold transition-colors hover:text-gold-hover"
+                    className="mt-4 inline-flex text-[0.92rem] font-semibold text-gold transition-colors hover:text-gold-hover"
                   >
                     Read full review
                   </Link>
                 </article>
 
-                <article className="border-y border-border py-6 lg:border-x lg:border-y-0 lg:px-8 lg:py-0">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Winner Summary</p>
-                  <h2 className="mt-3 text-3xl font-bold text-teal">
-                    {winner ? winner.title.replace(/\s+Review$/, '') : 'No clear winner'}
+                <article className="border-b border-[#d8d8d8] bg-[#fafafa] p-5 md:border-b-0 md:border-r md:px-6">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    Winner Summary
+                  </p>
+                  <h2 className="mt-3 text-[1.7rem] font-bold leading-tight text-text-primary">
+                    {winner ? titleWithoutSuffix(winner.title) : 'No clear winner'}
                   </h2>
-                  <p className="mt-5 text-base leading-relaxed text-text-primary">{comparison.winnerSummary}</p>
+                  <p className="mt-4 text-[1rem] leading-7 text-text-primary">{comparison.winnerSummary}</p>
                   {comparison.priceNote ? (
-                    <p className="mt-4 text-sm leading-relaxed text-text-secondary">{comparison.priceNote}</p>
+                    <p className="mt-4 text-[0.95rem] leading-7 text-text-secondary">
+                      {comparison.priceNote}
+                    </p>
                   ) : null}
                 </article>
 
-                <article>
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Right Drone</p>
-                  <h2 className="mt-3 text-2xl font-bold text-teal">{rightReview.title.replace(/\s+Review$/, '')}</h2>
-                  <p className="mt-4 text-sm leading-relaxed text-text-secondary">{comparison.rightBuyIf}</p>
+                <article className="p-5">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    Right Drone
+                  </p>
+                  <h2 className="mt-3 text-[1.45rem] font-bold leading-tight text-text-primary">
+                    {titleWithoutSuffix(rightReview.title)}
+                  </h2>
+                  <p className="mt-3 text-[0.98rem] leading-7 text-text-secondary">
+                    {comparison.rightBuyIf}
+                  </p>
+                  <p className="mt-4 text-[0.82rem] text-text-secondary">
+                    Overall score {rightReview.overallScore.toFixed(1)}
+                  </p>
                   <Link
                     href={`/drone-reviews/${rightReview.slug}`}
-                    className="mt-5 inline-flex text-sm font-semibold text-gold transition-colors hover:text-gold-hover"
+                    className="mt-4 inline-flex text-[0.92rem] font-semibold text-gold transition-colors hover:text-gold-hover"
                   >
                     Read full review
                   </Link>
@@ -176,21 +206,22 @@ export default async function DroneComparisonPage({ params }: Props) {
               </div>
             </section>
 
-            <div className="xl:hidden">
-              <SectionNav sections={pageSections} />
-            </div>
-
-            <section id="compare-table" className="border-t border-border pt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Performance Table</p>
-              <h2 className="mt-3 text-3xl font-bold text-teal">How the two drones compare at a glance</h2>
-              <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
-                These are the headline measurements and field notes that shaped the recommendation before the deeper category breakdown.
+            <section id="performance-table">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                Performance Table
               </p>
-              <div className="mt-8">
+              <h2 className="mt-2 text-[2rem] font-bold text-text-primary">
+                How the two drones compare at a glance
+              </h2>
+              <p className="mt-3 text-[1rem] leading-7 text-text-secondary">
+                These are the headline test notes and benchmark rows that shaped the recommendation
+                before the deeper category sections below.
+              </p>
+              <div className="mt-5">
                 <EditorialMetricTable
                   columnHeaders={[
-                    leftReview.title.replace(/\s+Review$/, ''),
-                    rightReview.title.replace(/\s+Review$/, ''),
+                    titleWithoutSuffix(leftReview.title),
+                    titleWithoutSuffix(rightReview.title),
                   ]}
                   rows={performanceRows.map((row) => ({
                     id: row.id,
@@ -203,18 +234,28 @@ export default async function DroneComparisonPage({ params }: Props) {
               </div>
             </section>
 
-            <section id="buying-advice" className="border-t border-border pt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Buying Advice</p>
-              <h2 className="mt-3 text-3xl font-bold text-teal">Who should buy which</h2>
-              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-text-primary">{comparison.winnerSummary}</p>
-              <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <section id="buying-advice">
+              <h2 className="text-[2rem] font-bold text-text-primary">Who should buy which</h2>
+              <p className="mt-4 text-[1.08rem] leading-8 text-text-primary">
+                {comparison.winnerSummary}
+              </p>
+              <div className="mt-6 space-y-6 border-t border-[#d8d8d8] pt-6">
                 <article>
-                  <h3 className="text-lg font-bold text-teal">{leftReview.title.replace(/\s+Review$/, '')}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">{comparison.leftBuyIf}</p>
+                  <h3 className="text-[1.2rem] font-bold text-text-primary">
+                    {titleWithoutSuffix(leftReview.title)}
+                  </h3>
+                  <p className="mt-2 text-[1rem] leading-7 text-text-secondary">
+                    {comparison.leftBuyIf}
+                  </p>
                 </article>
+
                 <article>
-                  <h3 className="text-lg font-bold text-teal">{rightReview.title.replace(/\s+Review$/, '')}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">{comparison.rightBuyIf}</p>
+                  <h3 className="text-[1.2rem] font-bold text-text-primary">
+                    {titleWithoutSuffix(rightReview.title)}
+                  </h3>
+                  <p className="mt-2 text-[1rem] leading-7 text-text-secondary">
+                    {comparison.rightBuyIf}
+                  </p>
                 </article>
               </div>
             </section>
@@ -225,86 +266,73 @@ export default async function DroneComparisonPage({ params }: Props) {
                 result={result}
                 leftReview={leftReview}
                 rightReview={rightReview}
+                scoreStats={scoreStatsByCategory.get(result.label)}
               />
             ))}
 
-            <section id="full-analysis" className="border-t border-border pt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Full Analysis</p>
-              <h2 className="mt-3 text-3xl font-bold text-teal">The nuance behind the winner</h2>
-              <div className="mt-8 max-w-3xl">
+            <section id="full-analysis" className="pt-4">
+              <h2 className="text-[2rem] font-bold text-text-primary">Extended comparison notes</h2>
+              <div className="mt-5">
                 <ContentfulRichText content={comparison.contentfulContent} keyTakeaways={comparison.keyTakeaways} />
               </div>
             </section>
 
-            <section id="faq" className="border-t border-border pt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">FAQ</p>
-              <h2 className="mt-3 text-3xl font-bold text-teal">Quick answers before you buy</h2>
-              <div className="mt-8 divide-y divide-border rounded-[2rem] border border-border bg-white">
+            <section id="faq" className="pt-4">
+              <h2 className="text-[2rem] font-bold text-text-primary">Frequently Asked Questions</h2>
+              <div className="mt-5 divide-y divide-[#d8d8d8] border border-[#d8d8d8] bg-white">
                 {comparison.faq.map((item) => (
-                  <article key={item.question} className="px-6 py-6">
-                    <h3 className="text-lg font-bold text-teal">{item.question}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-text-secondary">{item.answer}</p>
+                  <article key={item.question} className="px-5 py-5">
+                    <h3 className="text-[1.1rem] font-bold text-text-primary">{item.question}</h3>
+                    <p className="mt-3 text-[1rem] leading-7 text-text-secondary">{item.answer}</p>
                   </article>
                 ))}
               </div>
             </section>
 
-            {relatedBestPages.length > 0 ? (
-              <section className="border-t border-border pt-12">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Related Best Pages</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">See the broader rankings</h2>
-                <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
-                  {relatedBestPages.map((page) => (
-                    <BestPageCard key={page.slug} page={page} />
-                  ))}
+            <section className="pt-4">
+              <h2 className="text-[2rem] font-bold text-text-primary">Keep Reading</h2>
+              <div className="mt-6 grid gap-8 md:grid-cols-3">
+                <div>
+                  <h3 className="text-[1.15rem] font-bold text-text-primary">Full Reviews</h3>
+                  <ul className="mt-3 space-y-2 text-[1rem] leading-7 text-gold">
+                    <li>
+                      <Link
+                        href={`/drone-reviews/${leftReview.slug}`}
+                        className="transition-colors hover:text-gold-hover"
+                      >
+                        {titleWithoutSuffix(leftReview.title)}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/drone-reviews/${rightReview.slug}`}
+                        className="transition-colors hover:text-gold-hover"
+                      >
+                        {titleWithoutSuffix(rightReview.title)}
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
-              </section>
-            ) : null}
 
-            <section className="border-t border-border pt-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Full Reviews</p>
-              <h2 className="mt-3 text-3xl font-bold text-teal">Read the source reviews</h2>
-              <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
-                <ReviewCard review={leftReview} />
-                <ReviewCard review={rightReview} />
+                {relatedBestPages.length > 0 ? (
+                  <div className="md:col-span-2">
+                    <h3 className="text-[1.15rem] font-bold text-text-primary">Best Guides</h3>
+                    <div className="mt-3 grid gap-x-10 gap-y-2 md:grid-cols-2">
+                      {relatedBestPages.map((page) => (
+                        <Link
+                          key={page.slug}
+                          href={`/best-drones/${page.slug}`}
+                          className="text-[1rem] leading-7 text-gold transition-colors hover:text-gold-hover"
+                        >
+                          {page.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </section>
           </main>
-
-          <aside className="hidden xl:block">
-            <div className="sticky top-24 space-y-6">
-              <SectionNav sections={pageSections} />
-
-              <article className="rounded-[2rem] border border-border bg-white p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Winner Snapshot</p>
-                <h2 className="mt-4 text-2xl font-bold text-teal">
-                  {winner ? winner.title.replace(/\s+Review$/, '') : 'Tie'}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-text-secondary">{comparison.winnerSummary}</p>
-              </article>
-
-              <article className="rounded-[2rem] border border-border bg-white p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Quick Links</p>
-                <div className="mt-4 space-y-3 text-sm">
-                  <Link
-                    href={`/drone-reviews/${leftReview.slug}`}
-                    className="block font-semibold text-teal transition-colors hover:text-gold"
-                  >
-                    {leftReview.title}
-                  </Link>
-                  <Link
-                    href={`/drone-reviews/${rightReview.slug}`}
-                    className="block font-semibold text-teal transition-colors hover:text-gold"
-                  >
-                    {rightReview.title}
-                  </Link>
-                  <Link href="/best-drones" className="block font-semibold text-teal transition-colors hover:text-gold">
-                    Browse best drone guides
-                  </Link>
-                </div>
-              </article>
-            </div>
-          </aside>
         </div>
       </section>
     </>
