@@ -85,7 +85,7 @@ export type PilotApplicationInput = {
 };
 
 export type InviteSelectionInput = {
-  selection_mode: 'ALL_ACTIVE' | 'INTEGRATED_ONLY' | 'MANUAL';
+  selection_mode: 'ALL_ACTIVE' | 'MANUAL';
   include_pilot_ids: string[];
   exclude_pilot_ids: string[];
   allow_reinvite: boolean;
@@ -726,7 +726,6 @@ export function validateInviteSelectionPayload(payload: Record<string, unknown>)
   const rawSelectionMode = asTrimmedString(payload.selection_mode, 24).toUpperCase();
   const selectionMode =
     rawSelectionMode === 'ALL_ACTIVE' ||
-    rawSelectionMode === 'INTEGRATED_ONLY' ||
     rawSelectionMode === 'MANUAL'
       ? rawSelectionMode
       : includePilotIds.length > 0

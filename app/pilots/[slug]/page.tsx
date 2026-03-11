@@ -27,6 +27,7 @@ import {
 } from '@/lib/pilot-profile';
 import { canonicalUrl } from '@/lib/seo/metadata';
 import { query } from '@/lib/server/database';
+import { hasPilotListingLiveAtColumn, publicPilotWhereClause } from '@/lib/server/pilot-listing';
 
 export const revalidate = 3600;
 
@@ -44,7 +45,6 @@ type PilotProfile = {
   name: string;
   business_name: string | null;
   slug: string;
-  tier: string;
   profile_photo_url: string | null;
   two_sentence_summary: string | null;
   licence_level: string | null;
@@ -145,6 +145,8 @@ function toRecord(value: unknown): Record<string, string> {
 }
 
 async function getPilot(slug: string): Promise<PilotProfile | null> {
+  const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
+
   if (!hasRichPilotProfileColumnsPromise) {
     hasRichPilotProfileColumnsPromise = (async () => {
       try {
@@ -231,7 +233,6 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       name,
       business_name,
       slug,
-      tier::text,
       profile_photo_url,
       two_sentence_summary,
       licence_level,
@@ -241,8 +242,7 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
       ${richProfileSelect}
      FROM pilots
      WHERE slug = $1
-       AND active = true
-       AND tier::text = 'INTEGRATED_OPERATOR'`,
+       AND ${publicPilotWhereClause(hasListingLiveAtColumn)}`,
     [slug],
   );
   return result.rows[0] ?? null;
@@ -250,11 +250,11 @@ async function getPilot(slug: string): Promise<PilotProfile | null> {
 
 export async function generateStaticParams() {
   try {
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
     const result = await query<{ slug: string }>(
       `SELECT slug
        FROM pilots
-       WHERE active = true
-         AND tier::text = 'INTEGRATED_OPERATOR'`,
+       WHERE ${publicPilotWhereClause(hasListingLiveAtColumn)}`,
     );
     return result.rows.map((p) => ({ slug: p.slug }));
   } catch {
@@ -274,7 +274,7 @@ export async function generateMetadata({
   const title = `${pilot.name}${pilot.business_name ? ` — ${pilot.business_name}` : ''} | HireDronePilot`;
   const description = pilot.two_sentence_summary
     ? pilot.two_sentence_summary
-    : `${pilot.name} is a verified drone pilot on HireDronePilot. Get a quote for your drone survey project.`;
+    : `${pilot.name} is an approved drone pilot on HireDronePilot. Get a quote for your drone survey project.`;
 
   return {
     title,
@@ -399,7 +399,7 @@ export default async function PilotProfilePage({
                 <div className="mt-4 flex flex-wrap gap-2">
                   <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
                     <BadgeCheck className="w-3.5 h-3.5" />
-                    Verified Operator
+                    Approved Operator
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs text-white/90">
                     <Shield className="w-3.5 h-3.5" />
@@ -525,7 +525,7 @@ export default async function PilotProfilePage({
 
             {pilot.google_business_profile_url ? (
               <section className="rounded-2xl border border-blue-200 bg-blue-50 p-6">
-                <h2 className="text-lg font-bold text-blue-900">Verified Business</h2>
+                <h2 className="text-lg font-bold text-blue-900">Google Business Profile</h2>
                 <a
                   href={pilot.google_business_profile_url}
                   target="_blank"

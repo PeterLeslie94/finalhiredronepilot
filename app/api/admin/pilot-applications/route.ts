@@ -18,7 +18,6 @@ export async function GET(request: NextRequest) {
     await requireAdminAccess(request);
 
     const status = request.nextUrl.searchParams.get('status');
-    const upgradeReady = request.nextUrl.searchParams.get('upgrade_ready');
     const limit = Number(request.nextUrl.searchParams.get('limit') || 50);
     const cursor = parseCursor(request.nextUrl.searchParams.get('cursor'));
     const pageSize = Math.max(1, Math.min(limit, 200));
@@ -29,11 +28,6 @@ export async function GET(request: NextRequest) {
     if (status) {
       values.push(status);
       where.push(`status = $${values.length}`);
-    }
-
-    if (upgradeReady === 'true') {
-      where.push(`backlink_confirmed_at IS NOT NULL`);
-      where.push(`status NOT IN ('APPROVED', 'REJECTED')`);
     }
 
     if (cursor) {
@@ -88,7 +82,6 @@ export async function GET(request: NextRequest) {
         faq_permissions_answer,
         review_notes,
         status,
-        backlink_confirmed_at,
         created_at,
         reviewed_at
       FROM pilot_applications

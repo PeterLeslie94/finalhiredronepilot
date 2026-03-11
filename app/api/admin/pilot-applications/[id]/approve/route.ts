@@ -5,11 +5,10 @@ import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { withTransaction } from '@/lib/server/database';
 import { fireEmail } from '@/lib/server/email';
 import { assertTrustedOrigin, jsonError, RequestOriginError } from '@/lib/server/http';
-import { createInvitationToken } from '@/lib/server/security';
+import { hasPilotListingLiveAtColumn } from '@/lib/server/pilot-listing';
 import { generateUniqueSlug } from '@/lib/server/slugify';
 
 export const runtime = 'nodejs';
-const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
 
 function toJsonbParam(value: unknown, fallback: unknown): string {
   const source = value ?? fallback;
@@ -71,10 +70,11 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     assertTrustedOrigin(request);
     const { adminId } = await requireAdminAccess(request);
     const { id } = await params;
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
 
     type ApproveResult =
       | { applicationId: string; pilotId: string; alreadyLinked: true }
-      | { applicationId: string; pilotId: string; alreadyLinked: false; slug: string; rawToken: string; email: string; pilotName: string; websiteUrl: string | null };
+      | { applicationId: string; pilotId: string; alreadyLinked: false; slug: string; email: string; pilotName: string };
 
     const result: ApproveResult = await withTransaction(async (client) => {
       const appResult = await client.query<PilotApplicationRow>(
@@ -87,6 +87,15 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       }
 
       if (app.created_pilot_id) {
+        if (hasListingLiveAtColumn) {
+          await client.query(
+            `UPDATE pilots
+             SET listing_live_at = COALESCE(listing_live_at, now()),
+                 updated_at = now()
+             WHERE id = $1`,
+            [app.created_pilot_id],
+          );
+        }
         await client.query(
           `UPDATE pilot_applications
            SET status = 'APPROVED', reviewed_by_admin_id = $2, reviewed_at = now(), updated_at = now()
@@ -97,8 +106,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       }
 
       const slug = await generateUniqueSlug(app.pilot_name, client);
-      const { rawToken, tokenHash } = createInvitationToken();
-      const backlinkTokenExpiresAt = new Date(Date.now() + BACKLINK_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
+      const listingLiveAtColumns = hasListingLiveAtColumn ? ', listing_live_at' : '';
+      const listingLiveAtValues = hasListingLiveAtColumn ? ', now()' : '';
 
       const pilotInsert = await client.query<{ id: string }>(
         `INSERT INTO pilots
@@ -144,14 +153,14 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
             faq_turnaround_answer,
             faq_formats_answer,
             faq_permissions_answer,
-            slug,
-            backlink_token_hash,
-            backlink_token_expires_at
+            slug
+            ${listingLiveAtColumns}
           )
           VALUES (
             $1,$2,$3,$4,$5,$6,$7,true,$8,$9,$10,$11,$12,
             $13,$14,$15::text[],$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31::text[],$32::jsonb,$33,$34::jsonb,$35::jsonb,$36,$37,$38,$39,$40,
-            $41,$42,$43
+            $41
+            ${listingLiveAtValues}
           )
           RETURNING id`,
         [
@@ -196,8 +205,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           app.faq_formats_answer,
           app.faq_permissions_answer,
           slug,
-          tokenHash,
-          backlinkTokenExpiresAt.toISOString(),
         ],
       );
 
@@ -240,10 +247,8 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         pilotId,
         alreadyLinked: false,
         slug,
-        rawToken,
         email: String(app.email),
         pilotName: String(app.pilot_name),
-        websiteUrl: app.website_url,
       };
     });
 
@@ -254,8 +259,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         pilotName: result.pilotName,
         pilotId: result.pilotId,
         slug: result.slug,
-        backlinkToken: result.rawToken,
-        websiteUrl: result.websiteUrl,
       });
     }
 

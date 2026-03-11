@@ -4,7 +4,13 @@ import Link from 'next/link';
 import { citySlugs } from '@/data/cities';
 import { services } from '@/data/services';
 import { getAllArticles } from '@/lib/contentful/blog';
+import {
+  getAllDroneBestPages,
+  getAllDroneComparisons,
+  getAllDroneReviews,
+} from '@/lib/contentful/reviews';
 import { query } from '@/lib/server/database';
+import { hasPilotListingLiveAtColumn, publicPilotWhereClause } from '@/lib/server/pilot-listing';
 import { pageMetadata } from '@/lib/seo/metadata';
 
 type SiteLink = {
@@ -26,6 +32,9 @@ const coreLinks: SiteLink[] = [
   { path: '/contact', label: 'Contact' },
   { path: '/services', label: 'Services' },
   { path: '/blog', label: 'Blog' },
+  { path: '/drone-reviews', label: 'Drone Reviews' },
+  { path: '/drone-comparisons', label: 'Drone Comparisons' },
+  { path: '/best-drones', label: 'Best Drones' },
   { path: '/pricing', label: 'Pricing' },
   { path: '/cities', label: 'Cities' },
   { path: '/resources', label: 'Resources' },
@@ -47,6 +56,9 @@ const resourceLinks: SiteLink[] = [
   { path: '/resources/calculators/flight-time-calculator', label: 'Flight Time Calculator' },
   { path: '/resources/calculators/roi-calculator', label: 'ROI Calculator' },
   { path: '/resources/calculators/survey-cost-estimator', label: 'Survey Cost Estimator' },
+  { path: '/drone-reviews', label: 'Drone Reviews Hub' },
+  { path: '/drone-comparisons', label: 'Drone Comparisons Hub' },
+  { path: '/best-drones', label: 'Best Drones Hub' },
 ];
 
 export const revalidate = 3600;
@@ -108,13 +120,49 @@ async function getBlogLinks(): Promise<SiteLink[]> {
   }
 }
 
+async function getDroneReviewLinks(): Promise<SiteLink[]> {
+  try {
+    const reviews = await getAllDroneReviews();
+    return reviews.map((review) => ({
+      path: `/drone-reviews/${review.slug}`,
+      label: review.title,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+async function getDroneComparisonLinks(): Promise<SiteLink[]> {
+  try {
+    const comparisons = await getAllDroneComparisons();
+    return comparisons.map((comparison) => ({
+      path: `/drone-comparisons/${comparison.slug}`,
+      label: comparison.title,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+async function getBestDroneLinks(): Promise<SiteLink[]> {
+  try {
+    const bestPages = await getAllDroneBestPages();
+    return bestPages.map((page) => ({
+      path: `/best-drones/${page.slug}`,
+      label: page.title,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 async function getPilotLinks(): Promise<SiteLink[]> {
   try {
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
     const result = await query<PilotRow>(
       `SELECT slug, name, business_name
        FROM pilots
-       WHERE active = true
-         AND tier::text = 'INTEGRATED_OPERATOR'
+       WHERE ${publicPilotWhereClause(hasListingLiveAtColumn)}
        ORDER BY created_at DESC`,
     );
 
@@ -169,7 +217,13 @@ export default async function HtmlSitemapPage() {
     ),
   );
 
-  const [blogLinks, pilotLinks] = await Promise.all([getBlogLinks(), getPilotLinks()]);
+  const [blogLinks, pilotLinks, reviewLinks, comparisonLinks, bestDroneLinks] = await Promise.all([
+    getBlogLinks(),
+    getPilotLinks(),
+    getDroneReviewLinks(),
+    getDroneComparisonLinks(),
+    getBestDroneLinks(),
+  ]);
 
   return (
     <section className="section bg-background-alt">
@@ -184,6 +238,21 @@ export default async function HtmlSitemapPage() {
           <Section title="Services" links={serviceLinks} />
           <Section title="Cities" links={cityLinks} />
           <Section title="Resources & Calculators" links={dedupeByPath(resourceLinks)} />
+          <Section
+            title="Drone Reviews"
+            links={dedupeByPath(reviewLinks)}
+            emptyText="Drone review links are temporarily unavailable."
+          />
+          <Section
+            title="Drone Comparisons"
+            links={dedupeByPath(comparisonLinks)}
+            emptyText="Drone comparison links are temporarily unavailable."
+          />
+          <Section
+            title="Best Drones"
+            links={dedupeByPath(bestDroneLinks)}
+            emptyText="Best-drone ranking pages are temporarily unavailable."
+          />
           <Section
             title="Blog Articles"
             links={dedupeByPath(blogLinks)}

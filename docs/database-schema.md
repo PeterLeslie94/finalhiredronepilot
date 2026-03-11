@@ -68,7 +68,7 @@ Constraints:
 | last_seen_at | timestamptz NOT NULL | updated on use |
 
 ## 2. `pilots`
-Approved pilot directory (used for invitations).
+Approved pilot directory (used for invitations and public listing).
 
 | Column | Type | Notes |
 |---|---|---|
@@ -80,12 +80,13 @@ Approved pilot directory (used for invitations).
 | website_url | text NULL | |
 | profile_photo_url | text NULL | |
 | two_sentence_summary | text NULL | public profile summary |
-| active | boolean NOT NULL | default `true` |
+| active | boolean NOT NULL | default `true`; controls whether the pilot is currently public/invite-eligible |
 | licence_level | text NULL | `GVC`, `A2_CofC`, etc |
 | insurance_provider | text NULL | |
 | insurance_expiry | date NULL | |
 | flyer_id | text NULL | |
 | operator_id | text NULL | |
+| listing_live_at | timestamptz NULL | canonical publication timestamp; remains set even if the pilot is later deactivated |
 | notes | text NULL | internal notes |
 | created_at | timestamptz NOT NULL | |
 | updated_at | timestamptz NOT NULL | |
@@ -93,6 +94,7 @@ Approved pilot directory (used for invitations).
 Indexes:
 - `pilots_email_uq (email)`
 - `pilots_active_idx (active)`
+- `pilots_listing_live_idx (active, listing_live_at desc) WHERE listing_live_at IS NOT NULL`
 - `pilots_licence_level_idx (licence_level)`
 
 ## 3. `pilot_applications`

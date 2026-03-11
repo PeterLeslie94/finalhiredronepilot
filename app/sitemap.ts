@@ -3,7 +3,13 @@ import { MetadataRoute } from 'next';
 import { citySlugs } from '@/data/cities';
 import { services } from '@/data/services';
 import { getAllArticles } from '@/lib/contentful/blog';
+import {
+  getAllDroneBestPages,
+  getAllDroneComparisons,
+  getAllDroneReviews,
+} from '@/lib/contentful/reviews';
 import { query } from '@/lib/server/database';
+import { hasPilotListingLiveAtColumn, publicPilotWhereClause } from '@/lib/server/pilot-listing';
 
 export const revalidate = 3600;
 
@@ -31,6 +37,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/services', changeFrequency: 'weekly', priority: 0.9 },
     { path: '/blog', changeFrequency: 'weekly', priority: 0.85 },
+    { path: '/drone-reviews', changeFrequency: 'weekly', priority: 0.85 },
+    { path: '/drone-comparisons', changeFrequency: 'weekly', priority: 0.8 },
+    { path: '/best-drones', changeFrequency: 'weekly', priority: 0.85 },
     { path: '/pricing', changeFrequency: 'monthly', priority: 0.85 },
     { path: '/cities', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/resources', changeFrequency: 'weekly', priority: 0.8 },
@@ -74,12 +83,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   let blogPages: MetadataRoute.Sitemap = [];
+  let reviewPages: MetadataRoute.Sitemap = [];
+  let comparisonPages: MetadataRoute.Sitemap = [];
+  let bestDronePages: MetadataRoute.Sitemap = [];
   try {
-    const articles = await getAllArticles();
+    const [articles, reviews, comparisons, bestPages] = await Promise.all([
+      getAllArticles(),
+      getAllDroneReviews(),
+      getAllDroneComparisons(),
+      getAllDroneBestPages(),
+    ]);
+
     blogPages = articles.map((article) => ({
       url: toAbsoluteUrl(`/blog/${article.slug}`),
       lastModified: asDate(article.updatedDate || article.publishedDate, stableLastModified),
       changeFrequency: 'monthly',
+      priority: 0.8,
+    }));
+
+    reviewPages = reviews.map((review) => ({
+      url: toAbsoluteUrl(`/drone-reviews/${review.slug}`),
+      lastModified: asDate(review.updatedDate || review.publishedDate, stableLastModified),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    }));
+
+    comparisonPages = comparisons.map((comparison) => ({
+      url: toAbsoluteUrl(`/drone-comparisons/${comparison.slug}`),
+      lastModified: asDate(comparison.updatedDate || comparison.publishedDate, stableLastModified),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    }));
+
+    bestDronePages = bestPages.map((page) => ({
+      url: toAbsoluteUrl(`/best-drones/${page.slug}`),
+      lastModified: asDate(page.updatedDate || page.publishedDate, stableLastModified),
+      changeFrequency: 'weekly',
       priority: 0.8,
     }));
   } catch {
@@ -88,11 +127,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let pilotPages: MetadataRoute.Sitemap = [];
   try {
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
     const result = await query<{ slug: string; updated_at: string | Date }>(
       `SELECT slug, updated_at
        FROM pilots
-       WHERE active = true
-         AND tier::text = 'INTEGRATED_OPERATOR'`,
+       WHERE ${publicPilotWhereClause(hasListingLiveAtColumn)}`,
     );
     pilotPages = result.rows.map((pilot) => ({
       url: toAbsoluteUrl(`/pilots/${pilot.slug}`),
@@ -105,7 +144,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const deduped = new Map<string, MetadataRoute.Sitemap[number]>();
-  for (const entry of [...staticPages, ...servicePages, ...locationPages, ...blogPages, ...pilotPages]) {
+  for (const entry of [
+    ...staticPages,
+    ...servicePages,
+    ...locationPages,
+    ...blogPages,
+    ...reviewPages,
+    ...comparisonPages,
+    ...bestDronePages,
+    ...pilotPages,
+  ]) {
     deduped.set(entry.url, entry);
   }
 

@@ -58,7 +58,6 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
          WHERE p.active = true
            AND (
              ($2::text = 'ALL_ACTIVE')
-             OR ($2::text = 'INTEGRATED_ONLY' AND p.tier = 'INTEGRATED_OPERATOR'::pilot_tier_v2)
              OR ($2::text = 'MANUAL' AND p.id = ANY($3::uuid[]))
            )
            AND (cardinality($4::uuid[]) = 0 OR NOT (p.id = ANY($4::uuid[])))

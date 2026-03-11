@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { query } from '@/lib/server/database';
-import { CheckCircle2, ShieldCheck } from 'lucide-react';
+import { hasPilotListingLiveAtColumn, publicPilotWhereClause } from '@/lib/server/pilot-listing';
+import { CheckCircle2 } from 'lucide-react';
 import TrustBadge from '@/components/TrustBadge';
 import { canonicalUrl } from '@/lib/seo/metadata';
 
@@ -11,14 +12,14 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: 'Drone Pilots Directory | HireDronePilot',
   description:
-    'Browse our directory of verified drone pilots across the UK. Every operator is CAA-registered, insured, and ready to quote on your project.',
+    'Browse our directory of approved drone pilots across the UK. Every operator is CAA-registered, insured, and ready to quote on your project.',
   alternates: {
     canonical: canonicalUrl('/pilots'),
   },
   openGraph: {
     title: 'Drone Pilots Directory | HireDronePilot',
     description:
-      'Browse our directory of verified drone pilots across the UK.',
+      'Browse our directory of approved drone pilots across the UK.',
     type: 'website',
   },
 };
@@ -28,18 +29,17 @@ type PilotCard = {
   name: string;
   business_name: string | null;
   slug: string;
-  tier: string;
   profile_photo_url: string | null;
   two_sentence_summary: string | null;
 };
 
 export default async function PilotsDirectoryPage() {
+  const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
   const result = await query<PilotCard>(
-    `SELECT id, name, business_name, slug, tier, profile_photo_url, two_sentence_summary
+    `SELECT id, name, business_name, slug, profile_photo_url, two_sentence_summary
      FROM pilots
-     WHERE active = true
-       AND tier::text = 'INTEGRATED_OPERATOR'
-     ORDER BY CASE tier WHEN 'INTEGRATED_OPERATOR' THEN 0 ELSE 1 END, created_at DESC`,
+     WHERE ${publicPilotWhereClause(hasListingLiveAtColumn)}
+     ORDER BY created_at DESC`,
   );
   const pilots = result.rows;
 
@@ -52,7 +52,7 @@ export default async function PilotsDirectoryPage() {
             Drone Pilots Directory
           </h1>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Browse our network of verified drone operators across the UK. Every pilot is <Link href="/caa-drone-theory-test" className="text-gold hover:underline">CAA-registered</Link>, insured, and ready to quote on your project.
+            Browse our network of approved drone operators across the UK. Every pilot is <Link href="/caa-drone-theory-test" className="text-gold hover:underline">CAA-registered</Link>, insured, and ready to quote on your project.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <TrustBadge animated={false} />
@@ -98,19 +98,12 @@ export default async function PilotsDirectoryPage() {
                         </span>
                       </div>
                     )}
-                    {/* Tier Badge Overlay */}
+                    {/* Listing Badge Overlay */}
                     <div className="absolute top-3 right-3">
-                      {pilot.tier === 'INTEGRATED_OPERATOR' ? (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-600 text-white shadow-sm">
-                          <ShieldCheck className="w-3.5 h-3.5" />
-                          Website Verified
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-600 text-white shadow-sm">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          Verified
-                        </span>
-                      )}
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-600 text-white shadow-sm">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        Approved Operator
+                      </span>
                     </div>
                   </div>
 
@@ -142,7 +135,7 @@ export default async function PilotsDirectoryPage() {
             Need a Drone Survey?
           </h2>
           <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-            Submit your project details and receive quotes from verified pilots in your area.
+            Submit your project details and receive quotes from approved pilots in your area.
           </p>
           <Link
             href="/contact"

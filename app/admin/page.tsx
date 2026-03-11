@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
-import { Bell, FileText, RefreshCw, UserPlus, BadgeCheck } from 'lucide-react';
+import { FileText, RefreshCw, UserPlus } from 'lucide-react';
 
 type EnquiryRow = {
   id: string;
@@ -20,7 +20,6 @@ type PilotApplicationRow = {
   pilot_name: string;
   business_name: string;
   status: string;
-  backlink_confirmed_at: string | null;
   created_at: string;
 };
 
@@ -65,7 +64,6 @@ function QueueCard({ title, subtitle, count, icon, children }: QueueCardProps) {
 export default function AdminDashboardPage() {
   const [enquiries, setEnquiries] = useState<EnquiryRow[]>([]);
   const [newApplications, setNewApplications] = useState<PilotApplicationRow[]>([]);
-  const [upgradeReady, setUpgradeReady] = useState<PilotApplicationRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -73,10 +71,9 @@ export default function AdminDashboardPage() {
     setLoading(true);
     setError('');
     try {
-      const [enquiriesRes, appsRes, upgradesRes] = await Promise.all([
+      const [enquiriesRes, appsRes] = await Promise.all([
         fetch('/api/admin/enquiries?status=ACK_SENT&limit=25'),
         fetch('/api/admin/pilot-applications?status=SUBMITTED&limit=25'),
-        fetch('/api/admin/pilot-applications?upgrade_ready=true&limit=25'),
       ]);
 
       const enquiriesBody = (await enquiriesRes.json()) as {
@@ -87,18 +84,11 @@ export default function AdminDashboardPage() {
         items?: PilotApplicationRow[];
         error?: string;
       };
-      const upgradesBody = (await upgradesRes.json()) as {
-        items?: PilotApplicationRow[];
-        error?: string;
-      };
-
       if (!enquiriesRes.ok) throw new Error(enquiriesBody.error || 'Failed to load enquiries');
       if (!appsRes.ok) throw new Error(appsBody.error || 'Failed to load pilot applications');
-      if (!upgradesRes.ok) throw new Error(upgradesBody.error || 'Failed to load upgrade queue');
 
       setEnquiries(enquiriesBody.items || []);
       setNewApplications(appsBody.items || []);
-      setUpgradeReady(upgradesBody.items || []);
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : 'Failed to load dashboard');
     } finally {
@@ -134,7 +124,7 @@ export default function AdminDashboardPage() {
         </div>
       ) : null}
 
-      <div className="grid gap-4 md:grid-cols-3 mb-6">
+      <div className="grid gap-4 md:grid-cols-2 mb-6">
         <QueueCard
           title="New Enquiries"
           subtitle="Client submissions awaiting review"
@@ -193,36 +183,6 @@ export default function AdminDashboardPage() {
           </div>
         </QueueCard>
 
-        <QueueCard
-          title="Badge Upgrades"
-          subtitle="Pilots who confirmed backlink/badge"
-          count={upgradeReady.length}
-          icon={<BadgeCheck className="w-3.5 h-3.5" />}
-        >
-          <div className="space-y-2 max-h-[26rem] overflow-y-auto pr-1">
-            {upgradeReady.length === 0 ? (
-              <p className="text-sm text-gray-500">No upgrade-ready pilots.</p>
-            ) : (
-              upgradeReady.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/admin/pilot-applications?selected=${item.id}&view=upgrade`}
-                  className="block rounded-lg border border-gray-200 px-3 py-2 hover:border-[#f97316]/40 hover:bg-orange-50 transition-colors"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-sm font-medium text-gray-900 truncate">{item.pilot_name}</p>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-medium text-green-700">
-                      <Bell className="w-3 h-3" />
-                      Ready
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 truncate">{item.business_name || 'No business name'}</p>
-                  <p className="text-xs text-gray-400 mt-1">{toLocalDateTime(item.created_at)}</p>
-                </Link>
-              ))
-            )}
-          </div>
-        </QueueCard>
       </div>
     </div>
   );

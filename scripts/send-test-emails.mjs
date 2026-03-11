@@ -291,43 +291,31 @@ const templates = [
     const pilotName = 'Alex Thompson';
     const slug = 'alex-thompson';
     const profileUrl = `${BASE_URL}/pilots/${slug}`;
-    const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Vetted and verified drone pilot badge (Active)&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
+    const logoUrl = `${BASE_URL}/hiredronepilot-logo.png`;
+    const badgeEmbedCode = `&lt;a href=&quot;${escapeHtml(profileUrl)}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;${escapeHtml(BASE_URL)}/badges/verified-operator.svg&quot; alt=&quot;Approved Operator on HireDronePilot&quot; width=&quot;200&quot; height=&quot;60&quot; style=&quot;display:block;max-width:100%;height:auto;width:200px;&quot;&gt;&lt;/a&gt;`;
 
     return {
       key: 'pilot_approved',
-      subject: '[TEST] Your HireDronePilot Profile Is Live',
+      subject: '[TEST] Your HireDronePilot listing is now live',
       html: wrapInLayout(`
         <h2 style="margin:0 0 16px;color:#1f2937;font-family:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:20px;">Hi ${escapeHtml(pilotName)},</h2>
         <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
-          Your HireDronePilot profile is now live:
+          Your HireDronePilot listing has been approved and is now live.
         </p>
-        ${ctaButton(profileUrl, 'View Your Profile')}
+        ${ctaButton(profileUrl, 'View Your Live Profile')}
+        <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
+          When a suitable enquiry comes in for your area and services, we'll send it directly to you so you can contact the client and quote.
+        </p>
         <p style="margin:0 0 24px;color:#2d3748;font-size:15px;line-height:1.6;">
-          You are currently listed as a <strong>Tier 2 Operator</strong>. This means you are in our internal database and we may contact you when a suitable job is available. You will not automatically receive every enquiry, and you do not currently have a public listing on the UK's highest-traffic drone site.
+          If you have your own website, linking to your HireDronePilot profile can help reinforce the listing and boost its visibility.
         </p>
-
-        <!-- Tier 1 benefits -->
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;">
           <tr><td style="background-color:#f3f4f6;padding:10px 12px;font-size:13px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;">
-            Upgrade to Tier 1
+            Optional Website Assets
           </td></tr>
           <tr><td style="padding:16px 12px;">
             <p style="margin:0 0 12px;color:#2d3748;font-size:15px;line-height:1.6;">
-              Embed a badge or link on your website to unlock additional benefits:
-            </p>
-            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 16px;">
-              <tr><td style="padding:4px 0;color:#2d3748;font-size:14px;line-height:1.6;">
-                &#10003;&nbsp; <strong>Website Verified</strong> indicator on your profile
-              </td></tr>
-              <tr><td style="padding:4px 0;color:#2d3748;font-size:14px;line-height:1.6;">
-                &#10003;&nbsp; <strong>Increased visibility</strong> in the pilot directory
-              </td></tr>
-              <tr><td style="padding:4px 0;color:#2d3748;font-size:14px;line-height:1.6;">
-                &#10003;&nbsp; <strong>Priority leads</strong> for jobs in your area
-              </td></tr>
-            </table>
-            <p style="margin:0 0 16px;color:#718096;font-size:14px;line-height:1.6;">
-              There's no obligation to upgrade &mdash; but Tier 1 profiles typically perform better within the platform.
+              If you'd like, you can add a badge or a plain link to your profile on your own site.
             </p>
 
             <p style="margin:0 0 8px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Badge Embed Code</p>
@@ -336,12 +324,20 @@ const templates = [
                 ${badgeEmbedCode}
               </td></tr>
             </table>
+            <p style="margin:16px 0 8px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Direct Profile Link</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+              <tr><td style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:4px;padding:8px 12px;font-family:monospace;font-size:12px;color:#374151;word-break:break-all;">
+                ${escapeHtml(profileUrl)}
+              </td></tr>
+            </table>
+            <p style="margin:16px 0 8px;color:#6b7280;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Logo Asset</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+              <tr><td style="background-color:#f9fafb;border:1px solid #e5e7eb;border-radius:4px;padding:8px 12px;font-family:monospace;font-size:12px;color:#374151;word-break:break-all;">
+                ${escapeHtml(logoUrl)}
+              </td></tr>
+            </table>
           </td></tr>
         </table>
-
-        <p style="margin:0 0 8px;color:#2d3748;font-size:14px;line-height:1.6;">
-          We will upgrade you within 7 days.
-        </p>
 
         <p style="margin:0;color:#718096;font-size:13px;">
           Best,<br>HireDronePilot
@@ -349,20 +345,6 @@ const templates = [
       `),
     };
   })(),
-  {
-    key: 'admin_backlink_confirmed',
-    subject: '[TEST] Backlink confirmed: Alex Thompson',
-    html: wrapInLayout(`
-      <h2 style="margin:0 0 16px;color:#1f2937;font-family:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:20px;">Backlink Confirmed</h2>
-      <p style="margin:0 0 8px;color:#2d3748;font-size:15px;line-height:1.6;">
-        <strong>${escapeHtml('Alex Thompson')}</strong> (${escapeHtml('Thompson Aerial Surveys')}) has confirmed they added a backlink to their website.
-      </p>
-      <p style="margin:0 0 16px;color:#2d3748;font-size:15px;line-height:1.6;">
-        Website: <a href="https://www.alexthompsondrones.co.uk" style="color:#f97316;text-decoration:none;">https://www.alexthompsondrones.co.uk</a>
-      </p>
-      ${ctaButton(`${BASE_URL}/admin/pilot-applications`, 'Review Applications')}
-    `),
-  },
 ];
 
 if (listTemplates) {

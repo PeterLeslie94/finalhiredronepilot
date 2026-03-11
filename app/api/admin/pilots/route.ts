@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
 import { jsonError } from '@/lib/server/http';
+import { hasPilotListingLiveAtColumn, listingLiveAtSelect } from '@/lib/server/pilot-listing';
 
 export const runtime = 'nodejs';
 
@@ -16,6 +17,7 @@ function parseCursor(cursor: string | null): { createdAt: string; id: string } |
 export async function GET(request: NextRequest) {
   try {
     await requireAdminAccess(request);
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
 
     const active = request.nextUrl.searchParams.get('active');
     const search = request.nextUrl.searchParams.get('search');
@@ -52,7 +54,7 @@ export async function GET(request: NextRequest) {
       SELECT
         p.id, p.name, p.business_name, p.email, p.phone, p.active,
         p.licence_level, p.insurance_provider, p.insurance_expiry,
-        p.tier::text, p.slug, p.integrated_confirmed_at,
+        p.slug, ${listingLiveAtSelect(hasListingLiveAtColumn, { alias: 'p' })},
         p.created_at, p.updated_at
       FROM pilots p
       ${where.length ? `WHERE ${where.join(' AND ')}` : ''}

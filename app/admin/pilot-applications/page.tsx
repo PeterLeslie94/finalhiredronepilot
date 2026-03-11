@@ -50,7 +50,6 @@ type PilotApplication = {
   faq_permissions_answer: string | null;
   review_notes: string | null;
   status: string;
-  backlink_confirmed_at: string | null;
   created_at: string;
   reviewed_at: string | null;
 };
@@ -82,11 +81,6 @@ export default function AdminPilotApplicationsPage() {
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [confirmRejectId, setConfirmRejectId] = useState<string | null>(null);
-  const [queueView, setQueueView] = useState<'default' | 'upgrade'>(() => {
-    if (typeof window === 'undefined') return 'default';
-    const params = new URLSearchParams(window.location.search);
-    return params.get('view') === 'upgrade' ? 'upgrade' : 'default';
-  });
 
   const selected = items.find((i) => i.id === selectedId) ?? null;
 
@@ -106,7 +100,6 @@ export default function AdminPilotApplicationsPage() {
 
     try {
       const params = new URLSearchParams({ limit: '100' });
-      if (queueView === 'upgrade') params.set('upgrade_ready', 'true');
       if (cursor) params.set('cursor', cursor);
 
       const response = await fetch(`/api/admin/pilot-applications?${params.toString()}`);
@@ -133,15 +126,13 @@ export default function AdminPilotApplicationsPage() {
   useEffect(() => {
     void load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queueView]);
+  }, []);
 
   useEffect(() => {
     const syncFromLocation = () => {
       const params = new URLSearchParams(window.location.search);
       const selectedFromQuery = params.get('selected');
       setSelectedId(selectedFromQuery);
-      const view = params.get('view');
-      setQueueView(view === 'upgrade' ? 'upgrade' : 'default');
     };
 
     syncFromLocation();
@@ -182,31 +173,9 @@ export default function AdminPilotApplicationsPage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Pilot Applications</h1>
-          <p className="text-sm text-gray-500">Click a row to view full details and take action.</p>
+          <p className="text-sm text-gray-500">Click a row to review, approve, reject, or request more information.</p>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setQueueView('default')}
-            className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
-              queueView === 'default'
-                ? 'bg-[#f97316] text-white border-[#f97316]'
-                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            All Applications
-          </button>
-          <button
-            type="button"
-            onClick={() => setQueueView('upgrade')}
-            className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${
-              queueView === 'upgrade'
-                ? 'bg-[#f97316] text-white border-[#f97316]'
-                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            Badge Upgrades
-          </button>
           <button
             className="px-4 py-2 bg-[#f97316] text-white rounded-lg font-medium text-sm hover:bg-[#e8650d] transition-colors"
             onClick={() => void load()}
@@ -231,7 +200,6 @@ export default function AdminPilotApplicationsPage() {
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Licence</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Insurance Expiry</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Status</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Backlink</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Applied</th>
             </tr>
           </thead>
@@ -261,19 +229,6 @@ export default function AdminPilotApplicationsPage() {
                 </td>
                 <td className="p-3">
                   <StatusBadge status={item.status} type="pilot" />
-                </td>
-                <td className="p-3">
-                  {item.backlink_confirmed_at ? (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-700">
-                      <span className="w-2 h-2 rounded-full bg-green-500" />
-                      Confirmed
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-400">
-                      <span className="w-2 h-2 rounded-full bg-gray-300" />
-                      Pending
-                    </span>
-                  )}
                 </td>
                 <td className="p-3 text-gray-500 text-xs">{toLocalDateTime(item.created_at)}</td>
               </tr>
@@ -555,18 +510,6 @@ export default function AdminPilotApplicationsPage() {
                   <div className="flex justify-between">
                     <dt className="text-gray-500">Applied</dt>
                     <dd className="text-gray-900">{toLocalDateTime(selected.created_at)}</dd>
-                  </div>
-                  <div className="flex justify-between">
-                    <dt className="text-gray-500">Backlink Status</dt>
-                    <dd>
-                      {selected.backlink_confirmed_at ? (
-                        <span className="text-green-700 font-medium">
-                          Confirmed {toLocalDateTime(selected.backlink_confirmed_at)}
-                        </span>
-                      ) : (
-                        <span className="text-gray-400">Not yet confirmed</span>
-                      )}
-                    </dd>
                   </div>
                   {selected.reviewed_at && (
                     <div className="flex justify-between">

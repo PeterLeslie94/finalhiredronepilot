@@ -4,6 +4,7 @@ import { PILOT_AVAILABILITY_OPTIONS, PILOT_COVERAGE_REGIONS, PILOT_SERVICE_LEVEL
 import { AuthError, requireAdminAccess } from '@/lib/server/auth';
 import { query } from '@/lib/server/database';
 import { assertTrustedOrigin, jsonError, RequestOriginError } from '@/lib/server/http';
+import { hasPilotListingLiveAtColumn, listingLiveAtSelect } from '@/lib/server/pilot-listing';
 export const runtime = 'nodejs';
 
 const COVERAGE_REGION_SET = new Set(PILOT_COVERAGE_REGIONS);
@@ -45,6 +46,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   try {
     await requireAdminAccess(request);
     const { id } = await params;
+    const hasListingLiveAtColumn = await hasPilotListingLiveAtColumn();
 
     const result = await query(
       `SELECT
@@ -59,7 +61,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         top_service_slugs, additional_services_note, equipment_items_json, portfolio_items_json,
         top_service_ratings_json, faq_coverage_answer, faq_qualifications_answer, faq_turnaround_answer,
         faq_formats_answer, faq_permissions_answer,
-        tier::text, slug, integrated_confirmed_at, backlink_token_hash,
+        slug, ${listingLiveAtSelect(hasListingLiveAtColumn, { castToText: true })},
         created_at, updated_at
       FROM pilots
       WHERE id = $1`,
@@ -195,16 +197,9 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
       faq_turnaround_answer: (v) => asOptionalString(v, 1000),
       faq_formats_answer: (v) => asOptionalString(v, 1000),
       faq_permissions_answer: (v) => asOptionalString(v, 1000),
-      tier: (v) => {
-        if (typeof v !== 'string' || !['VERIFIED_OPERATOR', 'INTEGRATED_OPERATOR'].includes(v)) {
-          throw new Error('tier must be VERIFIED_OPERATOR or INTEGRATED_OPERATOR');
-        }
-        return v;
-      },
     };
 
     const enumCastFields: Record<string, string> = {
-      tier: '::pilot_tier_v2',
       coverage_regions: '::text[]',
       top_service_slugs: '::text[]',
       top_service_ratings_json: '::jsonb',

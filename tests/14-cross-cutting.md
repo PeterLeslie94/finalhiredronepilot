@@ -180,3 +180,18 @@
 - User must re-authenticate via `/login`
 
 **Pass:** `[ ]`
+
+---
+
+### X11 — Retired pilot confirmation links return 410
+
+**Steps:**
+1. Navigate to `/api/pilot-applications/test-id/confirm-backlink`
+2. Navigate to `/api/pilots/test-id/confirm-integration`
+
+**Expected:**
+- Both routes return HTTP `410`
+- Response body explains the confirmation step has been retired
+- Messaging points to the new model: approved listings go live without backlink or integration confirmation
+
+**Pass:** `[ ]`

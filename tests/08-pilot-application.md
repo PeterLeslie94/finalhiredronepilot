@@ -47,6 +47,7 @@
 - Form resets to step 1
 - `pilot_applications` table has a new row with `status = 'SUBMITTED'`
 - `consent_to_pilot_terms = true`, `pilot_terms_version = 'pilot-terms-v2'`, `consent_source_page = '/join-as-pilot'`
+- Submission does not require any backlink/badge confirmation step
 
 **Pass:** `[ ]`
 
@@ -217,5 +218,7 @@
 - Row exists for applicant email
 - `template_key` indicates application confirmation
 - `status = 'QUEUED'` (or `SENT` if email delivery is configured)
+- Email copy says the team will review the application and email again once the listing is live
+- No separate backlink-confirmation email is queued on application submit
 
 **Pass:** `[ ]`

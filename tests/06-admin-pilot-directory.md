@@ -19,7 +19,7 @@
 - Page shows pilot directory with list/table
 - 6 seeded pilots visible:
   - SkyVista Aerial, NorthPeak UAV, Coastline Drone Ops, Atlas Mapping, RidgeLine Thermal, Metro Survey Drones
-- Each shows: name, business name, email, licence level, active status, created date
+- Each shows: name, business name, email, licence level, active status, listing status (`Live`, `Hidden`, or `Pending`), created date
 
 **Pass:** `[ ]`
 
@@ -70,7 +70,9 @@
   - Flyer ID, Operator ID
   - Active status toggle
   - Admin notes field
+  - No manual tier/integration selector
   - Created/updated timestamps
+  - Listing live timestamp
 
 **Pass:** `[ ]`
 
@@ -86,7 +88,10 @@
 **Expected:**
 - `PATCH /api/admin/pilots/{id}` called with `{ active: false }`
 - Pilot now shows as Inactive
+- Pilot disappears from `/pilots`, `/pilots/{slug}`, and sitemap while inactive
+- Existing `listing_live_at` value stays populated after deactivation
 - Re-toggle to ON and save — pilot is Active again
+- Invite eligibility follows `active` status only
 
 **Pass:** `[ ]`
 
@@ -133,5 +138,6 @@
 - Invites sent to all **active** pilots only
 - The deactivated pilot does NOT receive an invitation
 - Invite count = number of active pilots (5 if 1 was deactivated)
+- No separate listing-status filter is required for the default invite flow
 
 **Pass:** `[ ]`

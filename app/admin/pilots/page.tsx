@@ -28,9 +28,8 @@ type PilotRow = {
   licence_level: string | null;
   insurance_provider: string | null;
   insurance_expiry: string | null;
-  tier: string;
   slug: string | null;
-  integrated_confirmed_at: string | null;
+  listing_live_at: string | null;
   created_at: string;
   updated_at: string | null;
 };
@@ -70,7 +69,6 @@ type PilotDetail = PilotRow & {
   faq_turnaround_answer: string | null;
   faq_formats_answer: string | null;
   faq_permissions_answer: string | null;
-  backlink_token_hash: string | null;
 };
 
 type EquipmentDraftItem = {
@@ -122,7 +120,6 @@ type PilotEditForm = {
   faq_formats_answer: string;
   faq_permissions_answer: string;
   notes: string;
-  tier: string;
   active: boolean;
 };
 
@@ -219,6 +216,30 @@ function formatDate(dateStr: string | null): string {
   return parsed.toLocaleDateString('en-GB');
 }
 
+function getListingStatus(pilot: Pick<PilotRow, 'active' | 'listing_live_at'>): {
+  label: string;
+  className: string;
+} {
+  if (pilot.listing_live_at) {
+    if (pilot.active) {
+      return {
+        label: 'Live',
+        className: 'bg-green-100 text-green-800',
+      };
+    }
+
+    return {
+      label: 'Hidden',
+      className: 'bg-gray-100 text-gray-700',
+    };
+  }
+
+  return {
+    label: 'Pending',
+    className: 'bg-amber-100 text-amber-800',
+  };
+}
+
 function isExpiredOrSoon(dateStr: string | null): 'expired' | 'soon' | 'ok' {
   if (!dateStr) return 'ok';
   const parsed = new Date(dateStr);
@@ -280,7 +301,6 @@ function toEditForm(detail: PilotDetail): PilotEditForm {
     faq_formats_answer: detail.faq_formats_answer || '',
     faq_permissions_answer: detail.faq_permissions_answer || '',
     notes: detail.notes || '',
-    tier: detail.tier || 'VERIFIED_OPERATOR',
     active: detail.active,
   };
 }
@@ -422,7 +442,6 @@ export default function AdminPilotsPage() {
           name: editForm.name,
           email: editForm.email,
           active: editForm.active,
-          tier: editForm.tier,
           business_name: editForm.business_name || null,
           phone: editForm.phone || null,
           website_url: editForm.website_url || null,
@@ -643,7 +662,7 @@ export default function AdminPilotsPage() {
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Name</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Email</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Active</th>
-              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Tier</th>
+              <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Listing</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Insurance Expiry</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Licence</th>
               <th className="text-left p-3 text-xs font-medium text-gray-500 uppercase tracking-wide">Joined</th>
@@ -652,6 +671,7 @@ export default function AdminPilotsPage() {
           <tbody className="divide-y divide-gray-100">
             {pilots.map((pilot) => {
               const insuranceStatus = isExpiredOrSoon(pilot.insurance_expiry);
+              const listingStatus = getListingStatus(pilot);
               return (
                 <tr
                   key={pilot.id}
@@ -672,11 +692,9 @@ export default function AdminPilotsPage() {
                     />
                   </td>
                   <td className="p-3">
-                    {pilot.tier === 'INTEGRATED_OPERATOR' ? (
-                      <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">Integrated</span>
-                    ) : (
-                      <span className="inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Verified</span>
-                    )}
+                    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${listingStatus.className}`}>
+                      {listingStatus.label}
+                    </span>
                   </td>
                   <td className="p-3">
                     <span
@@ -1213,16 +1231,8 @@ export default function AdminPilotsPage() {
 
                 <AdminCard title="Admin Controls">
                   <div className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-medium text-gray-500 mb-1">Tier</label>
-                      <select
-                        value={editForm.tier}
-                        onChange={(event) => setEditField('tier', event.target.value)}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white"
-                      >
-                        <option value="VERIFIED_OPERATOR">Verified Operator</option>
-                        <option value="INTEGRATED_OPERATOR">Integrated Operator</option>
-                      </select>
+                    <div className="rounded-lg border border-blue-100 bg-blue-50 px-3 py-2 text-sm text-blue-800">
+                      Approved pilots go live immediately once approved. Turning Active off hides them from public pages without clearing their go-live history.
                     </div>
 
                     <div className="flex items-center justify-between">
@@ -1255,6 +1265,10 @@ export default function AdminPilotsPage() {
                     <div className="text-xs text-gray-500">
                       <div>Joined: {toLocalDateTime(detail.created_at)}</div>
                       {detail.updated_at ? <div>Last Updated: {toLocalDateTime(detail.updated_at)}</div> : null}
+                      <div>
+                        Listing Live:{' '}
+                        {detail.listing_live_at ? toLocalDateTime(detail.listing_live_at) : 'Not yet live'}
+                      </div>
                       {detail.slug ? (
                         <a
                           href={`/pilots/${detail.slug}`}

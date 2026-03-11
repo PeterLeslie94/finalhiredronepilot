@@ -58,7 +58,6 @@ type PilotOption = {
   id: string;
   name: string;
   email: string;
-  tier: string;
 };
 
 type EditForm = {
@@ -70,7 +69,7 @@ type EditForm = {
   job_details: string;
 };
 
-type InviteSelectionMode = 'ALL_ACTIVE' | 'INTEGRATED_ONLY' | 'MANUAL';
+type InviteSelectionMode = 'ALL_ACTIVE' | 'MANUAL';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -124,7 +123,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
 
   const [inviteModalOpen, setInviteModalOpen] = useState(false);
   const [sendingInvites, setSendingInvites] = useState(false);
-  const [inviteMode, setInviteMode] = useState<InviteSelectionMode>('INTEGRATED_ONLY');
+  const [inviteMode, setInviteMode] = useState<InviteSelectionMode>('ALL_ACTIVE');
   const [allowReinvite, setAllowReinvite] = useState(false);
   const [pilotSearch, setPilotSearch] = useState('');
   const [manualPilotIds, setManualPilotIds] = useState<string[]>([]);
@@ -163,7 +162,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
     try {
       const response = await fetch('/api/admin/pilots?active=true&limit=200');
       const body = (await response.json()) as {
-        pilots?: Array<{ id: string; name: string; email: string; tier: string }>;
+        pilots?: Array<{ id: string; name: string; email: string }>;
         error?: string;
       };
       if (!response.ok) throw new Error(body.error || 'Failed to load pilots');
@@ -171,7 +170,6 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
         id: pilot.id,
         name: pilot.name,
         email: pilot.email,
-        tier: pilot.tier,
       })));
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : 'Failed to load pilots');
@@ -186,8 +184,6 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
   const emailLogs = data?.email_logs ?? [];
 
   const canSendInvites = enquiry != null && enquiry.status !== 'CLOSED';
-  const integratedCount = pilotOptions.filter((pilot) => pilot.tier === 'INTEGRATED_OPERATOR').length;
-
   const visiblePilotOptions = useMemo(() => {
     const query = pilotSearch.trim().toLowerCase();
     if (!query) return pilotOptions;
@@ -253,7 +249,7 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
     if (!canSendInvites) return;
     setInviteResult('');
     setPilotSearch('');
-    setInviteMode('INTEGRATED_ONLY');
+    setInviteMode('ALL_ACTIVE');
     setManualPilotIds([]);
     setAllowReinvite(false);
     setInviteModalOpen(true);
@@ -575,19 +571,6 @@ export default function AdminEnquiryDetailPage({ params }: Props) {
                     <span>
                       <span className="block text-sm font-medium text-gray-900">All Pilots</span>
                       <span className="text-xs text-gray-500">All active pilots ({pilotOptions.length})</span>
-                    </span>
-                  </label>
-
-                  <label className="flex items-start gap-2 rounded-lg border border-gray-200 p-3">
-                    <input
-                      type="radio"
-                      checked={inviteMode === 'INTEGRATED_ONLY'}
-                      onChange={() => setInviteMode('INTEGRATED_ONLY')}
-                      className="mt-1"
-                    />
-                    <span>
-                      <span className="block text-sm font-medium text-gray-900">All Verified Pilots</span>
-                      <span className="text-xs text-gray-500">Integrated operators only ({integratedCount})</span>
                     </span>
                   </label>
 

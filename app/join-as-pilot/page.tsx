@@ -2113,7 +2113,7 @@ export default function PilotApplyPage() {
                         autoFocus
                       />
                       <p id="pilot-google-business-hint" className="text-white/60 text-xs">
-                        Add your Google profile link to show a verified business badge on your profile.
+                        Add your Google profile link so visitors can quickly verify your business presence.
                       </p>
 
                       <div className="grid gap-3 sm:grid-cols-2">

@@ -12,11 +12,9 @@ import {
   RequestOriginError,
 } from '@/lib/server/http';
 import { isHoneypotTripped } from '@/lib/honeypot';
-import { createInvitationToken } from '@/lib/server/security';
 import { validatePilotApplicationPayload } from '@/lib/server/validation';
 
 export const runtime = 'nodejs';
-const BACKLINK_TOKEN_TTL_DAYS = Math.max(1, Number(process.env.BACKLINK_TOKEN_TTL_DAYS || 30));
 const RATE_LIMIT_WINDOW_MS = Math.max(30_000, Number(process.env.PILOT_APPLICATION_RATE_LIMIT_WINDOW_MS || 10 * 60 * 1000));
 const RATE_LIMIT_MAX = Math.max(1, Number(process.env.PILOT_APPLICATION_RATE_LIMIT_MAX || 10));
 const MIN_COMPLETION_MS = Math.max(2_000, Number(process.env.PILOT_APPLICATION_MIN_COMPLETION_MS || 8_000));
@@ -104,9 +102,6 @@ export async function POST(request: Request) {
     }
     const input = validatePilotApplicationPayload(payload);
 
-    const { tokenHash: backlinkTokenHash } = createInvitationToken();
-    const backlinkTokenExpiresAt = new Date(Date.now() + BACKLINK_TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000);
-
     const created = await withTransaction(async (client) => {
       const result = await client.query<{ id: string; status: string }>(
         `INSERT INTO pilot_applications
@@ -155,14 +150,12 @@ export async function POST(request: Request) {
             pilot_terms_version,
             consent_timestamp,
             consent_source_page,
-            backlink_token_hash,
-            backlink_token_expires_at,
             status
           )
           VALUES (
             $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,
             $13,$14,$15::text[],$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27,$28,$29,$30,$31::text[],$32::jsonb,$33,$34::jsonb,$35::jsonb,$36,$37,$38,$39,$40,$41,$42,
-            now(),$43,$44,$45,'SUBMITTED'
+            now(),$43,'SUBMITTED'
           )
           RETURNING id, status`,
         [
@@ -209,8 +202,6 @@ export async function POST(request: Request) {
           input.consent_to_pilot_terms,
           input.pilot_terms_version,
           input.consent_source_page,
-          backlinkTokenHash,
-          backlinkTokenExpiresAt.toISOString(),
         ],
       );
 
@@ -230,7 +221,6 @@ export async function POST(request: Request) {
         emailLogId,
         applicantEmail: input.email,
         applicantName: input.pilot_name,
-        websiteUrl: input.website_url as string | null,
       };
     });
 

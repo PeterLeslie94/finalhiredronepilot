@@ -59,7 +59,10 @@
 - Status changes to `APPROVED`
 - A new row in `pilots` table created from the application data
 - Application `created_pilot_id` is set
+- Pilot `listing_live_at` is set when the approval creates or links the pilot
 - The pilot now appears in `/admin/pilots` directory
+- The pilot is immediately visible on the public directory/profile flow (`/pilots`, `/pilots/{slug}`)
+- Approval queues the go-live email with the pilot profile link
 
 **Pass:** `[ ]`
 
@@ -141,5 +144,20 @@
 - If expired: red "Expired" label shown
 - If within 30 days: amber warning label
 - If valid: normal display
+
+**Pass:** `[ ]`
+
+---
+
+### A-APP09 — No badge-upgrade queue remains
+
+**Steps:**
+1. Navigate to `/admin`
+2. Navigate to `/admin/pilot-applications`
+
+**Expected:**
+- Admin dashboard shows new enquiries and new pilot applications only
+- No "Badge Upgrades" queue is shown
+- Pilot applications page has no upgrade-only filter or backlink-confirmation queue
 
 **Pass:** `[ ]`

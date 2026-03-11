@@ -64,7 +64,8 @@ DB touchpoints:
 
 ## Step 2: Admin Review Outcome
 - Pilot may be approved, rejected, or asked for more information.
-- On approval, pilot is added to approved directory.
+- On approval, the pilot's public listing goes live immediately.
+- Pilot receives a go-live email with their profile link and optional badge/link assets for their own website.
 
 DB touchpoints:
 - `pilot_applications.status` update.
@@ -111,7 +112,7 @@ DB touchpoints:
 - `enquiry_events` read for timeline.
 
 ## Step 2: Select Pilot Audience
-- Admin optionally includes/excludes specific pilots.
+- Admin can invite all active pilots or manually choose specific pilots.
 
 DB touchpoints:
 - Pilot selection query from `pilots` filtered by `active` and compliance fields.
