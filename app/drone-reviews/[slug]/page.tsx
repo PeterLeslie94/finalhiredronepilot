@@ -9,12 +9,14 @@ import {
   FAQSchema,
   ProductReviewSchema,
 } from '@/components/SchemaMarkup';
-import MetricGrid from '@/components/reviews/MetricGrid';
-import ScoreBreakdown from '@/components/reviews/ScoreBreakdown';
-import SectionNav from '@/components/reviews/SectionNav';
-import ReviewCard from '@/components/reviews/ReviewCard';
-import ComparisonCard from '@/components/reviews/ComparisonCard';
+import EditorialMetricTable from '@/components/reviews/EditorialMetricTable';
 import BestPageCard from '@/components/reviews/BestPageCard';
+import ComparisonCard from '@/components/reviews/ComparisonCard';
+import ReviewCard from '@/components/reviews/ReviewCard';
+import ReviewEditorialSummary from '@/components/reviews/ReviewEditorialSummary';
+import ReviewTestSection from '@/components/reviews/ReviewTestSection';
+import SectionNav from '@/components/reviews/SectionNav';
+import { getScoreCategoryDefinition } from '@/data/drone-review-types';
 import {
   getAllDroneBestPages,
   getAllDroneComparisons,
@@ -22,6 +24,7 @@ import {
   getDroneReviewBySlug,
   getRelatedDroneReviews,
 } from '@/lib/contentful/reviews';
+import { getMetricHelpText, getReviewPerformanceTable } from '@/lib/reviews/editorial';
 import { canonicalUrl } from '@/lib/seo/metadata';
 
 interface Props {
@@ -37,16 +40,6 @@ function formatDate(value: string): string {
     year: 'numeric',
   });
 }
-
-const pageSections = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'score-breakdown', label: 'Score Breakdown' },
-  { id: 'benchmark-summary', label: 'Benchmark Summary' },
-  { id: 'spec-sheet', label: 'Spec Sheet' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'full-review', label: 'Full Review' },
-  { id: 'faq', label: 'FAQ' },
-];
 
 export async function generateStaticParams() {
   const reviews = await getAllDroneReviews();
@@ -104,6 +97,20 @@ export default async function DroneReviewPage({ params }: Props) {
 
   const allReviews = [review, ...relatedReviews];
   const reviewMap = new Map(allReviews.map((entry) => [entry.slug, entry]));
+  const performanceRows = getReviewPerformanceTable(review);
+
+  const pageSections = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'performance-tests', label: 'Performance Tests' },
+    { id: 'how-it-differs', label: "How It's Different" },
+    { id: 'weighted-score', label: 'Weighted Score' },
+    ...review.scoreBreakdown.map((score) => ({
+      id: score.categoryId,
+      label: getScoreCategoryDefinition(score.categoryId).label,
+    })),
+    { id: 'full-review', label: 'Full Review' },
+    { id: 'faq', label: 'FAQ' },
+  ];
 
   const relatedComparisons = (review.relatedComparisonSlugs ?? [])
     .map((comparisonSlug) => allComparisons.find((entry) => entry.slug === comparisonSlug))
@@ -132,165 +139,182 @@ export default async function DroneReviewPage({ params }: Props) {
       <ProductReviewSchema review={review} />
       <FAQSchema faqs={review.faq} />
 
-      <section className="relative -mt-[120px] overflow-hidden bg-gradient-to-b from-teal via-teal-dark to-teal-darker pt-[120px] text-white">
-        <div className="container py-14 md:py-20">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">{review.manufacturer}</p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
+      <section className="border-b border-border bg-white pt-[120px]">
+        <div className="container py-12 md:py-16">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">{review.manufacturer} Review</p>
+          <h1 className="mt-4 max-w-5xl text-4xl font-bold leading-tight text-teal md:text-6xl">
             {review.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/80 md:text-xl">
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-text-secondary md:text-xl">
             {review.summary}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 text-sm text-white/75">
+          <div className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary">
             <span>Updated {formatDate(review.updatedDate ?? review.publishedDate)}</span>
-            <span>•</span>
-            <span>{review.testRun.firmware}</span>
-            <span>•</span>
+            <span>Firmware: {review.testRun.firmware}</span>
             <span>{review.priceLabel}</span>
-          </div>
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Buy If</p>
-              <ul className="mt-4 space-y-3">
-                {review.buyIf.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-white/80">
-                    <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Avoid If</p>
-              <ul className="mt-4 space-y-3">
-                {review.avoidIf.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-white/80">
-                    <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 lg:hidden">
-            <SectionNav title="Quick Jumps" sections={pageSections} compact />
           </div>
         </div>
       </section>
 
-      <section className="section bg-background-alt">
-        <div className="container grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)_300px]">
-          <aside className="hidden lg:block">
-            <div className="sticky top-24">
+      <section className="bg-white">
+        <div className="container grid grid-cols-1 gap-12 py-10 xl:grid-cols-[minmax(0,1fr)_290px]">
+          <main className="min-w-0 space-y-12">
+            <section id="overview" className="overflow-hidden rounded-[2rem] border border-border bg-white">
+              <div className="grid gap-0 lg:grid-cols-[320px_minmax(0,1fr)]">
+                <div className="relative aspect-square bg-background-alt">
+                  <Image
+                    src={review.featuredImage}
+                    alt={review.featuredImageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                  />
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <div className="flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
+                    <div className="max-w-2xl">
+                      <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Overall Verdict</p>
+                      <p className="mt-4 text-lg leading-relaxed text-text-primary">{review.verdict}</p>
+                    </div>
+                    <div className="shrink-0 xl:text-right">
+                      <p className="text-5xl font-bold text-teal">{review.overallScore.toFixed(1)}</p>
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.28em] text-text-secondary">
+                        overall score
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center">
+                    <a
+                      href={review.affiliateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-3 text-sm font-semibold text-teal-dark transition-colors hover:bg-gold-light"
+                    >
+                      Check Amazon Price
+                    </a>
+                    <p className="text-sm leading-relaxed text-text-secondary">
+                      Affiliate note: if you buy through partner links, HireDronePilot may earn a commission at no
+                      extra cost to you.
+                    </p>
+                  </div>
+
+                  <dl className="mt-8 grid gap-4 text-sm md:grid-cols-3">
+                    <div>
+                      <dt className="font-semibold text-teal">Updated</dt>
+                      <dd className="mt-1 text-text-secondary">{formatDate(review.updatedDate ?? review.publishedDate)}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-teal">Firmware Tested</dt>
+                      <dd className="mt-1 text-text-secondary">{review.testRun.firmware}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-teal">Price Context</dt>
+                      <dd className="mt-1 text-text-secondary">{review.priceLabel}</dd>
+                    </div>
+                  </dl>
+
+                  <div className="mt-8 grid gap-8 border-t border-border pt-8 md:grid-cols-2">
+                    <section>
+                      <h2 className="text-lg font-bold text-teal">Best For</h2>
+                      <ul className="mt-4 space-y-3">
+                        {review.buyIf.map((item) => (
+                          <li key={item} className="flex gap-3 text-sm leading-relaxed text-text-secondary">
+                            <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                    <section>
+                      <h2 className="text-lg font-bold text-teal">Considerations</h2>
+                      <ul className="mt-4 space-y-3">
+                        {review.avoidIf.map((item) => (
+                          <li key={item} className="flex gap-3 text-sm leading-relaxed text-text-secondary">
+                            <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-gold" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div className="xl:hidden">
               <SectionNav sections={pageSections} />
             </div>
-          </aside>
 
-          <main className="space-y-12">
-            <section id="overview">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-[1.1fr_0.9fr]">
-                <article className="rounded-3xl border border-border bg-white p-6 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Verdict</p>
-                  <p className="mt-4 text-lg leading-relaxed text-text-primary">{review.verdict}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {review.useCaseTags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-background-alt px-3 py-1 text-xs font-semibold uppercase tracking-wide text-text-secondary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-                <article className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
-                  <div className="relative h-full min-h-[260px]">
-                    <Image
-                      src={review.featuredImage}
-                      alt={review.featuredImageAlt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 400px"
-                    />
-                  </div>
-                </article>
+            <section id="performance-tests" className="border-t border-border pt-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Performance Tests</p>
+              <h2 className="mt-3 text-3xl font-bold text-teal">The headline results from field testing</h2>
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
+                These are the top-line results that shaped the review before the category-by-category scoring below.
+              </p>
+              <div className="mt-8">
+                <EditorialMetricTable
+                  columnHeaders={[review.title.replace(/\s+Review$/, ''), 'Field note']}
+                  rows={performanceRows.map((item) => ({
+                    id: item.metricId ?? item.label,
+                    label: item.label,
+                    helpText: getMetricHelpText(item),
+                    values: [item.value, item.notes ?? '—'],
+                  }))}
+                />
               </div>
             </section>
 
-            <section id="score-breakdown">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Score Breakdown</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">How the weighted score was built</h2>
-              </div>
-              <ScoreBreakdown scores={review.scoreBreakdown} />
+            <ReviewEditorialSummary review={review} />
+
+            <section id="weighted-score" className="border-t border-border pt-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Score Breakdown</p>
+              <h2 className="mt-3 text-3xl font-bold text-teal">How the weighted score was built</h2>
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-text-secondary">
+                Each weighted section below explains what we tested, why it matters, and the evidence that fed the final score.
+              </p>
             </section>
 
-            <section id="benchmark-summary">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Benchmark Summary</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">The headline test results</h2>
-              </div>
-              <MetricGrid items={review.benchmarkSummary} />
-            </section>
+            {review.scoreBreakdown.map((score) => (
+              <ReviewTestSection key={score.categoryId} review={review} score={score} />
+            ))}
 
-            <section id="spec-sheet">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Spec Sheet</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">Key buying context</h2>
-              </div>
-              <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
-                <table className="min-w-full divide-y divide-gray-100">
-                  <tbody>
-                    {review.specs.map((spec) => (
-                      <tr key={spec.label} className="border-b border-gray-100 last:border-0">
-                        <th className="w-1/3 px-5 py-4 text-left text-sm font-semibold text-teal">{spec.label}</th>
-                        <td className="px-5 py-4 text-sm text-text-secondary">{spec.value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section id="gallery">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Gallery</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">Field imagery and test capture placeholders</h2>
-              </div>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                {review.gallery.map((item) => (
-                  <figure key={`${item.src}-${item.caption ?? item.alt}`} className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
-                    <div className="relative aspect-[4/3]">
-                      <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                    </div>
-                    {item.caption ? (
-                      <figcaption className="px-5 py-4 text-sm leading-relaxed text-text-secondary">
-                        {item.caption}
-                      </figcaption>
-                    ) : null}
-                  </figure>
-                ))}
-              </div>
-            </section>
-
-            <section id="full-review">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Full Review</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">Extended notes from the field tests</h2>
-              </div>
-              <article className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+            <section id="full-review" className="border-t border-border pt-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Full Review</p>
+              <h2 className="mt-3 text-3xl font-bold text-teal">Extended notes from the field tests</h2>
+              <div className="mt-8 max-w-3xl">
                 <ContentfulRichText content={review.contentfulContent} keyTakeaways={review.keyTakeaways} />
-              </article>
+              </div>
+
+              {review.gallery.length > 0 ? (
+                <div className="mt-10 grid gap-6 md:grid-cols-2">
+                  {review.gallery.map((item) => (
+                    <figure key={`${item.src}-${item.caption ?? item.alt}`} className="space-y-3">
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-background-alt">
+                        <Image
+                          src={item.src}
+                          alt={item.alt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                      {item.caption ? (
+                        <figcaption className="text-sm leading-relaxed text-text-secondary">{item.caption}</figcaption>
+                      ) : null}
+                    </figure>
+                  ))}
+                </div>
+              ) : null}
             </section>
 
-            <section id="faq">
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">FAQ</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">Common buyer questions</h2>
-              </div>
-              <div className="space-y-4">
+            <section id="faq" className="border-t border-border pt-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">FAQ</p>
+              <h2 className="mt-3 text-3xl font-bold text-teal">Common buyer questions</h2>
+              <div className="mt-8 divide-y divide-border rounded-[2rem] border border-border bg-white">
                 {review.faq.map((item) => (
-                  <article key={item.question} className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+                  <article key={item.question} className="px-6 py-6">
                     <h3 className="text-lg font-bold text-teal">{item.question}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-text-secondary">{item.answer}</p>
                   </article>
@@ -299,12 +323,10 @@ export default async function DroneReviewPage({ params }: Props) {
             </section>
 
             {relatedComparisons.length > 0 ? (
-              <section>
-                <div className="mb-5">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Compare It</p>
-                  <h2 className="mt-3 text-3xl font-bold text-teal">Head-to-head pages related to this review</h2>
-                </div>
-                <div className="space-y-6">
+              <section className="border-t border-border pt-12">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Compare It</p>
+                <h2 className="mt-3 text-3xl font-bold text-teal">Head-to-head pages related to this review</h2>
+                <div className="mt-8 space-y-6">
                   {relatedComparisons.map(({ comparison, leftReview, rightReview }) => (
                     <ComparisonCard
                       key={comparison.slug}
@@ -318,12 +340,10 @@ export default async function DroneReviewPage({ params }: Props) {
             ) : null}
 
             {relatedBestPages.length > 0 ? (
-              <section>
-                <div className="mb-5">
-                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Best Pages</p>
-                  <h2 className="mt-3 text-3xl font-bold text-teal">See where it ranks</h2>
-                </div>
-                <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+              <section className="border-t border-border pt-12">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Best Pages</p>
+                <h2 className="mt-3 text-3xl font-bold text-teal">See where it ranks</h2>
+                <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
                   {relatedBestPages.map((page) => (
                     <BestPageCard key={page.slug} page={page} />
                   ))}
@@ -331,12 +351,10 @@ export default async function DroneReviewPage({ params }: Props) {
               </section>
             ) : null}
 
-            <section>
-              <div className="mb-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Related Reviews</p>
-                <h2 className="mt-3 text-3xl font-bold text-teal">Keep comparing</h2>
-              </div>
-              <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+            <section className="border-t border-border pt-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Related Reviews</p>
+              <h2 className="mt-3 text-3xl font-bold text-teal">Keep comparing</h2>
+              <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
                 {relatedReviews.map((entry) => (
                   <ReviewCard key={entry.slug} review={entry} />
                 ))}
@@ -344,12 +362,16 @@ export default async function DroneReviewPage({ params }: Props) {
             </section>
           </main>
 
-          <aside className="hidden lg:block">
+          <aside className="hidden xl:block">
             <div className="sticky top-24 space-y-6">
-              <article className="rounded-3xl bg-teal p-6 text-white shadow-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Overall Score</p>
-                <p className="mt-3 text-6xl font-bold">{review.overallScore.toFixed(1)}</p>
-                <p className="mt-1 text-sm text-white/75">weighted review result</p>
+              <SectionNav sections={pageSections} />
+
+              <article className="rounded-[2rem] border border-border bg-white p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Review Snapshot</p>
+                <p className="mt-4 text-5xl font-bold text-teal">{review.overallScore.toFixed(1)}</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.24em] text-text-secondary">
+                  overall score
+                </p>
                 <a
                   href={review.affiliateUrl}
                   target="_blank"
@@ -358,15 +380,14 @@ export default async function DroneReviewPage({ params }: Props) {
                 >
                   Check Amazon Price
                 </a>
-                <p className="mt-4 text-xs leading-relaxed text-white/65">
-                  Affiliate note: if you buy through partner links, HireDronePilot may earn a commission
-                  at no extra cost to you.
+                <p className="mt-4 text-xs leading-relaxed text-text-secondary">
+                  Affiliate note: partner links may earn HireDronePilot a commission at no extra cost to you.
                 </p>
               </article>
 
-              <article className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+              <article className="rounded-[2rem] border border-border bg-white p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Test Conditions</p>
-                <dl className="mt-4 space-y-3 text-sm">
+                <dl className="mt-4 space-y-4 text-sm">
                   <div>
                     <dt className="font-semibold text-teal">Location</dt>
                     <dd className="mt-1 text-text-secondary">{review.testRun.location}</dd>
@@ -390,11 +411,11 @@ export default async function DroneReviewPage({ params }: Props) {
                 </dl>
               </article>
 
-              <article className="rounded-3xl border border-border bg-white p-6 shadow-sm">
+              <article className="rounded-[2rem] border border-border bg-white p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Quick Read</p>
-                <div className="mt-4 space-y-4">
+                <div className="mt-4 space-y-5">
                   <div>
-                    <p className="font-semibold text-teal">Best bits</p>
+                    <p className="font-semibold text-teal">Advantages</p>
                     <ul className="mt-2 space-y-2 text-sm text-text-secondary">
                       {review.pros.slice(0, 3).map((item) => (
                         <li key={item}>{item}</li>
@@ -409,6 +430,21 @@ export default async function DroneReviewPage({ params }: Props) {
                       ))}
                     </ul>
                   </div>
+                </div>
+              </article>
+
+              <article className="rounded-[2rem] border border-border bg-white p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">Useful Links</p>
+                <div className="mt-4 space-y-3 text-sm">
+                  <Link href="/drone-reviews" className="block font-semibold text-teal transition-colors hover:text-gold">
+                    Browse all drone reviews
+                  </Link>
+                  <Link href="/drone-comparisons" className="block font-semibold text-teal transition-colors hover:text-gold">
+                    Browse drone comparisons
+                  </Link>
+                  <Link href="/best-drones" className="block font-semibold text-teal transition-colors hover:text-gold">
+                    Browse best drone guides
+                  </Link>
                 </div>
               </article>
             </div>

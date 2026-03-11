@@ -98,6 +98,13 @@ function mapScoreBreakdown(items) {
         categoryId: fields.categoryId,
         score: fields.score,
         summary: fields.summary ?? '',
+        sectionTitle: fields.sectionTitle,
+        body: fields.body,
+        dataSummaryTitle: fields.dataSummaryTitle,
+        dataPoints: mapMetricSet(fields.dataPoints),
+        media: mapMediaGallery(fields.media),
+        explanationLinkUrl: fields.explanationLinkUrl,
+        explanationLinkLabel: fields.explanationLinkLabel,
       };
     })
     .filter(Boolean);
@@ -109,8 +116,10 @@ function mapMetricSet(items) {
       const fields = item?.fields ?? {};
       if (!fields.label || !fields.value) return null;
       return {
+        metricId: fields.metricId,
         label: fields.label,
         value: fields.value,
+        comparisonValue: fields.comparisonValue,
         notes: fields.notes,
       };
     })
@@ -152,14 +161,17 @@ function mapReview(entry) {
     priceValue: fields.priceValue ?? 0,
     affiliateUrl: fields.affiliateUrl ?? 'https://www.amazon.co.uk/',
     verdict: fields.verdict ?? '',
+    differenceSummary: fields.differenceSummary,
     buyIf: pickArray(fields.buyIf).filter((item) => typeof item === 'string'),
     avoidIf: pickArray(fields.avoidIf).filter((item) => typeof item === 'string'),
     overallScore: fields.overallScore ?? 0,
     featured: Boolean(fields.featured),
     useCaseTags: pickArray(fields.useCaseTags).filter((item) => typeof item === 'string'),
     pros: pickArray(fields.pros).filter((item) => typeof item === 'string'),
+    neutralFactors: pickArray(fields.neutralFactors).filter((item) => typeof item === 'string'),
     cons: pickArray(fields.cons).filter((item) => typeof item === 'string'),
     specs: mapSpecSheet(fields.specs),
+    performanceTable: mapMetricSet(fields.performanceTable),
     benchmarkSummary: mapMetricSet(fields.benchmarkSummary),
     scoreBreakdown: mapScoreBreakdown(fields.scoreBreakdown),
     testRun: {
@@ -206,9 +218,11 @@ function mapComparison(entry) {
         const resultFields = item?.fields ?? {};
         if (!resultFields.label || !resultFields.winner) return null;
         return {
+          categoryId: resultFields.categoryId,
           label: resultFields.label,
           winner: resultFields.winner,
           summary: resultFields.summary ?? '',
+          body: resultFields.body,
         };
       })
       .filter(Boolean),
