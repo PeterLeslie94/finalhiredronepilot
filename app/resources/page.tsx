@@ -2,10 +2,19 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { calculators } from '@/data/resources';
 import { getLatestArticles } from '@/lib/contentful/blog';
+import {
+  getAllDroneBestPages,
+  getAllDroneComparisons,
+  getAllDroneReviews,
+  getFeaturedDroneReviews,
+} from '@/lib/contentful/reviews';
 import CalculatorCard from '@/components/resources/CalculatorCard';
 import ArticleCard from '@/components/blog/ArticleCard';
 import DiagonalDivider from '@/components/DiagonalDivider';
 import QuoteForm from '@/components/QuoteForm';
+import BestPageCard from '@/components/reviews/BestPageCard';
+import ComparisonCard from '@/components/reviews/ComparisonCard';
+import ReviewCard from '@/components/reviews/ReviewCard';
 import { BookOpen, Calculator } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/SchemaMarkup';
 import { canonicalUrl } from '@/lib/seo/metadata';
@@ -13,14 +22,43 @@ import { canonicalUrl } from '@/lib/seo/metadata';
 export const metadata: Metadata = {
   title: 'Drone Resources, Guides & Calculators | HireDronePilot',
   description:
-    'Access practical drone survey resources, UK-focused guides, and free calculators to estimate survey costs, flight times, and project ROI.',
+    'Access practical drone guides, structured review content, UK-focused buying pages, and free calculators to estimate survey costs, flight times, and project ROI.',
   alternates: {
     canonical: canonicalUrl('/resources'),
   },
 };
 
 export default async function ResourcesPage() {
-  const latestArticles: Awaited<ReturnType<typeof getLatestArticles>> = await getLatestArticles(3);
+  const [
+    latestArticles,
+    featuredReviews,
+    allReviews,
+    allComparisons,
+    allBestPages,
+  ]: [
+    Awaited<ReturnType<typeof getLatestArticles>>,
+    Awaited<ReturnType<typeof getFeaturedDroneReviews>>,
+    Awaited<ReturnType<typeof getAllDroneReviews>>,
+    Awaited<ReturnType<typeof getAllDroneComparisons>>,
+    Awaited<ReturnType<typeof getAllDroneBestPages>>,
+  ] = await Promise.all([
+    getLatestArticles(3),
+    getFeaturedDroneReviews(2),
+    getAllDroneReviews(),
+    getAllDroneComparisons(),
+    getAllDroneBestPages(),
+  ]);
+
+  const reviewMap = new Map(allReviews.map((review) => [review.slug, review]));
+  const comparisonCards = allComparisons
+    .slice(0, 2)
+    .map((comparison) => {
+      const leftReview = reviewMap.get(comparison.leftReviewSlug);
+      const rightReview = reviewMap.get(comparison.rightReviewSlug);
+      if (!leftReview || !rightReview) return null;
+      return { comparison, leftReview, rightReview };
+    })
+    .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
 
   const breadcrumbItems = [
     { name: 'Home', url: 'https://hiredronepilot.uk' },
@@ -63,6 +101,9 @@ export default async function ResourcesPage() {
               <a href="#calculators" className="btn btn-primary">
                 <Calculator className="w-4 h-4 mr-2" />
                 Calculators
+              </a>
+              <a href="#reviews" className="btn btn-outline-white">
+                Drone Reviews
               </a>
               <a href="#blog" className="btn btn-outline-white">
                 <BookOpen className="w-4 h-4 mr-2" />
@@ -115,18 +156,105 @@ export default async function ResourcesPage() {
 
       <DiagonalDivider fromColor="white" toColor="teal" />
 
+      <section id="reviews" className="section bg-teal">
+        <div className="container space-y-14">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-gold font-semibold uppercase tracking-wider mb-3">
+                Buying Guides
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Drone Reviews, Comparisons & Rankings
+              </h2>
+              <p className="text-white/80 text-lg max-w-3xl">
+                Structured review pages backed by repeatable field tests, plus side-by-side comparisons
+                and best-drone rankings built from the same scoring data.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/drone-reviews" className="btn btn-primary">
+                View Reviews
+              </Link>
+              <Link href="/best-drones" className="btn btn-outline-white">
+                Best Drones
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="text-2xl font-bold text-white">Featured Reviews</h3>
+              <Link
+                href="/drone-reviews"
+                className="text-gold font-semibold hover:text-gold-light transition-colors"
+              >
+                All Reviews
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
+              {featuredReviews.map((review) => (
+                <ReviewCard key={review.slug} review={review} />
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-2xl font-bold text-white">Head-to-Head Comparisons</h3>
+                <Link
+                  href="/drone-comparisons"
+                  className="text-gold font-semibold hover:text-gold-light transition-colors"
+                >
+                  All Comparisons
+                </Link>
+              </div>
+              <div className="mt-6 space-y-6">
+                {comparisonCards.map(({ comparison, leftReview, rightReview }) => (
+                  <ComparisonCard
+                    key={comparison.slug}
+                    comparison={comparison}
+                    leftReview={leftReview}
+                    rightReview={rightReview}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-2xl font-bold text-white">Best Pages</h3>
+                <Link
+                  href="/best-drones"
+                  className="text-gold font-semibold hover:text-gold-light transition-colors"
+                >
+                  All Rankings
+                </Link>
+              </div>
+              <div className="mt-6 space-y-6">
+                {allBestPages.slice(0, 2).map((page) => (
+                  <BestPageCard key={page.slug} page={page} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <DiagonalDivider fromColor="teal" toColor="white" />
+
       {/* Blog Section */}
-      <section id="blog" className="section bg-teal">
+      <section id="blog" className="section bg-white">
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
             <div>
               <p className="text-gold font-semibold uppercase tracking-wider mb-3">
                 Insights
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-teal mb-4">
                 From the Blog
               </h2>
-              <p className="text-white/80 text-lg max-w-2xl">
+              <p className="text-text-secondary text-lg max-w-2xl">
                 Expert articles on drone surveying, industry trends, and technical guides.
               </p>
             </div>
@@ -161,19 +289,17 @@ export default async function ResourcesPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/10 mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-background-alt mb-6">
                 <BookOpen className="w-8 h-8 text-gold" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Blog Coming Soon</h3>
-              <p className="text-white/70 text-lg max-w-md mx-auto">
+              <h3 className="text-2xl font-bold text-teal mb-3">Blog Coming Soon</h3>
+              <p className="text-text-secondary text-lg max-w-md mx-auto">
                 We&apos;re working on expert articles about drone surveying. Check back soon for insights, guides, and industry news.
               </p>
             </div>
           )}
         </div>
       </section>
-
-      <DiagonalDivider fromColor="teal" toColor="white" />
 
       {/* Quote Section */}
       <section id="quote" className="section bg-white">

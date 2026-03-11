@@ -285,3 +285,115 @@ export function BlogPostingSchema({
     />
   );
 }
+
+export function ProductReviewSchema({
+  review,
+}: {
+  review: {
+    title: string;
+    summary: string;
+    featuredImage: string;
+    manufacturer: string;
+    priceLabel: string;
+    slug: string;
+    overallScore: number;
+    publishedDate: string;
+    updatedDate?: string;
+  };
+}) {
+  const schemaImage = review.featuredImage.startsWith('http')
+    ? review.featuredImage
+    : `https://hiredronepilot.uk${review.featuredImage}`;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    name: review.title,
+    headline: review.title,
+    reviewBody: review.summary,
+    datePublished: review.publishedDate,
+    ...(review.updatedDate ? { dateModified: review.updatedDate } : {}),
+    author: {
+      '@type': 'Organization',
+      name: 'HireDronePilot',
+    },
+    itemReviewed: {
+      '@type': 'Product',
+      name: review.title.replace(/ Review$/, ''),
+      brand: {
+        '@type': 'Brand',
+        name: review.manufacturer,
+      },
+      image: schemaImage,
+      description: review.summary,
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'GBP',
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          description: review.priceLabel,
+        },
+        availability: 'https://schema.org/InStock',
+        url: `https://hiredronepilot.uk/drone-reviews/${review.slug}`,
+      },
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: review.overallScore,
+      bestRating: 10,
+      worstRating: 0,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'HireDronePilot',
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
+    />
+  );
+}
+
+export function RankedItemListSchema({
+  name,
+  url,
+  items,
+}: {
+  name: string;
+  url: string;
+  items: Array<{
+    position: number;
+    name: string;
+    url: string;
+    description?: string;
+  }>;
+}) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    url,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: items.length,
+    itemListElement: items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      url: item.url,
+      item: {
+        '@type': 'Product',
+        name: item.name,
+        ...(item.description ? { description: item.description } : {}),
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
+    />
+  );
+}

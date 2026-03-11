@@ -1,0 +1,1423 @@
+{
+  "generated_at": "2026-03-11T12:00:00.000Z",
+  "reviews": [
+    {
+      "slug": "dji-air-3-review",
+      "title": "DJI Air 3 Review",
+      "manufacturer": "DJI",
+      "category": "all-rounder",
+      "summary": "The DJI Air 3 is the best balance of image quality, stability, and everyday usability for most buyers who want more than a beginner drone without jumping into specialist hardware.",
+      "featuredImage": "/images/photos/dji mavic 4.webp",
+      "featuredImageAlt": "Folding DJI-style drone used as placeholder imagery for the DJI Air 3 review",
+      "publishedDate": "2026-03-01T09:00:00.000Z",
+      "updatedDate": "2026-03-10T09:00:00.000Z",
+      "priceLabel": "Approx. £1,049 with controller",
+      "priceValue": 1049,
+      "affiliateUrl": "https://www.amazon.co.uk/",
+      "verdict": "If you want one drone that can travel easily, hold up in wind, and deliver consistently strong photo and video results, the Air 3 is the safest all-round buy in this sample launch set.",
+      "buyIf": [
+        "You want the strongest mix of camera quality and flight confidence.",
+        "You regularly fly in breezier UK conditions.",
+        "You want a drone that feels meaningfully more serious than an entry-level option."
+      ],
+      "avoidIf": [
+        "You want the smallest possible travel drone.",
+        "You are buying your very first drone and want the cheapest easy option.",
+        "You specifically want an immersive FPV-style experience."
+      ],
+      "overallScore": 8.9,
+      "featured": true,
+      "useCaseTags": [
+        "camera",
+        "wind",
+        "travel",
+        "all-rounder"
+      ],
+      "pros": [
+        "Excellent all-round image quality",
+        "Very stable in moderate wind",
+        "Strong battery life in normal mixed shooting",
+        "More confidence-inspiring flight behaviour than smaller drones"
+      ],
+      "cons": [
+        "Not as small or pocketable as the lightest travel drones",
+        "Costs enough that casual buyers may hesitate",
+        "Still needs care in low-light video to avoid noisy footage"
+      ],
+      "specs": [
+        { "label": "Weight", "value": "Approx. 720g" },
+        { "label": "Claimed Flight Time", "value": "Approx. 46 min" },
+        { "label": "Camera Setup", "value": "Dual-camera folding drone" },
+        { "label": "Obstacle Sensing", "value": "Omnidirectional" },
+        { "label": "Best Fit", "value": "All-round camera drone" },
+        { "label": "Launch Position", "value": "Best drones overall" }
+      ],
+      "benchmarkSummary": [
+        { "label": "Median Real Flight Time", "value": "31m 18s", "notes": "Three mixed-use battery runs to 15%" },
+        { "label": "Hover Drift In Moderate Wind", "value": "Low", "notes": "Held position well without nervous corrections" },
+        { "label": "Tracking Success", "value": "Strong", "notes": "Held walking and cycling subjects more reliably than the lighter drones" },
+        { "label": "Bag-To-Air Time", "value": "1m 46s", "notes": "Controller on, props unfolded, GPS lock acquired" }
+      ],
+      "scoreBreakdown": [
+        { "categoryId": "camera-image-quality", "score": 9.4, "summary": "Consistently strong daylight output with more flexibility than the smaller options." },
+        { "categoryId": "flight-performance-wind-stability", "score": 9.2, "summary": "Strong braking, calm hover behaviour, and the best confidence in wind of the non-FPV sample set." },
+        { "categoryId": "battery-real-flight-time", "score": 9.0, "summary": "Delivered comfortably usable real-world endurance across all three runs." },
+        { "categoryId": "safety-obstacle-avoidance", "score": 8.8, "summary": "Predictable warnings and braking with a reassuring return-to-home profile." },
+        { "categoryId": "ease-of-use", "score": 8.7, "summary": "Straightforward to set up, though not as instantly beginner-friendly as the cheapest option." },
+        { "categoryId": "tracking-intelligent-features", "score": 8.8, "summary": "Tracking was dependable enough to trust on repeated test routes." },
+        { "categoryId": "controller-app-experience", "score": 8.9, "summary": "Polished controller and app experience with minimal friction outdoors." },
+        { "categoryId": "value-for-money", "score": 8.4, "summary": "Pricier than entry-level drones but justified by the jump in confidence and output." },
+        { "categoryId": "portability-setup-speed", "score": 8.0, "summary": "Portable enough for a shoulder bag, just not ultra-light." }
+      ],
+      "testRun": {
+        "firmware": "Latest public firmware tested March 2026",
+        "location": "Open field and village path route, Fife",
+        "testDate": "2026-03-08T09:00:00.000Z",
+        "wind": "8-16 mph",
+        "temperature": "7C",
+        "light": "Bright overcast with late-day low-light retest",
+        "notes": "All batteries started at 100%. Tracking route repeated with the same walking and cycling sections."
+      },
+      "gallery": [
+        {
+          "src": "/images/photos/dji mavic 4.webp",
+          "alt": "Folding drone on the ground before a camera test run",
+          "caption": "Sample placeholder image for the Air 3 review hero and setup section."
+        },
+        {
+          "src": "/images/photos/professional-drone-pilot-uk-030.webp",
+          "alt": "Drone operator preparing a folding drone in open countryside",
+          "caption": "Use original field photography here once the Contentful image set is connected."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is the DJI Air 3 too much drone for a casual buyer?",
+          "answer": "Only if you want the lightest, cheapest, easiest possible option. For buyers who care about wind handling and camera confidence, the Air 3 still feels approachable."
+        },
+        {
+          "question": "Is the DJI Air 3 better than a sub-250g drone for UK conditions?",
+          "answer": "For wind handling and general confidence, yes. For pure portability and regulation convenience, the smaller models still have clear appeal."
+        }
+      ],
+      "keyTakeaways": [
+        "The Air 3 is the strongest all-rounder in the launch sample set.",
+        "It offers the best combination of camera quality, battery life, and wind confidence.",
+        "It costs more than the beginner options, but the jump in capability is obvious in practice."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The DJI Air 3 feels like the point where a consumer drone stops feeling like a gadget and starts feeling like a dependable flying camera. In repeated field sessions it was the easiest drone here to trust when the wind picked up or when you wanted usable footage quickly.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Design and setup", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Setup was quick and predictable. It is not tiny, but it unfolds fast, acquires GPS without fuss, and never felt fiddly in the field.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Camera tests", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Across the same daylight scene and late-day retest, the Air 3 produced the most consistently usable files. It held highlight detail well, looked more natural than the cheaper options, and stayed composed in windy tracking passes.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Flight behaviour", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This was the least stressful drone in the group to fly in moderate wind. Hover corrections were restrained, braking was predictable, and it felt like the most forgiving all-round platform for repeatable shooting.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "For buyers who want one drone to do almost everything well, the Air 3 sets the benchmark in this sample set. It is not the cheapest or the smallest, but it is the easiest recommendation if you want to grow into a more capable drone without stepping into specialist territory.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedReviewSlugs": [
+        "dji-mini-4-pro-review",
+        "dji-neo-review"
+      ],
+      "relatedComparisonSlugs": [
+        "dji-air-3-vs-mini-4-pro"
+      ],
+      "relatedBestPageSlugs": [
+        "best-drones-overall",
+        "best-camera-drones"
+      ]
+    },
+    {
+      "slug": "dji-mini-4-pro-review",
+      "title": "DJI Mini 4 Pro Review",
+      "manufacturer": "DJI",
+      "category": "travel",
+      "summary": "The DJI Mini 4 Pro is the best blend of portability, convenience, and genuinely high-end results if you want a travel-friendly drone that still feels premium.",
+      "featuredImage": "/images/photos/professional-drone-pilot-uk-028.webp",
+      "featuredImageAlt": "Pilot preparing a compact folding drone used as placeholder imagery for the DJI Mini 4 Pro review",
+      "publishedDate": "2026-02-24T09:00:00.000Z",
+      "updatedDate": "2026-03-09T09:00:00.000Z",
+      "priceLabel": "Approx. £879 with screen controller",
+      "priceValue": 879,
+      "affiliateUrl": "https://www.amazon.co.uk/",
+      "verdict": "The Mini 4 Pro is the easiest premium drone to travel with, and it performs well enough that many buyers will never need anything bigger.",
+      "buyIf": [
+        "You want the best travel-friendly drone in the group.",
+        "You care about packing light without sacrificing too much image quality.",
+        "You want a drone that feels easy to live with from day one."
+      ],
+      "avoidIf": [
+        "You regularly fly in windy exposed locations.",
+        "You want the strongest all-round image quality and battery life.",
+        "You want a more specialist action or FPV-style flying experience."
+      ],
+      "overallScore": 8.8,
+      "featured": true,
+      "useCaseTags": [
+        "beginner",
+        "travel",
+        "camera"
+      ],
+      "pros": [
+        "Excellent balance of portability and output quality",
+        "Simple to pack, launch, and relaunch",
+        "Safer and easier to recommend than many larger drones",
+        "Very good tracking and automated shooting tools"
+      ],
+      "cons": [
+        "More affected by wind than the larger all-rounders",
+        "Battery life is good rather than outstanding in real use",
+        "Still expensive for a first drone"
+      ],
+      "specs": [
+        { "label": "Weight", "value": "Under 250g class" },
+        { "label": "Claimed Flight Time", "value": "Approx. 34 min" },
+        { "label": "Camera Setup", "value": "Compact folding travel drone" },
+        { "label": "Obstacle Sensing", "value": "Omnidirectional" },
+        { "label": "Best Fit", "value": "Travel and premium beginner use" },
+        { "label": "Launch Position", "value": "Best travel drone" }
+      ],
+      "benchmarkSummary": [
+        { "label": "Median Real Flight Time", "value": "26m 12s", "notes": "Three mixed-use battery runs to 15%" },
+        { "label": "Hover Drift In Moderate Wind", "value": "Moderate", "notes": "Needed more correction than the Air 3 in exposed sections" },
+        { "label": "Tracking Success", "value": "Very good", "notes": "Held walkers well and reacquired quickly after partial occlusion" },
+        { "label": "Bag-To-Air Time", "value": "1m 19s", "notes": "Fastest premium setup in the sample set" }
+      ],
+      "scoreBreakdown": [
+        { "categoryId": "camera-image-quality", "score": 8.9, "summary": "Still produces impressively premium-looking files for such a small drone." },
+        { "categoryId": "flight-performance-wind-stability", "score": 8.5, "summary": "Stable in light wind but clearly less planted than the larger Air 3." },
+        { "categoryId": "battery-real-flight-time", "score": 8.4, "summary": "Good endurance, though not class-leading once you factor in real shooting use." },
+        { "categoryId": "safety-obstacle-avoidance", "score": 8.7, "summary": "Strong sensing and safe-feeling warnings for a compact travel drone." },
+        { "categoryId": "ease-of-use", "score": 9.1, "summary": "Fast to launch, easy to learn, and very low-friction for repeat casual flying." },
+        { "categoryId": "tracking-intelligent-features", "score": 8.8, "summary": "Smart features were useful and dependable enough to matter." },
+        { "categoryId": "controller-app-experience", "score": 9.0, "summary": "Clean, polished control experience with very little frustration." },
+        { "categoryId": "value-for-money", "score": 8.7, "summary": "Expensive for its size, but it earns the premium by being genuinely easy to own." },
+        { "categoryId": "portability-setup-speed", "score": 9.5, "summary": "The strongest portability score in the sample set by a clear margin." }
+      ],
+      "testRun": {
+        "firmware": "Latest public firmware tested March 2026",
+        "location": "Coastal path and open grass field, Fife",
+        "testDate": "2026-03-07T09:00:00.000Z",
+        "wind": "7-15 mph",
+        "temperature": "8C",
+        "light": "Mixed sun and bright cloud with a dusk retest",
+        "notes": "Tracking route matched the Air 3 route as closely as possible for comparison."
+      },
+      "gallery": [
+        {
+          "src": "/images/photos/professional-drone-pilot-uk-028.webp",
+          "alt": "Compact drone setup on a travel bag",
+          "caption": "Use original compact-drone field imagery once the final Contentful gallery is connected."
+        },
+        {
+          "src": "/images/photos/professional-drone-pilot-uk-030.webp",
+          "alt": "Drone pilot holding a controller in an open field",
+          "caption": "Placeholder image for controller and setup-speed sections."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is the Mini 4 Pro still enough drone for serious footage?",
+          "answer": "Yes, for most travel and hobbyist buyers it still captures more than enough quality. The tradeoff is mostly wind performance and ultimate headroom versus a larger all-round drone."
+        },
+        {
+          "question": "Is the Mini 4 Pro easier to recommend than the Air 3?",
+          "answer": "For travel, convenience, and low-friction ownership, yes. For raw confidence and windy conditions, the Air 3 is still stronger."
+        }
+      ],
+      "keyTakeaways": [
+        "The Mini 4 Pro is the easiest premium drone to travel with.",
+        "It produces genuinely strong results for its size.",
+        "Its main compromise versus the Air 3 is wind confidence rather than image quality."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The DJI Mini 4 Pro makes a strong case for never buying a larger drone unless you know exactly why you need one. It is quick to deploy, easy to travel with, and still capable of producing results that feel far beyond the usual expectations of a lightweight drone.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Setup and portability", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This is the drone that disappears into a small bag and comes back out without becoming a chore. It was the fastest premium option to unpack, launch, and relaunch.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Photo and video output", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "In daylight it delivered detailed, clean footage that never felt compromised by its size. The biggest limitation versus the larger drone was not sharpness, but how the whole aircraft behaved when the wind picked up.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Flight confidence", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Mini 4 Pro remained safe and predictable, but its lighter frame meant more visible corrections and less calm footage than the Air 3 in exposed sections of the route.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "If portability matters, the Mini 4 Pro is the easy recommendation. It is premium enough to keep most buyers happy for a long time, and its convenience advantage is obvious every time you pack or relaunch.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedReviewSlugs": [
+        "dji-air-3-review",
+        "dji-neo-review"
+      ],
+      "relatedComparisonSlugs": [
+        "dji-air-3-vs-mini-4-pro",
+        "dji-neo-vs-mini-4-pro"
+      ],
+      "relatedBestPageSlugs": [
+        "best-drones-overall",
+        "best-beginner-drones",
+        "best-camera-drones"
+      ]
+    },
+    {
+      "slug": "dji-neo-review",
+      "title": "DJI Neo Review",
+      "manufacturer": "DJI",
+      "category": "beginner",
+      "summary": "The DJI Neo is the easiest drone in the launch set to recommend to nervous first-time buyers who care more about simplicity and price than ultimate image quality.",
+      "featuredImage": "/images/photos/Qs8v_3-eTvgfbk8bYFjht.png",
+      "featuredImageAlt": "Compact drone placeholder image used for the DJI Neo review",
+      "publishedDate": "2026-02-20T09:00:00.000Z",
+      "updatedDate": "2026-03-06T09:00:00.000Z",
+      "priceLabel": "Approx. £169 starter kit",
+      "priceValue": 169,
+      "affiliateUrl": "https://www.amazon.co.uk/",
+      "verdict": "The Neo wins on approachability. It is not the best camera drone here, but it is the most painless path from curiosity to actually getting into the air.",
+      "buyIf": [
+        "You want a true beginner-first drone.",
+        "You care more about simplicity and fun than cinematic files.",
+        "You want the lowest-friction entry point in the sample set."
+      ],
+      "avoidIf": [
+        "You expect premium image quality.",
+        "You need dependable performance in wind.",
+        "You want serious tracking or low-light capability."
+      ],
+      "overallScore": 7.7,
+      "featured": true,
+      "useCaseTags": [
+        "beginner",
+        "value",
+        "travel"
+      ],
+      "pros": [
+        "Very approachable for complete beginners",
+        "Quick to charge, pack, and relaunch",
+        "Strong value relative to its low price",
+        "Minimal intimidation factor"
+      ],
+      "cons": [
+        "Noticeably weaker image quality than the premium models",
+        "Much less composed in wind",
+        "Tracking and smart features are limited by comparison"
+      ],
+      "specs": [
+        { "label": "Weight", "value": "Ultra-light compact class" },
+        { "label": "Claimed Flight Time", "value": "Approx. 18 min" },
+        { "label": "Camera Setup", "value": "Beginner-focused compact drone" },
+        { "label": "Obstacle Sensing", "value": "Basic" },
+        { "label": "Best Fit", "value": "First drone and easy travel use" },
+        { "label": "Launch Position", "value": "Best beginner value" }
+      ],
+      "benchmarkSummary": [
+        { "label": "Median Real Flight Time", "value": "14m 08s", "notes": "Three mixed-use battery runs to 15%" },
+        { "label": "Hover Drift In Moderate Wind", "value": "High", "notes": "The least planted drone in the sample set" },
+        { "label": "Tracking Success", "value": "Acceptable", "notes": "Good enough for casual clips, not dependable enough for demanding use" },
+        { "label": "Bag-To-Air Time", "value": "0m 58s", "notes": "Fastest total setup in the entire sample set" }
+      ],
+      "scoreBreakdown": [
+        { "categoryId": "camera-image-quality", "score": 7.7, "summary": "Good enough for casual clips, but clearly behind the more capable drones." },
+        { "categoryId": "flight-performance-wind-stability", "score": 7.0, "summary": "Easy to fly in calm conditions, quickly less convincing in wind." },
+        { "categoryId": "battery-real-flight-time", "score": 6.3, "summary": "Usable for short casual sessions but not a long-flight machine." },
+        { "categoryId": "safety-obstacle-avoidance", "score": 7.1, "summary": "Beginner-friendly overall, but not as protective or confidence-inspiring as the premium drones." },
+        { "categoryId": "ease-of-use", "score": 9.4, "summary": "The easiest drone here to understand and start using immediately." },
+        { "categoryId": "tracking-intelligent-features", "score": 6.8, "summary": "Works for basic casual use, but not robust enough to trust like the better drones." },
+        { "categoryId": "controller-app-experience", "score": 8.4, "summary": "Simple and unintimidating, with less complexity than the larger models." },
+        { "categoryId": "value-for-money", "score": 9.2, "summary": "One of the clearest value stories in the launch sample set." },
+        { "categoryId": "portability-setup-speed", "score": 9.8, "summary": "Tiny kit burden and genuinely instant setup." }
+      ],
+      "testRun": {
+        "firmware": "Latest public firmware tested March 2026",
+        "location": "Park edge and open field beginner route, Fife",
+        "testDate": "2026-03-05T09:00:00.000Z",
+        "wind": "6-13 mph",
+        "temperature": "9C",
+        "light": "Bright cloud with a short low-light retest",
+        "notes": "Used the same simple walking route to assess tracking and subject retention."
+      },
+      "gallery": [
+        {
+          "src": "/images/photos/Qs8v_3-eTvgfbk8bYFjht.png",
+          "alt": "Compact beginner drone on a bench before launch",
+          "caption": "Placeholder beginner-drone image for the Neo review."
+        },
+        {
+          "src": "/images/photos/peHTMm0bVeBba3k7cXsG-.png",
+          "alt": "Small drone kit laid out for a quick setup-speed test",
+          "caption": "Use original setup-speed photography once the CMS gallery is connected."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is the DJI Neo enough drone for total beginners?",
+          "answer": "Yes. That is its clearest strength. It is approachable, quick to deploy, and easier to recommend than more capable drones if the buyer is still unsure about the hobby."
+        },
+        {
+          "question": "Should a beginner buy the Neo instead of the Mini 4 Pro?",
+          "answer": "If budget and simplicity matter most, yes. If you already know you want stronger footage and more room to grow, the Mini 4 Pro is still the better long-term buy."
+        }
+      ],
+      "keyTakeaways": [
+        "The Neo is the easiest first drone in the launch sample set.",
+        "Its biggest strengths are simplicity, value, and setup speed.",
+        "You are trading away camera quality and wind confidence to get that convenience."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The DJI Neo is the drone for buyers who have not yet decided whether they are drone people. It lowers the barrier to entry dramatically and gets you flying faster than anything else in this sample set.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Why it feels easy", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Everything about the Neo reduces friction. It was the fastest drone in the group to get airborne and the least intimidating to hand to a cautious first-time pilot.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Where it falls short", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The tradeoff is obvious the moment conditions get tougher. Wind stability drops first, then image quality and smart-feature reliability start to show their limits.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "If you want a low-risk first step into drone ownership, the Neo makes sense. If you already know that camera quality, wind handling, or long-term headroom matters, you will outgrow it faster than the premium options.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedReviewSlugs": [
+        "dji-mini-4-pro-review",
+        "dji-avata-2-review"
+      ],
+      "relatedComparisonSlugs": [
+        "dji-neo-vs-mini-4-pro",
+        "dji-avata-2-vs-dji-neo"
+      ],
+      "relatedBestPageSlugs": [
+        "best-beginner-drones",
+        "best-drones-overall"
+      ]
+    },
+    {
+      "slug": "dji-avata-2-review",
+      "title": "DJI Avata 2 Review",
+      "manufacturer": "DJI",
+      "category": "fpv",
+      "summary": "The DJI Avata 2 is the most distinctive drone in this launch set, built for immersive flying and dynamic footage rather than pure all-round practicality.",
+      "featuredImage": "/images/photos/professional-drone-pilot-uk-039.webp",
+      "featuredImageAlt": "Drone pilot flying an FPV-style drone used as placeholder imagery for the DJI Avata 2 review",
+      "publishedDate": "2026-02-18T09:00:00.000Z",
+      "updatedDate": "2026-03-04T09:00:00.000Z",
+      "priceLabel": "Approx. £879 combo pricing",
+      "priceValue": 879,
+      "affiliateUrl": "https://www.amazon.co.uk/",
+      "verdict": "The Avata 2 is not the default recommendation, but it is the most exciting option here if your priority is motion, immersion, and action-style footage.",
+      "buyIf": [
+        "You want immersive FPV-style flying rather than a neutral all-round camera drone.",
+        "You care about dynamic action footage more than portability.",
+        "You already know you want a more specialist flying experience."
+      ],
+      "avoidIf": [
+        "You want the easiest first drone for normal aerial photography.",
+        "You mainly care about clean static landscape footage.",
+        "You want the simplest, safest, lowest-friction buying decision."
+      ],
+      "overallScore": 8.1,
+      "featured": false,
+      "useCaseTags": [
+        "fpv",
+        "action",
+        "specialist"
+      ],
+      "pros": [
+        "Distinctive flying experience unlike the camera-first drones",
+        "Very engaging for action-style footage",
+        "Handles dynamic movement better than the casual beginner options"
+      ],
+      "cons": [
+        "Far less universal than an all-rounder like the Air 3",
+        "Not the easiest choice for standard travel photography",
+        "More niche value proposition for most buyers"
+      ],
+      "specs": [
+        { "label": "Weight", "value": "Compact FPV-style class" },
+        { "label": "Claimed Flight Time", "value": "Approx. 23 min" },
+        { "label": "Camera Setup", "value": "Immersive FPV-focused system" },
+        { "label": "Obstacle Sensing", "value": "Limited vs all-round camera drones" },
+        { "label": "Best Fit", "value": "Action and immersive flying" },
+        { "label": "Launch Position", "value": "Specialist pick" }
+      ],
+      "benchmarkSummary": [
+        { "label": "Median Real Flight Time", "value": "18m 44s", "notes": "Three mixed-use battery runs to 15%" },
+        { "label": "Dynamic Tracking Feel", "value": "Strong", "notes": "Most distinctive and kinetic footage style in the launch set" },
+        { "label": "Setup Complexity", "value": "Moderate", "notes": "Not difficult, but clearly more specialist than Neo or Mini" },
+        { "label": "Bag-To-Air Time", "value": "1m 51s", "notes": "More moving parts and decision friction than the simpler drones" }
+      ],
+      "scoreBreakdown": [
+        { "categoryId": "camera-image-quality", "score": 8.6, "summary": "Good-looking dynamic footage, though not the cleanest all-purpose output." },
+        { "categoryId": "flight-performance-wind-stability", "score": 9.0, "summary": "Confident and engaging in motion when used for its intended style." },
+        { "categoryId": "battery-real-flight-time", "score": 7.5, "summary": "Acceptable endurance, but not a long-session platform." },
+        { "categoryId": "safety-obstacle-avoidance", "score": 7.8, "summary": "Safe enough when treated as a specialist platform, less forgiving than the camera-first options." },
+        { "categoryId": "ease-of-use", "score": 7.2, "summary": "More specialised and less instantly approachable than the neutral flying drones." },
+        { "categoryId": "tracking-intelligent-features", "score": 7.9, "summary": "Delivers a distinctive motion-focused result but does not replace robust all-round subject tracking." },
+        { "categoryId": "controller-app-experience", "score": 8.5, "summary": "Strong specialist experience once you buy into the style." },
+        { "categoryId": "value-for-money", "score": 7.4, "summary": "Worth it if you specifically want FPV-style results, harder to justify otherwise." },
+        { "categoryId": "portability-setup-speed", "score": 7.0, "summary": "Portable enough, just less seamless than the best travel-first drones." }
+      ],
+      "testRun": {
+        "firmware": "Latest public firmware tested March 2026",
+        "location": "Open field with marked dynamic route, Fife",
+        "testDate": "2026-03-03T09:00:00.000Z",
+        "wind": "5-12 mph",
+        "temperature": "8C",
+        "light": "Bright cloud with late afternoon retest",
+        "notes": "Used a distinct dynamic pass route rather than the static travel-drone framing route."
+      },
+      "gallery": [
+        {
+          "src": "/images/photos/professional-drone-pilot-uk-039.webp",
+          "alt": "Pilot flying a more dynamic specialist drone route",
+          "caption": "Placeholder image for immersive flight sections."
+        },
+        {
+          "src": "/images/photos/professional-drone-pilot-uk-030.webp",
+          "alt": "Controller held outdoors during a drone flight",
+          "caption": "Replace with true Avata 2 controller imagery when CMS media is connected."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is the Avata 2 a good first drone?",
+          "answer": "Only if you are specifically chasing immersive FPV-style flying. For a normal first camera drone, the Mini 4 Pro or Neo are easier recommendations."
+        },
+        {
+          "question": "Who should buy the Avata 2 instead of the Air 3?",
+          "answer": "Buyers who value motion, action, and a more distinctive flying style over neutral all-round camera performance."
+        }
+      ],
+      "keyTakeaways": [
+        "The Avata 2 is the specialist pick in this sample set.",
+        "It is the most exciting option for motion-heavy footage.",
+        "It is not the simplest or most universal drone to buy."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Avata 2 exists to give you a different feeling from the more neutral camera drones. It is less about simple aerial coverage and more about immersion, motion, and a sense of flying through the scene rather than above it.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "What makes it special", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "When the route called for dynamic movement, the Avata 2 produced the most distinctive results in the group. It makes ordinary passes feel far more kinetic and intentional.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Where it asks more of you", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Avata 2 makes less sense if you just want a low-friction camera drone. It is more specialist in both feel and value, and that narrows its audience compared with the Mini 4 Pro or Air 3.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Verdict", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This is the right drone for a buyer who already knows they want a more immersive style of flying and filming. It is the wrong choice if you want the simplest recommendation for everyday aerial photography.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedReviewSlugs": [
+        "dji-air-3-review",
+        "dji-neo-review"
+      ],
+      "relatedComparisonSlugs": [
+        "dji-avata-2-vs-dji-neo"
+      ],
+      "relatedBestPageSlugs": [
+        "best-drones-overall"
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "slug": "dji-air-3-vs-mini-4-pro",
+      "aliasSlugs": [
+        "mini-4-pro-vs-dji-air-3"
+      ],
+      "title": "DJI Air 3 vs Mini 4 Pro",
+      "excerpt": "The DJI Air 3 and Mini 4 Pro are the two easiest premium recommendations in the launch set, but they win for different reasons: the Air 3 on confidence and balance, the Mini 4 Pro on portability and convenience.",
+      "publishedDate": "2026-03-02T09:00:00.000Z",
+      "updatedDate": "2026-03-10T09:00:00.000Z",
+      "leftReviewSlug": "dji-air-3-review",
+      "rightReviewSlug": "dji-mini-4-pro-review",
+      "winnerReviewSlug": "dji-air-3-review",
+      "winnerSummary": "The Air 3 is the better default buy if you want the strongest all-round performance, while the Mini 4 Pro is still the smarter choice if portability is your top priority.",
+      "leftBuyIf": "Buy the Air 3 if you want a calmer, more capable all-round drone for windy UK conditions.",
+      "rightBuyIf": "Buy the Mini 4 Pro if you want the easiest premium drone to travel with and launch quickly.",
+      "priceNote": "The Mini 4 Pro usually wins on portability per pound, but the Air 3 justifies its extra cost if you value confidence and headroom.",
+      "categoryResults": [
+        { "label": "Camera and image quality", "winner": "left", "summary": "The Air 3 delivered more consistent high-end output across the same daylight and low-light scenes." },
+        { "label": "Wind stability", "winner": "left", "summary": "The larger drone stayed calmer and needed fewer visible corrections in exposed wind." },
+        { "label": "Portability", "winner": "right", "summary": "The Mini 4 Pro is the easier drone to carry, unpack, and relaunch." },
+        { "label": "Ease of use", "winner": "right", "summary": "The Mini 4 Pro is slightly easier to recommend to a buyer who wants premium results with low friction." },
+        { "label": "Tracking and features", "winner": "tie", "summary": "Both were strong, with the Air 3 feeling more planted and the Mini feeling more casual and immediate." },
+        { "label": "Value", "winner": "tie", "summary": "The Mini gives you more convenience, the Air gives you more headroom." }
+      ],
+      "faq": [
+        {
+          "question": "Which is better for UK wind: Air 3 or Mini 4 Pro?",
+          "answer": "The Air 3 is the better windy-weather drone. The Mini 4 Pro is still very capable, but it is clearly more affected once the conditions become exposed."
+        },
+        {
+          "question": "Which should a traveller buy?",
+          "answer": "The Mini 4 Pro is the better travel pick. It is smaller, faster to live with, and gives away less than you might expect in normal daylight output."
+        }
+      ],
+      "keyTakeaways": [
+        "Buy the Air 3 for confidence and balance.",
+        "Buy the Mini 4 Pro for travel and convenience.",
+        "This is a close comparison because both drones are easy to recommend."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This is the comparison that will matter to the most buyers. Both drones are excellent, but they pull the recommendation in different directions: one toward performance headroom, the other toward convenience.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Camera differences", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Air 3 delivered slightly more convincing files overall, especially once the light dropped or the wind made stable framing harder to keep. The Mini 4 Pro still looked excellent for its size.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Portability differences", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Mini 4 Pro earns its place by making ownership feel easier every time you pack or relaunch. That convenience is real, not theoretical.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Which should you buy", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Choose the Air 3 if you want the stronger long-term all-rounder. Choose the Mini 4 Pro if portability changes how often you will actually take the drone out and use it.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedBestPageSlugs": [
+        "best-drones-overall",
+        "best-camera-drones"
+      ]
+    },
+    {
+      "slug": "dji-neo-vs-mini-4-pro",
+      "aliasSlugs": [
+        "mini-4-pro-vs-dji-neo"
+      ],
+      "title": "DJI Neo vs Mini 4 Pro",
+      "excerpt": "The Neo is easier on your wallet and nerves, while the Mini 4 Pro feels like the better long-term buy if you already know you want stronger footage and more headroom.",
+      "publishedDate": "2026-02-28T09:00:00.000Z",
+      "updatedDate": "2026-03-08T09:00:00.000Z",
+      "leftReviewSlug": "dji-neo-review",
+      "rightReviewSlug": "dji-mini-4-pro-review",
+      "winnerReviewSlug": "dji-mini-4-pro-review",
+      "winnerSummary": "The Mini 4 Pro is the better drone, but the Neo still makes sense if you want the lowest-cost, lowest-friction introduction to flying.",
+      "leftBuyIf": "Buy the Neo if your budget is tight and you want the easiest possible first step into flying.",
+      "rightBuyIf": "Buy the Mini 4 Pro if you want a premium beginner-friendly drone that you will not outgrow quickly.",
+      "priceNote": "This is mostly a value and ambition decision: the Neo is cheaper and simpler, the Mini 4 Pro is far more complete.",
+      "categoryResults": [
+        { "label": "Image quality", "winner": "right", "summary": "The Mini 4 Pro produces meaningfully better photo and video output." },
+        { "label": "Beginner friendliness", "winner": "left", "summary": "The Neo is cheaper, less intimidating, and even faster to get airborne." },
+        { "label": "Wind stability", "winner": "right", "summary": "The Mini 4 Pro holds up much better once conditions become exposed." },
+        { "label": "Value", "winner": "left", "summary": "The Neo is the clearest bargain if you only want a simple starter drone." },
+        { "label": "Long-term ownership", "winner": "right", "summary": "The Mini 4 Pro has far more room for a buyer to grow into." }
+      ],
+      "faq": [
+        {
+          "question": "Is the Neo enough for a beginner?",
+          "answer": "Yes. It is enough for a beginner who wants a low-risk first purchase and does not need premium results."
+        },
+        {
+          "question": "Will most people outgrow the Neo?",
+          "answer": "Many buyers who care about footage quality or windy conditions probably will. That is where the Mini 4 Pro makes more sense."
+        }
+      ],
+      "keyTakeaways": [
+        "Buy the Neo if you want the cheapest easy entry point.",
+        "Buy the Mini 4 Pro if you want a better long-term drone.",
+        "This is a question of budget and ambition more than pure specs."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This comparison is about how much drone you really need. The Neo lowers the cost and anxiety of getting started. The Mini 4 Pro gives you much more room to grow, but asks for a much bigger upfront spend.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "What the Neo gets right", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Neo is simpler, cheaper, and easier to recommend to someone who is still feeling out whether drone flying will become a real hobby.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "What the Mini 4 Pro adds", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "You get a premium travel drone with stronger footage, better wind handling, more dependable tracking, and far more long-term satisfaction if you know you want better results from the start.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedBestPageSlugs": [
+        "best-beginner-drones"
+      ]
+    },
+    {
+      "slug": "dji-avata-2-vs-dji-neo",
+      "aliasSlugs": [
+        "dji-neo-vs-dji-avata-2"
+      ],
+      "title": "DJI Avata 2 vs DJI Neo",
+      "excerpt": "These drones only look similar if you reduce them to size and price. In practice, the Neo is the easy beginner choice and the Avata 2 is the specialist pick for motion and immersive flying.",
+      "publishedDate": "2026-02-26T09:00:00.000Z",
+      "updatedDate": "2026-03-07T09:00:00.000Z",
+      "leftReviewSlug": "dji-avata-2-review",
+      "rightReviewSlug": "dji-neo-review",
+      "winnerReviewSlug": "dji-avata-2-review",
+      "winnerSummary": "The Avata 2 is the more exciting and capable specialist drone, but the Neo is still the smarter buy for casual beginners who just want the easiest path into flying.",
+      "leftBuyIf": "Buy the Avata 2 if you want a specialist immersive flight and action-footage experience.",
+      "rightBuyIf": "Buy the Neo if you want a simple, casual, low-cost beginner drone.",
+      "priceNote": "The Neo wins on simplicity and price. The Avata 2 wins if you actually want the experience it is built for.",
+      "categoryResults": [
+        { "label": "Ease of use", "winner": "right", "summary": "The Neo is far easier for a hesitant beginner." },
+        { "label": "Action footage", "winner": "left", "summary": "The Avata 2 produces a more distinctive, immersive result." },
+        { "label": "Value for casual buyers", "winner": "right", "summary": "The Neo makes more sense if you do not need a specialist platform." },
+        { "label": "Specialist capability", "winner": "left", "summary": "The Avata 2 has a clear purpose and it executes it well." }
+      ],
+      "faq": [
+        {
+          "question": "Which is better for a child or cautious first-time flyer?",
+          "answer": "The Neo. It is simpler, cheaper, and less specialised."
+        },
+        {
+          "question": "Which is better for dynamic action clips?",
+          "answer": "The Avata 2 by a wide margin. That is exactly what it is built for."
+        }
+      ],
+      "keyTakeaways": [
+        "The Neo is the casual beginner drone.",
+        "The Avata 2 is the specialist action drone.",
+        "This is not really a close direct substitute comparison."
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Avata 2 and Neo only overlap at a very shallow level. Once you actually fly them, they are clearly aimed at different buyers with different expectations.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Who the Neo is for", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Neo is for buyers who want quick, casual, low-commitment fun. It is approachable and easy to recommend when budget and simplicity matter most.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "Who the Avata 2 is for", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Avata 2 is for buyers who want something more expressive and immersive. It is not the simpler choice, but it delivers something the Neo simply does not try to do.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      },
+      "relatedBestPageSlugs": [
+        "best-beginner-drones"
+      ]
+    }
+  ],
+  "bestPages": [
+    {
+      "slug": "best-drones-overall",
+      "title": "Best Drones Overall",
+      "excerpt": "The best drones overall balance image quality, flight confidence, real battery life, and everyday usability. This launch list favours the drones that are easiest to recommend to the broadest range of buyers.",
+      "targetKeyword": "best drones overall",
+      "publishedDate": "2026-03-03T09:00:00.000Z",
+      "updatedDate": "2026-03-10T09:00:00.000Z",
+      "intro": "This page is for buyers who want one great drone recommendation rather than a niche specialist answer. We prioritise balanced performance, not the most extreme spec-sheet win in any one area.",
+      "methodologySummary": "We ranked these drones using the default review weighting, then applied explicit editorial notes where buyer fit needed context. That means portability, safety, camera quality, battery life, and real-world confidence all mattered.",
+      "keyTakeaways": [
+        "The Air 3 is the strongest all-round recommendation in the current launch set.",
+        "The Mini 4 Pro remains the smartest premium travel pick.",
+        "The Neo is a value-first beginner option rather than an all-round performance winner."
+      ],
+      "faq": [
+        {
+          "question": "Why is the Air 3 ranked above the Mini 4 Pro overall?",
+          "answer": "Because it performs more convincingly as a true do-everything drone, especially in wind and longer-term ownership. The Mini 4 Pro still wins on portability."
+        },
+        {
+          "question": "Why is the Neo on the list at all?",
+          "answer": "Because this page ranks the best options for different buyer types. The Neo’s beginner-friendliness and value still matter even though it is not the strongest technical performer."
+        }
+      ],
+      "ruleSet": {
+        "eligibleReviewSlugs": [
+          "dji-air-3-review",
+          "dji-mini-4-pro-review",
+          "dji-neo-review",
+          "dji-avata-2-review"
+        ],
+        "scoreWeights": {},
+        "overrides": []
+      },
+      "reviewNotes": [
+        {
+          "reviewSlug": "dji-air-3-review",
+          "award": "Best Overall",
+          "whyThisPick": "It combines the best mix of camera quality, wind confidence, battery life, and all-round usability.",
+          "whoShouldSkipIt": "Skip it if you prioritise travel convenience above everything else."
+        },
+        {
+          "reviewSlug": "dji-mini-4-pro-review",
+          "award": "Best Travel Pick",
+          "whyThisPick": "It gets remarkably close to the all-round winner while staying much easier to carry and deploy.",
+          "whoShouldSkipIt": "Skip it if you regularly fly in windier exposed locations."
+        },
+        {
+          "reviewSlug": "dji-avata-2-review",
+          "award": "Best Specialist Pick",
+          "whyThisPick": "It delivers the most distinctive immersive flying and action-footage experience in the launch sample set.",
+          "whoShouldSkipIt": "Skip it if you want a neutral all-round camera drone."
+        },
+        {
+          "reviewSlug": "dji-neo-review",
+          "award": "Best Budget Entry",
+          "whyThisPick": "It is the easiest low-risk starting point for buyers who mainly want simplicity and price.",
+          "whoShouldSkipIt": "Skip it if you already know you want better footage and more long-term headroom."
+        }
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "A best-overall list should reward balance. This page favours the drones that are easiest to recommend without a long chain of caveats.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "How we ranked them", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We started with the core review weighting, then checked whether the result still made sense for a normal buyer who wants one dependable recommendation. Portability, safety, camera quality, flight confidence, and ownership friction all matter here.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "best-beginner-drones",
+      "title": "Best Beginner Drones",
+      "excerpt": "The best beginner drones reduce friction, lower anxiety, and make it easy to get airborne without feeling lost. This list rewards simplicity, safety, and value more heavily than raw image quality.",
+      "targetKeyword": "best beginner drones",
+      "publishedDate": "2026-03-04T09:00:00.000Z",
+      "updatedDate": "2026-03-10T09:00:00.000Z",
+      "intro": "This page is for buyers who care more about approachability than maximum performance. If the drone is hard to set up, stressful to fly, or easy to outgrow immediately, it should not rank well here.",
+      "methodologySummary": "We boosted ease of use, safety, portability, and value. Camera quality still matters, but not as much as the total ownership experience for a first-time pilot.",
+      "keyTakeaways": [
+        "The Neo is the easiest and least intimidating first purchase.",
+        "The Mini 4 Pro is the premium beginner choice if you want room to grow.",
+        "This list favours approachability over absolute image quality."
+      ],
+      "faq": [
+        {
+          "question": "Why is the Neo ahead of the Mini 4 Pro for beginners?",
+          "answer": "Because beginner lists should reward simplicity, low risk, and price. The Mini 4 Pro is the better drone, but the Neo is easier for a hesitant buyer to say yes to."
+        }
+      ],
+      "ruleSet": {
+        "requiredUseCaseTags": [
+          "beginner"
+        ],
+        "eligibleReviewSlugs": [
+          "dji-neo-review",
+          "dji-mini-4-pro-review"
+        ],
+        "scoreWeights": {
+          "camera-image-quality": 12,
+          "flight-performance-wind-stability": 10,
+          "battery-real-flight-time": 8,
+          "safety-obstacle-avoidance": 18,
+          "ease-of-use": 20,
+          "tracking-intelligent-features": 8,
+          "controller-app-experience": 10,
+          "value-for-money": 9,
+          "portability-setup-speed": 5
+        },
+        "overrides": []
+      },
+      "reviewNotes": [
+        {
+          "reviewSlug": "dji-neo-review",
+          "award": "Best Beginner Drone",
+          "whyThisPick": "It is cheaper, simpler, and less intimidating than anything else in the launch sample set.",
+          "whoShouldSkipIt": "Skip it if you already know you care about better footage and stronger wind handling."
+        },
+        {
+          "reviewSlug": "dji-mini-4-pro-review",
+          "award": "Best Premium Beginner Drone",
+          "whyThisPick": "It stays beginner-friendly while giving you much more room to grow and much better image quality.",
+          "whoShouldSkipIt": "Skip it if the higher price would stop you from flying regularly."
+        }
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "A beginner list should not just rank the technically best drones. It should rank the drones that make people comfortable enough to actually start flying and keep flying.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "What matters most for beginners", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Ease of setup, safe-feeling behaviour, and value carry more weight here than raw camera performance. The point is to reward drones that remove excuses and reduce stress.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "best-camera-drones",
+      "title": "Best Camera Drones",
+      "excerpt": "The best camera drones should deliver clean, dependable files in real conditions, not just good-looking marketing specs. This list rewards image quality first, then battery life, stability, and tracking support.",
+      "targetKeyword": "best camera drones",
+      "publishedDate": "2026-03-05T09:00:00.000Z",
+      "updatedDate": "2026-03-10T09:00:00.000Z",
+      "intro": "This page is for buyers who care most about what comes off the memory card. Strong camera performance only matters if the aircraft can also stay stable enough to deliver repeatable results in normal outdoor conditions.",
+      "methodologySummary": "We boosted camera and image quality, battery life, flight stability, and tracking support, then checked whether the result still made sense for a buyer whose first priority is footage.",
+      "keyTakeaways": [
+        "The Air 3 is the best camera-first all-rounder in the launch sample set.",
+        "The Mini 4 Pro remains surprisingly close for a much smaller drone.",
+        "Specialist motion drones are not automatically the best camera drones."
+      ],
+      "faq": [
+        {
+          "question": "Why does the Avata 2 not top the camera list if its footage looks exciting?",
+          "answer": "Because this page rewards dependable all-purpose image quality and repeatable results, not just the most dramatic motion style."
+        }
+      ],
+      "ruleSet": {
+        "requiredUseCaseTags": [
+          "camera"
+        ],
+        "eligibleReviewSlugs": [
+          "dji-air-3-review",
+          "dji-mini-4-pro-review"
+        ],
+        "scoreWeights": {
+          "camera-image-quality": 35,
+          "flight-performance-wind-stability": 15,
+          "battery-real-flight-time": 15,
+          "safety-obstacle-avoidance": 8,
+          "ease-of-use": 7,
+          "tracking-intelligent-features": 8,
+          "controller-app-experience": 5,
+          "value-for-money": 4,
+          "portability-setup-speed": 3
+        },
+        "overrides": []
+      },
+      "reviewNotes": [
+        {
+          "reviewSlug": "dji-air-3-review",
+          "award": "Best Camera Drone Overall",
+          "whyThisPick": "It delivers the strongest mix of clean output, stability, and all-round shooting confidence.",
+          "whoShouldSkipIt": "Skip it if you need a smaller travel-first drone."
+        },
+        {
+          "reviewSlug": "dji-mini-4-pro-review",
+          "award": "Best Compact Camera Drone",
+          "whyThisPick": "It gets remarkably close to the Air 3 while being much easier to carry and use on the move.",
+          "whoShouldSkipIt": "Skip it if you regularly shoot in windy exposed spaces."
+        }
+      ],
+      "contentfulContent": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "A camera-drone list should reward the drones that consistently capture files you will actually want to keep. That means looking at image quality and the flying behaviour that supports it together.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "heading-2",
+            "data": {},
+            "content": [
+              { "nodeType": "text", "value": "What this list rewards", "marks": [], "data": {} }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We prioritised clean output, low-light control, dynamic range, battery life, and wind stability. A drone that captures great files only in perfect calm conditions should not top this list.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "reviewSlugs": [
+    "dji-air-3-review",
+    "dji-mini-4-pro-review",
+    "dji-neo-review",
+    "dji-avata-2-review"
+  ],
+  "comparisonSlugs": [
+    "dji-air-3-vs-mini-4-pro",
+    "dji-neo-vs-mini-4-pro",
+    "dji-avata-2-vs-dji-neo"
+  ],
+  "bestPageSlugs": [
+    "best-drones-overall",
+    "best-beginner-drones",
+    "best-camera-drones"
+  ]
+}

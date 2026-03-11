@@ -88,6 +88,9 @@ const navCategories = [
 
 const resourceLinks = [
   { name: 'Resources', href: '/resources', desc: 'Guides, tools and calculators' },
+  { name: 'Drone Reviews', href: '/drone-reviews', desc: 'Structured product reviews' },
+  { name: 'Drone Comparisons', href: '/drone-comparisons', desc: 'Head-to-head buying guides' },
+  { name: 'Best Drones', href: '/best-drones', desc: 'Use-case rankings and top picks' },
   { name: 'Blog', href: '/blog', desc: 'Latest articles and news' },
   { name: 'CAA Drone Theory Test', href: '/caa-drone-theory-test', desc: 'Practice test questions' },
   { name: 'Join as Pilot', href: '/join-as-pilot', desc: 'Apply to join our network' },
